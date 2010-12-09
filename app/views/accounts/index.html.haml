@@ -1,8 +1,7 @@
 %div.section#accounts_section
 	%div.heading Accounts
-	%div.table
-		%div.header.row
-			%div.field Name
-		- @accounts.each do |account|
-			%div.row
-				%div.field account.name
+	= will_paginate @accounts
+	= render :partial => 'table'
+	= will_paginate @accounts
+	%div.footer
+		= link_to 'New Account', new_account_url

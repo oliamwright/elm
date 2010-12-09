@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.3'
 gem 'devise', '1.1.5'
 gem 'haml', '3.0.24'
+gem 'will_paginate', '~> 3.0.pre2'
+gem 'formtastic', '~> 1.1.0'
 
 
 # Bundle edge Rails instead:
