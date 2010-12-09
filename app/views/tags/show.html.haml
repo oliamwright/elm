@@ -1,3 +1,9 @@
 %div.section#tags_section
 	%div.heading
 		= "Tag : #{@tag.name}"
+%div.section#transactions_section
+	%div.heading
+		= "Transactions for '#{@tag.name}'"
+	= will_paginate @transactions
+	= render :partial => 'transactions/table'
+	= will_paginate @transactions

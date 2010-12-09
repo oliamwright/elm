@@ -7,5 +7,6 @@ class TagsController < ApplicationController
 
 	def show
 		@tag = @account.tags.find(params[:id])
+		@transactions = @tag.transactions.paginate :page => params[:page], :per_page => 25
 	end
 end

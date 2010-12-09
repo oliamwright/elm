@@ -2,7 +2,7 @@
 	%div.heading
 		= "Transactions for '#{@account.name}'"
 	= will_paginate @transactions
-	= render :partial => 'table'
+	= render :partial => 'transactions/table'
 	= will_paginate @transactions
 	%div.footer
 		= link_to 'New Transaction', new_transaction_url
