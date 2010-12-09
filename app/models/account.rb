@@ -8,7 +8,7 @@ class Account < ActiveRecord::Base
 	}
 
 	def balance
-		Transaction.where(:account_id => self.id).sum(:amount)
+		Transaction.where(:account_id => self.id).sum(:amount).round(2)
 	end
 
 	def balance_type

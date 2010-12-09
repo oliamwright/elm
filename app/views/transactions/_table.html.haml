@@ -1,4 +1,4 @@
 %div.table
 	= render :partial => 'transactions/table_header'
 	= render :partial => 'transactions/table_row', :collection => @transactions
-	= render :partial => 'transactions/table_footer'
+	= render :partial => 'transactions/table_footer', :locals => {:balance => @transactions.inject(0) { |s,v| s += v.amount } }
