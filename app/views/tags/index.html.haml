@@ -1,0 +1,8 @@
+%div.section#tags_section
+	%div.heading
+		= "Tags for '#{@account.name}'"
+	= will_paginate @tags
+	= render :partial => 'table'
+	= will_paginate @tags
+	%div.footer
+		= link_to 'New Tag', new_tag_url

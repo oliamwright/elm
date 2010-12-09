@@ -25,13 +25,14 @@
 }
 .table .row .field.date { width: 7%; }
 .table .row .field.description { width: 25%; }
+.table .row .field.tags { width: 25%; }
 .table .row .field.amount { text-align: center; }
 .table .row.income { background-color: #93ce78; }
 .table .row.expense { background-color: #c39e78; }
 .table .row:hover { background-color: #8a8a5a; }
 .table .header:hover { background-color: #939e78; }
-.table .footer.positive:hover { background-color: #93e378; }
-.table .footer.negative:hover { background-color: #d89e78; }
+.table .footer.positive:hover { background-color: #639e48; }
+.table .footer.negative:hover { background-color: #c38963; }
 .section {
   border-top-left-radius: 4px 4px;
   border-top-right-radius: 4px 4px;
@@ -76,13 +77,14 @@
 }
 .table .row .field.date { width: 7%; }
 .table .row .field.description { width: 25%; }
+.table .row .field.tags { width: 25%; }
 .table .row .field.amount { text-align: center; }
 .table .row.income { background-color: #93ce78; }
 .table .row.expense { background-color: #c39e78; }
 .table .row:hover { background-color: #8a8a5a; }
 .table .header:hover { background-color: #939e78; }
-.table .footer.positive:hover { background-color: #93e378; }
-.table .footer.negative:hover { background-color: #d89e78; }
+.table .footer.positive:hover { background-color: #639e48; }
+.table .footer.negative:hover { background-color: #c38963; }
 div.form { border: 1px solid #839074; }
 a {
   text-decoration: none;

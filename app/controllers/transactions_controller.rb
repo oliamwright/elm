@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
 	before_filter :load_account, :only => [ :index, :create ]
 
 	def index
-		@transactions = @account.transactions.paginate :page => params[:page], :per_page => 25
+		@transactions = @account.transactions.order("transaction_date, id desc").paginate :page => params[:page], :per_page => 25
 	end
 
 	def new
@@ -11,7 +11,10 @@ class TransactionsController < ApplicationController
 	end
 
 	def create
+		@tags = parse_tag_string(params[:transaction][:tag_string])
+		params[:transaction].delete(:tag_string)
 		@transaction = Transaction.new(params[:transaction])
+		@transaction.tags << @tags
 		@transaction.account = @account
 		if @transaction.save
 			flash[:notice] = "Transaction saved."
@@ -23,15 +26,24 @@ class TransactionsController < ApplicationController
 
 	private
 
-	def load_account
-		if params[:account_id]
-			@account = Account.for_user(current_user).find(params[:account_id])
-		elsif session[:account_id]
-			@account = Account.for_user(current_user).find(session[:account_id])
-		else
-			@account = Account.for_user(current_user).first
+	def parse_tag_string(tstr)
+		logger.info "parsing tag string [#{tstr}]"
+		tags = Array.new
+		tstr.strip!
+		tag_names = tstr.split(/,/)
+		tag_names.each do |tag_name|
+			logger.info "found tag name [#{tag_name}]"
+			tag_name.strip!
+			tag = Tag.where(:account_id => @account.id, :name => tag_name).first
+			if tag.nil?
+				logger.info "couldn't find tag [#{tag_name}]... creating."
+				tag = Tag.new(:account_id => @account.id, :name => tag_name)
+				tag.save
+			else
+				logger.info "found tag [#{tag.name}] <#{tag.id}>"
+			end
+			tags << tag
 		end
-		session[:account_id] = @account.id
+		return tags
 	end
-
 end

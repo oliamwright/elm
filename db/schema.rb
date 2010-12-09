@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101209175023) do
+ActiveRecord::Schema.define(:version => 20101209194529) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,28 @@ ActiveRecord::Schema.define(:version => 20101209175023) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "accounts", ["name"], :name => "index_accounts_on_name"
+  add_index "accounts", ["user_id"], :name => "index_accounts_on_user_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "account_id"
+  end
+
+  add_index "tags", ["account_id"], :name => "index_tags_on_account_id"
+  add_index "tags", ["name"], :name => "index_tags_on_name"
+
+  create_table "tags_transactions", :id => false, :force => true do |t|
+    t.integer "tag_id"
+    t.integer "transaction_id"
+  end
+
+  add_index "tags_transactions", ["tag_id", "transaction_id"], :name => "index_tags_transactions_on_tag_id_and_transaction_id"
+  add_index "tags_transactions", ["tag_id"], :name => "index_tags_transactions_on_tag_id"
+  add_index "tags_transactions", ["transaction_id"], :name => "index_tags_transactions_on_transaction_id"
 
   create_table "transactions", :force => true do |t|
     t.datetime "transaction_date"
@@ -27,6 +49,9 @@ ActiveRecord::Schema.define(:version => 20101209175023) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "transactions", ["account_id"], :name => "index_transactions_on_account_id"
+  add_index "transactions", ["transaction_date"], :name => "index_transactions_on_transaction_date"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
