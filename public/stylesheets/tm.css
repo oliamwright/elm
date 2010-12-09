@@ -1,0 +1,65 @@
+
+/*
+ * palette
+ *
+ * #d9ceb2
+ * #948c75
+ * #d5ded9 // background
+ * #7a6a53 // foreground
+ * #99b2b7
+ *
+ */
+
+a {
+	text-decoration: none;
+	color: #7a6a53;
+}
+
+a:hover {
+	color: #4a3a23;
+}
+
+body {
+	background-color: #d5ded9;
+	color: #7a6a53;
+	padding: 0px;
+	margin: 0px;
+	font-family: sans-serif;
+	font-size: 12px;
+}
+
+.page_header {
+	width: 100%;
+	background-color: #d9ceb2;
+	border-bottom: 3px solid #948c75;
+	padding: 20px;
+	font-size: 2.0em;
+}
+
+.page {
+	padding: 20px;
+}
+
+.navigation {
+	background-color: #99b2b7;
+	padding: 0px 20px 0px 20px;
+	border-bottom: 3px solid #948c75;
+	color: #d5ded9;
+}
+
+.navigation .link {
+	display: inline-block;
+	padding: 5px;
+}
+
+.navigation .link a {
+	color: #d5ded9;
+}
+
+.navigation .link:hover {
+	background-color: #d5ded9;
+}
+
+.navigation .link:hover a {
+	color: #948c75;
+}
