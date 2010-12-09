@@ -73,6 +73,7 @@ body {
   font-size: 2em;
 }
 .page { padding: 20px; }
+.sub_navigation { display: inline-block; }
 .navigation {
   background-color: #939e78;
   padding: 0px 20px 0px 20px;

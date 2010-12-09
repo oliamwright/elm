@@ -1,6 +1,13 @@
 %div.navigation
-	%div.link
-		%a{:href => "/"} Home
-	- if user_signed_in?
+	%div.global_navigation.sub_navigation
 		%div.link
-			%a{:href => accounts_url} Accounts
+			%a{:href => "/"} Home
+		- if user_signed_in?
+			%div.link
+				%a{:href => accounts_url} Accounts
+	%div.user_navigation.sub_navigation
+		%div.link
+			- if user_signed_in?
+				%a{:href => destroy_user_session_url } Logout
+			- else
+				%a{:href => new_user_session_url } Login
