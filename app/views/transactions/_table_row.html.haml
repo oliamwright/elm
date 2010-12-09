@@ -1,0 +1,7 @@
+%div.row{:class => table_row.type }
+	%div.field.first.date
+		= table_row.short_date
+	%div.field.description
+		= table_row.description
+	%div.field.amount
+		= number_to_currency(table_row.amount.abs)

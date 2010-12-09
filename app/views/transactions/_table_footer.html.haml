@@ -1,0 +1,5 @@
+%div.footer.row{:class => @account.balance_type }
+	%div.field.first.date Balance
+	%div.field.description
+	%div.field.amount
+		= number_to_currency(@account.balance.abs)

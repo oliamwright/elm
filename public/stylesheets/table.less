@@ -12,9 +12,56 @@
 	font-weight: bold;
 }
 
+.table .footer {
+	color: @table_header_foreground_color;
+	font-weight: bold;
+}
+
+.table .footer.positive {
+	background-color: @table_header_background_color - #300030;
+}
+
+.table .footer.negative {
+	background-color: @table_header_background_color - #001515 + #300000;
+}
+
+.table .header .field {
+	text-align: center;
+}
+
+.table .header .field.first {
+	text-align: left;
+}
+
 .table .row {
 	padding: 5px;
 	border-top: 1px solid @table_border_color;
+}
+
+.table .row .field {
+	display: inline-block;
+	width: 10%;
+}
+
+// specific fields
+.table .row .field.date {
+	width: 7%;
+}
+
+.table .row .field.description {
+	width: 25%;
+}
+
+.table .row .field.amount {
+	text-align: center;
+}
+
+.table .row.income {
+	background-color: @income_row_background_color;
+}
+
+.table .row.expense {
+	background-color: @expense_row_background_color;
 }
 
 .table .row:hover {
@@ -25,11 +72,10 @@
 	background-color: @table_header_background_color;
 }
 
-.table .row .field {
-	display: inline-block;
-	width: 10%;
+.table .footer.positive:hover {
+	background-color: @table_header_background_color + #004500;
 }
 
-.hidden_form {
-	display: none;
+.table .footer.negative:hover {
+	background-color: @table_header_background_color + #450000;
 }

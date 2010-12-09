@@ -1,3 +1,3 @@
 %div.row
 	%div.field
-		= table_row.name
+		= link_to table_row.name, transactions_url({:account_id => table_row})
