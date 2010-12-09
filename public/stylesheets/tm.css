@@ -11,6 +11,8 @@
   padding: 5px;
   border-top: 1px solid #839074;
 }
+.table .row:hover { background-color: #8a8a5a; }
+.table .header:hover { background-color: #939e78; }
 .table .row .field {
   display: inline-block;
   width: 10%;
@@ -46,6 +48,8 @@
   padding: 5px;
   border-top: 1px solid #839074;
 }
+.table .row:hover { background-color: #8a8a5a; }
+.table .header:hover { background-color: #939e78; }
 .table .row .field {
   display: inline-block;
   width: 10%;
