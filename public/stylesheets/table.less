@@ -1,0 +1,24 @@
+
+@import "palette";
+
+.table {
+	background-color: @table_background_color;
+	border: 1px solid @table_border_color;
+}
+
+.table .header {
+	background-color: @table_header_background_color;
+	color: @table_header_foreground_color;
+	font-weight: bold;
+}
+
+.table .row {
+	padding: 5px;
+	border-top: 1px solid @table_border_color;
+}
+
+.table .row .field {
+	display: inline-block;
+	width: 10%;
+}
+

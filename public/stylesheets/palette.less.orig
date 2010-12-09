@@ -1,0 +1,20 @@
+/*
+ * palette
+ *
+ * #d9ceb2
+ * #948c75
+ * #d5ded9 // background
+ * #7a6a53 // foreground
+ * #99b2b7
+ *
+ */
+
+@background_color: #d5ded9;
+//@foreground_color: #7a6a53;
+@foreground_color: #fff;
+@link_color: #7a6a53;
+@link_hover_color: #4a3a23;
+@header_background_color: #99b2b7;
+@header_border_color: #d5ded9;
+@navigation_background_color: #948c75;
+@navigation_border_color: @header_border_color;

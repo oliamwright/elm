@@ -1,0 +1,20 @@
+@background_color: #fff;
+@foreground_color: #000;
+
+@link_color: #00f;
+@link_hover_color: #00f;
+
+@header_background_color: @background_color;
+@header_border_color: #ccc;
+
+@navigation_background_color: @header_border_color;
+@navigation_border_color: @header_border_color;
+@navigation_link_color: @link_color;
+@navigation_hover_link_color: @link_hover_color;
+@navigation_hover_background_color: @header_border_color;
+
+@section_border_color: @header_border_color;
+@section_background_color: @header_background_color;
+
+@section_heading_background_color: @header_border_color;
+@section_heading_border_color: @header_background_color;
