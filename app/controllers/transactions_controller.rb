@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-	before_filter :load_account, :only => [ :index, :create ]
+	before_filter :load_account, :only => [ :index, :create, :destroy ]
 
 	def index
 		@transactions = @account.transactions.order("transaction_date, id desc").paginate :page => params[:page], :per_page => 25
@@ -20,6 +20,22 @@ class TransactionsController < ApplicationController
 			flash[:notice] = "Transaction saved."
 		else
 			flash[:error] = "Could not save transaction."
+		end
+		redirect_to transactions_url
+	end
+
+	def destroy
+		@transaction = @account.transactions.find(params[:id])
+		tags = @transaction.tags
+		tags.each do |tag|
+			if tag.transactions.count == 1
+				tag.destroy
+			end
+		end
+		if @transaction.destroy
+			flash[:notice] = "Transaction destroyed."
+		else
+			flash[:error] = "Could not destroy transaction."
 		end
 		redirect_to transactions_url
 	end

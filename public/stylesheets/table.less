@@ -1,6 +1,10 @@
 
 @import "palette";
 
+.table a {
+	color: @table_link_color;
+}
+
 .table {
 	background-color: @table_background_color;
 	border: 1px solid @table_border_color;
@@ -41,6 +45,10 @@
 .table .row .field {
 	display: inline-block;
 	width: 10%;
+}
+
+.table .row .links {
+	display: inline-block;
 }
 
 // specific fields

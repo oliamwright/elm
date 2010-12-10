@@ -1,3 +1,4 @@
+.table a { color: #4b5558; }
 .table {
   background-color: #a8a878;
   border: 1px solid #839074;
@@ -23,6 +24,7 @@
   display: inline-block;
   width: 10%;
 }
+.table .row .links { display: inline-block; }
 .table .row .field.date { width: 7%; }
 .table .row .field.description { width: 25%; }
 .table .row .field.tags { width: 25%; }
@@ -46,6 +48,7 @@
   padding: 10px 0px 0px 5px;
   background-color: #cdcd76;
 }
+.table a { color: #4b5558; }
 .table {
   background-color: #a8a878;
   border: 1px solid #839074;
@@ -71,6 +74,7 @@
   display: inline-block;
   width: 10%;
 }
+.table .row .links { display: inline-block; }
 .table .row .field.date { width: 7%; }
 .table .row .field.description { width: 25%; }
 .table .row .field.tags { width: 25%; }
@@ -90,6 +94,23 @@ body {
   margin: 0px;
   font-family: sans-serif;
   font-size: 12px;
+}
+.message {
+  margin-top: 10px;
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  padding: 5px;
+}
+.message.notice {
+  border: 1px solid #03ce48;
+  color: #03ce48;
+  background-color: #b3ee98;
+}
+.message.error {
+  border: 1px solid #c33e18;
+  color: #c33e18;
+  background-color: #d8b38d;
 }
 .page_header {
   width: 100%;

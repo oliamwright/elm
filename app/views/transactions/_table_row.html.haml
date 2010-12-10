@@ -7,3 +7,6 @@
 		=raw tag_string_with_links(table_row)
 	%div.field.amount
 		= number_to_currency(table_row.amount.abs)
+	%div.links
+		%div.link
+			= link_to 'delete', table_row, :method => :delete, :confirm => 'Are you sure?'

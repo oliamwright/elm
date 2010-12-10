@@ -22,6 +22,26 @@ body {
 	font-size: 12px;
 }
 
+.message {
+	margin-top: 10px;
+	width: 50%;
+	margin-left: 25%;
+	text-align: center;
+	padding: 5px;
+}
+
+.message.notice {
+	border: 1px solid @notice_border_color;
+	color: @notice_color;
+	background-color: @notice_background_color;
+}
+
+.message.error {
+	border: 1px solid @error_border_color;
+	color: @error_color;
+	background-color: @error_background_color;
+}
+
 .page_header {
 	width: 100%;
 	background-color: @header_background_color;

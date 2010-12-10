@@ -1,0 +1,4 @@
+- unless flash.nil?
+	- flash.each do |type, message|
+		%div.message{:class => type}
+			= message
