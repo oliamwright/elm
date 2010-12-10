@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-	before_filter :load_account, :only => [ :index, :create, :destroy ]
+	before_filter :load_account, :only => [ :index, :create, :destroy, :edit, :update ]
 
 	def index
 		@transactions = @account.transactions.order("transaction_date, id desc").paginate :page => params[:page], :per_page => 25
@@ -24,10 +24,31 @@ class TransactionsController < ApplicationController
 		redirect_to transactions_url
 	end
 
+	def edit
+		@transaction = @account.transactions.find(params[:id])
+	end
+
+	def update
+		@transaction = @account.transactions.find(params[:id])
+		tag_str = params[:transaction].delete(:tag_string)
+		@tags = parse_tag_string(tag_str)
+		if @transaction.update_attributes(params[:transaction])
+			@transaction.tags.each do |tag|
+				if tag.transactions.count == 1 && !@tags.include?(tag)
+					tag.destroy
+				end
+			end
+			@transaction.tags = @tags
+			flash[:notice] = "Transaction updated."
+		else
+			flash[:error] = "Could not update transaction."
+		end
+		redirect_to transactions_url
+	end
+
 	def destroy
 		@transaction = @account.transactions.find(params[:id])
-		tags = @transaction.tags
-		tags.each do |tag|
+		@transaction.tags.each do |tag|
 			if tag.transactions.count == 1
 				tag.destroy
 			end

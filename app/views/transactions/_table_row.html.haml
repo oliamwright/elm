@@ -9,4 +9,6 @@
 		= number_to_currency(table_row.amount.abs)
 	%div.links
 		%div.link
+			= link_to 'edit', edit_transaction_url(table_row)
+		%div.link
 			= link_to 'delete', table_row, :method => :delete, :confirm => 'Are you sure?'

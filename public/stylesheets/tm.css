@@ -25,6 +25,7 @@
   width: 10%;
 }
 .table .row .links { display: inline-block; }
+.table .row .links .link { display: inline-block; }
 .table .row .field.date { width: 7%; }
 .table .row .field.description { width: 25%; }
 .table .row .field.tags { width: 25%; }
@@ -75,6 +76,7 @@
   width: 10%;
 }
 .table .row .links { display: inline-block; }
+.table .row .links .link { display: inline-block; }
 .table .row .field.date { width: 7%; }
 .table .row .field.description { width: 25%; }
 .table .row .field.tags { width: 25%; }
