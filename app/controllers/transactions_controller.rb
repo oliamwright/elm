@@ -11,11 +11,11 @@ class TransactionsController < ApplicationController
 	end
 
 	def create
-		@tags = parse_tag_string(params[:transaction][:tag_string])
-		params[:transaction].delete(:tag_string)
+		tag_string = params[:transaction].delete(:tag_string)
 		@transaction = Transaction.new(params[:transaction])
-		@transaction.tags << @tags
 		@transaction.account = @account
+		@taggings = @transaction.parse_tag_string(tag_string)
+		@transaction.taggings = @taggings
 		if @transaction.save
 			flash[:notice] = "Transaction saved."
 		else
@@ -63,24 +63,4 @@ class TransactionsController < ApplicationController
 
 	private
 
-	def parse_tag_string(tstr)
-		logger.info "parsing tag string [#{tstr}]"
-		tags = Array.new
-		tstr.strip!
-		tag_names = tstr.split(/,/)
-		tag_names.each do |tag_name|
-			logger.info "found tag name [#{tag_name}]"
-			tag_name.strip!
-			tag = Tag.where(:account_id => @account.id, :name => tag_name).first
-			if tag.nil?
-				logger.info "couldn't find tag [#{tag_name}]... creating."
-				tag = Tag.new(:account_id => @account.id, :name => tag_name)
-				tag.save
-			else
-				logger.info "found tag [#{tag.name}] <#{tag.id}>"
-			end
-			tags << tag
-		end
-		return tags
-	end
 end

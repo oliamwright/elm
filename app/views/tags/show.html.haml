@@ -5,5 +5,5 @@
 	%div.heading
 		= "Transactions for '#{@tag.name}'"
 	= will_paginate @transactions
-	= render :partial => 'transactions/table'
+	= render :partial => 'tags/transaction_table'
 	= will_paginate @transactions

@@ -1,0 +1,13 @@
+- if balance != @tag.balance
+	%div.footer.row{:class => (balance >= 0) ? "positive" : "negative"}
+		%div.field.first.date Total
+		%div.field.description
+		%div.field.tags
+		%div.field.amount
+			= number_to_currency(balance.abs)
+%div.footer.row{:class => (@tag.balance >= 0) ? "positive" : "negative"}
+	%div.field.first.date Balance
+	%div.field.description
+	%div.field.tags
+	%div.field.amount
+		= number_to_currency(@tag.balance.abs)
