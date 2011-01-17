@@ -5,6 +5,11 @@ namespace :unicorn do
 		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] && sudo kill -USR2 `cat tmp/pids/unicord.pid` || sudo /usr/bin/unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
 	end
 
+	desc "symlink_unicorn_config"
+	task :symlink_unicorn_config, :roles => :app do
+		run "cd #{release_path}/config; ln -s unicorn.rb unicorn-#{application}.rb"
+	end
+
 	desc "autostart site"
 	task :autostart, :roles => :app do
 		run "cd /etc/unicorn/sites && sudo ln -s #{deploy_to}/current #{application}"
@@ -35,5 +40,6 @@ end
 
 after 'deploy:copy_code_to_release', 'unicorn:make_unicorn_dirs'
 after 'deploy:symlink_pids_dir', 'unicorn:symlink_sockets_dir'
-after 'unicorn:symlink_sockets_dir', 'unicorn:update_unicorn_symlinks'
+before 'unicorn:restart', 'unicorn:symlink_unicorn_config'
+#after 'unicorn:symlink_sockets_dir', 'unicorn:update_unicorn_symlinks'
 
