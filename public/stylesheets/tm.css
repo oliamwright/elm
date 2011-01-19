@@ -125,6 +125,7 @@ body {
   padding: 20px;
   font-size: 2em;
 }
+.page_header span.version { font-size: 0.6em; }
 .page { padding: 20px; }
 .sub_navigation { display: inline-block; }
 .navigation {
