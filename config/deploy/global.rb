@@ -20,7 +20,7 @@ namespace :deploy do
 
 	desc "update VERSION"
 	task :update_version, :roles => :app do
-		run "cd #{deploy_to}/cache && git describe HEAD > ../current/VERSION && cat ../current/VERSION"
+		run "cd #{deploy_to}/cache && git describe --tags HEAD > ../current/VERSION && cat ../current/VERSION"
 	end
 
 	desc "update codebase"
@@ -85,17 +85,4 @@ before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
 after 'deploy:symlink', 'deploy:update_version'
 
 after 'deploy:symlink', 'deploy:make_tmp_dirs'
-
-namespace :release do
-	desc "count releases"
-	task :count, :roles => :web do
-		run "cd #{deploy_to}/releases && ls -1 | wc -l"
-	end
-
-	desc "clean up releases"
-	task :clean, :roles => :web do
-		keep = variables[:keep] ? variables[:keep] + 1 : 6
-		run "cd #{deploy_to}/releases && for i in `ls -1 | sort -rk1 | tail -n +#{keep}`; do echo rm -rf $i; rm -rf $i; done"
-	end
-end
 
