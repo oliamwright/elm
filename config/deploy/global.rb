@@ -53,9 +53,9 @@ namespace :deploy do
 		unicorn.restart
 	end
 
-	desc "make tmp directory"
-	task :make_tmp_dir, :roles => :app do
-		run "cd #{deploy_to}/current && mkdir -p tmp"
+	desc "make tmp directories"
+	task :make_tmp_dirs, :roles => :app do
+		run "cd #{deploy_to}/current && mkdir -p tmp/pids tmp/sockets"
 	end
 
 	desc "symlink pids directory"
@@ -83,8 +83,7 @@ after 'deploy:copy_code_to_release', 'deploy:migrate_db'
 before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
 after 'deploy:symlink', 'deploy:update_version'
 
-after 'deploy:symlink', 'deploy:make_tmp_dir'
-after 'deploy:make_tmp_dir', 'deploy:symlink_pids_dir'
+after 'deploy:symlink', 'deploy:make_tmp_dirs'
 
 namespace :release do
 	desc "count releases"

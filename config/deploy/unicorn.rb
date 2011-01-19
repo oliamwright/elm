@@ -27,9 +27,9 @@ namespace :unicorn do
 
 	desc "update unicorn symlinks"
 	task :update_unicorn_symlinks, :roles => :app do
-		run "cd #{deploy_to}/current/tmp/sockets && ln -s #{deploy_to}/shared/sockets/#{application}.sock unicorn.sock"
-		run "cd #{deploy_to}/current/tmp/pids && ln -s #{deploy_to}/shared/pids/#{application}.pid unicorn.pid"
-		run "cd #{deploy_to}/current/tmp/pids && ln -s #{deploy_to}/shared/pids/#{application}.pid.oldbin unicorn.pid.oldbin"
+		run "cd #{deploy_to}/current/tmp/sockets && ln -s #{deploy_to}/shared/sockets/unicorn.sock unicorn.sock"
+		run "cd #{deploy_to}/current/tmp/pids && ln -s #{deploy_to}/shared/pids/unicorn.pid unicorn.pid"
+		run "cd #{deploy_to}/current/tmp/pids && ln -s #{deploy_to}/shared/pids/unicorn.pid.oldbin unicorn.pid.oldbin"
 	end
 
 	desc "symlink sockets dir"
@@ -39,7 +39,7 @@ namespace :unicorn do
 end
 
 after 'deploy:copy_code_to_release', 'unicorn:make_unicorn_dirs'
-after 'deploy:symlink_pids_dir', 'unicorn:symlink_sockets_dir'
+#after 'deploy:symlink_pids_dir', 'unicorn:symlink_sockets_dir'
 before 'unicorn:restart', 'unicorn:symlink_unicorn_config'
-#after 'unicorn:symlink_sockets_dir', 'unicorn:update_unicorn_symlinks'
+after 'deploy:make_tmp_dirs', 'unicorn:update_unicorn_symlinks'
 
