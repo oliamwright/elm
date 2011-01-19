@@ -6,4 +6,8 @@ class Tag < ActiveRecord::Base
 	def balance
 		Tagging.where(:tag_id => self.id).sum(:amount).round(2)
 	end
+
+	def balance_on(date)
+		Tagging.joins(:transaction).where("tag_id = ? and transaction_date <= ?", self.id, date).sum(:amount).round(2)
+	end
 end
