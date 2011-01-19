@@ -4,6 +4,10 @@ Tm::Application.routes.draw do
 	resources :transactions
 	resources :tags
 
+	namespace :user do
+		root :to => "transactions#index"
+	end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

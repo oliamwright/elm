@@ -49,6 +49,10 @@
   padding: 10px 0px 0px 5px;
   background-color: #cdcd76;
 }
+.section .pre_new_link {
+  padding: 0px 0px 10px 5px;
+  background-color: #cdcd76;
+}
 .table a { color: #4b5558; }
 .table {
   background-color: #a8a878;
@@ -115,7 +119,7 @@ body {
   background-color: #d8b38d;
 }
 .page_header {
-  width: 100%;
+  width: 1224px;
   background-color: #a8a878;
   border-bottom: 3px solid #839074;
   padding: 20px;

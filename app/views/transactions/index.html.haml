@@ -1,6 +1,8 @@
 %div.section#transactions_section
 	%div.heading
 		= "Transactions for '#{@account.name}'"
+	%div.pre_new_link
+		= link_to 'New Transaction', new_transaction_url
 	= will_paginate @transactions
 	= render :partial => 'transactions/table'
 	= will_paginate @transactions

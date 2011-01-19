@@ -1,6 +1,6 @@
 class Transaction < ActiveRecord::Base
   belongs_to :account
-	has_many :taggings
+	has_many :taggings, :dependent => :destroy
 	has_many :tags, :through => :taggings
 
 	def short_date
