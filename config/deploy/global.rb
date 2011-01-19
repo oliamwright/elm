@@ -20,7 +20,7 @@ namespace :deploy do
 
 	desc "update VERSION"
 	task :update_version, :roles => :app do
-		run "cd #{deploy_to}/cache && git describe --tags HEAD > ../current/VERSION && cat ../current/VERSION"
+		run "cd #{deploy_to}/cache && git describe --abbrev=0 HEAD > ../current/VERSION && cat ../current/VERSION"
 	end
 
 	desc "update codebase"
