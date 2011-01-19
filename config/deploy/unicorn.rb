@@ -2,7 +2,7 @@
 namespace :unicorn do
 	desc "restart unicorn"
 	task :restart, :roles => :app do
-		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] && sudo kill -USR2 `cat tmp/pids/unicord.pid` || sudo /usr/bin/unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
+		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] && sudo kill -USR2 `cat tmp/pids/unicorn.pid` || sudo /usr/bin/unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
 	end
 
 	desc "symlink_unicorn_config"
