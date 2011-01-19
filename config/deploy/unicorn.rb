@@ -5,9 +5,19 @@ namespace :unicorn do
 		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] && sudo kill -USR2 `cat tmp/pids/unicorn.pid` || sudo /usr/bin/unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
 	end
 
+	desc "start unicorn"
+	task :start, :roles => :app do
+		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] || sudo /usr/bin/unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
+	end
+
+	desc "stop unicorn"
+	task :stop, :roles => :app do
+		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] && sudo kill -QUIT `cat tmp/pids/unicorn.pid`"
+	end
+
 	desc "symlink_unicorn_config"
 	task :symlink_unicorn_config, :roles => :app do
-		run "cd #{release_path}/config; ln -s unicorn.rb unicorn-#{application}.rb"
+		run "cd #{deploy_to}/current/config; [ -f unicorn-#{application}.rb ] || ln -s unicorn.rb unicorn-#{application}.rb"
 	end
 
 	desc "autostart site"
