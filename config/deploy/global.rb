@@ -1,5 +1,6 @@
 
 load 'config/deploy/unicorn'
+load 'config/deploy/release'
 
 namespace :deploy do
 	
