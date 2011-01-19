@@ -11,6 +11,10 @@ class Account < ActiveRecord::Base
 		Transaction.where(:account_id => self.id).sum(:amount).round(2)
 	end
 
+	def balance_on(date)
+		Transaction.where("account_id = ? and transaction_date <= ?", self.id, date).sum(:amount).round(2)
+	end
+
 	def balance_type
 		if balance >= 0
 			"positive"
