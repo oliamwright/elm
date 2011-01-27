@@ -3,7 +3,13 @@ class TransactionsController < ApplicationController
 
 	def index
 
-		@transactions = @account.transactions.order("transaction_date desc, id desc").paginate :page => params[:page], :per_page => 25
+		if params[:show] && params[:show] = 'all'
+			@paginate = false
+			@transactions = @account.transactions.order("transaction_date desc, id desc")
+		else
+			@paginate = true
+			@transactions = @account.transactions.order("transaction_date desc, id desc").paginate :page => params[:page], :per_page => 25
+		end
 
 		@trans_chart = HighChart.new do |f|
 			f.options[:legend] = { :enabled => false }

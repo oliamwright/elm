@@ -2,7 +2,17 @@ class TagsController < ApplicationController
 	before_filter :load_account, :only => [:index, :show]
 
 	def index
-		@tags = @account.tags.order("name asc").paginate :page => params[:page], :per_page => 25
+		@tags = @account.tags.all.sort {|a,b| b.rank <=> a.rank }.paginate :page => params[:page], :per_page => 25
+		@key_tags = @tags.select { |t| t.rank > 5 }.sort {|a,b| b.transactions.sum(:amount) <=> a.transactions.sum(:amount) }
+
+		@expense_chart = HighChart.new do |f|
+			f.options[:legend] = { :enabled => false }
+			f.options[:title][:text] = "Expense Categories"
+			f.series(
+				:type => 'pie',
+				:data => @key_tags.map { |t| [t.name, t.transactions.sum(:amount).round(2).abs] }
+			)
+		end
 	end
 
 	def show
