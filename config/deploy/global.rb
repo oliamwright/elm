@@ -1,6 +1,7 @@
 
 load 'config/deploy/unicorn'
 load 'config/deploy/release'
+require 'bundler/capistrano'
 
 namespace :deploy do
 	
