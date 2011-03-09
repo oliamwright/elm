@@ -1,12 +1,17 @@
 Tm::Application.routes.draw do
   devise_for :users
 	resources :accounts
-	resources :transactions
+	resources :transactions do
+		collection do
+			post :with_tags
+		end
+	end
+
 	resources :tags
 
-	namespace :user do
-		root :to => "transactions#index"
-	end
+#	namespace :user do
+#		root :to => "transactions#index"
+#	end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

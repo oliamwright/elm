@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
 	private
 
+	def after_sign_in_path_for(resource)
+		transactions_path
+	end
+
 	def get_version
 		@VERSION = %x[cd #{RAILS_ROOT} && cat VERSION]
 		if @VERSION.nil?
