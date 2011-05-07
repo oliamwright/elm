@@ -21,21 +21,21 @@ class TagsController < ApplicationController
 		@trans_chart = HighChart.new do |f|
 			f.options[:legend] = { :enabled => false }
 			f.options[:title][:text] = "Daily Totals & Balances"
-			f.options[:x_axis] = { :categories => @transactions.group_by(&:transaction_date).map { |k,v| k.to_date } }
+			f.options[:x_axis] = { :type => :datetime }
 			f.options[:y_axis] = { :title => { :text => "$" } }
 			f.series(
 				:name => "Balance",
-				:data => @transactions.group_by(&:transaction_date).map { |k,v| @tag.balance_on(k) }
+				:data => @transactions.group_by(&:transaction_date).map { |k,v| [k.utc.to_i * 1000, @tag.balance_on(k)] }
 				#:type => 'line'
 			)
 			f.series(
 				:name => "Expense",
-				:data => @transactions.group_by(&:transaction_date).map { |k,v| v.select { |t| t.amount < 0 }.sum(&:amount) },
+				:data => @transactions.group_by(&:transaction_date).map { |k,v| [k.utc.to_i * 1000, v.select { |t| t.amount < 0 }.sum(&:amount) ] },
 				:type => 'column'
 			)
 			f.series(
 				:name => "Income",
-				:data => @transactions.group_by(&:transaction_date).map { |k,v| v.select { |t| t.amount >= 0 }.sum(&:amount) },
+				:data => @transactions.group_by(&:transaction_date).map { |k,v| [k.utc.to_i * 1000, v.select { |t| t.amount >= 0 }.sum(&:amount)] },
 				:type => 'column'
 			)
 		end

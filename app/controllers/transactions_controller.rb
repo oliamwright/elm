@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-	before_filter :load_account, :only => [ :index, :create, :destroy, :edit, :update ]
+	before_filter :load_account, :only => [ :index, :create, :destroy, :edit, :update, :with_tags ]
 
 	def index
 
@@ -9,27 +9,34 @@ class TransactionsController < ApplicationController
 		else
 			@paginate = true
 			@transactions = @account.transactions.order("transaction_date desc, id desc").paginate :page => params[:page], :per_page => 25
+			#@transactions = @account.transactions.order("transaction_date desc, id desc").select { |t| t.transaction_date >= @relevant_date.beginning_of_month and t.transaction_date <= @relevant_date.end_of_month}.paginate :page => params[:page], :per_page => 50
 		end
 
 		@trans_chart = HighChart.new do |f|
-			f.options[:legend] = { :enabled => false }
+			f.options[:legend] = { :enabled => true }
 			f.options[:title][:text] = "Daily Totals & Balances"
-			f.options[:x_axis] = { :categories => @transactions.reverse.group_by(&:transaction_date).map { |k,v| k.to_date } }
+			f.options[:x_axis] = { :type => :datetime }
 			f.options[:y_axis] = { :title => { :text => "$" } }
 			f.series(
 				:name => "Balance",
-				:data => @transactions.reverse.group_by(&:transaction_date).map { |k,v| @account.balance_on(k) }
+				:data => @transactions.map { |t| [t.transaction_date.utc.to_i * 1000, t.account.balance_on(t.transaction_date)] }
 				#:type => 'line'
 			)
 			f.series(
+				:name => "Cash Balance",
+				:data => @transactions.map { |t| [t.transaction_date.utc.to_i * 1000, t.account.cash_balance_on(t.transaction_date)] }
+			)
+			f.series(
 				:name => "Expense",
-				:data => @transactions.reverse.group_by(&:transaction_date).map { |k,v| v.select { |t| t.amount < 0 }.sum(&:amount) },
-				:type => 'column'
+				:data => @transactions.select { |t| t.amount < 0 }.map {|t| [t.transaction_date.utc.to_i * 1000, t.amount] },
+				:type => 'column',
+				:visible => false
 			)
 			f.series(
 				:name => "Income",
-				:data => @transactions.reverse.group_by(&:transaction_date).map { |k,v| v.select { |t| t.amount >= 0 }.sum(&:amount) },
-				:type => 'column'
+				:data => @transactions.select { |t| t.amount >= 0}.map {|t| [t.transaction_date.utc.to_i * 1000, t.amount] },
+				:type => 'column',
+				:visible => false
 			)
 		end
 	end
@@ -90,6 +97,26 @@ class TransactionsController < ApplicationController
 		redirect_to transactions_url
 	end
 
+	def with_tags
+		@tags = decode_with_tags(params[:tags])
+		@transactions = Transaction.with_tags(@tags)
+
+		respond_to do |format|
+			format.html
+			format.js { render :layout => nil }
+		end
+	end
+
 	private
+
+	def decode_with_tags(tags)
+		if tags.class == Array
+			tags
+		elsif tags.class == String
+			CGI.unescape(tags).split(/--/)
+		else
+			[]
+		end
+	end
 
 end

@@ -3,7 +3,7 @@ Tm::Application.routes.draw do
 	resources :accounts
 	resources :transactions do
 		collection do
-			post :with_tags
+			post "with_tags", :action => 'with_tags', :as => 'with_tags'
 		end
 	end
 

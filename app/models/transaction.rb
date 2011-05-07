@@ -3,12 +3,58 @@ class Transaction < ActiveRecord::Base
 	has_many :taggings, :dependent => :destroy
 	has_many :tags, :through => :taggings
 
+	before_save :fix_cash_amount
+
+	scope :has_tag, lambda { |tag|
+		joins(:taggings, :tags).where("tags.name = ?", tag)
+	}
+
+	def fix_cash_amount
+		cash_tagging = self.taggings.select { |t| t.tag.name == "cash" }.first
+		if cash_tagging
+			if cash_tagging.amount < 0 and cash_tagging.amount == self.amount
+				self.amount = 0
+			end
+		end
+	end
+
+	def self.with_tags(the_tags)
+		Transaction.has_tag(the_tags.first).select { |t| t.has_all_tags(the_tags) }
+	end
+
+	def has_all_tags(the_tags)
+		the_tags.each do |t|
+			if !tags.include? Tag.find_by_name(t)
+				return false
+			end
+		end
+		true
+	end
+
+	def real_amount
+		if self.amount == 0
+			self.taggings.select { |t| t.tag.name == "cash" }.first.amount
+		else
+			self.amount
+		end
+	end
+
 	def short_date
 		transaction_date.strftime '%Y.%m.%d'
 	end
 
 	def type
-		if amount >= 0
+		if amount > 0
+			"income"
+		elsif amount < 0
+			"expense"
+		else
+			"cash"
+		end
+	end
+
+	def type_for_tag(tag)
+		if self.taggings.find_by_tag_id(tag.id).amount >= 0
 			"income"
 		else
 			"expense"

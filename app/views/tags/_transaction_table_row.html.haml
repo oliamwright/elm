@@ -1,4 +1,4 @@
-%div.row{:class => transaction_table_row.type }
+%div.row{:class => transaction_table_row.type_for_tag(@tag) }
 	%div.field.first.date
 		= transaction_table_row.short_date
 	%div.field.description

@@ -6,7 +6,7 @@
 	%div.field.tags
 		=raw tag_string_with_links(table_row)
 	%div.field.amount
-		= number_to_currency(table_row.amount.abs)
+		= number_to_currency(table_row.real_amount.abs)
 	%div.links
 		%div.link
 			= link_to 'edit', edit_transaction_url(table_row)
