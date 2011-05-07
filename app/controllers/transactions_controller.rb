@@ -7,9 +7,11 @@ class TransactionsController < ApplicationController
 			@paginate = false
 			@transactions = @account.transactions.order("transaction_date desc, id desc")
 		else
-			@paginate = true
-			@transactions = @account.transactions.order("transaction_date desc, id desc").paginate :page => params[:page], :per_page => 25
-			#@transactions = @account.transactions.order("transaction_date desc, id desc").select { |t| t.transaction_date >= @relevant_date.beginning_of_month and t.transaction_date <= @relevant_date.end_of_month}.paginate :page => params[:page], :per_page => 50
+			@paginate = false
+			#@transactions = @account.transactions.order("transaction_date desc, id desc").paginate :page => params[:page], :per_page => 25
+			@relevant_date = Date.today
+			@transactions = @account.transactions.order("transaction_date desc, id desc").select { |t| t.transaction_date >= (@relevant_date - 1.month).beginning_of_month and t.transaction_date <= @relevant_date.end_of_month}
+			@last_month = @account.transactions.order("transaction_date desc, id desc").select { |t| t.transaction_date >= (@relevant_date - 2.month).beginning_of_month and t.transaction_date <= (@relevant_date - 1.month).end_of_month }
 		end
 
 		@trans_chart = HighChart.new do |f|
@@ -21,6 +23,12 @@ class TransactionsController < ApplicationController
 				:name => "Balance",
 				:data => @transactions.map { |t| [t.transaction_date.utc.to_i * 1000, t.account.balance_on(t.transaction_date)] }
 				#:type => 'line'
+			)
+			f.series(
+				:name => "Last Month",
+				:data => @last_month.map { |t| [(t.transaction_date + 1.month).utc.to_i * 1000, t.account.balance_on(t.transaction_date)] },
+				:type => 'line',
+				:visible => false
 			)
 			f.series(
 				:name => "Cash Balance",
