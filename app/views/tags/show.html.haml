@@ -3,6 +3,27 @@
 %div.section#tags_section
 	%div.heading
 		= "Tag : #{@tag.name}"
+%div.section.data#tag_data
+	.field
+		.name Expenditure
+		.value
+			= number_to_currency(@tag.expenditure_for_frequency)
+	.field
+		%div.field.name Frequency
+		%div.field.value
+			= "#{@tag.frequency / 1.day.to_i} days"
+	.field
+		.name Monthly Expenditure
+		.value
+			= number_to_currency(@tag.expenditure_for_period(12))
+	.field
+		%div.field.name Next Occurrence
+		%div.field.value
+			= @tag.next_occurrence.localtime.to_date
+	.field
+		%div.field.name Next Amount
+		%div.field.value
+			= number_to_currency(@tag.next_expenditure)
 %div.section#transactions_section
 	%div.heading
 		= "Transactions for '#{@tag.name}'"

@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
 
 	def index
 
-		if params[:show] && params[:show] = 'all'
+		if params[:show] && params[:show] == 'all'
 			@paginate = false
 			@transactions = @account.transactions.order("transaction_date desc, id desc")
 		else
@@ -29,7 +29,7 @@ class TransactionsController < ApplicationController
 				:data => @last_month.map { |t| [(t.transaction_date + 1.month).utc.to_i * 1000, t.account.balance_on(t.transaction_date)] },
 				:type => 'line',
 				:visible => false
-			)
+			) unless params[:show] == "all"
 			f.series(
 				:name => "Cash Balance",
 				:data => @transactions.map { |t| [t.transaction_date.utc.to_i * 1000, t.account.cash_balance_on(t.transaction_date)] }

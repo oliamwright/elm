@@ -3,6 +3,56 @@ class Tag < ActiveRecord::Base
 	has_many :taggings
 	has_many :transactions, :through => :taggings
 
+	def next_expenditure
+		((next_occurrence - last_occurrence) / frequency) * expenditure_for_frequency
+	end
+
+	def frequency
+		tm = taggings.map { |t| t.transaction.transaction_date }.sort
+		b = []
+		i = 1
+		while i < tm.count
+			b << (tm[i] - tm[i-1])
+			i = i + 1
+		end
+		b = b.sort.slice(1, b.count - 2) if b.count > 2
+		f = b.sum / b.count rescue (1.day.to_i * 365)
+		f
+	end
+
+	def first_occurrence
+		taggings.map { |t| t.transaction.transaction_date }.sort.first
+	end
+
+	def last_occurrence
+		taggings.map { |t| t.transaction.transaction_date }.sort.last
+	end
+
+	def next_occurrence
+		tm = taggings.map { |t| t.transaction.transaction_date}.sort
+		l = tm.first
+		n = l + frequency
+		while n < DateTime.now
+			n = n + frequency
+		end
+		n
+	end
+		
+	def expenditure_for_frequency
+		expenditure_for_period(1.day.to_i * 365 / frequency)
+	end
+
+	def expenditure
+		expenditure_for_period(12)
+	end
+
+	def expenditure_for_period(p)
+		f = first_occurrence
+		l = last_occurrence
+		e = taggings.sum(:amount) / (((l - f)/1.day.to_i)+1) * 365/p
+		e
+	end
+
 	def balance
 		Tagging.where(:tag_id => self.id).sum(:amount).round(2)
 	end

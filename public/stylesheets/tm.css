@@ -53,6 +53,13 @@
   padding: 0px 0px 10px 5px;
   background-color: #cdcd76;
 }
+.section.data { padding: 10px; }
+.section.data .field .name {
+  font-weight: bold;
+  width: 10%;
+}
+.section.data .field .name { display: inline-block; }
+.section.data .field .value { display: inline-block; }
 .table a { color: #4b5558; }
 .table {
   background-color: #a8a878;
