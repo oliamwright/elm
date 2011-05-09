@@ -17,11 +17,14 @@ class TransactionsController < ApplicationController
 		@trans_chart = HighChart.new do |f|
 			f.options[:legend] = { :enabled => true }
 			f.options[:title][:text] = "Daily Totals & Balances"
-			f.options[:x_axis] = { :type => :datetime }
+			f.options[:x_axis] = { :type => :datetime, :plotLines => [
+				{ :color => '#000000', :label => 'Today', :value => Date.today.to_datetime.utc.to_i * 1000, :width => 2, :zIndex => 3 },
+				{ :color => '#558855', :label => 'Last Month', :value => (Date.today - 1.month).to_datetime.utc.to_i * 1000, :width => 2, :dashStyle => 'ShortDash', :zIndex => 3 }
+			]}
 			f.options[:y_axis] = { :title => { :text => "$" } }
 			f.series(
 				:name => "Balance",
-				:data => @transactions.map { |t| [t.transaction_date.utc.to_i * 1000, t.account.balance_on(t.transaction_date)] }
+				:data => @transactions.map { |t| [t.transaction_date.utc.to_i * 1000, t.account.balance_on(t.transaction_date)] } << [Date.today.to_datetime.utc.to_i * 1000, @account.balance_on(Date.today)]
 				#:type => 'line'
 			)
 			f.series(
