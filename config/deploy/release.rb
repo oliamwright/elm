@@ -9,5 +9,5 @@ namespace :release do
   end
 end
 
-after 'deploy', 'release:clean'
+#after 'deploy', 'release:clean'
 
