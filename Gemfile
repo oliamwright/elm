@@ -5,6 +5,7 @@ gem 'devise', '1.1.5'
 gem 'haml', '3.0.24'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'formtastic', '~> 1.1.0'
+gem 'racc'
 
 
 # Bundle edge Rails instead:

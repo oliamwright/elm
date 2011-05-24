@@ -24,8 +24,12 @@ namespace :deploy do
 		run "cd #{deploy_to}/cache && git describe --abbrev=0 HEAD > ../current/VERSION && cat ../current/VERSION"
 	end
 
-	desc "update codebase"
+	desc "dummy update_code task"
 	task :update_code, :roles => :app do
+	end
+
+	desc "update codebase"
+	task :pull_repo, :roles => :app do
 		run "cd #{deploy_to}/cache && git pull"
 	end
 
@@ -46,7 +50,7 @@ namespace :deploy do
 
 	desc "run rake:db:migrate"
 	task :migrate_db, :roles => :app do
-		run "cd #{release_path} && RAILS_ENV=production rake db:migrate"
+		run "cd #{release_path} && RAILS_ENV=production bundle exec rake db:migrate"
 	end
 
 	desc "restart server"
@@ -77,10 +81,11 @@ namespace :deploy do
 end
 
 after 'deploy:setup', 'deploy:setup_code'
-after 'deploy:update_code', 'deploy:copy_code_to_release'
+after 'deploy:pull_repo', 'deploy:copy_code_to_release'
+before 'deploy:update_code', 'deploy:pull_repo'
 before 'deploy:copy_code_to_release', 'deploy:make_release_dir'
-after 'deploy:copy_code_to_release', 'deploy:bundle_install'
-after 'deploy:copy_code_to_release', 'deploy:migrate_db'
+#after 'deploy:copy_code_to_release', 'deploy:bundle_install'
+after 'deploy:update_code', 'deploy:migrate_db'
 #before 'deploy:migrate_db', 'deploy:symlink_database_yml'
 before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
 after 'deploy:symlink', 'deploy:update_version'

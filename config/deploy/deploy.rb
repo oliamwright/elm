@@ -6,9 +6,9 @@ set :deploy_to, "/var/www/#{application}"
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-ssh_options[:keys] = ['~/.ssh/capuser_darmasoft_com-id_rsa']
-set :scm_username, 'gituser'
-set :user, 'capuser'
+ssh_options[:keys] = ['~/.ssh/deploy.darmasoft.com-id_rsa']
+set :scm_username, 'git'
+set :user, 'deploy'
 
 role :web, "tm.darmasoft.net"                          # Your HTTP server, Apache/etc
 role :app, "tm.darmasoft.net"                          # This may be the same as your `Web` server
