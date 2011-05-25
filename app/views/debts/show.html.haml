@@ -1,0 +1,7 @@
+
+.section
+	.heading
+		= "#{@debt.name} (#{@debt.description})"
+
+.section.events
+	= render :partial => 'debts/event', :collection => @debt.event_objects

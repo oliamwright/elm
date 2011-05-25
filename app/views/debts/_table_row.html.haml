@@ -2,4 +2,4 @@
 	.field.first.service_date
 		= table_row.service_date.strftime("%Y.%m.%d")
 	.field.name
-		= table_row.name
+		= link_to table_row.name, table_row

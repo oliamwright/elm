@@ -1,0 +1,45 @@
+
+@import "palette";
+
+.event {
+	padding: 10px;
+	border: 1px solid @section_border_color;
+	border-top-left-radius: 4px 4px;
+	border-top-right-radius: 4px 4px;
+	border-bottom-left-radius: 4px 4px;
+	border-bottom-right-radius: 4px 4px;
+	margin-bottom: 5px;
+}
+
+.event .type {
+	width: 6%;
+	display: inline-block;
+	font-size: 1.6em;
+}
+
+.event .brief_content {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.event .long_content {
+	margin-top: 5px;
+	display: none;
+}
+
+.event.charge {
+	background-color: #D2E4FC;
+}
+
+.event.payment {
+	background-color: #D9FFA9;
+}
+
+.event .field.name {
+	display: inline-block;
+	font-weight: bold;
+}
+
+.event .field.value {
+	display: inline-block;
+}

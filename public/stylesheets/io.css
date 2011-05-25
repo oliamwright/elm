@@ -1,6 +1,6 @@
 .table a { color: #9f9d90; }
 .table {
-  background-color: #6c7b80;
+  background-color: #cdc7ad;
   color: #ffffff;
   border: 1px solid #506264;
 }
@@ -38,7 +38,7 @@
   border-top-right-radius: 4px 4px;
   border-bottom-left-radius: 4px 4px;
   border-bottom-right-radius: 4px 4px;
-  background-color: #6c7b80;
+  background-color: #cdc7ad;
 }
 .section .heading {
   font-size: 1.4em;
@@ -63,7 +63,7 @@
 .section.data .field .value { display: inline-block; }
 .table a { color: #9f9d90; }
 .table {
-  background-color: #6c7b80;
+  background-color: #cdc7ad;
   color: #ffffff;
   border: 1px solid #506264;
 }
@@ -97,6 +97,35 @@
 .table .row.income { background-color: #225d31; }
 .table .row.expense { background-color: #522d31; }
 div.form { border: 1px solid #506264; }
+.event {
+  padding: 10px;
+  border: 1px solid #222d31;
+  border-top-left-radius: 4px 4px;
+  border-top-right-radius: 4px 4px;
+  border-bottom-left-radius: 4px 4px;
+  border-bottom-right-radius: 4px 4px;
+  margin-bottom: 5px;
+}
+.event .type {
+  width: 6%;
+  display: inline-block;
+  font-size: 1.6em;
+}
+.event .brief_content {
+  display: inline-block;
+  margin-left: 5px;
+}
+.event .long_content {
+  margin-top: 5px;
+  display: none;
+}
+.event.charge { background-color: #d2e4fc; }
+.event.payment { background-color: #d9ffa9; }
+.event .field.name {
+  display: inline-block;
+  font-weight: bold;
+}
+.event .field.value { display: inline-block; }
 a {
   text-decoration: none;
   color: #5a584b;

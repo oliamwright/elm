@@ -1,0 +1,13 @@
+
+.event.payment
+	.type Payment
+	.brief_content
+	.long_content
+		.date
+			.field.name Date
+			.field.value
+				= event.event_date.strftime("%Y.%m.%d %H:%M:%S")
+		.description
+			.field.name Description
+			.field.value
+				= event.description
