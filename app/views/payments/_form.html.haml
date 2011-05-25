@@ -1,0 +1,14 @@
+
+.section
+	.heading
+		= "New Payment on #{@debt.name} (#{@debt.description})"
+.form.new_payment
+	.form_container
+		= semantic_form_for [@debt, @payment] do |f|
+			.fields_container
+				= f.inputs do
+					= f.input :event_date, :as => :date
+					= f.input :description
+					= f.input :amount
+			.buttons_container
+				= f.buttons

@@ -1,7 +1,11 @@
 
 .section
 	.heading
-		= "#{@debt.name} (#{@debt.description})"
+		= "#{@debt.name} (#{@debt.description}) : #{number_to_currency(@debt.balance)}"
+
+.section.links
+	= render :partial => 'debts/links'
 
 .section.events
-	= render :partial => 'debts/event', :collection => @debt.event_objects
+	= render :partial => 'debts/event', :collection => @debt.event_objects.reverse
+

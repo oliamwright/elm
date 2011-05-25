@@ -15,7 +15,7 @@ class Charge < ActiveRecord::Base
 	end
 
 	def event_date
-		self.event.event_date
+		self.event.event_date rescue DateTime.now
 	end
 
 	def event_date=(d)

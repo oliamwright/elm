@@ -1,6 +1,9 @@
 
 @import "palette";
 
+@payment_background_color: #D9FFA9;
+@charge_background_color: #D2E4FC;
+
 .event {
 	padding: 10px;
 	border: 1px solid @section_border_color;
@@ -28,11 +31,11 @@
 }
 
 .event.charge {
-	background-color: #D2E4FC;
+	background-color: @charge_background_color;
 }
 
 .event.payment {
-	background-color: #D9FFA9;
+	background-color: @payment_background_color;
 }
 
 .event .field.name {
@@ -43,3 +46,20 @@
 .event .field.value {
 	display: inline-block;
 }
+
+.form.new_payment {
+	background-color: @payment_background_color;
+}
+
+.form.new_charge {
+	background-color: @charge_background_color;
+}
+
+.section.links .link.payment {
+	background-color: @payment_background_color;
+}
+
+.section.links .link.charge {
+	background-color: @charge_background_color;
+}
+

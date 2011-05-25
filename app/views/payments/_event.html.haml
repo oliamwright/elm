@@ -2,6 +2,8 @@
 .event.payment
 	.type Payment
 	.brief_content
+		.amount
+			= number_to_currency(event.amount)
 	.long_content
 		.date
 			.field.name Date
