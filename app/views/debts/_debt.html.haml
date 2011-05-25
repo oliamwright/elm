@@ -1,0 +1,15 @@
+.debt_wrapper{:id => "debt_#{debt.id}", :onClick => "$('#debt_#{debt.id} .long_content').toggle();"}
+	.debt.general_debt
+		.type
+			= link_to 'Debt', debt
+		.brief_content
+			.field
+				= link_to debt.name, debt
+			.field
+				= number_to_currency(debt.balance)
+			.field.date
+				= debt.service_date.strftime("%Y.%m.%d")
+		.long_content
+			.field.name Description
+			.field.value
+				= debt.description

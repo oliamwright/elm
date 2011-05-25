@@ -3,7 +3,9 @@
 
 @payment_background_color: #D9FFA9;
 @charge_background_color: #D2E4FC;
+@debt_background_color: #FF9999;
 
+.debt.general_debt,
 .event {
 	padding: 10px;
 	border: 1px solid @section_border_color;
@@ -14,17 +16,27 @@
 	margin-bottom: 5px;
 }
 
+.debt .type,
 .event .type {
 	width: 6%;
 	display: inline-block;
 	font-size: 1.6em;
 }
 
+.debt .brief_content,
 .event .brief_content {
 	display: inline-block;
 	margin-left: 5px;
 }
 
+.debt .brief_content .field,
+.event .brief_content .field {
+	display: inline-block;
+	margin-left: 15px;
+	font-size: 1.3em;
+}
+
+.debt .long_content,
 .event .long_content {
 	margin-top: 5px;
 	display: none;
@@ -38,11 +50,17 @@
 	background-color: @payment_background_color;
 }
 
+.debt.general_debt {
+	background-color: @debt_background_color;
+}
+
+.debt .field.name,
 .event .field.name {
 	display: inline-block;
 	font-weight: bold;
 }
 
+.debt .field.value,
 .event .field.value {
 	display: inline-block;
 }
@@ -55,6 +73,10 @@
 	background-color: @charge_background_color;
 }
 
+.form.new_debt {
+	background-color: @debt_background_color;
+}
+
 .section.links .link.payment {
 	background-color: @payment_background_color;
 }
@@ -63,3 +85,6 @@
 	background-color: @charge_background_color;
 }
 
+.section.links .link.debt {
+	background-color: @debt_background_color;
+}
