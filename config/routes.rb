@@ -4,6 +4,7 @@ Tm::Application.routes.draw do
 	resources :debts do
 		resources :payments
 		resources :charges
+		resources :notes
 	end
 
 #	namespace :user do

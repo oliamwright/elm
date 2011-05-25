@@ -1,0 +1,13 @@
+
+.event.note
+	.type Note
+	.brief_content
+		.field.summary
+			= event.summary
+	.long_content
+		.date
+			.field.name Date
+			.field.value
+				= event.event_date.strftime("%Y.%m.%d")
+		.content
+			= event.content

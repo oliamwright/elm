@@ -1,0 +1,14 @@
+
+.section
+	.heading
+		= "New Note on #{@debt.name} (#{@debt.description})"
+.form.new_note
+	.form_container
+		= semantic_form_for [@debt, @note] do |f|
+			.fields_container
+				= f.inputs do
+					= f.input :event_date, :as => :date
+					= f.input :summary
+					= f.input :content
+			.buttons_container
+				= f.buttons

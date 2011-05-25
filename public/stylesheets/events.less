@@ -4,6 +4,7 @@
 @payment_background_color: #D9FFA9;
 @charge_background_color: #D2E4FC;
 @debt_background_color: #FF9999;
+@note_background_color: #FFD0D4;
 
 .debt.general_debt,
 .event {
@@ -50,6 +51,14 @@
 	background-color: @payment_background_color;
 }
 
+.event.note {
+	background-color: @note_background_color;
+}
+
+.event.note .long_content .content {
+	margin-top: 5px;
+}
+
 .debt.general_debt {
 	background-color: @debt_background_color;
 }
@@ -63,6 +72,10 @@
 .debt .field.value,
 .event .field.value {
 	display: inline-block;
+}
+
+.form.new_note {
+	background-color: @note_background_color;
 }
 
 .form.new_payment {
@@ -87,4 +100,8 @@
 
 .section.links .link.debt {
 	background-color: @debt_background_color;
+}
+
+.section.links .link.note {
+	background-color: @note_background_color;
 }
