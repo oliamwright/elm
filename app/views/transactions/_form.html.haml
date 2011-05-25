@@ -1,8 +1,0 @@
-%div.form.new_transaction
-	= semantic_form_for @transaction do |f|
-		= f.inputs do
-			= f.input :transaction_date, :as => :date
-			= f.input :description
-			= f.input :amount
-			= f.input :tag_string, :as => :string
-		= f.buttons

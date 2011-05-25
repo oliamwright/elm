@@ -4,15 +4,15 @@
 #   gem install mysql2
 #
 # And be sure to use new-style password hashing:
-#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.hiol
 development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: tm_development
+  database: io_development
   pool: 5
-  username: tm
-  password: LaFidi2ahe
+  username: io
+  password: Gephe-i9ae
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -22,18 +22,18 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: tm_test
+  database: io_test
   pool: 5
-  username: tm
-  password: LaFidi2ahe
+  username: io
+  password: Gephe-i9ae
   socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: tm_production
+  database: io_production
   pool: 5
-  username: tm
-  password: LaFidi2ahe
+  username: io
+  password: Gephe-i9ae
   socket: /var/run/mysqld/mysqld.sock

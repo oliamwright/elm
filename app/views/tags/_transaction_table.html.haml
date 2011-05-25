@@ -1,4 +1,0 @@
-%div.table
-	= render :partial => 'tags/transaction_table_header'
-	= render :partial => 'tags/transaction_table_row', :collection => @transactions
-	= render :partial => 'tags/transaction_table_footer', :locals => {:balance => @transactions.inject(0) { |s,v| s += v.taggings.find_by_tag_id(@tag.id).amount } }

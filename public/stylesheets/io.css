@@ -1,24 +1,24 @@
-.table a { color: #4b5558; }
+.table a { color: #9f9d90; }
 .table {
-  background-color: #a8a878;
-  border: 1px solid #839074;
+  background-color: #6c7b80;
+  border: 1px solid #506264;
 }
 .table .header {
-  background-color: #939e78;
-  color: #061013;
+  background-color: #222d31;
+  color: #5a584b;
   font-weight: bold;
 }
 .table .footer {
-  color: #061013;
+  color: #5a584b;
   font-weight: bold;
 }
-.table .footer.positive { background-color: #639e48; }
-.table .footer.negative { background-color: #c38963; }
+.table .footer.positive { background-color: #002d01; }
+.table .footer.negative { background-color: #52181c; }
 .table .header .field { text-align: center; }
 .table .header .field.first { text-align: left; }
 .table .row {
   padding: 5px;
-  border-top: 1px solid #839074;
+  border-top: 1px solid #506264;
 }
 .table .row .field {
   display: inline-block;
@@ -30,28 +30,28 @@
 .table .row .field.description { width: 25%; }
 .table .row .field.tags { width: 25%; }
 .table .row .field.amount { text-align: center; }
-.table .row.income { background-color: #93ce78; }
-.table .row.expense { background-color: #c39e78; }
+.table .row.income { background-color: #225d31; }
+.table .row.expense { background-color: #522d31; }
 .section {
   border-top-left-radius: 4px 4px;
   border-top-right-radius: 4px 4px;
   border-bottom-left-radius: 4px 4px;
   border-bottom-right-radius: 4px 4px;
-  background-color: #a8a878;
+  background-color: #6c7b80;
 }
 .section .heading {
   font-size: 1.4em;
-  background-color: #cdcd76;
+  background-color: #cdc7ad;
   padding: 5px;
-  border-bottom: 2px solid #cdcd76;
+  border-bottom: 2px solid #cdc7ad;
 }
 .section .footer {
   padding: 10px 0px 0px 5px;
-  background-color: #cdcd76;
+  background-color: #cdc7ad;
 }
 .section .pre_new_link {
   padding: 0px 0px 10px 5px;
-  background-color: #cdcd76;
+  background-color: #cdc7ad;
 }
 .section.data { padding: 10px; }
 .section.data .field .name {
@@ -60,27 +60,27 @@
 }
 .section.data .field .name { display: inline-block; }
 .section.data .field .value { display: inline-block; }
-.table a { color: #4b5558; }
+.table a { color: #9f9d90; }
 .table {
-  background-color: #a8a878;
-  border: 1px solid #839074;
+  background-color: #6c7b80;
+  border: 1px solid #506264;
 }
 .table .header {
-  background-color: #939e78;
-  color: #061013;
+  background-color: #222d31;
+  color: #5a584b;
   font-weight: bold;
 }
 .table .footer {
-  color: #061013;
+  color: #5a584b;
   font-weight: bold;
 }
-.table .footer.positive { background-color: #639e48; }
-.table .footer.negative { background-color: #c38963; }
+.table .footer.positive { background-color: #002d01; }
+.table .footer.negative { background-color: #52181c; }
 .table .header .field { text-align: center; }
 .table .header .field.first { text-align: left; }
 .table .row {
   padding: 5px;
-  border-top: 1px solid #839074;
+  border-top: 1px solid #506264;
 }
 .table .row .field {
   display: inline-block;
@@ -92,17 +92,17 @@
 .table .row .field.description { width: 25%; }
 .table .row .field.tags { width: 25%; }
 .table .row .field.amount { text-align: center; }
-.table .row.income { background-color: #93ce78; }
-.table .row.expense { background-color: #c39e78; }
-div.form { border: 1px solid #839074; }
+.table .row.income { background-color: #225d31; }
+.table .row.expense { background-color: #522d31; }
+div.form { border: 1px solid #506264; }
 a {
   text-decoration: none;
-  color: #061013;
+  color: #5a584b;
 }
-a:hover { color: #061013; }
+a:hover { color: #5a584b; }
 body {
-  background-color: #cdcd76;
-  color: #061013;
+  background-color: #cdc7ad;
+  color: #5a584b;
   padding: 0px;
   margin: 0px;
   font-family: sans-serif;
@@ -116,19 +116,20 @@ body {
   padding: 5px;
 }
 .message.notice {
-  border: 1px solid #03ce48;
-  color: #03ce48;
-  background-color: #b3ee98;
+  border: 1px solid #005d01;
+  color: #005d01;
+  background-color: #427d51;
 }
 .message.error {
-  border: 1px solid #c33e18;
-  color: #c33e18;
-  background-color: #d8b38d;
+  border: 1px solid #520000;
+  color: #520000;
+  background-color: #674246;
 }
 .page_header {
-  width: 1224px;
-  background-color: #a8a878;
-  border-bottom: 3px solid #839074;
+  width: auto;
+  background-color: #6c7b80;
+  color: #ffffff;
+  border-bottom: 3px solid #506264;
   padding: 20px;
   font-size: 2em;
 }
@@ -136,9 +137,9 @@ body {
 .page { padding: 20px; }
 .sub_navigation { display: inline-block; }
 .navigation {
-  background-color: #939e78;
+  background-color: #222d31;
   padding: 0px 20px 0px 20px;
-  border-bottom: 3px solid #839074;
+  border-bottom: 3px solid #506264;
   color: #d5ded9;
 }
 .navigation .link {
@@ -146,11 +147,11 @@ body {
   padding: 5px;
 }
 .navigation .link a {
-  color: #061013;
+  color: #ffffff;
   font-weight: bold;
 }
-.navigation .link:hover { background-color: #a8a878; }
-.navigation .link:hover a { color: #061013; }
+.navigation .link:hover { background-color: #6c7b80; }
+.navigation .link:hover a { color: #ffffff; }
 form.formtastic fieldset.inputs { padding: 5px; }
 form.formtastic fieldset ol li { margin: 3px 0px 3px 0px; }
 form.formtastic > fieldset > ol > li > fieldset > legend > label { width: 15%; }
@@ -158,7 +159,7 @@ form.formtastic > fieldset > ol > li > fieldset ol { padding-left: 15%; }
 form.formtastic > fieldset > ol > li > label { width: 15%; }
 form.formtastic fieldset.buttons { padding-left: 5px; }
 form.formtastic fieldset.buttons ol li input {
-  border: 1px solid #061013;
-  background-color: #939e78;
+  border: 1px solid #5a584b;
+  background-color: #222d31;
 }
-form.formtastic fieldset.buttons ol li input:hover { background-color: #cdcd76; }
+form.formtastic fieldset.buttons ol li input:hover { background-color: #cdc7ad; }

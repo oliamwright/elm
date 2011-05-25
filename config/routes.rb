@@ -1,13 +1,5 @@
 Tm::Application.routes.draw do
   devise_for :users
-	resources :accounts
-	resources :transactions do
-		collection do
-			post "with_tags", :action => 'with_tags', :as => 'with_tags'
-		end
-	end
-
-	resources :tags
 
 #	namespace :user do
 #		root :to => "transactions#index"

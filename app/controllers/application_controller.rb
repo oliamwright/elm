@@ -10,32 +10,21 @@ class ApplicationController < ActionController::Base
 	private
 
 	def after_sign_in_path_for(resource)
-		transactions_path
+		root_path
 	end
 
 	def get_version
-		@VERSION = %x[cd #{RAILS_ROOT} && cat VERSION]
+		@VERSION = %x[cd #{Rails.root.to_s} && cat VERSION]
 		if @VERSION.nil?
 			@VERSION = "none"
 		end
 		@VERSION.chomp!
-		if RAILS_ENV == "development"
+		if Rails.env == "development"
 			@VERSION += " [dev]"
 		end
-		if RAILS_ENV == "test"
+		if Rails.env == "test"
 			@VERSION += " [test]"
 		end
-	end
-
-	def load_account
-		if params[:account_id]
-			@account = Account.for_user(current_user).find(params[:account_id])
-		elsif session[:account_id]
-			@account = Account.for_user(current_user).find(session[:account_id])
-		else
-			@account = Account.for_user(current_user).first
-		end
-		session[:account_id] = @account.id
 	end
 
 end
