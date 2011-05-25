@@ -1,2 +1,2 @@
 .event_wrapper{:id => "event_#{event.event.id}", :onClick => "$('#event_#{event.event.id} .long_content').toggle();"}
-	= render :partial => "#{event.class.to_s.downcase.pluralize}/event", :object => event
+	= render :partial => "#{event.class.to_s.underscore.downcase.pluralize}/event", :object => event

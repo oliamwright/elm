@@ -14,7 +14,7 @@ class ChargesController < ApplicationController
 	end
 
 	def create
-		ed = Date.new(params[:charge]["event_date(1i)"].to_i, params[:charge]["event_date(2i)"].to_i, params[:charge]["event_date(3i)"].to_i).to_datetime
+		ed = merge_time_and_event_date(params[:charge]["event_date(1i)"].to_i, params[:charge]["event_date(2i)"].to_i, params[:charge]["event_date(3i)"].to_i)
 		params[:charge].delete_if { |k,v| k =~ /^event_date/ }
 		puts params.inspect
 		@charge = Charge.new(params[:charge])

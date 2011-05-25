@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
 	end
 
 	def create
-		ed = Date.new(params[:payment]["event_date(1i)"].to_i, params[:payment]["event_date(2i)"].to_i, params[:payment]["event_date(3i)"].to_i).to_datetime
+		ed = merge_time_and_event_date(params[:payment]["event_date(1i)"].to_i, params[:payment]["event_date(2i)"].to_i, params[:payment]["event_date(3i)"].to_i)
 		params[:payment].delete_if { |k,v| k =~ /^event_date/ }
 		puts params.inspect
 		@payment = Payment.new(params[:payment])

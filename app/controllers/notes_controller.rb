@@ -13,7 +13,7 @@ class NotesController < ApplicationController
 	end
 
 	def create
-		ed = Date.new(params[:note]["event_date(1i)"].to_i, params[:note]["event_date(2i)"].to_i, params[:note]["event_date(3i)"].to_i).to_datetime
+		ed = merge_time_and_event_date(params[:note]["event_date(1i)"].to_i, params[:note]["event_date(2i)"].to_i, params[:note]["event_date(3i)"].to_i)
 		params[:note].delete_if { |k,v| k =~ /^event_date/ }
 		puts params.inspect
 		@note = Note.new(params[:note])

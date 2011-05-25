@@ -1,0 +1,19 @@
+
+.event.phone_call
+	.type Phone Call
+	.brief_content
+		.field.name
+			= event.name
+		.field.phone_number
+			= event.formatted_phone_number
+	.long_content
+		.date
+			.field.name Date
+			.field.value
+				= event.event_date.strftime("%Y.%m.%d")
+		.description
+			.field.name Summary
+			.field.value
+				= event.summary
+		.content
+			= event.content

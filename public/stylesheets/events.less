@@ -5,6 +5,7 @@
 @charge_background_color: #D2E4FC;
 @debt_background_color: #FF9999;
 @note_background_color: #FFD0D4;
+@phone_call_background_color: #F0D878;
 
 .debt.general_debt,
 .event {
@@ -55,7 +56,11 @@
 	background-color: @note_background_color;
 }
 
-.event.note .long_content .content {
+.event.phone_call {
+	background-color: @phone_call_background_color;
+}
+
+.event .long_content .content {
 	margin-top: 5px;
 }
 
@@ -72,6 +77,10 @@
 .debt .field.value,
 .event .field.value {
 	display: inline-block;
+}
+
+.form.new_phone_call {
+	background-color: @phone_call_background_color;
 }
 
 .form.new_note {
@@ -105,3 +114,8 @@
 .section.links .link.note {
 	background-color: @note_background_color;
 }
+
+.section.links .link.phone_call {
+	background-color: @phone_call_background_color;
+}
+

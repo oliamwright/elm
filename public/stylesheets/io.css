@@ -169,7 +169,8 @@ div.form {
 .event.charge { background-color: #d2e4fc; }
 .event.payment { background-color: #d9ffa9; }
 .event.note { background-color: #ffd0d4; }
-.event.note .long_content .content { margin-top: 5px; }
+.event.phone_call { background-color: #f0d878; }
+.event .long_content .content { margin-top: 5px; }
 .debt.general_debt { background-color: #ff9999; }
 .debt .field.name {
   display: inline-block;
@@ -181,6 +182,7 @@ div.form {
 }
 .debt .field.value { display: inline-block; }
 .event .field.value { display: inline-block; }
+.form.new_phone_call { background-color: #f0d878; }
 .form.new_note { background-color: #ffd0d4; }
 .form.new_payment { background-color: #d9ffa9; }
 .form.new_charge { background-color: #d2e4fc; }
@@ -189,6 +191,7 @@ div.form {
 .section.links .link.charge { background-color: #d2e4fc; }
 .section.links .link.debt { background-color: #ff9999; }
 .section.links .link.note { background-color: #ffd0d4; }
+.section.links .link.phone_call { background-color: #f0d878; }
 a {
   text-decoration: none;
   color: #5a584b;

@@ -5,6 +5,7 @@ Tm::Application.routes.draw do
 		resources :payments
 		resources :charges
 		resources :notes
+		resources :phone_calls
 	end
 
 #	namespace :user do

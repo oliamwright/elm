@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def merge_time_and_event_date(y, m, d)
+		dn = DateTime.now
+		DateTime.new(y, m, d, dn.hour, dn.min, dn.sec, dn.offset)
+	end
 end
