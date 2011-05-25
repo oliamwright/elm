@@ -2,7 +2,9 @@
 	%div.global_navigation.sub_navigation
 		%div.link
 			%a{:href => "/"} Home
-		-# if user_signed_in?
+		- if user_signed_in?
+			.link
+				%a{:href => debts_url} Debts
 	%div.user_navigation.sub_navigation
 		%div.link
 			- if user_signed_in?

@@ -1,0 +1,15 @@
+
+.section.debts
+	.heading Debts
+	.pre_new_link
+		= link_to 'New Debt', new_debt_url
+	.table
+		.header.row
+			.field.first.service_date Date
+			.field.name Name
+		- @debts.each do |d|
+			.row
+				.field.first.service_date
+					= d.service_date.strftime("%Y.%m.%d")
+				.field.name
+					= d.name

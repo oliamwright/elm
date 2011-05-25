@@ -1,15 +1,16 @@
 .table a { color: #9f9d90; }
 .table {
   background-color: #6c7b80;
+  color: #ffffff;
   border: 1px solid #506264;
 }
 .table .header {
   background-color: #222d31;
-  color: #5a584b;
+  color: #ffffff;
   font-weight: bold;
 }
 .table .footer {
-  color: #5a584b;
+  color: #ffffff;
   font-weight: bold;
 }
 .table .footer.positive { background-color: #002d01; }
@@ -63,15 +64,16 @@
 .table a { color: #9f9d90; }
 .table {
   background-color: #6c7b80;
+  color: #ffffff;
   border: 1px solid #506264;
 }
 .table .header {
   background-color: #222d31;
-  color: #5a584b;
+  color: #ffffff;
   font-weight: bold;
 }
 .table .footer {
-  color: #5a584b;
+  color: #ffffff;
   font-weight: bold;
 }
 .table .footer.positive { background-color: #002d01; }
