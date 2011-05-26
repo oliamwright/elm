@@ -1,13 +1,6 @@
 Tm::Application.routes.draw do
   devise_for :users
 
-	resources :debts do
-		resources :payments
-		resources :charges
-		resources :notes
-		resources :phone_calls
-	end
-
 #	namespace :user do
 #		root :to => "transactions#index"
 #	end
