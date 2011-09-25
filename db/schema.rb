@@ -10,55 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110525174103) do
-
-  create_table "charges", :force => true do |t|
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "amount"
-  end
-
-  create_table "debts", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "service_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
-  end
-
-  create_table "events", :force => true do |t|
-    t.integer  "debt_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "event_object_id"
-    t.string   "event_object_type"
-    t.datetime "event_date"
-  end
-
-  create_table "notes", :force => true do |t|
-    t.string   "summary"
-    t.string   "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "payments", :force => true do |t|
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.float    "amount"
-  end
-
-  create_table "phone_calls", :force => true do |t|
-    t.string   "name"
-    t.string   "phone_number"
-    t.string   "summary"
-    t.string   "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20101209134921) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

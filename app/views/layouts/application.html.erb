@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>rchess</title>
+  <title>everything.darmasoft.net</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag 'jquery-1.4.4.min.js' %>
 	<%= javascript_include_tag 'jquery-ujs' %>
 	<%= javascript_include_tag 'highcharts' %>
+	<%= javascript_include_tag 'jquery.jqote2.js' %>
+	<%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -13,6 +15,8 @@
 <%= render :partial => 'shared/page_header' %>
 
 <%= render :partial => 'shared/flash', :object => flash %>
+
+<div id="templates"></div>
 
 <div class="page">
 <%= yield %>

@@ -9,10 +9,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: io_development
+  database: everything_dev
   pool: 5
-  username: io
-  password: Gephe-i9ae
+  username: everything
+  password: ahh9vui%Cu
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -22,18 +22,18 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: io_test
+  database: everything_test
   pool: 5
-  username: io
-  password: Gephe-i9ae
+  username: everything
+  password: ahh9vui%Cu
   socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: io_production
+  database: everything_prod
   pool: 5
-  username: io
-  password: Gephe-i9ae
+  username: everything
+  password: ahh9vui%Cu
   socket: /var/run/mysqld/mysqld.sock
