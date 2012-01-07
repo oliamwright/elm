@@ -1,11 +1,11 @@
-@color1: #211f20;
-@color2: #f19c28;
-@color3: #231f20;
-@color4: #a12e33;
-@color5: #ddd;
+@color1: #6B7285;
+@color2: #606570;
+@color3: #59525C;
+@color4: #42393C;
+@color5: #302428;
 
 @background_color: @color5;
-@foreground_color: @color4;
+@foreground_color: #ccc;
 
 @link_color: @foreground_color;
 @link_hover_color: @foreground_color;
@@ -19,6 +19,7 @@
 @navigation_link_color: @header_foreground_color;
 @navigation_hover_link_color: @navigation_link_color;
 @navigation_hover_background_color: @header_background_color;
+@active_link_background_color: @background_color;
 
 @section_border_color: @color2;
 @section_background_color: @background_color;
@@ -39,11 +40,13 @@
 @income_row_background_color: @row_background_color + #003000;
 @expense_row_background_color: @row_background_color + #300000;
 
-@notice_color: @income_row_background_color - #900030;
-@notice_border_color: @income_row_background_color - #900030;
-@notice_background_color: @income_row_background_color + #202020;
+@notice_color: #00c540;
+@notice_border_color: @notice_color;
+@notice_background_color: @background_color + #002000;
 
-@error_color: @expense_row_background_color - #006060;
-@error_border_color: @expense_row_background_color - #006060;
-@error_background_color: @expense_row_background_color + #151515;
+@error_color: #f00510;
+@error_border_color: @error_color;
+@error_background_color: @background_color + #300000;
 
+@red_value_color: #aa3333;
+@green_value_color: #33aa33;

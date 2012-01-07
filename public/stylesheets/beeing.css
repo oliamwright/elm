@@ -1,0 +1,681 @@
+.title {font-size: 14px; color: black;}
+
+#beeing {
+	background-color: #313132;
+  position: fixed;
+  right: 0;
+  top: 25px;
+}
+
+#beeing_page_chat .jspPane {
+	position: static;
+}
+
+.beeing_content .profile_wall_posts,
+.beeing_content .profile_wall_posts .jspPane {
+	position: static;
+	min-height: 300px;
+	width: 486px;
+}
+
+.beeing_content .profile_wall_posts .jspPane .post{
+	width: 486px;
+}
+
+.beeing_content a {
+	text-decoration: none;
+}
+
+.beeing_content a:hover {
+	text-decoration: underline;
+}
+
+.post_username {
+	margin-left: 0px;
+}
+
+.beeing_content .link {
+	color: #2AACDD;
+}
+
+.beeing_content .link:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.beeing_content .left-side .nav_button {
+	margin-right: 0px;
+}
+
+.beeing_content .nav_button {
+	background-color: black;
+	padding: 5px 8px;
+	padding-top: 8px;
+	color: #ccc;
+}
+
+.beeing_content .nav_button:hover {
+	cursor: pointer;
+}
+
+.beeing_content h1,
+.beeing_content h2 {
+	margin: 0;
+	display: inline-block;
+}
+
+.beeing_content h1 {
+	color: #fff;
+	font-size: 16px;
+}
+
+.beeing_content img {
+	border: 0;
+	display: inline;
+}
+
+.beeing_content ul {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+.beeing_content li img {
+	display: inline;
+	width: 25px;
+}
+
+.beeing_content li {
+	display: inline;
+	float: left;
+	width: 26px;
+	height: 26px;
+}
+
+.beeing_content label {
+	margin: 4px 0px 2px 0px;
+	display: block;
+	color: #aaa;
+}
+
+.beeing_content #user-navigation {
+	margin: 0px 10px 0px 0px;
+}
+
+.beeing_content #user-navigation img {
+	width: 14px;
+	height: 14px;
+	margin-bottom: -3px;
+}
+
+.beeing_content .right {
+	float: right;
+}
+
+.beeing_content .left {
+	float: left;
+}
+
+.beeing_content .clr {
+	clear: both;
+	height: 0
+}
+
+.beeing_content .embedChat {
+	width: 1000px;
+	background: transparent;
+	font-family: lucida grande, arial;
+	color: #888;
+	font-size: 11px;
+	margin: auto;
+	position: relative;
+}
+
+.beeing_content .left-side {
+	width: 697px;
+	padding: 3px 0px;
+}
+
+.beeing_content .right-side {
+	width: 304px;
+	padding: 3px;
+	position: absolute;
+	right: 0;
+	background: black;
+}
+
+.live_chat_link {
+	display: block;
+	padding: 1px 8px 5px;
+	width: 284px;
+	background: black;
+}
+
+.live_chat_link:hover {
+	cursor: pointer;
+}
+
+.beeing_content .right-side-popup {
+	z-index: 9001;
+	position: absolute;
+	background-color: white;
+	width: 304px;
+	right: 0px;
+  top: 20px;
+	padding: 3px;
+	margin-top: 6px;
+}
+
+.beeing_content .inputMainWrapperChat {
+	border: 1px dotted #777;
+	padding: 3px;
+	margin: 5px 0px;
+	border-top: 1px solid;
+	background: #ffc url('/chat/images/inputbk.jpg') repeat-x top;
+}
+
+.contentControlBtn {
+	background: #ddd;
+	padding: 4px 5px;
+	margin: 0;
+	display: inline-block;
+}
+
+.active {
+	background: #aaa;
+	color: #fff;
+}
+
+.beeing_content .tabChat {
+	width: 100%;
+	display: inline-block;
+	margin: 0;
+	padding: 3px 0px;
+}
+
+.beeing_content .post {
+	border-bottom: 1px dotted #777;
+	margin: 0;
+}
+
+.like_message_link {
+	border: 1px solid;
+	display: inline-block;
+	padding: 2px 5px;
+	background: #E6F5FB;
+}
+
+.box_post {
+	width: 100%;
+	display: block;
+	height: 20px;
+}
+
+.btnBlue {
+	float: right;
+	background: #08c;
+	padding: 4px 8px;
+	margin: 0 0 0 0;
+}
+
+.btnBlue a {
+	color: white;
+	text-shadow: 0 -0.1em 0 #005f93;
+}
+
+#contacts_tabs .active,
+#profile_tabs .active {
+	background-color: black;
+}
+
+.contacts_block .post_profile_image {
+	margin-right: 10px !important;
+}
+
+.tabs a {
+	display: inline; 
+	color: white;
+	background: #777;
+	margin-right: 1px;
+	padding: 4px 5px;
+}
+
+.main_notice {
+	display: none;
+}
+
+
+.beeing_content .paddingPostChat {
+	padding: 6px 0px 4px 0px;
+	margin: 0px 0px 0px 6px;
+}
+
+.beeing_content .profile_post_count {
+	position: relative;
+	top: 1px;
+	left: 10px;
+}
+
+.beeing_content .profile_post_count img {
+	position: relative;
+	top: 4px;
+}
+
+.beeing_content .postp {
+	display: inline;
+}
+
+.beeing_content .postp p {
+	margin: 0px;
+	margin-left: 30px;
+	margin: 0 0 10px 30px;
+	display: block;
+	width: 250px;
+}
+
+.beeing_content .postp img {
+	display: inline;
+}
+
+.beeing_content .post_profile_image {
+	width: 25px;
+	float: left;
+	margin: 0;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 8px;
+}
+
+.beeing_content .postProfileMiniImg {
+	width: 45px;
+	margin: 0;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 8px;
+}
+
+.beeing_content .post_profile_image img {
+	width: 25px;
+	margin: 0;
+}
+
+.beeing_content .postProfileMiniImg img {
+	width: 45px;
+	margin: 0;
+}
+
+.beeing_content .post_profile_image a {
+	background: #eee;
+	color: #aaa;
+	padding: 2px;
+	font-weight: bold;
+	margin-bottom: 4px;
+	display: block;
+}
+
+.beeing_content .post_profile_image a:hover {
+	color: #333;
+	text-decoration: none;
+}
+
+.beeing_content .contactProfileImg img {
+	width: 46px;
+	float: left;
+	margin-right: 6px;
+	display: block;
+}
+
+.beeing_content .inputMain {
+	border: 0;
+	background: #ffc;
+	width: 98%;
+	font-size: 13px;
+	color: #777;
+	overflow: hidden;
+	resize: none;
+	height: 30px;
+}
+
+.beeing_content .control_group {
+	position: relative;
+	float: right;
+}
+
+.beeing_content .popup_control_group {
+	display: none;
+	text-align: right;
+	float: right;
+	right: 6px;
+	margin-top: -5px;
+	padding: 0;
+	border-bottom: 0;
+	position: absolute;
+	z-index: 9999;
+}
+
+.beeing_content .button_control {
+	padding: 1px 10px;
+	font-size: 10px;
+	color: #777;
+	border-bottom: 1px dotted #aaa;
+}
+
+.beeing_content .posted {
+	color: #555;
+}
+
+.beeing_content .popup_dialog {
+	position: absolute;
+	border: 3px solid black;
+	background: white;
+	z-index: 9999;
+	width: 690px;
+	top: 25px;
+}
+
+.beeing_content .profile_content {
+	padding: 3px;
+	width: 488px;
+	margin-left: 190px;
+}
+
+.beeing_content .profile_content #form-chat {
+	width: 488px;
+}
+
+.beeing_content .profile_header {
+	background-color: black;
+	padding: 5px 10px 10px 5px;
+	color: #555;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.beeing_content .profile_center {
+	padding: 5px;
+}
+
+.beeing_content #dialog-popup-content {
+}
+
+.beeing_content #dialog-popup-buttons {
+	clear: both;
+	display: none;
+}
+
+.beeing_content .left120 {
+	float: left;
+	border-right: 1px dotted #ccc;
+	width: 180px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+.beeing_content hr {
+	display: block;
+	width: auto;
+}
+
+.beeing_content .alert {
+	text-align: center;
+}
+
+.beeing_content .profileInfo {
+	width: 140px;
+	margin: 0;
+	float: right;
+}
+
+.beeing_content .profileMeta {
+	margin: 2px 0px;
+}
+
+.beeing_content .ok {
+	color: #3c3;
+}
+
+.beeing_content .notok {
+	color: red;
+}
+
+.beeing_content .boxSaveCancel {
+	width: 250px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.beeing_content .button a:hover,
+.beeing_content .button:hover {
+	color: #fff;
+	cursor: pointer;
+}
+
+.beeing_content .button_remove a {
+	float: right;
+	padding: 1px 5px;
+	margin: -5px -12px 0px 0px;
+	color: #aaa;
+	font-size: 10px;
+}
+
+.beeing_content .button_remove a:hover {
+	background: #ccc;
+}
+
+.beeing_content .button_close a {
+	position: relative;
+	top: 6px;
+	left: -5px;
+	float: right;
+	padding: 2px 5px;
+	margin: 0px 0px 0px 0px;
+	color: #aaa;
+}
+
+.beeing_content .button_close a:hover {
+	background: #666;
+	text-decoration: none;
+}
+
+.beeing_content .button_login {
+	padding: 6px;
+	border: 1px solid #900;
+	background: red;
+	float: left;
+	color: #fff;
+	margin: 10px 10px 0px 0px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.beeing_content .button_cancel {
+	padding: 6px;
+	border: 1px solid #333;
+	background: gray;
+	float: left;
+	color: #fff;
+	margin: 10px 10px 0px 0px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.beeing_content .button_cancel:hover {
+	background: #555;
+}
+
+.beeing_content .button_alert {
+	margin: auto;
+	padding: 4px;
+	display: block;
+	border: 1px solid #aaa;
+	margin-top: 5px;
+	width: 100px;
+}
+
+.beeing_content .button_alert:hover {
+	background: #3c3;
+}
+
+.beeing_content .button_blue a {
+	padding: 5px 20px;
+	border: 1px solid #08c;
+	background: #2AACDD;
+	float: right;
+	color: #fff;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	background-image:url("/chat/images/bkBtnBlue.jpg");
+}
+
+.beeing_content .button_blue a:hover {
+	border: 1px solid #777;
+	background: #08c;
+}
+
+.beeing_content .scroll-pane {
+	height: 468px;
+	overflow: auto;
+}
+
+.beeing_content .jspTrack {
+	background: transparent;
+}
+
+.beeing_content .jspVerticalBar {
+	background: transparent url("/chat/images/bg_jScrollbar_draggable.jpg") repeat-y center top;
+}
+
+.beeing_content .jspDrag {
+	background-color: #aaa;
+	cursor: s-resize;
+	width: 8px;
+	margin-left: 4px;
+}
+
+.beeing_content input.form_submit {
+	position: absolute;
+	top: -999px;
+	left: -999px;
+}
+
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+.jspContainer
+{
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane
+{
+	position: absolute;
+}
+
+.jspVerticalBar
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 16px;
+	height: 100%;
+	background: red;
+}
+
+.jspHorizontalBar
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 16px;
+	background: red;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+{
+	margin: 0;
+	padding: 0;
+}
+
+.jspCap
+{
+	display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+	float: left;
+}
+
+.jspTrack
+{
+	background: #dde;
+	position: relative;
+}
+
+.jspDrag
+{
+	background: #bbd;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+	float: left;
+	height: 100%;
+}
+
+.jspArrow
+{
+	background: #50506d;
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrow.jspDisabled
+{
+	cursor: default;
+	background: #80808d;
+}
+
+.jspVerticalBar .jspArrow
+{
+	height: 16px;
+}
+
+.jspHorizontalBar .jspArrow
+{
+	width: 16px;
+	float: left;
+	height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+	outline: none;
+}
+
+.jspCorner
+{
+	background: #eeeef4;
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+	margin: 0 -3px 0 0;
+}

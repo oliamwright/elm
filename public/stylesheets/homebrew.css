@@ -1,0 +1,113 @@
+.table a{color:#ffffff;}
+.table{background-color:#302428;color:#ffffff;border:1px solid #6b7285;}
+.table .header{background-color:#606570;color:#ffffff;font-weight:bold;}
+.table .footer{color:#ffffff;font-weight:bold;}
+.table .footer.positive{background-color:#306540;}
+.table .footer.negative{background-color:#90505b;}
+.table .header .field{text-align:center;}
+.table .header .field.first{text-align:left;}
+.table .row{padding:5px;border-top:1px solid #6b7285;}
+.table .row .field{display:inline-block;width:10%;}
+.table .row .links{display:inline-block;}
+.table .row .links .link{display:inline-block;}
+.table .row .field.date{width:7%;}
+.table .row .field.description{width:25%;}
+.table .row .field.tags{width:25%;}
+.table .row .field.amount{text-align:center;}
+.table .row.income{background-color:#609570;}
+.table .row.expense{background-color:#906570;}
+.table{border-spacing:15px 2px;}
+.section{border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;background-color:#302428;}
+.section .heading{font-size:1.4em;background-color:#302428;padding:5px;border-bottom:2px solid #302428;}
+.section .footer{padding:10px 0px 0px 5px;background-color:#302428;}
+.section .pre_new_link{padding:0px 0px 10px 5px;background-color:#302428;}
+.section.data{padding:10px;}
+.section.data .field .name{font-weight:bold;width:10%;}
+.section.data .field .name,.section.data .field .value{display:inline-block;}
+.section.links{margin-bottom:5px;text-align:right;}
+.section.links .link{padding:5px;display:inline-block;border:1px solid #606570;border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;}
+.table a{color:#ffffff;}
+.table{background-color:#302428;color:#ffffff;border:1px solid #6b7285;}
+.table .header{background-color:#606570;color:#ffffff;font-weight:bold;}
+.table .footer{color:#ffffff;font-weight:bold;}
+.table .footer.positive{background-color:#306540;}
+.table .footer.negative{background-color:#90505b;}
+.table .header .field{text-align:center;}
+.table .header .field.first{text-align:left;}
+.table .row{padding:5px;border-top:1px solid #6b7285;}
+.table .row .field{display:inline-block;width:10%;}
+.table .row .links{display:inline-block;}
+.table .row .links .link{display:inline-block;}
+.table .row .field.date{width:7%;}
+.table .row .field.description{width:25%;}
+.table .row .field.tags{width:25%;}
+.table .row .field.amount{text-align:center;}
+.table .row.income{background-color:#609570;}
+.table .row.expense{background-color:#906570;}
+.table{border-spacing:15px 2px;}
+div.form{padding:10px;border:1px solid #6b7285;}
+.form .fields_container{display:inline-block;padding:5px;}
+.form .buttons_container{display:inline-block;padding:5px;}
+.debt.general_debt,.event{padding:10px;border:1px solid #606570;border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;margin-bottom:5px;}
+.debt .type,.event .type{width:6%;display:inline-block;font-size:1.6em;}
+.debt .brief_content,.event .brief_content{display:inline-block;margin-left:5px;}
+.debt .brief_content .field,.event .brief_content .field{display:inline-block;margin-left:15px;font-size:1.3em;}
+.debt .long_content,.event .long_content{margin-top:5px;display:none;}
+.event.charge{background-color:#d2e4fc;}
+.event.payment{background-color:#d9ffa9;}
+.event.note{background-color:#ffd0d4;}
+.event.phone_call{background-color:#f0d878;}
+.event .long_content .content{margin-top:5px;}
+.debt.general_debt{background-color:#ff9999;}
+.debt .field.name,.event .field.name{display:inline-block;font-weight:bold;}
+.debt .field.value,.event .field.value{display:inline-block;}
+.form.new_phone_call{background-color:#f0d878;}
+.form.new_note{background-color:#ffd0d4;}
+.form.new_payment{background-color:#d9ffa9;}
+.form.new_charge{background-color:#d2e4fc;}
+.form.new_debt{background-color:#ff9999;}
+.section.links .link.payment{background-color:#d9ffa9;}
+.section.links .link.charge{background-color:#d2e4fc;}
+.section.links .link.debt{background-color:#ff9999;}
+.section.links .link.note{background-color:#ffd0d4;}
+.section.links .link.phone_call{background-color:#f0d878;}
+tr.data_row td.content_links{background-color:#302428;}
+tr.unconfirmed{background-color:#ccaaff;}
+tr.clarify_uc{background-color:#82464a;}
+tr.confirmed{background-color:#eeccff;}
+tr.clarify_con{background-color:#82464a;}
+tr.started{background-color:#aaffaa;}
+tr.clarify_started{background-color:#82464a;}
+tr.verify_started{background-color:#52664a;}
+tr.rejected{background-color:#ffaaaa;}
+tr.closed{background-color:#44ff44;}
+a{text-decoration:none;color:#cccccc;}
+a:hover{color:#cccccc;}
+body{background-color:#302428;color:#cccccc;padding:0px;margin:0px;font-family:sans-serif;font-size:12px;}
+.message{margin-top:10px;width:50%;margin-left:25%;text-align:center;padding:5px;}
+.message.notice{border:1px solid #00c540;color:#00c540;background-color:#304428;}
+.message.error{border:1px solid #f00510;color:#f00510;background-color:#602428;}
+.page_header{padding-left:10px;height:25px;float:right;width:300px;background-color:#59525c;color:#ffffff;border-bottom:3px solid #6b7285;font-size:1.4em;}
+.page_header span.version{font-size:0.6em;}
+.page{padding:20px;padding-right:350px;}
+.file_list .indent{padding-left:15px;display:inline;}
+.chat{border:1px solid black;border-right:0;background-color:white;width:310px;position:fixed;top:25px;right:0px;height:300px;}
+.sub_navigation{display:inline-block;}
+.sub_navigation.project_navigation{background-color:#cccccc;}
+.sub_navigation.project_title{border-left:1px solid #6b7285;}.sub_navigation.project_title .project_title{color:#cccccc;}
+.navigation{height:25px;background-color:#606570;padding:0px 20px 0px 20px;border-bottom:3px solid #6b7285;color:#d5ded9;}
+.navigation .link{display:inline-block;padding:5px;}
+.navigation .link.active{background-color:#59525c;}
+.navigation .link a{color:#ffffff;font-weight:bold;}
+.navigation .link:hover{background-color:#59525c;}
+.navigation .link:hover a{color:#ffffff;}
+form.formtastic{font-size:1.2em;}
+form.formtastic fieldset.inputs{padding:5px;}
+form.formtastic fieldset ol li fieldset ol{padding:3px 0px 3px 0px;}
+form.formtastic fieldset ol li{margin:3px 0px 3px 0px;padding:2px 0px 2px 0px;}
+form.formtastic .fields_container{width:25%;}
+form.formtastic fieldset ol li fieldset legend label{width:25%;}
+form.formtastic fieldset ol li fieldset ol{padding-left:25%;}
+form.formtastic fieldset ol li label{width:25%;}
+form.formtastic fieldset.buttons{padding-left:5px;}
+form.formtastic fieldset.buttons ol li input{font-size:1.2em;padding:5px;}

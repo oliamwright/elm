@@ -4,6 +4,7 @@
 @import "sections";
 @import "form";
 @import "events";
+@import "bugs";
 
 a {
 	text-decoration: none;
@@ -44,12 +45,14 @@ body {
 }
 
 .page_header {
-	width: auto;
+	padding-left: 10px;
+	height: 25px;
+	float: right;
+	width: 300px;
 	background-color: @header_background_color;
 	color: @header_foreground_color;
 	border-bottom: 3px solid @header_border_color;
-	padding: 20px;
-	font-size: 2.0em;
+	font-size: 1.4em;
 }
 
 .page_header span.version {
@@ -58,13 +61,43 @@ body {
 
 .page {
 	padding: 20px;
+	padding-right: 350px;
+}
+
+.file_list .indent {
+	padding-left: 15px;
+	display: inline;
+}
+
+.chat {
+	border: 1px solid black;
+	border-right: 0;
+	background-color: white;
+	width: 310px;
+	position: fixed;
+	top: 25px;
+	right: 0px;
+	height: 300px;
 }
 
 .sub_navigation {
 	display: inline-block;
 }
 
+.sub_navigation.project_navigation {
+	background-color: @foreground_color;
+}
+
+.sub_navigation.project_title {
+	border-left: 1px solid @navigation_border_color;
+
+	.project_title {
+		color: @foreground_color;
+	}
+}
+
 .navigation {
+	height: 25px;
 	background-color: @navigation_background_color;
 	padding: 0px 20px 0px 20px;
 	border-bottom: 3px solid @navigation_border_color;
@@ -74,6 +107,10 @@ body {
 .navigation .link {
 	display: inline-block;
 	padding: 5px;
+}
+
+.navigation .link.active {
+	background-color: @navigation_hover_background_color;
 }
 
 .navigation .link a {

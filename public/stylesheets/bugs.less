@@ -1,0 +1,57 @@
+
+@import "palette";
+
+tr.data_row td.content_links {
+	background-color: @background_color;
+}
+
+@na_bg: #000000;
+@clarify_bg: @error_background_color + #222222;
+
+@unconfirmed_bg: #ccaaff;
+@clarify_uc_bg: @clarify_bg;
+@confirmed_bg: @unconfirmed_bg + #222222;
+@clarify_con_bg: @clarify_bg;
+@started_bg: @closed_bg + #666666;
+@clarify_started_bg: @clarify_bg;
+@verify_started_bg: @notice_background_color + #222222;
+@rejected_bg: #ffaaaa;
+@closed_bg: #44ff44;
+
+tr.unconfirmed {
+	background-color: @unconfirmed_bg;
+}
+
+tr.clarify_uc {
+	background-color: @clarify_uc_bg;
+}
+
+tr.confirmed {
+	background-color: @confirmed_bg;
+}
+
+tr.clarify_con {
+	background-color: @clarify_con_bg;
+}
+
+tr.started {
+	background-color: @started_bg;
+}
+
+tr.clarify_started {
+	background-color: @clarify_started_bg;
+}
+
+tr.verify_started {
+	background-color: @verify_started_bg;
+}
+
+tr.rejected {
+	background-color: @rejected_bg;
+}
+
+tr.closed {
+	background-color: @closed_bg;
+}
+
+
