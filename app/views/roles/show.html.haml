@@ -1,0 +1,9 @@
+%h2= @role.name
+
+- @role.permissions.each do |perm|
+	= "#{@role.name} #{perm.detail_string}"
+	%br
+
+%br
+= link_to 'Grant Permission', '#'
+

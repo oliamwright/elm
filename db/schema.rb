@@ -10,7 +10,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101209134921) do
+ActiveRecord::Schema.define(:version => 20120108114909) do
+
+  create_table "permissions", :force => true do |t|
+    t.string   "scope"
+    t.string   "short_name"
+    t.string   "long_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "permissions_roles", :id => false, :force => true do |t|
+    t.integer  "permission_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.string   "file_path"
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "role_memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -26,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20101209134921) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "guid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

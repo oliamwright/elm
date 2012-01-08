@@ -1,0 +1,5 @@
+
+= semantic_table_for(@roles) do |t|
+	= t.header 'Name'
+	= t.rows do |role|
+		= t.data link_to role.name, role

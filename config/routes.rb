@@ -1,6 +1,12 @@
 Tm::Application.routes.draw do
   devise_for :users
 
+	resources :roles do
+		resources :permissions
+	end
+
+	resources :projects
+
 #	namespace :user do
 #		root :to => "transactions#index"
 #	end

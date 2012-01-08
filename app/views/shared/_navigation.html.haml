@@ -2,7 +2,10 @@
 	%div.global_navigation.sub_navigation
 		%div.link
 			%a{:href => "/"} Home
-		-# if user_signed_in?
+		- if user_signed_in?
+			- if permitted?(:index, Role)
+				%div.link{:class => (params[:controller] == 'roles') ? 'active' : '' }
+					= link_to 'Roles', roles_url
 	%div.user_navigation.sub_navigation
 		%div.link
 			- if user_signed_in?

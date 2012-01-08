@@ -6,6 +6,7 @@ gem 'haml', '3.0.24'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'formtastic', '~> 1.1.0'
 gem 'racc'
+gem 'uuid', '~> 2.3.4'
 
 
 # Bundle edge Rails instead:
