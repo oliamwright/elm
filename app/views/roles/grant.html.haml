@@ -1,0 +1,37 @@
+
+%h2= "Grant Permission to #{@role.name}"
+
+= form_tag grant_permission_role_url do
+	.label
+		= "Scope"
+	= select_tag 'scope', options_from_collection_for_select(Permission.all_scopes, :to_s, :to_s), :include_blank => true
+	%br
+	.label
+		= "Permission"
+	= select_tag 'permission_id', options_from_collection_for_select(Permission.all.select { |p| !@role.permissions.include?(p) }.map { |p| [p.id, "#{p.scope} : #{p.short_name}"]}, :first, :last)
+	%br
+	= submit_tag 'Grant'
+:javascript
+	$('#scope').change(function() {
+		var scope = $('#scope option:selected').text();
+		if (scope.length > 0) {
+			$.ajax({
+				async: true,
+				url: '/permissions/scope/' + scope,
+				cache: false,
+				success: function(data) {
+					$('#permission_id').html(data);
+				}
+			});
+		} else {
+			$.ajax({
+				async: true,
+				url: '/permissions',
+				cache: false,
+				success: function(data) {
+					$('#permission_id').html(data);
+				}
+			});
+		}
+	});
+

@@ -1,14 +1,15 @@
 
-module RolePermissions
+module PermissionPermissions
 
 	def self.scope
-		:role
+		:permission
 	end
 
 	def self.model_permissions
 		[
-			[:index, 'can see the list of roles'],
-			[:show, 'can view a role']
+			[:index, 'can list permissions'],
+			[:grant, 'can grant permissions'],
+			[:revoke, 'can revoke permissions']
 		]
 	end
 

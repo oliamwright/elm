@@ -1,5 +1,5 @@
 
-module #CLASS#Can
+module ProjectCan
 	# Instance Methods
 	def can?(action, user)
 		if self.respond_to?("can_#{action}?".to_sym)
@@ -7,10 +7,5 @@ module #CLASS#Can
 		end
 		return :default
 	end
-
-#	def can_show?(user)
-#		return :default
-#	end
-
 end
 

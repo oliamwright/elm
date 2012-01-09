@@ -36,6 +36,15 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def require_perm!(has_perm)
+		unless has_perm
+			flash[:error] = 'You are not authorized.'
+			redirect_to root_url
+			return false
+		end
+		return true
+	end
+
 	def assert_authority!
 		puts "asserting authority..."
 		action = params[:action].to_sym

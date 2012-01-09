@@ -1,14 +1,14 @@
 
-module RolePermissions
+module ProjectPermissions
 
 	def self.scope
-		:role
+		:project
 	end
 
 	def self.model_permissions
 		[
-			[:index, 'can see the list of roles'],
-			[:show, 'can view a role']
+			[:index, 'can list projects'],
+			[:new, 'can create projects']
 		]
 	end
 

@@ -23,6 +23,5 @@ var templateJS = new function() {
 
 /* main */
 $(function() {
-	templateJS.setup();
 });
 

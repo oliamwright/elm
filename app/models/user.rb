@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
 	has_many :role_memberships
 	has_many :roles, :through => :role_memberships
+	has_many :projects, :through => :role_memberships
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -50,7 +51,7 @@ class User < ActiveRecord::Base
 		ret = object.can?(action, self)
 		puts " => #{ret}"
 		if ret == :default
-			return has_permission?(object.class.to_s.underscore.to_sym, action.to_sym)
+			return class_permission?(object.class.to_s.underscore.to_sym, action.to_sym)
 		else
 			return ret
 		end

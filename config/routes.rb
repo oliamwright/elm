@@ -2,9 +2,16 @@ Tm::Application.routes.draw do
   devise_for :users
 
 	resources :roles do
-		resources :permissions
+		member do
+			get 'grant'
+			post 'grant_permission'
+			post 'revoke_permission'
+		end
 	end
 
+	match 'permissions/scope/:scope' => 'permissions#for_scope', :as => :permissions_for_scope
+	match 'permissions' => 'permissions#unscoped', :as => :unscoped_permissions
+	
 	resources :projects
 
 #	namespace :user do

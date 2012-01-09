@@ -2,8 +2,10 @@
 
 - @role.permissions.each do |perm|
 	= "#{@role.name} #{perm.detail_string}"
+	.link
+		= link_to 'Revoke', revoke_permission_role_url(@role, :permission_id => perm.id), :method => :post
 	%br
 
 %br
-= link_to 'Grant Permission', '#'
+= link_to 'Grant Permission', grant_role_url
 
