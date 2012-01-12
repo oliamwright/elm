@@ -10,10 +10,10 @@
 			.field= @project.roi
 	.project_data_bar
 		.headers.row
-			.field= ""
 			.field= "TEAM"
 			.field= "USER STORIES"
 			.field= "COMPLETE"
+			.field= "ALLOCATION"
 			.field= "BUDGET EST."
 			.field= "PROJECT EST."
 			.field= "PROJECT START"
@@ -23,7 +23,7 @@
 			.field= "SPRINTS"
 			.field= "COST PER SPRINT"
 		.data.row.last
-			.field= ""
+			.field= "--"
 			.field= "--"
 			.field= "--"
 			.field= "--"
@@ -37,7 +37,7 @@
 			.field= "--"
 	.project_team_bar
 		.headers.row
-			.field= link_to "+", assign_project_role_project_user_url(@project, 0)
+			.field= ""
 			.field= "COMPANY"
 			.field= "ROLE"
 			.field= "TEAM"
@@ -60,7 +60,7 @@
 								.row
 									.field= (user.roles.all_for_project(@project).primary.first.name rescue "")
 									.field= link_to user.email, project_user_url(@project, user)
-		.project.row
+		.project.row.last
 			.field= "Project Team"
 			.field11
 				- @project.users.uniq.select { |u| u.has_project_role?(@project, Role.ProjectTeam) }.group_by(&:company_name).each do |company, users|
@@ -72,3 +72,55 @@
 									.field= (user.roles.all_for_project(@project).primary.first.name rescue "")
 									.field= link_to user.email, project_user_url(@project, user)
 		.summary.row.last
+			.field= ""
+			.field= ""
+			.field= ""
+			.field= ""
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+	.project_stats_bar
+		.headers.row
+			.field= "INTERNAL COST"
+			.field= "ACTUAL CHARGE"
+			.field= "BUDGET"
+			.field= "SECURITY"
+			.field= "RISK PROBABILITY"
+			.field= "SECURITY COST"
+			.field= "RESOURCE MARGIN"
+			.field= "EXPENSES"
+			.field= "REWARD %"
+			.field= "REWARDS"
+			.field= "TOTAL EXP"
+			.field= "PROJECTED"
+		.values.row
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+		.percentages.row
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"

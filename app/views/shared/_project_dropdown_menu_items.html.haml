@@ -1,0 +1,11 @@
+.row.headers
+	.field.expand
+	.field.client= "CLIENT"
+	.field.bl= "PRODUCT BACKLOG"
+- Project.all.group_by(&:client).each do |client, projects|
+	.row
+		.field.expand= ""
+		.field.client= client
+		.field.bl
+			- projects.each do |project|
+				.row1= link_to project.name, team_project_url(project)

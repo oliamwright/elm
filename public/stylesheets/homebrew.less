@@ -135,16 +135,87 @@ body {
 		padding: 5px 10px 5px 0px;
 	}
 
-	.project_dropdown {
-		color: #ffffff;
+	.new_project {
 		display: inline-block;
-		background-color: #869b9a;
-		padding: 7px 10px 8px 10px;
-		width: 300px;
+		margin-left: 15px;
+		background-color: #00a3d7;
+		font-weight: bold;
+		font-size: 1.2em;
+		padding: 7px 10px 7px 10px;
+		color: #fff;
+	}
 
-		.name {
+	.project_dropdown {
+		display: inline-block;
+		position: relative;
+
+		.title {
+			color: #ffffff;
 			display: inline-block;
-			font-weight: bold;
+			background-color: #869b9a;
+			padding: 7px 10px 7px 10px;
+			width: 300px;
+			margin-left: 0px;
+
+			.name {
+				display: inline-block;
+				font-weight: bold;
+			}
+		}
+
+		.project_dropdown_menu {
+			position: absolute;
+			z-index: 999;
+			background-color: #eff3f3;
+
+			.row:first-child {
+				border: none;
+			}
+
+			.row {
+				width: 450px;
+				border-top: 1px solid #c0cdcd;
+			}
+
+			.headers {
+				font-weight: bold;
+				background-color: #dfe3e3;
+
+				.field.bl,
+				.field {
+					background-color: #dfe3e3;
+				}
+			}
+
+			.field {
+				display: inline-block;
+				padding: 4px 10px 4px 10px;
+			}
+
+			.field.expand {
+				width: 30px;
+				padding: 2px 5px 2px 5px;
+			}
+
+			.field.client {
+				width: 142px;
+			}
+
+			.field.bl {
+				width: 222px;
+				background-color: #d2fffd;
+
+				.row1:first-child {
+					border: none;
+				}
+
+				.row1 {
+					display: inline-block;
+					width: 100%;
+					border-top: 1px solid #c0cdcd;
+					padding: 4px 0px 4px 0px;
+				}
+			}
 		}
 	}
 

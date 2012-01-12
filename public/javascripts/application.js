@@ -23,5 +23,7 @@ var templateJS = new function() {
 
 /* main */
 $(function() {
+	$(document).delegate('#project_dropdown', 'mouseover', function() { $('#project_dropdown_menu').show(); });
+	$(document).delegate('#project_dropdown_menu', 'mouseout', function() { $(this).hide(); });
 });
 

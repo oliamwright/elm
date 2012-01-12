@@ -1,13 +1,15 @@
 %div.navigation
 	.title= "HOMEBREW"
+	.new_project= "+"
 	- if @project && !@project.new_record?
-		.project_dropdown
-			.name= "#{@project.client} - #{@project.name}"
+		= render :partial => 'shared/project_dropdown'
 		.nav_tabs
 			.nav_tab{:class => (params[:action] == 'product_backlog' ? 'active' : '')}= "Product Backlog"
 			.nav_tab{:class => (params[:action] == 'team' ? 'active' : '')}= link_to 'TEAM', team_project_url(@project)
 			.nav_tab{:class => (params[:action] == 'sprints' ? 'active' : '')}= "Sprints"
 			.nav_tab{:class => (params[:action] == 'sow' ? 'active' : '')}= "SOW"
+	- else
+		= render :partial => 'shared/project_dropdown'
 	- if user_signed_in?
 		.nav_user_menu
 			.profile.nav_sub_menu= "Hi, #{current_user.username}"

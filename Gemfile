@@ -1,19 +1,21 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
-gem 'devise', '1.1.5'
+gem 'rails', '3.1.0'
+gem 'devise', '~> 1.5.3'
 gem 'haml', '3.0.24'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'formtastic', '~> 1.1.0'
 gem 'racc'
 gem 'uuid', '~> 2.3.4'
 gem 'country-select', '~> 1.1.0'
+gem 'best_in_place', '~> 1.0.4'
 
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '0.2.6'
+#gem 'mysql2', '0.2.6'
+gem 'mysql'
 
 # Use unicorn as the web server
 gem 'unicorn'
