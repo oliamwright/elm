@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120108114909) do
+ActiveRecord::Schema.define(:version => 20120111161452) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "apt"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "permissions", :force => true do |t|
     t.string   "scope"
@@ -33,6 +45,14 @@ ActiveRecord::Schema.define(:version => 20120108114909) do
     t.integer  "owner_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "duration"
+    t.integer  "sprint_duration"
+    t.string   "goal"
+    t.string   "value"
+    t.string   "roi"
+    t.string   "client"
   end
 
   create_table "role_memberships", :force => true do |t|
@@ -41,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20120108114909) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "primary"
   end
 
   create_table "roles", :force => true do |t|
@@ -64,6 +85,11 @@ ActiveRecord::Schema.define(:version => 20120108114909) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "guid"
+    t.integer  "company_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "title"
+    t.string   "phone"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

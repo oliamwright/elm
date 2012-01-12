@@ -7,5 +7,6 @@ module ProjectCan
 		end
 		return :default
 	end
+
 end
 

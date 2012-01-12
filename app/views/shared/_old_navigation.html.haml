@@ -1,0 +1,26 @@
+%div.navigation.old
+	%div.global_navigation.sub_navigation
+		%div.link
+			%a{:href => "/"} Home
+		- if user_signed_in?
+			- if permitted?(:index, User)
+				%div.link{:class => (params[:controller] == 'users') ? 'active' : '' }
+					= link_to 'Users', users_url
+			- if permitted?(:index, Company)
+				%div.link{:class => (params[:controller] == 'companies') ? 'active' : '' }
+					= link_to 'Companies', companies_url
+			- if permitted?(:index, Role)
+				%div.link{:class => (params[:controller] == 'roles') ? 'active' : '' }
+					= link_to 'Roles', roles_url
+			- if permitted?(:index, Project)
+				%div.link{:class => (params[:controller] == 'projects') ? 'active' : '' }
+					= link_to 'Projects', projects_url
+	%div.user_navigation.sub_navigation
+		- if user_signed_in?
+			%div.link
+				%a{:href => destroy_user_session_url } Logout
+		- else
+			%div.link
+				%a{:href => new_user_session_url } Login
+			%div.link
+				= link_to 'Sign Up', new_registration_path('user')

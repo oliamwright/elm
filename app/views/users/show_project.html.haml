@@ -1,0 +1,35 @@
+%h2= @user.email
+= render :partial => 'data', :locals => { :user => @user }
+
+%h3= "Global Roles"
+- @user.roles.global.each do |role|
+	.item.role
+		= link_to role.name, role
+		- if permitted?(:unassign_role, @user)
+			.link
+				= link_to 'Remove', do_remove_global_role_url(@user, :role_id => role.id), :method => :post
+%br
+- if permitted?(:assign_role, @user)
+	.link
+		= link_to 'Assign Global Role', assign_global_role_url(@user)
+
+- if @project
+	%h3= "Project Roles"
+	- @user.roles.for_project(@project).each do |role|
+		.item.role{:class => (role == (@user.roles.for_project(@project).primary.first rescue nil) ? 'primary' : '') }
+			= link_to role.name, role
+			- if permitted?(:unassign_role, @user)
+				.link
+					= link_to 'Remove', do_remove_project_role_project_user_url(@project, @user, :role_id => role.id), :method => :post
+%br
+- if permitted?(:assign_role, @user)
+	.link
+		= link_to 'Assign Project Role', assign_project_role_project_user_url(@project, @user)
+
+%h3= "Permissions"
+- @user.roles.collect(&:permissions).flatten.uniq.group_by(&:scope).each do |scope, plist|
+	- plist.each do |perm|
+		= "#{@user.username} #{perm.detail_string}"
+		%br
+
+

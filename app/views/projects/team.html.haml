@@ -1,0 +1,74 @@
+.project
+	.project_value_statements
+		.headers.row
+			.field= "GOAL"
+			.field= "VALUE"
+			.field= "ROI"
+		.data.row
+			.field= @project.goal
+			.field= @project.value
+			.field= @project.roi
+	.project_data_bar
+		.headers.row
+			.field= ""
+			.field= "TEAM"
+			.field= "USER STORIES"
+			.field= "COMPLETE"
+			.field= "BUDGET EST."
+			.field= "PROJECT EST."
+			.field= "PROJECT START"
+			.field= "WEEKS"
+			.field= "PROJECT END"
+			.field= "SPRINT DURATION"
+			.field= "SPRINTS"
+			.field= "COST PER SPRINT"
+		.data.row.last
+			.field= ""
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= @project.start_date
+			.field= @project.duration
+			.field= @project.end_date
+			.field= "#{@project.sprint_duration / 1.week} Weeks"
+			.field= @project.num_sprints
+			.field= "--"
+	.project_team_bar
+		.headers.row
+			.field= link_to "+", assign_project_role_project_user_url(@project, 0)
+			.field= "COMPANY"
+			.field= "ROLE"
+			.field= "TEAM"
+			.field= "TASKED HOURS"
+			.field= "ALLOCATED HOURS"
+			.field= "RESOURCE COST"
+			.field= "RATIO"
+			.field= "BILLED RATE"
+			.field= "EST. PAYABLES"
+			.field= "EST. RECEIVABLES"
+			.field= "REWARD"
+		.client.row
+			.field= "Client Team"
+			.field11
+				- @project.users.uniq.select { |u| u.has_project_role?(@project, Role.ClientTeam) }.group_by(&:company_name).each do |company, users|
+					.row
+						.field= company
+						.field10
+							- users.each do |user|
+								.row
+									.field= (user.roles.all_for_project(@project).primary.first.name rescue "")
+									.field= link_to user.email, project_user_url(@project, user)
+		.project.row
+			.field= "Project Team"
+			.field11
+				- @project.users.uniq.select { |u| u.has_project_role?(@project, Role.ProjectTeam) }.group_by(&:company_name).each do |company, users|
+					.row
+						.field= company
+						.field10
+							- users.each do |user|
+								.row
+									.field= (user.roles.all_for_project(@project).primary.first.name rescue "")
+									.field= link_to user.email, project_user_url(@project, user)
+		.summary.row.last

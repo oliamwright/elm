@@ -1,0 +1,4 @@
+= semantic_table_for(companies) do |t|
+	= t.header 'Company'
+	= t.rows do |company|
+		= t.data link_to company.name, company

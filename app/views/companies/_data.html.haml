@@ -1,0 +1,20 @@
+.section.data.company
+	- if include_name
+		.field
+			.name= "Company"
+			.value= link_to company.name, company
+	.field
+		.name= "Address"
+		.value= company.address
+	- if !company.apt.blank?
+		.field
+			.name= "Apt."
+			.value= company.apt
+	.field
+		.name= ""
+		.value= "#{company.city}, #{company.state} #{company.zip}"
+	.field
+		.name= ""
+		.value= company.country
+
+

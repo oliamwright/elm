@@ -1,0 +1,11 @@
+= form_tag do_assign_project_role_url do
+	.label= "Project"
+	= select_tag 'project_id', options_from_collection_for_select(Project.all, :id, :name, (@project.id rescue nil))
+	.label= "User"
+	= select_tag 'user_id', options_from_collection_for_select(User.all, :id, :email, @user.id)
+	.label= "Role"
+	= select_tag 'role_id', options_from_collection_for_select(Role.all.select { |r| @project.nil? || !@user.roles.all_for_project(@project).include?(r) }, :id, :name)
+	.label= "Primary?"
+	= check_box_tag 'primary'
+	%br
+	=submit_tag 'Assign'

@@ -1,0 +1,6 @@
+%h3= "Companies"
+= render :partial => 'index_table', :locals => { :companies => @companies }
+- if permitted?(:new, Company)
+	.link
+		= link_to 'New Company', new_company_url
+

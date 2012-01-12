@@ -1,2 +1,5 @@
 
 = render :partial => 'index_table', :locals => { :roles => @roles }
+- if permitted?(:new, Role)
+	.link
+		= link_to 'New Role', new_role_url

@@ -8,14 +8,18 @@ module RolePermissions
 	def self.model_permissions
 		[
 			[:index, 'can see the list of roles'],
-			[:show, 'can view a role']
+			[:show, 'can view a role'],
+			[:new, 'can create a role'],
+			[:create, 'can save a new role']
 		]
 	end
 
 	def self.included(base)
-		model_permissions.each do |s,l|
-			puts "#{scope} : #{s.to_s} : #{l}"
-			Permission.find_or_create_by_scope_and_short_name_and_long_description(scope, s.to_s, l)
+		unless ENV.has_key?('NO_PERMS')
+			model_permissions.each do |s,l|
+				#puts "#{scope} : #{s.to_s} : #{l}"
+				Permission.find_or_create_by_scope_and_short_name_and_long_description(scope, s.to_s, l)
+			end
 		end
 	end
 

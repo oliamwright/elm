@@ -1,0 +1,6 @@
+= semantic_table_for(@users) do |t|
+	= t.header 'Name', 'Email'
+	= t.rows do |user|
+		- if current_user.can?(:show, user)
+			= t.data link_to user.full_name_last_first, user
+			= t.data link_to user.email, user

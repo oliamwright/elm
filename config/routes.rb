@@ -9,10 +9,36 @@ Tm::Application.routes.draw do
 		end
 	end
 
+	resources :companies
+
 	match 'permissions/scope/:scope' => 'permissions#for_scope', :as => :permissions_for_scope
 	match 'permissions' => 'permissions#unscoped', :as => :unscoped_permissions
+
+	match 'users' => 'users#index', :as => :users
+	match 'user/:id' => 'users#show', :as => :user
+	match 'user/:id/assign_role' => 'users#assign_role', :as => :assign_global_role
+	match 'user/:id/do_assign_role' => 'users#do_assign_role', :as => :do_assign_global_role
+	match 'user/:id/do_remove_role' => 'users#do_remove_role', :as => :do_remove_global_role
+	match 'user/:id/assign_project_role' => 'users#assign_project_role', :as => :assign_project_role
+	match 'user/:id/do_assign_project_role' => 'users#do_assign_project_role', :as => 'do_assign_project_role'
+	match 'user/:id/do_remove_project_role' => 'users#do_remove_project_role', :as => 'do_remove_project_role'
 	
-	resources :projects
+	resources :projects do
+		resources :users do
+			member do
+				get 'assign_role'
+				post 'do_assign_role'
+				post 'do_remove_role'
+				get 'assign_project_role'
+				post 'do_assign_project_role'
+				post 'do_remove_project_role'
+			end
+		end
+
+		member do
+			get 'team'
+		end
+	end
 
 #	namespace :user do
 #		root :to => "transactions#index"

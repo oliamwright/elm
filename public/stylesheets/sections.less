@@ -2,29 +2,19 @@
 @import "palette";
 
 .section {
-	//border: 1px solid @section_border_color;
 	border-top-left-radius: 4px 4px;
 	border-top-right-radius: 4px 4px;
 	border-bottom-left-radius: 4px 4px;
 	border-bottom-right-radius: 4px 4px;
-	background-color: @section_background_color;
 }
 
 .section .heading {
 	font-size: 1.4em;
-	background-color: @section_heading_background_color;
 	padding: 5px;
-	border-bottom: 2px solid @section_heading_border_color;
 }
 
 .section .footer {
 	padding: 10px 0px 0px 5px;
-	background-color: @section_heading_background_color;
-}
-
-.section .pre_new_link {
-	padding: 0px 0px 10px 5px;
-	background-color: @section_heading_background_color;
 }
 
 .section.data {
@@ -52,9 +42,19 @@
 .section.links .link {
 	padding: 5px;
 	display: inline-block;
-	border: 1px solid @section_border_color;
 	border-top-left-radius: 4px 4px;
 	border-top-right-radius: 4px 4px;
 	border-bottom-left-radius: 4px 4px;
 	border-bottom-right-radius: 4px 4px;
+}
+
+.item .link {
+	margin-left: 10px;
+	display: inline-block;
+	font-size: 0.9em;
+	font-weight: normal;
+}
+
+.item.role.primary {
+	font-weight: bold;
 }

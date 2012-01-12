@@ -1,0 +1,5 @@
+%h3= "Projects"
+= render :partial => 'index_table', :locals => { :projects => @projects }
+- if permitted?(:new, Project)
+	.link
+		= link_to 'New Project', new_project_url

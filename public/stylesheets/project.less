@@ -1,0 +1,73 @@
+.project {
+
+	.row {
+		border-top: 1px solid @row_separator_color;
+		width: 100%;
+		padding: 5px 0px 5px 0px;
+	}
+
+	.headers .field {
+		font-weight: bold;
+	}
+
+	.row.no_top {
+		border-top: none;
+	}
+
+	.row.last {
+		border-bottom: 1px solid @row_separator_color;
+	}
+
+	.field {
+		display: inline-block;
+	}
+
+	.project_value_statements {
+
+		.field {
+			width: 33%;
+		}
+
+		.data {
+			color: @highlight_blue_color;
+			font-style: italic;
+			padding: 10px 0px 10px 0px;
+		}
+	}
+
+	.project_data_bar {
+		
+		.row {
+			background-color: @background_blue_color;
+		}
+
+		margin-top: 10px;
+
+		.field {
+			width: 8%;
+		}
+	}
+
+	.project_team_bar {
+		margin-top: 20px;
+
+		.field {
+			width: 8%;
+		}
+
+		.field11 {
+			display: inline-block;
+			width: 91%;
+
+			.row:first-child {
+				border-top: none;
+			}
+		}
+
+		.field10 {
+			display: inline-block;
+			width: 83%;
+		}
+	}
+}
+

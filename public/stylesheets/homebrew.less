@@ -1,10 +1,8 @@
 
 @import "palette";
-@import "table";
 @import "sections";
 @import "form";
-@import "events";
-@import "bugs";
+@import "project";
 
 a {
 	text-decoration: none;
@@ -22,6 +20,10 @@ body {
 	margin: 0px;
 	font-family: sans-serif;
 	font-size: 12px;
+}
+
+.clear {
+	clear: both;
 }
 
 .message {
@@ -51,7 +53,6 @@ body {
 	width: 300px;
 	background-color: @header_background_color;
 	color: @header_foreground_color;
-	border-bottom: 3px solid @header_border_color;
 	font-size: 1.4em;
 }
 
@@ -61,7 +62,6 @@ body {
 
 .page {
 	padding: 20px;
-	padding-right: 350px;
 }
 
 .file_list .indent {
@@ -89,41 +89,124 @@ body {
 }
 
 .sub_navigation.project_title {
-	border-left: 1px solid @navigation_border_color;
 
 	.project_title {
 		color: @foreground_color;
 	}
 }
 
-.navigation {
+.navigation.old {
+	background-color: @navigation_background_color + #444444;
+	border-bottom: 2px solid #ffc000;
 	height: 25px;
+
+	.link {
+		display: inline-block;
+		padding: 5px;
+	}
+
+	.link.active {
+		background-color: @navigation_hover_background_color;
+	}
+
+	.link a {
+		color: @navigation_link_color;
+		font-weight: bold;
+	}
+
+	.link:hover {
+		background-color: @navigation_hover_background_color;
+	}
+
+	.link:hover a {
+		color: @navigation_hover_link_color;
+	}
+}
+
+.navigation {
+	height: 30px;
 	background-color: @navigation_background_color;
 	padding: 0px 20px 0px 20px;
-	border-bottom: 3px solid @navigation_border_color;
-	color: #d5ded9;
-}
 
-.navigation .link {
-	display: inline-block;
-	padding: 5px;
-}
+	.title {
+		color: #ffffff;
+		font-weight: bold;
+		display: inline-block;
+		padding: 5px 10px 5px 0px;
+	}
 
-.navigation .link.active {
-	background-color: @navigation_hover_background_color;
-}
+	.project_dropdown {
+		color: #ffffff;
+		display: inline-block;
+		background-color: #869b9a;
+		padding: 7px 10px 8px 10px;
+		width: 300px;
 
-.navigation .link a {
-	color: @navigation_link_color;
-	font-weight: bold;
-}
+		.name {
+			display: inline-block;
+			font-weight: bold;
+		}
+	}
 
-.navigation .link:hover {
-	background-color: @navigation_hover_background_color;
-}
+	.nav_tabs {
+		margin-left: 10px;
+		display: inline-block;
+		
+		.nav_tab {
+			padding: 3px 10px 8px 10px;
+			margin-left: 3px;
+			background-color: #5e7373;
+			font-weight: bold;
+			color: #ffffff;
+			display: inline-block;
+			
+			a {
+				color: #ffffff;
+			}
+		}
 
-.navigation .link:hover a {
-	color: @navigation_hover_link_color;
+		.nav_tab:hover {
+			background-color: #ffffff;
+			color: #000000;
+
+			a {
+				color: #000000;
+			}
+		}
+
+		.nav_tab.active {
+			background-color: #ffffff;
+			color: #000000;
+
+			a {
+				color: #000000;
+			}
+		}
+	}
+
+	.nav_user_menu {
+		padding: 5px 10px 0px 0px;
+		float: right;
+		display: inline-block;
+
+		.nav_sub_menu {
+			font-weight: bold;
+			display: inline-block;
+			color: #ffffff;
+			margin-right: 10px;
+
+			a {
+				color: #ffffff;
+			}
+		}
+
+		.nav_sub_menu:hover {
+			a {
+				color: #5e7373;
+			}
+		}
+	}
+
 }
 
 @import "formtastic_changes";

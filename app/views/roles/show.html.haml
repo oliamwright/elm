@@ -1,10 +1,12 @@
 %h2= @role.name
 
-- @role.permissions.each do |perm|
-	= "#{@role.name} #{perm.detail_string}"
-	.link
-		= link_to 'Revoke', revoke_permission_role_url(@role, :permission_id => perm.id), :method => :post
-	%br
+- @role.permissions.group_by(&:scope).each do |scope, plist|
+	%h3= scope.pluralize.titleize
+	- plist.each do |perm|
+		= "#{@role.name} #{perm.detail_string}"
+		.link
+			= link_to 'Revoke', revoke_permission_role_url(@role, :permission_id => perm.id), :method => :post
+		%br
 
 %br
 = link_to 'Grant Permission', grant_role_url

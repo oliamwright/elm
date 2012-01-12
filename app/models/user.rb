@@ -4,16 +4,53 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+	include UserCan
+	include UserPermissions
+
 	has_many :role_memberships
 	has_many :roles, :through => :role_memberships
 	has_many :projects, :through => :role_memberships
+	belongs_to :company
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :title, :phone, :company_id
 
 	attr_accessor :current_project
 
 	after_save :assert_guid!
+	after_create :assign_anyone!
+	after_create :assign_admin!
+
+	def full_name_last_first
+		"#{self.last_name}, #{self.first_name}"
+	end
+
+	def full_name
+		"#{self.first_name} #{self.last_name}"
+	end
+
+	def company_name
+		self.company.name rescue ""
+	end
+
+	def username
+		self.email.sub(/@.*/, '')
+	end
+
+	def has_global_role?(role)
+		if role.class == Integer
+			role = Role.find(role)
+		end
+		self.roles.global.include?(role)
+	end
+
+	def has_project_role?(project, role)
+		if role.class == Integer
+			role = Role.find(role)
+		end
+		project = project.id rescue project
+		self.roles.all_for_project(project).include?(role)
+	end
 
 	def can?(action, object)
 		if object.nil?
@@ -57,6 +94,17 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	def _can?(action, object)
+		puts " * User(#{self.id})._can?(#{action}, #{object})"
+		if object.class == Class
+			scope = object.to_s.underscore.to_sym
+		else
+			scope = object.class.to_s.underscore.to_sym
+		end
+		perm = action.to_sym
+		return class_permission?(scope, perm)
+	end
+
 	def class_permission?(project = current_project, scope, perm)
 		puts " * User(#{self.id}).class_permission?(#{project.id rescue nil}, #{scope}, #{perm})"
 		pid = (project.id rescue nil)
@@ -81,6 +129,14 @@ class User < ActiveRecord::Base
 		unless self.guid
 			self.update_attribute(:guid, UUID.generate) unless self.guid
 		end
+	end
+
+	def assign_anyone!
+		self.roles << Role.Anyone
+	end
+
+	def assign_admin!
+		self.roles << Role.Admin if User.all.count == 1
 	end
 
 end

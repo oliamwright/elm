@@ -1,0 +1,24 @@
+.section.data.user
+	- if user.company
+		.field
+			.name= "Company"
+			.value= link_to user.company.name, user.company
+	.field
+		.name= "Title"
+		.value= user.title
+	- if user.company
+		.field
+			.name= "Address"
+			.value= user.company.address
+		- if !user.company.apt.blank?
+			.field
+				.name= ""
+				.value= user.company.apt
+		.field
+			.name= ""
+			.value= "#{user.company.city}, #{user.company.state} #{user.company.zip}"
+		.field
+			.name= ""
+			.value= user.company.country
+	
+

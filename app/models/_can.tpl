@@ -1,5 +1,5 @@
 
-module #CLASS#Can
+module CLASS_Can
 	# Instance Methods
 	def can?(action, user)
 		if self.respond_to?("can_#{action}?".to_sym)

@@ -1,0 +1,7 @@
+= form_tag do_assign_global_role_url do
+	.label= "User"
+	=select_tag 'user_id', options_from_collection_for_select(User.all, :id, :email), :selected => @user
+	.label= "Role"
+	=select_tag 'role_id', options_from_collection_for_select(Role.all.select { |r| !@user.roles.include?(r) }, :id, :name)
+	%br
+	=submit_tag 'Assign'

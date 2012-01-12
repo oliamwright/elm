@@ -1,0 +1,7 @@
+%h2= @company.name
+= render :partial => 'data', :locals => { :company => @company, :include_name => false }
+
+%h3= "Users"
+- @company.users.each do |user|
+	.user= link_to user.email, user
+

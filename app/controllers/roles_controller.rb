@@ -1,7 +1,21 @@
 class RolesController < ApplicationController
 
 	def index
-		@roles = Role.all
+		@roles = Role.order("name asc").all
+	end
+
+	def new
+		@role = Role.new
+	end
+
+	def create
+		@role = Role.new(params[:role])
+		if @role.save
+			flash[:notice] = "Role '#{@role.name}' created."
+		else
+			flash[:error] = "Role '#{@role.name}' could not be created."
+		end
+		redirect_to roles_url
 	end
 
 	def show

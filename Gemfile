@@ -7,6 +7,7 @@ gem 'will_paginate', '~> 3.0.pre2'
 gem 'formtastic', '~> 1.1.0'
 gem 'racc'
 gem 'uuid', '~> 2.3.4'
+gem 'country-select', '~> 1.1.0'
 
 
 # Bundle edge Rails instead:

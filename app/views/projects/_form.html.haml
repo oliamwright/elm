@@ -1,0 +1,13 @@
+= semantic_form_for(@project) do |f|
+	- f.inputs do
+		= f.input :client
+		= f.input :name
+		= f.input :file_path, :as => :select, :collection => Project.dropbox_folders
+		= f.input :start_date
+		= f.input :end_date
+		= f.input :duration, :label => 'Duration (weeks)'
+		= f.input :sprint_duration, :as => :select, :collection => Project.sprint_durations, :include_blank => false
+		= f.input :goal
+		= f.input :value
+		= f.input :roi
+		= f.submit

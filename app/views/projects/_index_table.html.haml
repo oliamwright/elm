@@ -1,0 +1,4 @@
+= semantic_table_for(projects) do |t|
+	= t.header 'Project'
+	= t.rows do |project|
+		= t.data link_to project.name, team_project_url(project)

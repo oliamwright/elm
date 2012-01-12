@@ -17,7 +17,7 @@
 		if (scope.length > 0) {
 			$.ajax({
 				async: true,
-				url: '/permissions/scope/' + scope,
+				url: '/permissions/scope/' + scope + '?role_id=' + #{@role.id},
 				cache: false,
 				success: function(data) {
 					$('#permission_id').html(data);
@@ -26,7 +26,7 @@
 		} else {
 			$.ajax({
 				async: true,
-				url: '/permissions',
+				url: '/permissions?role_id=' + #{@role.id},
 				cache: false,
 				success: function(data) {
 					$('#permission_id').html(data);
