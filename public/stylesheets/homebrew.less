@@ -3,6 +3,19 @@
 @import "sections";
 @import "form";
 @import "project";
+@import "user";
+
+.debug1 {
+	border: 1px solid #f00;
+}
+
+.debug2 {
+	border: 1px solid #0f0;
+}
+
+.debug3 {
+	border: 1px solid #00f;
+}
 
 a {
 	text-decoration: none;
@@ -132,7 +145,7 @@ body {
 		color: #ffffff;
 		font-weight: bold;
 		display: inline-block;
-		padding: 5px 10px 5px 0px;
+		padding: 7px 10px 7px 0px;
 	}
 
 	.new_project {
@@ -256,11 +269,12 @@ body {
 	}
 
 	.nav_user_menu {
-		padding: 7px 10px 0px 0px;
+		padding: 0px 10px 0px 0px;
 		float: right;
 		display: inline-block;
 
 		.nav_sub_menu {
+			padding: 7px 10px 8px 10px;
 			font-weight: bold;
 			display: inline-block;
 			color: #ffffff;
@@ -271,9 +285,13 @@ body {
 			}
 		}
 
+		.nav_sub_menu.active,
 		.nav_sub_menu:hover {
+			background-color: #ffffff;
+			color: #000000;
+
 			a {
-				color: #5e7373;
+				color: #000000;
 			}
 		}
 	}

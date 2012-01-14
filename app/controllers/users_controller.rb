@@ -4,6 +4,28 @@ class UsersController < ApplicationController
 		@users = User.all
 	end
 
+	def user_data
+		@user = User.find(params[:id]) rescue nil
+		if request.xhr?
+			render :action => 'user_data', :layout => false
+		end
+	end
+
+	def update
+		@user = User.find(params[:id]) rescue nil
+		if @user
+			respond_to do |format|
+				if @user.update_attributes(params[:user])
+					format.html { redirect_to(@user, :notice => "User '#{@user.email}' updated.") }
+					format.json { respond_with_bip(@user) }
+				else
+					format.html { }
+					format.json { respond_with_bip(@user) }
+				end
+			end
+		end
+	end
+
 	def show
 		@user = User.find(params[:id])
 		require_perm!(current_user.can?(:show, @user)) || return

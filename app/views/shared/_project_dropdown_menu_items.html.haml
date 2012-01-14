@@ -3,9 +3,11 @@
 	.field.client= "CLIENT"
 	.field.bl= "PRODUCT BACKLOG"
 - Project.all.group_by(&:client).each do |client, projects|
-	.row
-		.field.expand= ""
-		.field.client= client
-		.field.bl
-			- projects.each do |project|
-				.row1= link_to project.name, team_project_url(project)
+	- valid_projects = projects.select { |p| current_user.can?(:show, p) }
+	- if valid_projects.count > 0
+		.row
+			.field.expand= ""
+			.field.client= client
+			.field.bl
+				- valid_projects.each do |project|
+					.row1= link_to project.name, team_project_url(project)

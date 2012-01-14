@@ -1,21 +1,25 @@
 %div.navigation
 	.title= "HOMEBREW"
-	.new_project= "+"
-	- if @project && !@project.new_record?
-		= render :partial => 'shared/project_dropdown'
-		.nav_tabs
-			.nav_tab{:class => (params[:action] == 'product_backlog' ? 'active' : '')}= "Product Backlog"
-			.nav_tab{:class => (params[:action] == 'team' ? 'active' : '')}= link_to 'TEAM', team_project_url(@project)
-			.nav_tab{:class => (params[:action] == 'sprints' ? 'active' : '')}= "Sprints"
-			.nav_tab{:class => (params[:action] == 'sow' ? 'active' : '')}= "SOW"
-	- else
-		= render :partial => 'shared/project_dropdown'
 	- if user_signed_in?
+		.new_project= "+"
+		- if @project && !@project.new_record?
+			= render :partial => 'shared/project_dropdown'
+			.nav_tabs
+				- permitted?(:show, @project) do
+					.nav_tab{:class => (params[:action] == 'product_backlog' ? 'active' : '')}= "Product Backlog"
+					.nav_tab{:class => (params[:action] == 'team' ? 'active' : '')}= link_to 'TEAM', team_project_url(@project)
+					.nav_tab{:class => (params[:action] == 'sprints' ? 'active' : '')}= "Sprints"
+					.nav_tab{:class => (params[:action] == 'sow' ? 'active' : '')}= "SOW"
+		- else
+			= render :partial => 'shared/project_dropdown'
 		.nav_user_menu
 			.profile.nav_sub_menu= "Hi, #{current_user.username}"
-			.users.nav_sub_menu= link_to "USERS", users_url
-			.payables.nav_sub_menu= "PAYABLES"
-			.receivables.nav_sub_menu= "RECEIVABLES"
+			- permitted?(:index, User) do
+				.users.nav_sub_menu{:class => (params[:controller] == 'users' ? 'active' : '')}= link_to "PEOPLE", users_url
+			- permitted?(:show_payables, @project) do
+				.payables.nav_sub_menu= "PAYABLES"
+			- permitted?(:show_receivables, @project) do
+				.receivables.nav_sub_menu= "RECEIVABLES"
 			.logout.nav_sub_menu= link_to "logout", destroy_user_session_url
 			.clear
 	- else

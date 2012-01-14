@@ -1,2 +1,29 @@
-%h3= "Users"
-= render :partial => 'index_table', :locals => { :users => @users }
+.columns
+	.column.user_list
+		.user_list
+			- User.all.group_by(&:company_name).each do |company, users|
+				.row
+					.field.company
+						= company
+					.field.users
+						- users.each do |user|
+							.row
+								.field.user{:'data-value' => user.id}= user.full_name
+	.column.user_data
+	.clear
+:javascript
+	$('.field.user').click(function() {
+		uid = $(this).attr('data-value');
+		var sf = $(this);
+		$.ajax({
+			async: true,
+			url: '/users/' + uid + '/user_data',
+			cache: false,
+			success: function(data) {
+				$('.column.user_data').html(data);
+				$('.field.user').removeClass('selected');
+				sf.addClass('selected');
+			}
+		});
+	});
+

@@ -14,14 +14,27 @@ Tm::Application.routes.draw do
 	match 'permissions/scope/:scope' => 'permissions#for_scope', :as => :permissions_for_scope
 	match 'permissions' => 'permissions#unscoped', :as => :unscoped_permissions
 
-	match 'users' => 'users#index', :as => :users
-	match 'user/:id' => 'users#show', :as => :user
-	match 'user/:id/assign_role' => 'users#assign_role', :as => :assign_global_role
-	match 'user/:id/do_assign_role' => 'users#do_assign_role', :as => :do_assign_global_role
-	match 'user/:id/do_remove_role' => 'users#do_remove_role', :as => :do_remove_global_role
-	match 'user/:id/assign_project_role' => 'users#assign_project_role', :as => :assign_project_role
-	match 'user/:id/do_assign_project_role' => 'users#do_assign_project_role', :as => 'do_assign_project_role'
-	match 'user/:id/do_remove_project_role' => 'users#do_remove_project_role', :as => 'do_remove_project_role'
+	resources :users do
+		member do
+			get 'user_data'
+			get 'assign_role'
+			post 'do_assign_role'
+			post 'do_remove_role'
+			get 'assign_project_role'
+			post 'do_assign_project_role'
+			post 'do_remove_project_role'
+		end
+	end
+
+#	match 'users' => 'users#index', :as => :users
+#	match 'user/:id' => 'users#show', :as => :user
+#	match 'user/:id/assign_role' => 'users#assign_role', :as => :assign_global_role
+#	match 'user/:id/do_assign_role' => 'users#do_assign_role', :as => :do_assign_global_role
+#	match 'user/:id/do_remove_role' => 'users#do_remove_role', :as => :do_remove_global_role
+#	match 'user/:id/assign_project_role' => 'users#assign_project_role', :as => :assign_project_role
+#	match 'user/:id/do_assign_project_role' => 'users#do_assign_project_role', :as => 'do_assign_project_role'
+#	match 'user/:id/do_remove_project_role' => 'users#do_remove_project_role', :as => 'do_remove_project_role'
+#	match 'users/:id/user_data' => 'users#user_data', :as => 'user_data'
 	
 	resources :projects do
 		resources :users do

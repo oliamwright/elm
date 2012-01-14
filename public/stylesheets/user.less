@@ -1,0 +1,75 @@
+
+.columns {
+	width: 100%;
+}
+
+.column {
+	float: left;
+	padding: 10px;
+}
+
+.column.user_list {
+	width: 25%;
+}
+
+.column.user_data {
+	width: 55%;
+}
+
+.user_list {
+
+	.row {
+		border-top: 1px solid #cccccc;
+
+		.field {
+			display: inline-block;
+			padding: 2px 0px 2px 0px;
+		}
+
+		.field.company {
+			width: 40%;
+		}
+
+		.field.users {
+			width: 58%;
+		}
+
+		.field.user.selected {
+			width: 100%;
+			background-color: #caf0fe;
+		}
+	}
+
+	.row:first-child {
+		border: none;
+	}
+}
+
+.user_data {
+
+	.field {
+		width: 100%;
+		border-bottom: 1px solid #cccccc;
+
+		.name {
+			display: inline-block;
+			font-weight: bold;
+			font-size: 1.1em;
+			width: 25%;
+			text-align: right;
+			padding: 5px;
+		}
+
+		.value {
+			display: inline-block;
+			width: 55%;
+			text-align: left;
+			padding: 5px;
+		}
+	}
+
+	.field:first-child {
+		border-top: 1px solid #cccccc;
+	}
+
+}

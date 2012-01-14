@@ -11,13 +11,13 @@
 div.form{padding:10px;}
 .form .fields_container{display:inline-block;padding:5px;}
 .form .buttons_container{display:inline-block;padding:5px;}
-.project .row{border-top:1px solid #c0c0c0;width:100%;padding:4px 0px 4px 0px;}.project .row .row{padding:0px;}
+.project .row{border-top:1px solid #c0c0c0;width:100%;padding:4px 0px 4px 10px;}.project .row .row{padding:0px;}
 .project .headers .field{font-weight:bold;}
 .project .row.no_top{border-top:none;}
 .project .row.last{border-bottom:1px solid #c0c0c0;}
 .project .field{display:inline-block;}
 .project .project_value_statements .field{width:33%;}
-.project .project_value_statements .data{color:#008cb5;font-style:italic;padding:10px 0px 10px 0px;}
+.project .project_value_statements .data{color:#008cb5;font-style:italic;padding:10px 0px 10px 10px;}
 .project .project_data_bar{margin-top:10px;}.project .project_data_bar .row{background-color:#caf0fe;}
 .project .project_data_bar .field{width:8%;}
 .project .project_team_bar{margin-top:20px;}.project .project_team_bar .field{width:8%;}
@@ -25,6 +25,21 @@ div.form{padding:10px;}
 .project .project_team_bar .field10{display:inline-block;width:83%;}
 .project .project_team_bar .summary.row{margin-top:20px;background-color:#eee;}
 .project .project_stats_bar{margin-top:20px;}.project .project_stats_bar .field{width:8%;}
+.columns{width:100%;}
+.column{float:left;padding:10px;}
+.column.user_list{width:25%;}
+.column.user_data{width:55%;}
+.user_list .row{border-top:1px solid #cccccc;}.user_list .row .field{display:inline-block;padding:2px 0px 2px 0px;}
+.user_list .row .field.company{width:40%;}
+.user_list .row .field.users{width:58%;}
+.user_list .row .field.user.selected{width:100%;background-color:#caf0fe;}
+.user_list .row:first-child{border:none;}
+.user_data .field{width:100%;border-bottom:1px solid #cccccc;}.user_data .field .name{display:inline-block;font-weight:bold;font-size:1.1em;width:25%;text-align:right;padding:5px;}
+.user_data .field .value{display:inline-block;width:55%;text-align:left;padding:5px;}
+.user_data .field:first-child{border-top:1px solid #cccccc;}
+.debug1{border:1px solid #f00;}
+.debug2{border:1px solid #0f0;}
+.debug3{border:1px solid #00f;}
 a{text-decoration:none;color:#444444;}
 a:hover{color:#444444;}
 body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:sans-serif;font-size:12px;}
@@ -45,7 +60,7 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:s
 .navigation.old .link a{color:#ffffff;font-weight:bold;}
 .navigation.old .link:hover{background-color:#222222;}
 .navigation.old .link:hover a{color:#ffffff;}
-.navigation{height:30px;background-color:#000000;padding:0px 20px 0px 20px;}.navigation .title{color:#ffffff;font-weight:bold;display:inline-block;padding:5px 10px 5px 0px;}
+.navigation{height:30px;background-color:#000000;padding:0px 20px 0px 20px;}.navigation .title{color:#ffffff;font-weight:bold;display:inline-block;padding:7px 10px 7px 0px;}
 .navigation .new_project{display:inline-block;margin-left:15px;background-color:#00a3d7;font-weight:bold;font-size:1.2em;padding:7px 10px 7px 10px;color:#fff;}
 .navigation .project_dropdown{display:inline-block;position:relative;}.navigation .project_dropdown .title{color:#ffffff;display:inline-block;background-color:#869b9a;padding:7px 10px 7px 10px;width:300px;margin-left:0px;}.navigation .project_dropdown .title .name{display:inline-block;font-weight:bold;}
 .navigation .project_dropdown .project_dropdown_menu{position:absolute;z-index:999;background-color:#eff3f3;}.navigation .project_dropdown .project_dropdown_menu .row:first-child{border:none;}
@@ -59,8 +74,8 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:s
 .navigation .nav_tabs{margin-left:10px;display:inline-block;}.navigation .nav_tabs .nav_tab{padding:3px 10px 7px 10px;margin-left:3px;background-color:#5e7373;font-weight:bold;color:#ffffff;display:inline-block;}.navigation .nav_tabs .nav_tab a{color:#ffffff;}
 .navigation .nav_tabs .nav_tab:hover{background-color:#ffffff;color:#000000;}.navigation .nav_tabs .nav_tab:hover a{color:#000000;}
 .navigation .nav_tabs .nav_tab.active{background-color:#ffffff;color:#000000;}.navigation .nav_tabs .nav_tab.active a{color:#000000;}
-.navigation .nav_user_menu{padding:7px 10px 0px 0px;float:right;display:inline-block;}.navigation .nav_user_menu .nav_sub_menu{font-weight:bold;display:inline-block;color:#ffffff;margin-right:10px;}.navigation .nav_user_menu .nav_sub_menu a{color:#ffffff;}
-.navigation .nav_user_menu .nav_sub_menu:hover a{color:#5e7373;}
+.navigation .nav_user_menu{padding:0px 10px 0px 0px;float:right;display:inline-block;}.navigation .nav_user_menu .nav_sub_menu{padding:7px 10px 8px 10px;font-weight:bold;display:inline-block;color:#ffffff;margin-right:10px;}.navigation .nav_user_menu .nav_sub_menu a{color:#ffffff;}
+.navigation .nav_user_menu .nav_sub_menu.active,.navigation .nav_user_menu .nav_sub_menu:hover{background-color:#ffffff;color:#000000;}.navigation .nav_user_menu .nav_sub_menu.active a,.navigation .nav_user_menu .nav_sub_menu:hover a{color:#000000;}
 form.formtastic{font-size:1.2em;}
 form.formtastic fieldset.inputs{padding:5px;}
 form.formtastic fieldset ol li fieldset ol{padding:3px 0px 3px 0px;}

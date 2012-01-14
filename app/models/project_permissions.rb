@@ -9,6 +9,8 @@ module ProjectPermissions
 		[
 			[:index, 'can list projects'],
 			[:show, 'can view a project'],
+			[:show_payables, 'can view payables for a project'],
+			[:show_receivables, 'can view receivables for a project'],
 			[:new, 'can create projects'],
 			[:create, 'can save new projects'],
 			[:edit, 'can edit projects'],
