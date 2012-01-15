@@ -5,5 +5,36 @@
 	.field
 		.name= "Last Name"
 		.value= best_in_place user, :last_name
+	.field
+		.name= "Company"
+		.value= best_in_place user, :company_id, :type => :select, :collection => Company.all.map { |c| [c.id, c.name] }
+	.field
+		.name= "Title"
+		.value= best_in_place user, :title
+	.field
+		.name= "Email"
+		.value= user.email
+	.field
+		.name= "Phone Number"
+		.value= best_in_place user, :phone, :display_as => :formatted_phone
+	- if !user.company.nil?
+		.field
+			.name= "Address"
+			.value= best_in_place user.company, :address
+		.field
+			.name= "Apt."
+			.value= best_in_place user.company, :apt
+		.field
+			.name= "City"
+			.value= best_in_place user.company, :city
+		.field
+			.name= "State"
+			.value= best_in_place user.company, :state, :type => :select, :collection => Company::US_STATES.map { |s,a| [s, s] }
+		.field
+			.name= "Country"
+			.value= best_in_place user.company, :country, :type => :select, :collection => [ ["United States", "United States"] ] + ActionView::Helpers::FormOptionsHelper::COUNTRIES.map { |c| [c,c] }
+		.field
+			.name= "Zip"
+			.value= best_in_place user.company, :zip
 :javascript
 	$('.best_in_place').best_in_place();

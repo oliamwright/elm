@@ -131,6 +131,8 @@ GEM
       kgio (~> 2.4)
       rack
       raindrops (~> 0.6)
+    us_states_select (1.2.0)
+      rails (>= 1.2)
     uuid (2.3.4)
       macaddr (~> 1.0)
     warden (1.1.0)
@@ -152,5 +154,6 @@ DEPENDENCIES
   racc
   rails (= 3.1.0)
   unicorn
+  us_states_select (~> 1.2.0)
   uuid (~> 2.3.4)
   will_paginate (~> 3.0.pre2)

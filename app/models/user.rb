@@ -21,6 +21,11 @@ class User < ActiveRecord::Base
 	after_create :assign_anyone!
 	after_create :assign_admin!
 
+	def formatted_phone
+		return "" unless self.phone
+		"(#{self.phone[0,3]}) #{self.phone[3,3]}-#{self.phone[6,4]}"
+	end
+
 	def full_name_last_first
 		"#{self.last_name}, #{self.first_name}"
 	end

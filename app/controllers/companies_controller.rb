@@ -25,4 +25,18 @@ class CompaniesController < ApplicationController
 		require_perm!(current_user.can?(:show, @company)) || return
 	end
 
+	def update
+		@company = Company.find(params[:id]) rescue nil
+		if @company
+			respond_to do |format|
+				if @company.update_attributes(params[:company])
+					format.html { redirect_to(@company, :notice => "company '#{@company.name}' updated.") }
+					format.json { respond_with_bip(@company) }
+				else
+					format.html { }
+					format.json { respond_with_bip(@company) }
+				end
+			end
+		end
+	end
 end

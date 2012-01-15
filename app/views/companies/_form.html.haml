@@ -4,7 +4,7 @@
 		= f.input :address
 		= f.input :apt
 		= f.input :city
-		= f.input :state
+		= f.input :state, :as => :select, :collection => Company::US_STATES
 		= f.input :country
 		= f.input :zip
 		= f.submit

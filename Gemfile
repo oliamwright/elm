@@ -8,6 +8,7 @@ gem 'formtastic', '~> 1.1.0'
 gem 'racc'
 gem 'uuid', '~> 2.3.4'
 gem 'country-select', '~> 1.1.0'
+gem 'us_states_select', '~> 1.2.0'
 gem 'best_in_place', '~> 1.0.4'
 
 
