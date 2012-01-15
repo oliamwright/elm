@@ -10,9 +10,10 @@ class CompaniesController < ApplicationController
 
 	def create
 		@company = Company.new(params[:company])
+		@company.name = 'UNNAMED' unless !@company.name.blank?
 		if @company.save
 			flash[:notice] = "Company '#{@company.name}' created."
-			redirect_to companies_url
+			redirect_to_last_page
 			return
 		else
 			flash[:error] = "Company '#{@company.name}' could not be created."
@@ -27,6 +28,11 @@ class CompaniesController < ApplicationController
 
 	def update
 		@company = Company.find(params[:id]) rescue nil
+		if params[:company][:name] && params[:company][:name].blank?
+			@company.destroy
+			redirect_to_last_page
+			return
+		end
 		if @company
 			respond_to do |format|
 				if @company.update_attributes(params[:company])
