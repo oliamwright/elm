@@ -50,6 +50,7 @@ Tm::Application.routes.draw do
 
 		member do
 			get 'team'
+			get 'backlog'
 		end
 	end
 

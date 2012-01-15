@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
 	has_many :roles, :through => :role_memberships
 	belongs_to :owner, :class_name => 'User'
 	has_many :sprints
+	has_many :stories
 
 	scope :for_client, lambda { |client| where("client = ?", client) }
 

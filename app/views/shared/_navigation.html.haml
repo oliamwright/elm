@@ -6,7 +6,7 @@
 			= render :partial => 'shared/project_dropdown'
 			.nav_tabs
 				- permitted?(:show, @project) do
-					.nav_tab{:class => (params[:action] == 'product_backlog' ? 'active' : '')}= "Product Backlog"
+					.nav_tab{:class => (params[:action] == 'backlog' ? 'active' : '')}= link_to "PRODUCT BACKLOG", backlog_project_url(@project)
 					.nav_tab{:class => (params[:action] == 'team' ? 'active' : '')}= link_to 'TEAM', team_project_url(@project)
 					.nav_tab{:class => (params[:action] == 'sprints' ? 'active' : '')}= "Sprints"
 					.nav_tab{:class => (params[:action] == 'sow' ? 'active' : '')}= "SOW"

@@ -18,6 +18,8 @@ div.form{padding:10px;}
 .project .field{display:inline-block;}
 .project .project_value_statements .field{width:33%;}
 .project .project_value_statements .data{color:#008cb5;font-style:italic;padding:10px 0px 10px 10px;}
+.project .project_backlog_data_bar{margin-top:10px;}.project .project_backlog_data_bar .row{background-color:#caf0fe;}
+.project .project_backlog_data_bar .field{width:7%;}
 .project .project_data_bar{margin-top:10px;}.project .project_data_bar .row{background-color:#caf0fe;}
 .project .project_data_bar .field{width:8%;}
 .project .project_team_bar{margin-top:20px;}.project .project_team_bar .field{width:8%;}
@@ -76,6 +78,7 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:s
 .navigation .nav_tabs .nav_tab.active{background-color:#ffffff;color:#000000;}.navigation .nav_tabs .nav_tab.active a{color:#000000;}
 .navigation .nav_user_menu{padding:0px 10px 0px 0px;float:right;display:inline-block;}.navigation .nav_user_menu .nav_sub_menu{padding:7px 10px 8px 10px;font-weight:bold;display:inline-block;color:#ffffff;margin-right:10px;}.navigation .nav_user_menu .nav_sub_menu a{color:#ffffff;}
 .navigation .nav_user_menu .nav_sub_menu.active,.navigation .nav_user_menu .nav_sub_menu:hover{background-color:#ffffff;color:#000000;}.navigation .nav_user_menu .nav_sub_menu.active a,.navigation .nav_user_menu .nav_sub_menu:hover a{color:#000000;}
+.ui-datepicker{background-color:#000;color:#fff;}.ui-datepicker a{color:#fff;}
 form.formtastic{font-size:1.2em;}
 form.formtastic fieldset.inputs{padding:5px;}
 form.formtastic fieldset ol li fieldset ol{padding:3px 0px 3px 0px;}

@@ -36,9 +36,50 @@ class ProjectsController < ApplicationController
 		end
 	end
 
+	def update
+		@project = Project.find(params[:id])
+		if @project
+			if params[:project][:duration]
+				@project.duration = params[:project][:duration].to_i
+				@project.end_date = @project.start_date + @project.duration.weeks
+				params[:project].delete(:duration)
+				@project.save
+				respond_with_bip(@project)
+				return
+			elsif params[:project][:end_date]
+				@project.end_date = Date.strptime(params[:project][:end_date], "%m/%d/%Y")
+				params[:project].delete(:end_date)
+				@project.duration = (@project.end_date - @project.start_date).to_i.days / 1.week
+				@project.save
+				respond_with_bip(@project)
+				return
+			elsif params[:project][:start_date]
+				@project.start_date = Date.strptime(params[:project][:start_date], "%m/%d/%Y")
+				params[:project].delete(:start_date)
+				@project.end_date = @project.start_date + @project.duration.weeks
+				@project.save
+				respond_with_bip(@project)
+				return
+			else
+				respond_to do |format|
+					if @project.update_attributes(params[:project])
+						format.html { redirect_to(@project, :notice => "Project '#{@project.name}' updated.") }
+						format.json { respond_with_bip(@project) }
+					else
+						format.html { }
+						format.json { respond_with_bip(@project) }
+					end
+				end
+			end
+		end
+	end
+
 	def team
 		@project = Project.find(params[:id]) rescue nil
 		require_perm!(current_user.can?(:show, @project)) || return
+	end
+
+	def backlog
 	end
 
 end

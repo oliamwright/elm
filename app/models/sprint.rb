@@ -1,5 +1,6 @@
 class Sprint < ActiveRecord::Base
   belongs_to :project
+	has_many :stories
 
 	def next_sprint
 		ns = Sprint.where("project_id = ? and number > ?", self.project_id, self.number).order("number asc").first

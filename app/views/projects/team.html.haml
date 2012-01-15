@@ -1,13 +1,5 @@
 .project
-	.project_value_statements
-		.headers.row
-			.field= "GOAL"
-			.field= "VALUE"
-			.field= "ROI"
-		.data.row
-			.field= @project.goal
-			.field= @project.value
-			.field= @project.roi
+	= render :partial => 'value_statements', :locals => { :project => @project }
 	.project_data_bar
 		.headers.row
 			.field= "TEAM"

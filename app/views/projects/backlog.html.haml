@@ -1,0 +1,120 @@
+.project
+	= render :partial => 'value_statements', :locals => { :project => @project }
+	.project_backlog_data_bar
+		.headers.row
+			.field= "TEAM"
+			.field= "USER STORIES"
+			.field= "TASKS"
+			.field= "BUGS"
+			.field= "COMPLETE"
+			.field= "BUDGET EST."
+			.field= "PROJECT EST."
+			.field= "PROJECT START"
+			.field= "WEEKS"
+			.field= "PROJECT END"
+			.field= "SPRINT DURATION"
+			.field= "SPRINTS"
+			.field= "COST PER SPRINT"
+		.data.row.last
+			.field= @project.users.uniq.count
+			.field= @project.stories.count
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= best_in_place @project, :start_date, :type => :date
+			.field= best_in_place @project, :duration
+			.field= best_in_place @project, :end_date, :type => :date
+			.field= best_in_place @project, :sprint_duration, :type => :select, :collection => [ [1 * 1.week.to_i, "1 Week"], [2 * 1.week.to_i, "2 Weeks"], [4 * 1.week.to_i, "4 Weeks"] ]
+			.field= @project.num_sprints
+			.field= "--"
+	.project_team_bar
+		.headers.row
+			.field= ""
+			.field= "COMPANY"
+			.field= "ROLE"
+			.field= "TEAM"
+			.field= "TASKED HOURS"
+			.field= "ALLOCATED HOURS"
+			.field= "RESOURCE COST"
+			.field= "RATIO"
+			.field= "BILLED RATE"
+			.field= "EST. PAYABLES"
+			.field= "EST. RECEIVABLES"
+			.field= "REWARD"
+		.client.row
+			.field= "Client Team"
+			.field11
+				- @project.users.uniq.select { |u| u.has_project_role?(@project, Role.ClientTeam) }.group_by(&:company_name).each do |company, users|
+					.row
+						.field= company
+						.field10
+							- users.each do |user|
+								.row
+									.field= (user.roles.all_for_project(@project).primary.first.name rescue "")
+									.field= link_to user.email, project_user_url(@project, user)
+		.project.row.last
+			.field= "Project Team"
+			.field11
+				- @project.users.uniq.select { |u| u.has_project_role?(@project, Role.ProjectTeam) }.group_by(&:company_name).each do |company, users|
+					.row
+						.field= company
+						.field10
+							- users.each do |user|
+								.row
+									.field= (user.roles.all_for_project(@project).primary.first.name rescue "")
+									.field= link_to user.email, project_user_url(@project, user)
+		.summary.row.last
+			.field= ""
+			.field= ""
+			.field= ""
+			.field= ""
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+	.project_stats_bar
+		.headers.row
+			.field= "INTERNAL COST"
+			.field= "ACTUAL CHARGE"
+			.field= "BUDGET"
+			.field= "SECURITY"
+			.field= "RISK PROBABILITY"
+			.field= "SECURITY COST"
+			.field= "RESOURCE MARGIN"
+			.field= "EXPENSES"
+			.field= "REWARD %"
+			.field= "REWARDS"
+			.field= "TOTAL EXP"
+			.field= "PROJECTED"
+		.values.row
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+		.percentages.row
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
+			.field= "--"
