@@ -29,7 +29,11 @@ class CompaniesController < ApplicationController
 	def update
 		@company = Company.find(params[:id]) rescue nil
 		if params[:company][:name] && params[:company][:name].blank?
-			@company.destroy
+			if @company.users.count == 0
+				@company.destroy
+			else
+				respond_with_bip(@company)
+			end
 			redirect_to_last_page
 			return
 		end
