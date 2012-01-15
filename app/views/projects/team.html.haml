@@ -21,10 +21,10 @@
 			.field= "--"
 			.field= "--"
 			.field= "--"
-			.field= @project.start_date
-			.field= @project.duration
-			.field= @project.end_date
-			.field= "#{@project.sprint_duration / 1.week} Weeks"
+			.field= best_in_place @project, :start_date, :type => :date
+			.field= best_in_place @project, :duration
+			.field= best_in_place @project, :end_date, :type => :date
+			.field= best_in_place @project, :sprint_duration, :type => :select, :collection => [ [1 * 1.week.to_i, "1 Week"], [2 * 1.week.to_i, "2 Weeks"], [4 * 1.week.to_i, "4 Weeks"] ]
 			.field= @project.num_sprints
 			.field= "--"
 	.project_team_bar

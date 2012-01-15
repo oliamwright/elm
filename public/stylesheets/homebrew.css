@@ -11,6 +11,7 @@
 div.form{padding:10px;}
 .form .fields_container{display:inline-block;padding:5px;}
 .form .buttons_container{display:inline-block;padding:5px;}
+.new_project{position:relative;}.new_project .new_project_form{font-size:0.7em;background-color:#000;position:absolute;top:30px;left:0px;z-index:999;}
 .project .row{border-top:1px solid #c0c0c0;width:100%;padding:4px 0px 4px 10px;}.project .row .row{padding:0px;}
 .project .headers .field{font-weight:bold;}
 .project .row.no_top{border-top:none;}

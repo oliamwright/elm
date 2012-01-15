@@ -31,6 +31,10 @@ class Project < ActiveRecord::Base
 		}.compact.sort
 	end
 
+	def display_sprint_duration
+		"#{(self.sprint_duration / 1.week rescue 0)} Week#{(self.sprint_duration / 1.week rescue 0) == 1 ? '' : 's'}"
+	end
+
 	def self.sprint_durations
 		[
 			["1 Week", 1.week.to_i],
@@ -41,8 +45,12 @@ class Project < ActiveRecord::Base
 
 	def num_sprints
 		self.assert_sprints!
-		ns = self.duration / (self.sprint_duration / 1.week)
-		ns = self.sprints.count if self.sprints.count > ns
+		if self.duration && self.start_date && self.end_date && self.sprint_duration
+			ns = self.duration / (self.sprint_duration / 1.week)
+			ns = self.sprints.count if self.sprints.count > ns
+		else
+			ns = 0
+		end
 		ns
 	end
 
@@ -51,15 +59,17 @@ class Project < ActiveRecord::Base
 	end
 
 	def assert_sprints!
-		s = self.first_sprint
-		while s.number < (self.duration / (self.sprint_duration / 1.week))
-			s = s.next_sprint
-		end
-		s = self.last_sprint
-		while s.deletable?
-			p = s.previous_sprint
-			s.destroy
-			s = p
+		if self.duration && self.start_date && self.end_date && self.sprint_duration
+			s = self.first_sprint
+			while s.number < (self.duration / (self.sprint_duration / 1.week))
+				s = s.next_sprint
+			end
+			s = self.last_sprint
+			while s.deletable?
+				p = s.previous_sprint
+				s.destroy
+				s = p
+			end
 		end
 	end
 

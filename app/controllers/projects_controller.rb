@@ -16,9 +16,9 @@ class ProjectsController < ApplicationController
 	def create
 		@project = Project.new(params[:project])
 		@project.owner = current_user
-		if @project.end_date.nil? && @project.duration > 0
+		if @project.end_date.nil? && !@project.duration.nil? && @project.duration > 0
 			@project.end_date = @project.start_date + @project.duration.weeks
-		else
+		elsif @project.start_date && @project.end_date
 			@project.duration = (@project.end_date - @project.start_date).to_i / 7
 		end
 		if @project.save
@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
 			rm.role = Role.ProjectOwner
 			rm.save
 			flash[:notice] = "Project '#{@project.name}' created."
-			redirect_to team_project_url(@project)
+			redirect_to backlog_project_url(@project)
 			return
 		else
 			flash[:error] = "Project '#{@project.name}' could not be created."
@@ -41,7 +41,9 @@ class ProjectsController < ApplicationController
 		if @project
 			if params[:project][:duration]
 				@project.duration = params[:project][:duration].to_i
-				@project.end_date = @project.start_date + @project.duration.weeks
+				if @project.start_date
+					@project.end_date = @project.start_date + @project.duration.weeks
+				end
 				params[:project].delete(:duration)
 				@project.save
 				respond_with_bip(@project)
@@ -49,14 +51,18 @@ class ProjectsController < ApplicationController
 			elsif params[:project][:end_date]
 				@project.end_date = Date.strptime(params[:project][:end_date], "%m/%d/%Y")
 				params[:project].delete(:end_date)
-				@project.duration = (@project.end_date - @project.start_date).to_i.days / 1.week
+				if @project.start_date
+					@project.duration = (@project.end_date - @project.start_date).to_i.days / 1.week
+				end
 				@project.save
 				respond_with_bip(@project)
 				return
 			elsif params[:project][:start_date]
 				@project.start_date = Date.strptime(params[:project][:start_date], "%m/%d/%Y")
 				params[:project].delete(:start_date)
-				@project.end_date = @project.start_date + @project.duration.weeks
+				if @project.duration
+					@project.end_date = @project.start_date + @project.duration.weeks
+				end
 				@project.save
 				respond_with_bip(@project)
 				return
