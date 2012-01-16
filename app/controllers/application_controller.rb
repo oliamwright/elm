@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 		end
 
 		only_methods = [ "GET" ]
-		skip_actions = [ "edit", "new", "assign_project_role", "assign_role" ]
+		skip_actions = [ "edit", "new", "assign_project_role", "assign_role", "grant", "revoke" ]
 		skip_controllers = [ "charts" ]
 
 		if only_methods.include?(request.method) and !skip_actions.include?(request.parameters[:action]) and !skip_controllers.include?(request.parameters[:controller]) and !request.xhr?

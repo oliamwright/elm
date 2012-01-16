@@ -6,6 +6,7 @@
 			%h3= role.name
 			- role.permissions.each do |perm|
 				.row
+					= link_to '(X)', revoke_permission_role_url(role, :permission_id => perm.id), :method => :post
 					= "#{user.first_name} #{perm.long_description}"
 			- if permitted?(:grant, Permission)
 				.link
@@ -21,6 +22,7 @@
 			%h3= role.name
 			- role.permissions.each do |perm|
 				.row
+					= link_to '(X)', revoke_permission_role_url(role, :permission_id => perm.id), :method => :post
 					= "#{user.first_name} #{perm.long_description}"
 			- if permitted?(:grant, Permission)
 				.link
