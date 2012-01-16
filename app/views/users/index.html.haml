@@ -27,6 +27,7 @@
 							= f.inputs do
 								= f.input :name
 	.column.user_data
+	.column.permission_data
 	.clear
 :javascript
 	$('.company.new').click(function() {
@@ -43,6 +44,14 @@
 				$('.column.user_data').html(data);
 				$('.field.user').removeClass('selected');
 				sf.addClass('selected');
+			}
+		});
+		$.ajax({
+			async: true,
+			url: '/users/' + uid + '/user_perms',
+			cache: false,
+			success: function(data) {
+				$('.column.permission_data').html(data);
 			}
 		});
 	});

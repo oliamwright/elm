@@ -1,4 +1,4 @@
-= form_tag do_assign_project_role_url do
+= form_tag do_assign_project_role_user_url do
 	.label= "Project"
 	= select_tag 'project_id', options_from_collection_for_select(Project.all, :id, :name, (@project.id rescue nil))
 	.label= "User"

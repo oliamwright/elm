@@ -11,6 +11,13 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def user_perms
+		@user = User.find(params[:id]) rescue nil
+		if request.xhr?
+			render :action => 'user_perms', :layout => false
+		end
+	end
+
 	def update
 		@user = User.find(params[:id]) rescue nil
 		if @user
@@ -88,6 +95,7 @@ class UsersController < ApplicationController
 		@role = Role.find(params[:role_id])
 		@project = Project.find(params[:project_id])
 		@user.role_memberships.for_project(@project).select { |rm| rm.role == @role }.first.destroy
+		flash[:notice] = "#{@user.email} unassigned role '#{@role.name}' for project '#{@project.name}'."
 		redirect_to_last_page
 	end
 

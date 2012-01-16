@@ -13,7 +13,11 @@
 }
 
 .column.user_data {
-	width: 55%;
+	width: 35%;
+}
+
+.column.user_permissions {
+	width: 35%;
 }
 
 .user_list {
@@ -72,4 +76,25 @@
 		border-top: 1px solid #cccccc;
 	}
 
+}
+
+.permission_data {
+	.tabs {
+		.global_tab,
+		.permission_tab {
+			display: inline-block;
+			padding: 3px;
+		}
+
+		.global_tab.active,
+		.permission_tab.active {
+			background-color: #ccc;
+			color: #000;
+		}
+	}
+
+	.user_perms {
+		border: 1px solid #000;
+		padding: 5px;
+	}
 }

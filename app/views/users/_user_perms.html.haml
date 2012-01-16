@@ -1,0 +1,29 @@
+= render :partial => 'project_permissions_tabs', :locals => { :user => user }
+
+.user_perms
+	- if @project
+		- user.roles.all_for_project(@project).each do |role|
+			%h3= role.name
+			- role.permissions.each do |perm|
+				.row
+					= "#{user.first_name} #{perm.long_description}"
+			%br
+			= link_to "Grant Permission for #{role.name} Role", grant_role_url(role)
+			%br
+			= link_to "Revoke #{role.name} Role", do_remove_project_role_user_url(user, :role_id => role.id, :project_id => @project.id), :method => :post
+		%br
+		= link_to "Assign Project Role", assign_project_role_project_user_url(@project, user)
+	- else
+		- user.roles.global.each do |role|
+			%h3= role.name
+			- role.permissions.each do |perm|
+				.row
+					= "#{user.first_name} #{perm.long_description}"
+			%br
+			= link_to "Grant Permission for #{role.name} Role", grant_role_url(role)
+			%br
+			= link_to "Revoke #{role.name} Role", do_remove_role_user_url(user, :role_id => role.id), :method => :post
+		%br
+		= link_to "Assign Global Role", assign_role_user_url(user)
+		%br
+		= link_to "Assign Project Role", assign_project_role_user_url(user)

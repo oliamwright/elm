@@ -31,7 +31,8 @@ div.form{padding:10px;}
 .columns{width:100%;}
 .column{float:left;padding:10px;}
 .column.user_list{width:25%;}
-.column.user_data{width:55%;}
+.column.user_data{width:35%;}
+.column.user_permissions{width:35%;}
 .user_list .row{border-top:1px solid #cccccc;}.user_list .row .field{display:inline-block;padding:2px 0px 2px 0px;}
 .user_list .row .field.company{width:40%;}
 .user_list .row .field.users{width:58%;}
@@ -40,6 +41,9 @@ div.form{padding:10px;}
 .user_data .field{width:100%;border-bottom:1px solid #cccccc;}.user_data .field .name{display:inline-block;font-weight:bold;font-size:1.1em;width:25%;text-align:right;padding:5px;}
 .user_data .field .value{display:inline-block;width:55%;text-align:left;padding:5px;}
 .user_data .field:first-child{border-top:1px solid #cccccc;}
+.permission_data .tabs .global_tab,.permission_data .tabs .permission_tab{display:inline-block;padding:3px;}
+.permission_data .tabs .global_tab.active,.permission_data .tabs .permission_tab.active{background-color:#ccc;color:#000;}
+.permission_data .user_perms{border:1px solid #000;padding:5px;}
 .debug1{border:1px solid #f00;}
 .debug2{border:1px solid #0f0;}
 .debug3{border:1px solid #00f;}

@@ -1,0 +1,12 @@
+.new_user_story_bar
+	.search
+		=# form_tag("/projects/#{project.id}/search")
+		=# text_field_tag :search
+	.new_story
+		= form_for([project, Story.new]) do |f|
+			= f.text_field :description
+		:javascript
+			$('#story_description').keypress(function() {
+				$(this).form.submit();
+			});
+

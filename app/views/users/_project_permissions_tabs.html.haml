@@ -1,0 +1,29 @@
+.tabs
+	.global_tab{:'data-user' => user.id, :class => (@project.nil? ? 'active' : '')}= 'Global'
+	- user.projects.uniq.each do |project|
+		.permission_tab{:'data-value' => project.id, :'data-user' => user.id, :class => ((project == @project) ? 'active' : '') }= project.name
+:javascript
+	$('.permission_tab').click(function() {
+		var pid = $(this).attr('data-value');
+		var uid = $(this).attr('data-user');
+		$.ajax({
+			async: true,
+			url: '/projects/' + pid + '/users/' + uid + '/user_perms',
+			cache: false,
+			success: function(data) {
+				$('.permission_data').html(data);
+			}
+		});
+	});
+	$('.global_tab').click(function() {
+		var uid = $(this).attr('data-user');
+		$.ajax({
+			async: true,
+			url: '/users/' + uid + '/user_perms',
+			cache: false,
+			success: function(data) {
+				$('.permission_data').html(data);
+			}
+		});
+	});
+
