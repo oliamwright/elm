@@ -1,21 +1,22 @@
 %div.navigation
 	.title= "HOMEBREW"
 	- if user_signed_in?
-		.new_project
-			= "+"
-			.new_project_form{:style => "display: none;"}
-				= semantic_form_for(Project.new) do |f|
-					= f.inputs do
-						= f.input :client
-						= f.input :name
-					= f.buttons
-		:javascript
-			$('.new_project_form').click(function(e) {
-				e.stopPropagation();
-			});
-			$('.new_project').click(function() {
-				$('.new_project_form').toggle();
-			});
+		- if permitted?(:new, Project)
+			.new_project
+				= "+"
+				.new_project_form{:style => "display: none;"}
+					= semantic_form_for(Project.new) do |f|
+						= f.inputs do
+							= f.input :client
+							= f.input :name
+						= f.buttons
+			:javascript
+				$('.new_project_form').click(function(e) {
+					e.stopPropagation();
+				});
+				$('.new_project').click(function() {
+					$('.new_project_form').toggle();
+				});
 		- if @project && !@project.new_record?
 			= render :partial => 'shared/project_dropdown'
 			.nav_tabs
