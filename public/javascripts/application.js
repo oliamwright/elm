@@ -23,8 +23,8 @@ var templateJS = new function() {
 
 /* main */
 $(function() {
-	$(document).delegate('#project_dropdown', 'mouseover', function() { $('#project_dropdown_menu').show(); });
-	$(document).delegate('#project_dropdown_menu', 'mouseout', function() { $(this).hide(); });
+	$(document).delegate('#project_dropdown', 'click', function() { $('#project_dropdown_menu').toggle(); });
+	//$(document).delegate('#project_dropdown_menu', 'mouseout', function() { $(this).hide(); });
 	$('.best_in_place').best_in_place();
 });
 
