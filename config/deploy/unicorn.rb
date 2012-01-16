@@ -2,12 +2,12 @@
 namespace :unicorn do
 	desc "restart unicorn"
 	task :restart, :roles => :app do
-		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] && sudo kill -USR2 `cat tmp/pids/unicorn.pid` || sudo /usr/bin/bundle exec unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
+		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] && sudo kill -USR2 `cat tmp/pids/unicorn.pid` || sudo /usr/local/bin/bundle exec unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
 	end
 
 	desc "start unicorn"
 	task :start, :roles => :app do
-		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] || sudo /usr/bin/bundle exec unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
+		run "cd #{deploy_to}/current; [ -f tmp/pids/unicorn.pid ] || sudo /usr/local/bin/bundle exec unicorn_rails -c config/unicorn-#{application}.rb -E production -D"
 	end
 
 	desc "stop unicorn"

@@ -5,6 +5,10 @@ require 'bundler/capistrano'
 
 namespace :deploy do
 	
+	task :test_path, :roles => :app do
+		run "env | grep -i path"
+	end
+
 	desc "deploy application"
 	task :start, :roles => :app do
 	end
@@ -50,7 +54,7 @@ namespace :deploy do
 
 	desc "run rake:db:migrate"
 	task :migrate_db, :roles => :app do
-		run "cd #{release_path} && RAILS_ENV=production bundle exec rake db:migrate"
+		run "cd #{release_path} && RAILS_ENV=production NO_PERMS=1 bundle exec rake db:migrate"
 	end
 
 	desc "restart server"
@@ -78,16 +82,26 @@ namespace :deploy do
 	task :symlink_initializers, :roles => :app do
 		run "cd #{release_path}/config/initializers && ln -s #{deploy_to}/shared/config/initializers/site_keys.rb"
 	end
+
+	desc "symlink beeing"
+	task :symlink_beeing, :roles => :app do
+		run "cd #{release_path}/public && ln -s /var/www/beeing/rel/beeing/www chat"
+	end
+
+	task :finalize_update, :roles => :app do
+	end
 end
 
 after 'deploy:setup', 'deploy:setup_code'
 after 'deploy:pull_repo', 'deploy:copy_code_to_release'
 before 'deploy:update_code', 'deploy:pull_repo'
+after 'deploy:update_code', 'deploy:finalize_update'
 before 'deploy:copy_code_to_release', 'deploy:make_release_dir'
 #after 'deploy:copy_code_to_release', 'deploy:bundle_install'
-after 'deploy:update_code', 'deploy:migrate_db'
+before 'deploy:restart', 'deploy:migrate_db'
 #before 'deploy:migrate_db', 'deploy:symlink_database_yml'
 before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
+#after 'deploy:symlink_database_yml', 'deploy:symlink_beeing'
 after 'deploy:symlink', 'deploy:update_version'
 
 after 'deploy:symlink', 'deploy:make_tmp_dirs'

@@ -7,10 +7,13 @@
 			- role.permissions.each do |perm|
 				.row
 					= "#{user.first_name} #{perm.long_description}"
-			%br
-			= link_to "Grant Permission for #{role.name} Role", grant_role_url(role)
-			%br
-			= link_to "Revoke #{role.name} Role", do_remove_project_role_user_url(user, :role_id => role.id, :project_id => @project.id), :method => :post
+			- if permitted?(:grant, Permission)
+				.link
+					= link_to "Grant Permission for #{role.name} Role", grant_role_url(role)
+			- if permitted?(:unassign_project_role, user)
+				.link
+					= link_to "Revoke #{role.name} Role", do_remove_project_role_user_url(user, :role_id => role.id, :project_id => @project.id), :method => :post
+			%hr
 		%br
 		= link_to "Assign Project Role", assign_project_role_project_user_url(@project, user)
 	- else
@@ -19,11 +22,16 @@
 			- role.permissions.each do |perm|
 				.row
 					= "#{user.first_name} #{perm.long_description}"
-			%br
-			= link_to "Grant Permission for #{role.name} Role", grant_role_url(role)
-			%br
-			= link_to "Revoke #{role.name} Role", do_remove_role_user_url(user, :role_id => role.id), :method => :post
-		%br
-		= link_to "Assign Global Role", assign_role_user_url(user)
-		%br
-		= link_to "Assign Project Role", assign_project_role_user_url(user)
+			- if permitted?(:grant, Permission)
+				.link
+					= link_to "Grant Permission for #{role.name} Role", grant_role_url(role)
+			- if permitted?(:unassign_role, user)
+				.link
+					= link_to "Revoke #{role.name} Role", do_remove_role_user_url(user, :role_id => role.id), :method => :post
+			%hr
+		- if permitted?(:assign_role, user)
+			.link
+				= link_to "Assign Global Role", assign_role_user_url(user)
+		- if permitted?(:assign_project_role, user)
+			.link
+				= link_to "Assign Project Role", assign_project_role_user_url(user)

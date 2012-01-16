@@ -30,7 +30,9 @@ namespace :roles do
 			[ :company, :new ],
 			[ :company, :create ],
 			[ :company, :edit ],
-			[ :company, :update ]
+			[ :company, :update ],
+			[ :permission, :grant ],
+			[ :permission, :revoke ]
 		]
 
 		r = Role.Admin
