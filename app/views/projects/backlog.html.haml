@@ -30,3 +30,4 @@
 			.field= @project.num_sprints
 			.field= "--"
 	= render :partial => 'new_user_story_bar', :locals => { :project => @project }
+	= render :partial => 'stories/story_list', :locals => { :stories => @project.stories.backlog }

@@ -14,6 +14,10 @@ class Project < ActiveRecord::Base
 
 	DROPBOX_FOLDER = "#{Rails.root}/dropbox"
 
+	def last_backlog_story_number
+		self.stories.backlog.order("number asc").last.number rescue 0
+	end
+
 	def first_sprint
 		fs = Sprint.where("project_id = ? and number = 1", self.id).first
 		if fs.nil?

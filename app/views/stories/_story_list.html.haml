@@ -1,0 +1,39 @@
+.story_list.in_progress
+	.title= "IN PROGRESS"
+	.header
+		.field.pull= "<"
+		.field.check= "--"
+		.field.status= "STATUS"
+		.field.usid= "US ID"
+		.field.value= "VALUE"
+		.field.details= "USER STORY"
+		.field.est_time= "EST. TIME"
+		.field.tasks= "TASKS"
+		.field.bugs= "BUGS"
+		.field.act_time= "ACTUAL TIME"
+		.field.created_by= "CREATED BY"
+		.field.created_at= "DATE CREATED"
+		.field.approved_by= "APPROVED BY"
+		.field.approved_at= "APPROVED"
+		.field.completed_at= "COMPLETED"
+		.field.push= ">"
+	.stories
+		- stories.each do |story|
+			.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id}
+				.field.pull= "<"
+				.field.check= "--"
+				.field.status= "--"
+				.field.usid= story.number
+				.field.value= "--"
+				.field.details= story.description
+				.field.est_time= "--"
+				.field.tasks= "--"
+				.field.bugs= "--"
+				.field.act_time= "--"
+				.field.created_by= story.owner.full_name
+				.field.created_at= story.created_at.to_date
+				.field.approved_by= "--"
+				.field.approved_at= "--"
+				.field.completed_at= "--"
+				.field.push= ">"
+

@@ -2,6 +2,10 @@ class Sprint < ActiveRecord::Base
   belongs_to :project
 	has_many :stories
 
+	def last_story_number
+		self.stories.order("number asc").last.number rescue 0
+	end
+
 	def next_sprint
 		ns = Sprint.where("project_id = ? and number > ?", self.project_id, self.number).order("number asc").first
 		if ns.nil?
