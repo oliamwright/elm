@@ -57,6 +57,11 @@ namespace :deploy do
 		run "cd #{release_path} && RAILS_ENV=production NO_PERMS=1 bundle exec rake db:migrate"
 	end
 
+	desc "run rake roles:default_permissions"
+	task :rake_perms, :roles => :app do
+		run "cd #{release_path} && RAILS_ENV=production bundle exec rake roles:default_permissions"
+	end
+
 	desc "restart server"
 	task :restart, :roles => :app do
 		#run "cd #{deploy_to}/current && mongrel_rails cluster::restart"
@@ -99,6 +104,7 @@ after 'deploy:update_code', 'deploy:finalize_update'
 before 'deploy:copy_code_to_release', 'deploy:make_release_dir'
 #after 'deploy:copy_code_to_release', 'deploy:bundle_install'
 before 'deploy:restart', 'deploy:migrate_db'
+after 'deploy:migrate_db', 'deploy:rake_perms'
 #before 'deploy:migrate_db', 'deploy:symlink_database_yml'
 before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
 #after 'deploy:symlink_database_yml', 'deploy:symlink_beeing'
