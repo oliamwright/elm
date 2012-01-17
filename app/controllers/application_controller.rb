@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 		end
 		if modified
 			recompile_stylesheet
-			if APP_CONFIG['auto_commmit_css']
+			if APP_CONFIG['auto_commit_css']
 				commit_style_changes
 			end
 		end
