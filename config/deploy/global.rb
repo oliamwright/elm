@@ -37,6 +37,11 @@ namespace :deploy do
 		run "cd #{deploy_to}/cache && git pull"
 	end
 
+	desc "symlink stylesheets-less"
+	task :symlink_stylesheets_less, :roles => :app do
+		run "cd #{release_path}/public && ln -s #{deploy_to}/shared/stylesheets-less/ stylesheets-less"
+	end
+
 	desc "make release directory"
 	task :make_release_dir, :roles => :app do
 		run "mkdir #{release_path}"
@@ -109,6 +114,7 @@ after 'deploy:migrate_db', 'deploy:rake_perms'
 before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
 #after 'deploy:symlink_database_yml', 'deploy:symlink_beeing'
 after 'deploy:symlink', 'deploy:update_version'
+after 'deploy:symlink', 'symlink_stylesheets_less'
 
 after 'deploy:symlink', 'deploy:make_tmp_dirs'
 
