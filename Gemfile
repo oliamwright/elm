@@ -17,6 +17,8 @@ gem 'best_in_place', '~> 1.0.4'
 
 #gem 'mysql2', '0.2.6'
 gem 'mysql'
+gem 'less', '~> 2.0.8'
+
 
 # Use unicorn as the web server
 gem 'unicorn'
@@ -35,8 +37,6 @@ gem 'unicorn'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-	gem 'less'
-
 	# Deploy with Capistrano
 	gem 'capistrano'
 end
