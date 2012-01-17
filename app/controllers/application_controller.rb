@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 		modified = false
 		Dir.glob("#{Rails.root}/public/stylesheets-less/*.less").each do |file|
 			bfile = File.basename(file)
-			dfile = "#{Rails.root}/public/stylesheets/#{bfile}"
+			dfile = "#{Rails.root}/public/stylesheets/less/#{bfile}"
 			puts "stylesheet: #{bfile}"
 			stime = File.mtime(file)
 			dtime = File.mtime(dfile)
@@ -33,9 +33,26 @@ class ApplicationController < ActionController::Base
 			end
 		end
 		if modified
-			puts "recompiling stylesheet"
-			`cd "#{Rails.root}/public/stylesheets/" && bundle exec lessc "#{Rails.root}/public/stylesheets/homebrew.less" > "#{Rails.root}/public/stylesheets/homebrew.css"`
+			recompile_stylesheet
+			if APP_CONFIG['auto_commmit_css']
+				commit_style_changes
+			end
 		end
+	end
+
+	def recompile_stylesheet
+		puts "recompiling stylesheet"
+		`cd "#{Rails.root}/public/stylesheets/less" && bundle exec lessc "#{Rails.root}/public/stylesheets/less/homebrew.less" > "#{Rails.root}/public/stylesheets/homebrew.css"`
+	end
+
+	def commit_style_changes
+		puts "committing style changes"
+		Dir.glob("#{Rails.root}/public/stylesheets-less/*.less").each do |file|
+			bfile = File.basename(file)
+			dfile = "/var/www/homebrew/cache/public/stylesheets/less/#{bfile}"
+			FileUtils.cp(file, dfile)
+		end
+		`cd "/var/www/homebrew/cache/" && git add public/stylesheets/less/*less && git commit -m "auto style commit" && git push"`
 	end
 
 	def update_page_history

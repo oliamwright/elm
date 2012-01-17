@@ -1,8 +1,11 @@
 production:
   check_css: true
+  auto_commit_css: true
 
 test:
   check_css: false
+  auto_commit_css: false
 
 development:
   check_css: true
+  auto_commit_css: false
