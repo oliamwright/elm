@@ -1,0 +1,8 @@
+production:
+  check_css: true
+
+test:
+  check_css: false
+
+development:
+  check_css: true

@@ -114,7 +114,7 @@ after 'deploy:migrate_db', 'deploy:rake_perms'
 before 'deploy:symlink_database_yml', 'deploy:symlink_initializers'
 #after 'deploy:symlink_database_yml', 'deploy:symlink_beeing'
 after 'deploy:symlink', 'deploy:update_version'
-after 'deploy:symlink', 'symlink_stylesheets_less'
+after 'deploy:symlink', 'deploy:symlink_stylesheets_less'
 
 after 'deploy:symlink', 'deploy:make_tmp_dirs'
 

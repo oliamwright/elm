@@ -7,11 +7,36 @@ class ApplicationController < ActionController::Base
 	before_filter :assert_authority!, :except => [ :home ]
 	before_filter :assert_guid!
 	before_filter :update_page_history
+	before_filter :check_css
 
 	def home
 	end
 
 	private
+
+	def check_css
+		if !APP_CONFIG['check_css']
+			puts "recompilation of css disabled"
+			return
+		end
+		modified = false
+		Dir.glob("#{Rails.root}/public/stylesheets-less/*.less").each do |file|
+			bfile = File.basename(file)
+			dfile = "#{Rails.root}/public/stylesheets/#{bfile}"
+			puts "stylesheet: #{bfile}"
+			stime = File.mtime(file)
+			dtime = File.mtime(dfile)
+			if stime >= dtime
+				puts "MODIFIED!"
+				modified = true
+				FileUtils.cp(file, dfile)
+			end
+		end
+		if modified
+			puts "recompiling stylesheet"
+			`cd "#{Rails.root}/public/stylesheets/" && bundle exec lessc "#{Rails.root}/public/stylesheets/homebrew.less" > "#{Rails.root}/public/stylesheets/homebrew.css"`
+		end
+	end
 
 	def update_page_history
 		unless session[:page_history]
