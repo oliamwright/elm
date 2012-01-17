@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
 			dfile = "/var/www/homebrew/cache/public/stylesheets/less/#{bfile}"
 			FileUtils.cp(file, dfile)
 		end
-		`cd "/var/www/homebrew/cache/" && git add public/stylesheets/less/*less && git commit -m "auto style commit" && git push"`
+		`cd "/var/www/homebrew/cache/" && git add public/stylesheets/less/*less && git commit -m "auto style commit" && git push`
 	end
 
 	def update_page_history
