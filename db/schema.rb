@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120115154228) do
+ActiveRecord::Schema.define(:version => 20120119220816) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -89,6 +89,20 @@ ActiveRecord::Schema.define(:version => 20120115154228) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sub_items", :force => true do |t|
+    t.string   "description"
+    t.integer  "number"
+    t.string   "item_type"
+    t.string   "status"
+    t.integer  "owner_id"
+    t.integer  "story_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "estimated_time", :default => 0.0
+  end
+
+  add_index "sub_items", ["story_id"], :name => "index_sub_items_on_story_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

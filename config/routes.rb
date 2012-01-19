@@ -27,16 +27,12 @@ Tm::Application.routes.draw do
 		end
 	end
 
-#	match 'users' => 'users#index', :as => :users
-#	match 'user/:id' => 'users#show', :as => :user
-#	match 'user/:id/assign_role' => 'users#assign_role', :as => :assign_global_role
-#	match 'user/:id/do_assign_role' => 'users#do_assign_role', :as => :do_assign_global_role
-#	match 'user/:id/do_remove_role' => 'users#do_remove_role', :as => :do_remove_global_role
-#	match 'user/:id/assign_project_role' => 'users#assign_project_role', :as => :assign_project_role
-#	match 'user/:id/do_assign_project_role' => 'users#do_assign_project_role', :as => 'do_assign_project_role'
-#	match 'user/:id/do_remove_project_role' => 'users#do_remove_project_role', :as => 'do_remove_project_role'
-#	match 'users/:id/user_data' => 'users#user_data', :as => 'user_data'
-	
+	resources :stories do
+		resources :sub_items
+	end
+
+	resources :sub_items
+
 	resources :projects do
 		resources :users do
 			member do

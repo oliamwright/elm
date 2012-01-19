@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
 	belongs_to :owner, :class_name => 'User'
 	has_many :sprints
 	has_many :stories
+	has_many :sub_items, :through => :stories
 
 	scope :for_client, lambda { |client| where("client = ?", client) }
 

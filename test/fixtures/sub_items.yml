@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  description: MyString
+  number: 1
+  type: 
+  status: MyString
+  owner_id: 1
+  story: 
+
+two:
+  description: MyString
+  number: 1
+  type: 
+  status: MyString
+  owner_id: 1
+  story: 

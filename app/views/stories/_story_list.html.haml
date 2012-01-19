@@ -23,10 +23,10 @@
 				.field.pull= "<"
 				.field.check= "--"
 				.field.status= "--"
-				.field.usid= story.number
+				.field.usid= story.display_number
 				.field.value= "--"
-				.field.details= story.description
-				.field.est_time= "--"
+				.field.details= best_in_place story, :description
+				.field.est_time= story.sub_items.sum(:estimated_time)
 				.field.tasks= "--"
 				.field.bugs= "--"
 				.field.act_time= "--"
@@ -36,4 +36,48 @@
 				.field.approved_at= "--"
 				.field.completed_at= "--"
 				.field.push= ">"
+			.tasks{:style => 'display: none;'}
+				- if story.sub_items.count > 0
+					.header
+						.field.pull= "<"
+						.field.check= "--"
+						.field.status= "STATUS"
+						.field.itemid= "ITEM ID"
+						.field.type= "TYPE"
+						.field.details= "DETAILS"
+						.field.est_time= "EST. TIME"
+						.field.owner= "OWNER"
+						.field.role= "ROLE"
+						.field.act_time= "ACTUAL TIME"
+						.field.created_by= "CREATED BY"
+						.field.created_at= "DATE CREATED"
+						.field.approved_by= "APPROVED BY"
+						.field.approved_at= "APPROVED"
+						.field.completed_at= "COMPLETED"
+						.field.push= ">"
+					- story.sub_items.each do |item|
+						.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id}
+							.field.pull= "<"
+							.field.check= "--"
+							.field.status= "--"
+							.field.usid= item.display_number
+							.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
+							.field.details= best_in_place item, :description
+							.field.est_time= best_in_place item, :estimated_time
+							.field.tasks= "--"
+							.field.bugs= "--"
+							.field.act_time= "--"
+							.field.created_by= item.owner.full_name
+							.field.created_at= item.created_at.to_date
+							.field.approved_by= "--"
+							.field.approved_at= "--"
+							.field.completed_at= "--"
+							.field.push= ">"
+				.new_task
+					.link
+						= link_to 'New Task', story_sub_items_url(story), :method => :post
+:javascript
+	$('.story').click(function() {
+		$(this).next('.tasks').toggle();
+	});
 

@@ -48,9 +48,11 @@ div.form{padding:10px;}
 .permission_data .link{margin-top:10px;font-weight:bold;}
 .story_list{width:100%;border:1px dashed #ccc;padding:10px 0px 20px 0px;margin-top:20px;}.story_list .title{padding:4px 0px 4px 10px;}
 .story_list .header{padding:4px 0px 4px 10px;border-top:1px solid #c0cdcd;font-weight:bold;color:#000;background-color:#c0cdcd;}
-.story_list .story{padding:4px 0px 4px 10px;border-bottom:1px solid #c0cdcd;}
+.story_list .tasks .header{background-color:#fff;}
+.story_list .item{padding:4px 0px 4px 10px;border-bottom:1px solid #c0cdcd;}
+.story_list .story{padding:4px 0px 4px 10px;border-bottom:1px solid #c0cdcd;background-color:#eef2f2;}
 .story_list .story:first-child{border-top:1px solid #c0cdcd;}
-.story_list .field.tasks,.story_list .field.bugs,.story_list .field.value,.story_list .field.status,.story_list .field.usid,.story_list .field.pull,.story_list .field.push,.story_list .field.check{width:3%;}
+.story_list .field.tasks,.story_list .field.owner,.story_list .field.bugs,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.status,.story_list .field.usid,.story_list .field.itemid,.story_list .field.pull,.story_list .field.push,.story_list .field.check{width:3%;}
 .story_list .field.details{width:20%;}
 .story_list .field{width:7%;display:inline-block;}
 .debug1{border:1px solid #f00;}
@@ -93,7 +95,7 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:s
 .navigation .nav_user_menu{padding:0px 10px 0px 0px;float:right;display:inline-block;}.navigation .nav_user_menu .nav_sub_menu{padding:10px 10px 8px 10px;font-weight:bold;display:inline-block;color:#ffffff;margin-right:10px;}.navigation .nav_user_menu .nav_sub_menu a{color:#ffffff;}
 .navigation .nav_user_menu .nav_sub_menu.active,.navigation .nav_user_menu .nav_sub_menu:hover{background-color:#ffffff;color:#000000;}.navigation .nav_user_menu .nav_sub_menu.active a,.navigation .nav_user_menu .nav_sub_menu:hover a{color:#000000;}
 .ui-datepicker{background-color:#000;color:#fff;}.ui-datepicker a{color:#fff;}
-.data{vertical-align:top;}
+.project .project_value_statements .data{font-size:10px;vertical-align:top;line-height:1.2em;}
 .story_list .title{font-size:11px;font-weight:bold;}
 form.formtastic{font-size:1.2em;}
 form.formtastic fieldset.inputs{padding:5px;}

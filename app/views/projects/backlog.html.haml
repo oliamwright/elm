@@ -18,8 +18,8 @@
 		.data.row.last
 			.field= @project.users.uniq.count
 			.field= @project.stories.count
-			.field= "--"
-			.field= "--"
+			.field= @project.sub_items.tasks.count
+			.field= @project.sub_items.bugs.count
 			.field= "--"
 			.field= "--"
 			.field= "--"
