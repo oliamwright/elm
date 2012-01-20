@@ -98,6 +98,9 @@ class ApplicationController < ActionController::Base
 		elsif params[:controller] == 'projects'
 			@project = Project.find(params[:id]) rescue nil
 		end
+		unless @project || !session.has_key?(:current_project_id)
+			@project = Project.find(session[:current_project_id]) rescue nil
+		end
 		unless @project && current_user.can?(:show, @project)
 			@project = nil
 		end
@@ -105,6 +108,7 @@ class ApplicationController < ActionController::Base
 			puts "loaded Project/#{@project.id} (#{@project.name})"
 			if !current_user.nil?
 				current_user.current_project = @project
+				session[:current_project_id] = @project.id
 			end
 		else
 			puts "failed"

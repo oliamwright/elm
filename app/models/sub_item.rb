@@ -11,12 +11,32 @@ class SubItem < ActiveRecord::Base
 
 	before_create :number_item
 
+	DEFAULT_ITEM_TYPE = 'task'
+
+	INITIAL_STATUS = :open
+
+	STATUS_MAP = {
+		:open => [ :approved, :waiting, :ignored ],
+		:approved => [ :waiting, :in_progress, :ignored ],
+		:waiting => [ :in_progress, :ignored ],
+		:in_progress => [ :completed, :ignored ],
+		:completed => [ :ignored, :rolled ],
+		:rolled => [],
+		:ignored => [ :open ]
+	}
+
+	STATUSES = STATUS_MAP.keys
+
 	def display_number
 		if self.story
 			"#{self.story.display_number}.#{self.number}"
 		else
 			"#{self.number}"
 		end
+	end
+
+	def display_status
+		self.status.to_s.titleize rescue "unknown"
 	end
 
 	private

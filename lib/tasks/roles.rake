@@ -36,7 +36,6 @@ namespace :roles do
 		]
 
 		r = Role.Admin
-		r.permissions = []
 
 		admin_perms.each do |s,p|
 			puts "granting #{s.to_s.titleize}:#{p.to_s} to Admin"
@@ -66,8 +65,6 @@ namespace :roles do
 	task :assign_pm_perms => :environment do
 		r = Role.find_by_name('Project Manager')
 		if r
-			r.permissions = []
-
 			pm_perms = [
 				[ :project, :index ],
 				[ :project, :show ],

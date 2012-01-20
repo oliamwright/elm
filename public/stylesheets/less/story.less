@@ -59,6 +59,25 @@
 		width: 7%;
 		display: inline-block;
 	}
+
+	.item.status_open .field.status {
+		color: #ff1e0a;
+	}
+
+	.item.status_approved .field.status {
+		color: #3ed1f5;
+		font-style: italic;
+	}
+
+	.item.status_waiting,
+	.item.status_in_progress {
+		background-color: #d2fffd;
+	}
+
+	.item.status_completed,
+	.item.status_rolled {
+		background-color: #e1fecd;
+	}
 }
 
 pre {

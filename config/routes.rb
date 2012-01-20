@@ -51,7 +51,9 @@ Tm::Application.routes.draw do
 			get 'backlog'
 		end
 
-		resources :stories
+		resources :stories do
+			resources :sub_items
+		end
 	end
 
 #	namespace :user do

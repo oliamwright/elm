@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120119220816) do
+ActiveRecord::Schema.define(:version => 20120120153404) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(:version => 20120119220816) do
     t.date     "end_date"
     t.integer  "duration"
     t.integer  "sprint_duration"
-    t.string   "goal"
-    t.string   "value"
-    t.string   "roi"
+    t.text     "goal"
+    t.text     "value"
+    t.text     "roi"
     t.string   "client"
   end
 

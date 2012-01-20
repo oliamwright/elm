@@ -27,8 +27,8 @@
 				.field.value= "--"
 				.field.details= best_in_place story, :description
 				.field.est_time= story.sub_items.sum(:estimated_time)
-				.field.tasks= "--"
-				.field.bugs= "--"
+				.field.tasks= story.sub_items.tasks.count
+				.field.bugs= story.sub_items.bugs.count
 				.field.act_time= "--"
 				.field.created_by= story.owner.full_name
 				.field.created_at= story.created_at.to_date
@@ -36,7 +36,7 @@
 				.field.approved_at= "--"
 				.field.completed_at= "--"
 				.field.push= ">"
-			.tasks{:style => 'display: none;'}
+			.tasks
 				- if story.sub_items.count > 0
 					.header
 						.field.pull= "<"
@@ -56,10 +56,10 @@
 						.field.completed_at= "COMPLETED"
 						.field.push= ">"
 					- story.sub_items.each do |item|
-						.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id}
+						.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
 							.field.pull= "<"
 							.field.check= "--"
-							.field.status= "--"
+							.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
 							.field.usid= item.display_number
 							.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
 							.field.details
@@ -77,8 +77,3 @@
 				.new_task
 					.link
 						= link_to 'New Task', story_sub_items_url(story), :method => :post
-:javascript
-	$('.story').click(function() {
-		$(this).next('.tasks').toggle();
-	});
-

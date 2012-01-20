@@ -28,7 +28,7 @@ div.form{padding:10px;}
 .project .project_team_bar .field10{display:inline-block;width:83%;}
 .project .project_team_bar .summary.row{margin-top:20px;background-color:#eee;}
 .project .project_stats_bar{margin-top:20px;}.project .project_stats_bar .field{width:8%;}
-.project .new_user_story_bar{margin-top:20px;}.project .new_user_story_bar .new_story input{width:100%;font-size:1.5em;padding:5px;background-color:#f7fed6;border:1px solid #a6b8b7;}
+.project .new_user_story_bar{margin-top:-1px;}.project .new_user_story_bar .new_story input{width:100%;font-size:1.5em;padding:5px;background-color:#f7fed6;border:1px solid #a6b8b7;}
 .columns{width:100%;}
 .column{float:left;padding:10px;}
 .column.user_list{width:25%;}
@@ -46,15 +46,20 @@ div.form{padding:10px;}
 .permission_data .tabs .global_tab.active,.permission_data .tabs .permission_tab.active{background-color:#ccc;color:#000;}
 .permission_data .user_perms{border:1px solid #000;padding:5px;}
 .permission_data .link{margin-top:10px;font-weight:bold;}
-.story_list{width:100%;border:1px dashed #ccc;padding:10px 0px 20px 0px;margin-top:20px;}.story_list .title{padding:4px 0px 4px 10px;}
-.story_list .header{padding:4px 0px 4px 10px;border-top:1px solid #c0cdcd;font-weight:bold;color:#000;background-color:#c0cdcd;}
+.story_list{width:100%;border:1px dashed #ccc;padding:10px 0px 10px 0px;margin-top:10px;}.story_list .title{padding:4px 0px 4px 10px;}
+.story_list .header{padding:4px 0px 4px 10px;border-top:0px solid #c0cdcd;font-weight:bold;color:#000;background-color:#c0cdcd;}
 .story_list .tasks .header{background-color:#fff;}
 .story_list .item{padding:4px 0px 4px 10px;border-bottom:1px solid #c0cdcd;}
 .story_list .story{padding:4px 0px 4px 10px;border-bottom:1px solid #c0cdcd;background-color:#eef2f2;}
 .story_list .story:first-child{border-top:1px solid #c0cdcd;}
 .story_list .field.tasks,.story_list .field.owner,.story_list .field.bugs,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.status,.story_list .field.usid,.story_list .field.itemid,.story_list .field.pull,.story_list .field.push,.story_list .field.check{width:3%;}
-.story_list .field.details{width:20%;}
+.story_list .field.details{width:24%;}
 .story_list .field{width:7%;display:inline-block;}
+.story_list .item.status_open .field.status{color:#ff1e0a;}
+.story_list .item.status_approved .field.status{color:#3ed1f5;font-style:italic;}
+.story_list .item.status_waiting,.story_list .item.status_in_progress{background-color:#d2fffd;}
+.story_list .item.status_completed,.story_list .item.status_rolled{background-color:#e1fecd;}
+pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .debug1{border:1px solid #f00;}
 .debug2{border:1px solid #0f0;}
 .debug3{border:1px solid #00f;}
@@ -67,7 +72,7 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:s
 .message.error{border:1px solid #f00510;color:#f00510;background-color:#fffdfd;}
 .page_header{padding-left:10px;height:25px;float:right;width:300px;background-color:#434343;color:#ffffff;font-size:1.4em;}
 .page_header span.version{font-size:0.9em;}
-.page{padding:20px;}
+.page{padding:5px 15px 0px 5px;}
 .file_list .indent{padding-left:15px;display:inline;}
 .chat{border:1px solid black;border-right:0;background-color:white;width:310px;position:fixed;top:25px;right:0px;height:300px;}
 .sub_navigation{display:inline-block;}
