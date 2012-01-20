@@ -2,7 +2,7 @@
 	.title= "IN PROGRESS"
 	.header
 		.field.pull= "<"
-		.field.check= "--"
+		.field.check{:'data-class' => 'story', :'data-id' => 'all'}= check_box_tag :sel
 		.field.status= "STATUS"
 		.field.usid
 			%span.usid= "US ID"
@@ -23,7 +23,7 @@
 		- stories.each do |story|
 			.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id}
 				.field.pull= "<"
-				.field.check= "--"
+				.field.check{:'data-class' => 'story', :'data-id' => story.id}= check_box_tag :sel
 				.field.status= "--"
 				.field.usid= story.display_number
 				.field.value= "--"
@@ -42,7 +42,7 @@
 				- if story.sub_items.count > 0
 					.header
 						.field.pull= "<"
-						.field.check= "--"
+						.field.check{:'data-class' => 'sub_item', :'data-id' => 'all'}= check_box_tag :sel
 						.field.status= "STATUS"
 						.field.itemid= "ITEM ID"
 						.field.type= "TYPE"
@@ -60,7 +60,7 @@
 					- story.sub_items.each do |item|
 						.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
 							.field.pull= "<"
-							.field.check= "--"
+							.field.check{:'data-class' => 'sub_item', :'data-id' => item.id}= check_box_tag :sel
 							.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
 							.field.usid
 								%span.usid= item.display_number
@@ -85,4 +85,17 @@
 	$('.header .field.usid').click(function() {
 		$('.field.usid span.usid').toggle();
 		$('.field.usid span.taskid').toggle();
+	});
+
+	$('.check input[name="sel"]').click(function() {
+		var ch = $(this).attr('checked');
+		var cl = $(this).parent().attr('data-class');
+		var id = $(this).parent().attr('data-id');
+		if (cl == 'sub_item' && id == 'all') {
+			$(this).closest('.tasks').find('.item .check input[name="sel"]').attr('checked', ch);
+		} else if (cl == 'story' && id == 'all') {
+			$('input[name="sel"]').attr('checked', ch);
+		} else if (cl == 'story') {
+			$(this).closest('.story').next('.tasks').find('.check input[name="sel"]').attr('checked', ch);
+		}
 	});
