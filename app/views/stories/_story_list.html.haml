@@ -4,7 +4,9 @@
 		.field.pull= "<"
 		.field.check= "--"
 		.field.status= "STATUS"
-		.field.usid= "US ID"
+		.field.usid
+			%span.usid= "US ID"
+			%span.taskid{:style => 'display: none;'}= "TASK ID"
 		.field.value= "VALUE"
 		.field.details= "USER STORY"
 		.field.est_time= "EST. TIME"
@@ -60,7 +62,9 @@
 							.field.pull= "<"
 							.field.check= "--"
 							.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
-							.field.usid= item.display_number
+							.field.usid
+								%span.usid= item.display_number
+								%span.taskid{:style => 'display: none;'}= item.id
 							.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
 							.field.details
 								%pre= best_in_place item, :description, :type => :textarea
@@ -77,3 +81,8 @@
 				.new_task
 					.link
 						= link_to 'New Task', story_sub_items_url(story), :method => :post
+:javascript
+	$('.header .field.usid').click(function() {
+		$('.field.usid span.usid').toggle();
+		$('.field.usid span.taskid').toggle();
+	});

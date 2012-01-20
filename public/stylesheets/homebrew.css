@@ -52,13 +52,15 @@ div.form{padding:10px;}
 .story_list .item{padding:4px 0px 4px 10px;border-bottom:1px solid #c0cdcd;}
 .story_list .story{padding:4px 0px 4px 10px;border-bottom:1px solid #c0cdcd;background-color:#eef2f2;}
 .story_list .story:first-child{border-top:1px solid #c0cdcd;}
-.story_list .field.tasks,.story_list .field.owner,.story_list .field.bugs,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.status,.story_list .field.usid,.story_list .field.itemid,.story_list .field.pull,.story_list .field.push,.story_list .field.check{width:3%;}
+.story_list .field.tasks,.story_list .field.owner,.story_list .field.bugs,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.usid,.story_list .field.itemid,.story_list .field.pull,.story_list .field.push,.story_list .field.check{width:3%;}
+.story_list .field.status{width:4%;}
 .story_list .field.details{width:24%;}
 .story_list .field{width:7%;display:inline-block;}
 .story_list .item.status_open .field.status{color:#ff1e0a;}
 .story_list .item.status_approved .field.status{color:#3ed1f5;font-style:italic;}
 .story_list .item.status_waiting,.story_list .item.status_in_progress{background-color:#d2fffd;}
 .story_list .item.status_completed,.story_list .item.status_rolled{background-color:#e1fecd;}
+.story_list .item.status_ignored{background-color:#fff;color:#ddd;}.story_list .item.status_ignored .field{text-decoration:line-through;}
 pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .debug1{border:1px solid #f00;}
 .debug2{border:1px solid #0f0;}
