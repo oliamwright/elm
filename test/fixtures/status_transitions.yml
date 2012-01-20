@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sub_item: 
+  user: 
+  from_status: MyString
+  to_status: MyString
+
+two:
+  sub_item: 
+  user: 
+  from_status: MyString
+  to_status: MyString

@@ -23,6 +23,14 @@ class SubItemsController < ApplicationController
 						format.json { respond_bip_error(@sub_item) }
 					else
 						if @sub_item.update_attributes(params[:sub_item])
+							if fs != ts
+								@st = StatusTransition.new
+								@st.sub_item = @sub_item
+								@st.user = current_user
+								@st.from_status = fs
+								@st.to_status = ts
+								@st.save
+							end
 							format.html { redirect_to(@sub_item, :notice => "sub_item '#{@sub_item.details}' updated.") }
 							format.json { respond_with_bip(@sub_item) }
 						else

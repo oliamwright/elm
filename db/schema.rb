@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120120153404) do
+ActiveRecord::Schema.define(:version => 20120120200853) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -79,6 +79,18 @@ ActiveRecord::Schema.define(:version => 20120120153404) do
   end
 
   add_index "sprints", ["project_id"], :name => "index_sprints_on_project_id"
+
+  create_table "status_transitions", :force => true do |t|
+    t.integer  "sub_item_id"
+    t.integer  "user_id"
+    t.string   "from_status"
+    t.string   "to_status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "status_transitions", ["sub_item_id"], :name => "index_status_transitions_on_sub_item_id"
+  add_index "status_transitions", ["user_id"], :name => "index_status_transitions_on_user_id"
 
   create_table "stories", :force => true do |t|
     t.string   "description"
