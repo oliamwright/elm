@@ -1,7 +1,7 @@
 
 namespace :roles do
 	task :create_special => :environment do
-		[:admin, :anyone, :client_team, :project_team, :project_owner].each do |role_sym|
+		[:admin, :anyone, :client_team, :project_team, :project_owner, :debug].each do |role_sym|
 			role_name = role_sym.to_s.titleize
 			unless Role.special(role_sym)
 				r = Role.new
@@ -9,6 +9,20 @@ namespace :roles do
 				r.save
 			else
 				puts "Special role '#{role_name}' already exists."
+			end
+		end
+	end
+
+	task :assign_debug_perms => :environment do
+		r = Role.special(:debug)
+		if r
+			Permission.all.each do |p|
+				puts "granting #{p.scope.to_s.titleize}:#{p.short_name.to_s} to Debug"
+				if r.permissions.include?(p)
+					puts " * already granted"
+				else
+					r.permissions << p
+				end
 			end
 		end
 	end
@@ -93,6 +107,7 @@ namespace :roles do
 	task :default_permissions => :environment do
 		Rake::Task['roles:load_models'].invoke
 		Rake::Task['roles:create_special'].invoke
+		Rake::Task['roles:assign_debug_perms'].invoke
 		Rake::Task['roles:assign_admin_perms'].invoke
 		Rake::Task['roles:create_project_manager'].invoke
 		Rake::Task['roles:assign_pm_perms'].invoke
