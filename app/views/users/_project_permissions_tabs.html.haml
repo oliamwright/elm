@@ -19,7 +19,7 @@
 		var uid = $(this).attr('data-user');
 		$.ajax({
 			async: true,
-			url: '/users/' + uid + '/user_perms',
+			url: '/users/' + uid + '/global_user_perms',
 			cache: false,
 			success: function(data) {
 				$('.permission_data').html(data);

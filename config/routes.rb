@@ -18,6 +18,7 @@ Tm::Application.routes.draw do
 		member do
 			get 'user_data'
 			get 'user_perms'
+			get 'global_user_perms'
 			get 'assign_role'
 			post 'do_assign_role'
 			post 'do_remove_role'
@@ -37,6 +38,7 @@ Tm::Application.routes.draw do
 		resources :users do
 			member do
 				get 'user_perms'
+				get 'global_user_perms'
 				get 'assign_role'
 				post 'do_assign_role'
 				post 'do_remove_role'

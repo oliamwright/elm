@@ -11,6 +11,14 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def global_user_perms
+		@project = nil
+		@user = User.find(params[:id]) rescue nil
+		if request.xhr?
+			render :action => 'user_perms', :layout => false
+		end
+	end
+
 	def user_perms
 		@user = User.find(params[:id]) rescue nil
 		if request.xhr?
