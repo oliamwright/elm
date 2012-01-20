@@ -8,5 +8,12 @@ module ProjectCan
 		return :default
 	end
 
+	def can_show?(user)
+		if self.users.uniq.include?(user)
+			return true
+		else
+			return :default
+		end
+	end
 end
 
