@@ -62,7 +62,7 @@
 							.field.status= "--"
 							.field.usid= item.display_number
 							.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
-							.field.details= best_in_place item, :description
+							.field.details= best_in_place item, :description, :type => :textarea
 							.field.est_time= best_in_place item, :estimated_time
 							.field.tasks= "--"
 							.field.bugs= "--"
