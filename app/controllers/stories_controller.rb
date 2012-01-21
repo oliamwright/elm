@@ -26,4 +26,9 @@ class StoriesController < ApplicationController
 			end
 		end
 	end
+
+	def show
+		@story = Story.find(params[:id]) rescue nil
+		render :partial => 'stories/story', :object => @story
+	end
 end
