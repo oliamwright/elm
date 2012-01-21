@@ -144,7 +144,7 @@ class ApplicationController < ActionController::Base
 			return true
 		end
 
-		unless current_user.class_permission?(@project, scope, perm)
+		unless current_user.class_permission?(scope, perm, @project)
 			puts "failed"
 			flash[:error] = 'You are not authorized.'
 			redirect_to root_url

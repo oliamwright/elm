@@ -110,8 +110,8 @@ class User < ActiveRecord::Base
 		return class_permission?(scope, perm)
 	end
 
-	def class_permission?(project = current_project, scope, perm)
-		puts " * User(#{self.id}).class_permission?(#{project.id rescue nil}, #{scope}, #{perm})"
+	def class_permission?(scope, perm, project = current_project)
+		puts " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})"
 		pid = (project.id rescue nil)
 		p = Permission.find_by_scope_and_short_name(scope, perm)
 		roles = self.roles.all_for_project(pid)
