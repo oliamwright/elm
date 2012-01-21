@@ -5,3 +5,4 @@ tmp/**/*
 VERSION
 dropbox
 public/stylesheets-less
+*.swp
