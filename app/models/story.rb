@@ -13,6 +13,29 @@ class Story < ActiveRecord::Base
 
 	before_create :number_story
 
+	def display_status
+		self.status.to_s.titleize rescue "unknown"
+	end
+
+	def status
+		if approved?
+			si_map = sub_items.map { |si| si.status }
+			if si_map.include?("waiting")
+				"waiting"
+			elsif (si_map - ["rolled"]).empty?
+				"rolled"
+			elsif (si_map - ["rolled", "completed"]).empty?
+				"completed"
+			elsif si_map.any? { |si| ["in_progress", "completed", "rolled"].include?(si) }
+				"in_progress"
+			else
+				"approved"
+			end
+		else
+			"open"
+		end
+	end
+
 	def display_number
 		if self.sprint
 			"X.#{self.number}"

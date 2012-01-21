@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120120200853) do
+ActiveRecord::Schema.define(:version => 20120121204544) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20120120200853) do
     t.integer  "sprint_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved"
   end
 
   create_table "sub_items", :force => true do |t|

@@ -21,10 +21,10 @@
 		.field.push= ">"
 	.stories
 		- stories.each do |story|
-			.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id}
+			.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :class => "status_#{story.status}"}
 				.field.pull= "<"
 				.field.check{:'data-class' => 'story', :'data-id' => story.id}= check_box_tag :sel
-				.field.status= "--"
+				.field.status= story.display_status
 				.field.usid= story.display_number
 				.field.value= "--"
 				.field.details= best_in_place story, :description
