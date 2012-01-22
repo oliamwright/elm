@@ -31,7 +31,7 @@ var bipCallbacks = new function() {
 	this.sub_item = function(data) {
 		container = $(data).parents(".tasks");
 		id = container.attr('data-id');
-		$("#story_" + id).load("/stories/" + id + " #story_" + id, function() { $(this).children(':first').unwrap(); });
+		$("#story_" + id).load("/stories/" + id + " #story_" + id, unwrap);
 	};
 
 	this.generic = function(data) {
@@ -46,6 +46,15 @@ function testCallback(func, data) {
 		return true;
 	}
 	return false;
+}
+
+function unwrap() {
+  $(this).children(":first").unwrap();
+  resetBip();
+}
+
+function resetBip() {
+  $(".best_in_place").best_in_place();
 }
 
 /* main */
