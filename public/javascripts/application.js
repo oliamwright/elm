@@ -28,6 +28,11 @@ var bipCallbacks = new function() {
 		$("#story_" + id + " .est_time").load("/stories/" + id + " #story_" + id + " .est_time");
 	};
 
+	this.sub_item_status = function(data) {
+		t = $(data);
+		t.parents(".item").load(t.attr("data-url"), unwrap);
+	};
+
 	this.sub_item = function(data) {
 		container = $(data).parents(".tasks");
 		id = container.attr('data-id');
@@ -49,12 +54,12 @@ function testCallback(func, data) {
 }
 
 function unwrap() {
-  $(this).children(":first").unwrap();
-  resetBip();
+	$(this).children(":first").unwrap();
+	resetBip();
 }
 
 function resetBip() {
-  $(".best_in_place").best_in_place();
+	$(".best_in_place").best_in_place();
 }
 
 /* main */

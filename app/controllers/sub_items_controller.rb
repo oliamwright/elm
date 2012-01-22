@@ -51,6 +51,11 @@ class SubItemsController < ApplicationController
 		end
 	end
 
+	def show
+		@sub_item = SubItem.find(params[:id]) rescue nil
+		render :partial => 'sub_items/item', :object => @sub_item
+	end
+
 	private
 
 	def load_story

@@ -106,6 +106,9 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:s
 .ui-datepicker{background-color:#000;color:#fff;}.ui-datepicker a{color:#fff;}
 .project .project_value_statements .data{font-size:10px;vertical-align:top;line-height:1.2em;}
 .story_list .title{font-size:11px;font-weight:bold;}
+.best_in_place{padding:4px;}
+.best_in_place textarea,.best_in_place select{font-family:arial;font-size:1em;}
+.best_in_place:hover{cursor:pointer;background-color:#f7fed6;border-bottom:2px dotted #777;}
 form.formtastic{font-size:1.2em;}
 form.formtastic fieldset.inputs{padding:5px;}
 form.formtastic fieldset ol li fieldset ol{padding:3px 0px 3px 0px;}

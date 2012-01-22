@@ -1,7 +1,7 @@
 .story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id}
 	.field.pull= "<"
 	.field.check{:'data-class' => 'story', :'data-id' => story.id}= check_box_tag :sel
-	.field.status= story.display_status
+	.field.status= "--"
 	.field.usid= story.display_number
 	.field.value= "--"
 	.field.details= best_in_place story, :description
@@ -34,27 +34,7 @@
 			.field.approved_at= "APPROVED"
 			.field.completed_at= "COMPLETED"
 			.field.push= ">"
-		- story.sub_items.each do |item|
-			.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
-				.field.pull= "<"
-				.field.check{:'data-class' => 'sub_item', :'data-id' => item.id}= check_box_tag :sel
-				.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
-				.field.usid
-					%span.usid= item.display_number
-					%span.taskid{:style => 'display: none;'}= item.id
-				.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
-				.field.details
-					%pre= best_in_place item, :description, :type => :textarea
-				.field.est_time= best_in_place item, :estimated_time
-				.field.tasks= "--"
-				.field.bugs= "--"
-				.field.act_time= "--"
-				.field.created_by= item.owner.full_name
-				.field.created_at= item.created_at.to_date
-				.field.approved_by= "--"
-				.field.approved_at= "--"
-				.field.completed_at= "--"
-				.field.push= ">"
+		= render(:partial => 'sub_items/item', :collection => story.sub_items)
 	.new_task
 		.link
 			= link_to 'New Task', story_sub_items_url(story), :method => :post

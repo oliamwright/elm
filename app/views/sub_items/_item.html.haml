@@ -1,0 +1,20 @@
+.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
+	.field.pull= "<"
+	.field.check{:'data-class' => 'sub_item', :'data-id' => item.id}= check_box_tag :sel
+	.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
+	.field.usid
+		%span.usid= item.display_number
+		%span.taskid{:style => 'display: none;'}= item.id
+	.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
+	.field.details
+		%pre= best_in_place item, :description, :type => :textarea
+	.field.est_time= best_in_place item, :estimated_time
+	.field.tasks= "--"
+	.field.bugs= "--"
+	.field.act_time= "--"
+	.field.created_by= item.owner.full_name
+	.field.created_at= item.created_at.to_date
+	.field.approved_by= "--"
+	.field.approved_at= "--"
+	.field.completed_at= "--"
+	.field.push= ">"
