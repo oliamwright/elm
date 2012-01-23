@@ -16,6 +16,7 @@ class Project < ActiveRecord::Base
 	DROPBOX_FOLDER = "#{Rails.root}/dropbox"
 
 	def percent_backlog_complete
+		return 0 if self.stories.backlog.count.to_f == 0.0
 		self.stories.backlog.select { |s| s.status == "completed" || s.status == "rolled" }.count.to_f / self.stories.backlog.count.to_f rescue 0
 	end
 	
@@ -24,6 +25,7 @@ class Project < ActiveRecord::Base
 	end
 
 	def percent_complete
+		return 0 if self.stories.count.to_f == 0.0
 		self.stories.select { |s| s.status == "completed" || s.status == "rolled" }.count.to_f / self.stories.count.to_f rescue 0
 	end
 
