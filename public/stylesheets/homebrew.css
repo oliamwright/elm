@@ -119,6 +119,7 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:s
 .best_in_place{padding:4px;}
 .best_in_place textarea,.best_in_place select{font-family:arial;font-size:1em;}
 .best_in_place:hover{cursor:pointer;background-color:#f7fed6;border-bottom:2px dotted #777;}
+iframe.test_output_url{width:100%;min-height:600px;height:600px;border:0;}
 form.formtastic{font-size:1.2em;}
 form.formtastic fieldset.inputs{padding:5px;}
 form.formtastic fieldset ol li fieldset ol{padding:3px 0px 3px 0px;}
