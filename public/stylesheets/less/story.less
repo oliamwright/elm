@@ -1,35 +1,63 @@
-
+.stories {
+	.new_task {
+		margin-bottom: 10px;
+		
+		.link a{
+			color: #08c;
+			padding: 10px;
+			display: inline-block;
+		}
+	}
+}
 .story_list {
 	width: 100%;
 	border: 1px dashed #ccc;
 	padding: 10px 0px 10px 0px;
 	margin-top: 10px;
+	margin-bottom: 50px;
 
 	.title {
-		padding: 4px 0px 4px 10px;
+		padding: 1px 0px 1px 0px;
 	}
 
 	.header {
-		padding: 4px 0px 4px 10px;
-		border-top: 0px solid #c0cdcd;
+		padding: 1px 0px 1px 0px;
+		border-bottom: 1px solid #c0cdcd;
 		font-weight: bold;
-		color: #000;
-		background-color: #c0cdcd;
+		background-color: #c0c0c0;
+		margin-top: 10px;
+		
+		.pull, .push {
+			color: #fff;
+		}
+	}
+	
+	.stories .header {
+		color: #ccc;
 	}
 
 	.tasks .header {
 		background-color: #fff;
+		display: none;
 	}
 
 	.item {
-		padding: 4px 0px 4px 10px;
+		padding: 1px 0px 1px 0px;
 		border-bottom: 1px solid #c0cdcd;
 	}
 
 	.story {
-		padding: 4px 0px 4px 10px;
+		padding: 1px 0px 1px 0px;
+		border-top: 3px solid #888;
+		background-color: #ebebeb;
 		border-bottom: 1px solid #c0cdcd;
-		background-color: #eef2f2;
+		font-weight: bold;
+		
+		.tasks, 
+		.bugs {
+			color: #48bddf;
+			font-style: italic;
+		}
 	}
 
 	.story:first-child {
@@ -50,6 +78,7 @@
 	.field.pull,
 	.field.push {
 		width: 2%;
+		text-align: center;
 	}
 
 	.field.check {
@@ -61,7 +90,7 @@
 	}
 
 	.field.details {
-		width: 24%;
+		width: 26%;
 	}
 
 	.field {
@@ -76,23 +105,34 @@
 
 	.story.status_approved .field.status,
 	.item.status_approved .field.status {
-		color: #3ed1f5;
+		color: #48bddf;
 		font-style: italic;
+	}
+	
+	.item.status_approved {
+		background-color: #f2f6be;
 	}
 
 	.item.status_waiting,
 	.item.status_in_progress {
-		background-color: #d2fffd;
+		background-color: #caf1fd;
+	}
+	
+	.item.status_waiting {
+		background-color: #f4a3bf;
 	}
 
-	.item.status_completed,
+	.item.status_completed {
+		background-color: #e0edd6;
+	}
+
 	.item.status_rolled {
-		background-color: #e1fecd;
+		background-color: #b0dd95;
 	}
 
 	.item.status_ignored {
 		background-color: #fff;
-		color: #ddd;
+		color: #bbb;
 		
 		.field {
 			text-decoration: line-through;
@@ -104,4 +144,12 @@ pre {
 	white-space: pre-wrap;
 	margin: 0px;
 	font-family: arial;
+}
+
+.best_in_place {
+	width: 100%;
+	display: block;
+	padding: 3px 0px;
+	font-family: arial;
+	white-space: pre-wrap;
 }

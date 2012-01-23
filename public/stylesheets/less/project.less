@@ -3,7 +3,7 @@
 
 	.new_project_form {
 		font-size: 0.7em;
-		background-color: #000;
+		background-color: #00A3D7;
 		position: absolute;
 		top: 30px;
 		left: 0px;
@@ -16,7 +16,7 @@
 	.row {
 		border-top: 1px solid @row_separator_color;
 		width: 100%;
-		padding: 4px 0px 4px 10px;
+		padding: 4px 0px 4px 0px;
 
 		.row {
 			padding: 0px;
@@ -42,20 +42,21 @@
 	.project_value_statements {
 
 		.field {
-			width: 33%;
+			width: 32%;
+			vertical-align: top;
+			padding-right: 10px;
 		}
 
 		.data {
 			color: @highlight_blue_color;
 			font-style: italic;
-			padding: 10px 0px 10px 10px;
+			padding: 5px 0px 0px 0px;
 		}
 	}
 
 	.project_backlog_data_bar {
 
 		.row {
-			background-color: @background_blue_color;
 		}
 
 		margin-top: 10px;
@@ -85,6 +86,7 @@
 
 		.field {
 			width: 8%;
+			min-height: 12px;
 		}
 
 		.field11 {
