@@ -7,11 +7,11 @@
 		= link_to role.name, role
 		- if permitted?(:unassign_role, @user)
 			.link
-				= link_to 'Remove', do_remove_global_role_url(@user, :role_id => role.id), :method => :post
+				= link_to 'Remove', do_remove_role_user_url(@user, :role_id => role.id), :method => :post
 %br
 - if permitted?(:assign_role, @user)
 	.link
-		= link_to 'Assign Global Role', assign_global_role_url(@user)
+		= link_to 'Assign Global Role', assign_role_user_url(@user)
 
 - if @project
 	%h3= "Project Roles"
