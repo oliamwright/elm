@@ -59,6 +59,7 @@ Tm::Application.routes.draw do
 		member do
 			get 'team'
 			get 'backlog'
+      get 'test_output'
 		end
 
 		resources :stories do

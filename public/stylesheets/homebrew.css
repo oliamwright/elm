@@ -118,6 +118,10 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:s
 .navigation .nav_user_menu .nav_sub_menu.active,.navigation .nav_user_menu .nav_sub_menu:hover{background-color:#ffffff;color:#000000;}.navigation .nav_user_menu .nav_sub_menu.active a,.navigation .nav_user_menu .nav_sub_menu:hover a{color:#000000;}
 .project .project_value_statements .data{font-size:10px;vertical-align:top;line-height:1.2em;}
 .story_list .title{font-size:11px;font-weight:bold;padding:1px 0 0 10px;}
+input,textarea,.best_in_place{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.page .story_list select{background:transparent;width:100%;padding:0px;font-size:9px;border:0px solid;}
+.page .story_list input,.page textarea{width:100%;display:inline-block;border:0px solid;background:transparent;font-size:9px;font-family:arial;background-color:#ffc;padding:5px;border-top:1px solid #D8EB5E;border-left:1px solid #D8EB5E;}
+iframe.test_output_url{width:100%;min-height:600px;height:600px;border:0;}
 form.formtastic{font-size:1.2em;}
 form.formtastic fieldset.inputs{padding:5px;}
 form.formtastic fieldset ol li fieldset ol{padding:3px 0px 3px 0px;}
@@ -128,6 +132,3 @@ form.formtastic fieldset ol li fieldset ol{padding-left:25%;}
 form.formtastic fieldset ol li label{width:25%;}
 form.formtastic fieldset.buttons{padding-left:5px;}
 form.formtastic fieldset.buttons ol li input{font-size:1.2em;padding:5px;}
-input,textarea,.best_in_place{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-.page .story_list select{background:transparent;width:100%;padding:0px;font-size:9px;border:0px solid;}
-.page .story_list input,.page textarea{width:100%;display:inline-block;border:0px solid;background:transparent;font-size:9px;font-family:arial;background-color:#ffc;padding:5px;border-top:1px solid #D8EB5E;border-left:1px solid #D8EB5E;}

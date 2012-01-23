@@ -88,4 +88,7 @@ class ProjectsController < ApplicationController
 	def backlog
 	end
 
+	def test_output
+	end
+
 end

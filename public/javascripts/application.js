@@ -42,6 +42,10 @@ var bipCallbacks = new function() {
 		$("#story_" + id).load("/stories/" + id + " #story_" + id, unwrap);
 	};
 
+	this.project_test_output_url = function(data) {
+		window.location=window.location;
+	};
+
 	this.generic = function(data) {
 	};
 };

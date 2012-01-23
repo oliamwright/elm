@@ -1,0 +1,5 @@
+.project
+	.field= best_in_place_if current_user.can?(:edit, @project), @project, :test_output_url
+	%br{:style => 'clear:both'}
+	- if @project.test_output_url
+		%iframe.test_output_url{:src => @project.test_output_url}
