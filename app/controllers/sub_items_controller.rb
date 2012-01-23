@@ -1,8 +1,42 @@
 class SubItemsController < ApplicationController
 	before_filter :load_story
 
+	def do_action
+		action = params[:si_action]
+		ids = params[:ids].split(/,/)
+		if action.nil? or ids.empty?
+			redirect_to_last_page
+			return
+		end
+		case action
+			when "approved"
+				ids.each do |id|
+					si = SubItem.find(id) rescue nil
+					if si
+						cs = si.status
+						if current_user.can?("from_#{cs}_to_approved".to_sym, si)
+							si.status = 'approved'
+							if si.save
+								st = StatusTransition.new
+								st.sub_item = si
+								st.user = current_user
+								st.from_status = cs
+								st.to_status = 'approved'
+								st.save
+							end
+						end
+					end
+				end
+		end
+		redirect_to_last_page
+	end
+
 	def create
-		@sub_item = SubItem.new
+		if params[:sub_item]
+			@sub_item = SubItem.new(params[:sub_item])
+		else
+			@sub_item = SubItem.new
+		end
 		@sub_item.story = @story
 		@sub_item.owner = current_user
 		@sub_item.status = SubItem::INITIAL_STATUS

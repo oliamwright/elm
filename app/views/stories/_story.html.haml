@@ -1,11 +1,11 @@
 .story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id}
 	.field.pull= "<"
 	.field.check{:'data-class' => 'story', :'data-id' => story.id}= check_box_tag :sel
-	.field.status= "--"
+	.field.status= story.display_status
 	.field.usid= story.display_number
 	.field.value= "--"
 	.field.details= best_in_place story, :description
-	.field.est_time= story.sub_items.sum(:estimated_time)
+	.field.est_time= "%0.02f" % story.sub_items.sum(:estimated_time)
 	.field.tasks= story.sub_items.tasks.count
 	.field.bugs= story.sub_items.bugs.count
 	.field.act_time= "--"
@@ -36,5 +36,7 @@
 			.field.push= ">"
 		= render(:partial => 'sub_items/item', :collection => story.sub_items)
 	.new_task
-		.link
-			= link_to 'New Task', story_sub_items_url(story), :method => :post
+		= semantic_form_for([story, SubItem.new]) do |f|
+			= f.inputs do
+				= f.input :description, :label => false
+			

@@ -27,6 +27,10 @@ class SubItem < ActiveRecord::Base
 
 	STATUSES = STATUS_MAP.keys
 
+	def display_estimated_time
+		"%0.02f" % self.estimated_time
+	end
+
 	def display_number
 		if self.story
 			"#{self.story.display_number}.#{self.number}"

@@ -29,10 +29,18 @@ Tm::Application.routes.draw do
 	end
 
 	resources :stories do
-		resources :sub_items
+		resources :sub_items do
+			collection do
+				post 'do_action'
+			end
+		end
 	end
 
-	resources :sub_items
+	resources :sub_items do
+		collection do
+			post 'do_action'
+		end
+	end
 
 	resources :projects do
 		resources :users do
@@ -54,7 +62,11 @@ Tm::Application.routes.draw do
 		end
 
 		resources :stories do
-			resources :sub_items
+			resources :sub_items do
+				collection do
+					post 'do_action'
+				end
+			end
 		end
 	end
 

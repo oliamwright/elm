@@ -20,7 +20,7 @@
 			.field= @project.stories.count
 			.field= @project.sub_items.tasks.count
 			.field= @project.sub_items.bugs.count
-			.field= "--"
+			.field= @project.display_percent_backlog_complete
 			.field= "--"
 			.field= "--"
 			.field= best_in_place @project, :start_date, :type => :date

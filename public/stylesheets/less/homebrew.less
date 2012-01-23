@@ -33,7 +33,7 @@ body {
 	padding: 0px;
 	margin: 0px;
 	font-family: sans-serif;
-	font-size: 10px;
+	font-size: 9px;
 }
 
 .clear {
@@ -41,15 +41,12 @@ body {
 }
 
 .message {
-	margin-top: 10px;
 	width: 50%;
-	margin-left: 25%;
-	text-align: center;
-	padding: 5px;
+	text-align: left;
+	padding: 10px;
 }
 
 .message.notice {
-	border: 1px solid @notice_border_color;
 	color: @notice_color;
 	background-color: @notice_background_color;
 }
@@ -75,7 +72,7 @@ body {
 }
 
 .page {
-	padding: 5px 15px 0px 5px;
+	padding: 10px;
 }
 
 .file_list .indent {
@@ -156,7 +153,7 @@ body {
 		background-color: #00a3d7;
 		font-weight: bold;
 		font-size: 1.2em;
-		padding: 8px 10px 9px;
+		padding: 9px 10px;
 		color: #fff;
 	}
 
@@ -169,8 +166,9 @@ body {
 			display: inline-block;
 			background-color: #869b9a;
 			padding: 10px 10px 9px 10px;
-			width: 300px;
+			width: 245px;
 			margin-left: 0px;
+			font-size: 10px;
 
 			.name {
 				display: inline-block;
@@ -188,7 +186,7 @@ body {
 			}
 
 			.row {
-				width: 450px;
+				width: 265px;
 				border-top: 1px solid #c0cdcd;
 			}
 
@@ -199,25 +197,26 @@ body {
 				.field.bl,
 				.field {
 					background-color: #dfe3e3;
+					display: none;
 				}
 			}
 
 			.field {
 				display: inline-block;
-				padding: 4px 10px 4px 10px;
+				padding: 0px;
 			}
 
 			.field.expand {
-				width: 30px;
+				width: 0px;
 				padding: 2px 5px 2px 5px;
 			}
 
 			.field.client {
-				width: 142px;
+				width: 80px;
+				text-align: right;
 			}
 
 			.field.bl {
-				width: 222px;
 				background-color: #d2fffd;
 
 				.row1:first-child {
@@ -225,34 +224,37 @@ body {
 				}
 
 				.row1 {
-					display: inline-block;
-					width: 100%;
+					width: 169px;
 					border-top: 1px solid #c0cdcd;
-					padding: 4px 0px 4px 0px;
+					
+					a {
+						width: 150px;
+						padding: 4px 10px;
+						display: block;
+					}
 				}
 			}
 		}
 	}
 
 	.nav_tabs {
-		margin-left: 10px;
 		display: inline-block;
 		
 		.nav_tab {
-			padding: 10px 10px 9px 10px;
-			margin-left: 3px;
-			background-color: #5e7373;
 			font-weight: bold;
 			color: #ffffff;
 			display: inline-block;
-			text-decoration: uppercase;
+			text-transform: uppercase;
+			margin-left: 3px;
 			
 			a {
 				color: #ffffff;
+				padding: 11px 10px 9px 10px;
+				background-color: #7a7a7a;
 			}
 		}
 
-		.nav_tab:hover {
+		.nav_tab a:hover {
 			background-color: #ffffff;
 			color: #000000;
 
@@ -266,6 +268,7 @@ body {
 			color: #000000;
 
 			a {
+				background-color: #ffffff;
 				color: #000000;
 			}
 		}
@@ -301,16 +304,6 @@ body {
 
 }
 
-
-.ui-datepicker {
-	background-color: #000;
-	color: #fff;
-
-	a {
-		color: #fff;
-	}
-}
-
 .project .project_value_statements .data {
 	font-size: 10px;
 	vertical-align: top;
@@ -320,22 +313,34 @@ body {
 .story_list .title {
 	font-size: 11px;
 	font-weight: bold;
-}
-
-.best_in_place {
-	padding: 4px;
-}
-
-.best_in_place textarea,
-.best_in_place select {
-	font-family: arial;
-	font-size: 1em;
-}
-
-.best_in_place:hover {
-	cursor: pointer;
-	background-color: #f7fed6;
-	border-bottom: 2px dotted #777;
+	padding: 1px 0 0 10px;
 }
 
 @import "formtastic_changes";
+
+input, textarea, .best_in_place {
+	    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.page .story_list select {
+   background: transparent;
+   width: 100%;
+   padding: 0px;
+   font-size: 9px;
+   border: 0px solid;
+}
+
+.page .story_list input, .page textarea {
+   width: 100%;
+   display: inline-block;
+   border: 0px solid;
+   background: transparent;
+   font-size: 9px;
+   font-family: arial;
+   background-color: #ffc;
+   padding: 5px;
+   border-top: 1px solid #D8EB5E;
+   border-left: 1px solid #D8EB5E;
+}

@@ -31,6 +31,9 @@ var bipCallbacks = new function() {
 	this.sub_item_status = function(data) {
 		t = $(data);
 		t.parents(".item").load(t.attr("data-url"), unwrap);
+		container = $(data).parents(".tasks");
+		id = container.attr('data-id');
+		$("#story_" + id).load("/stories/" + id + " #story_" + id, unwrap);
 	};
 
 	this.sub_item = function(data) {
@@ -77,5 +80,6 @@ $(function() {
 			}
 		}
 	});
+
 });
 

@@ -15,6 +15,22 @@ class Project < ActiveRecord::Base
 
 	DROPBOX_FOLDER = "#{Rails.root}/dropbox"
 
+	def percent_backlog_complete
+		self.stories.backlog.select { |s| s.status == "completed" || s.status == "rolled" }.count.to_f / self.stories.backlog.count.to_f rescue 0
+	end
+	
+	def display_percent_backlog_complete
+		"#{(self.percent_backlog_complete * 100).to_i} %"
+	end
+
+	def percent_complete
+		self.stories.select { |s| s.status == "completed" || s.status == "rolled" }.count.to_f / self.stories.count.to_f rescue 0
+	end
+
+	def display_percent_complete
+		"#{(self.percent_complete * 100).to_i} %"
+	end
+
 	def last_backlog_story_number
 		self.stories.backlog.order("number asc").last.number rescue 0
 	end

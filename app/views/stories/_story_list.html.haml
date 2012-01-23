@@ -1,3 +1,4 @@
+= render :partial => 'stories/action_buttons'
 .story_list.in_progress
 	.title= "IN PROGRESS"
 	.header
@@ -38,4 +39,47 @@
 		} else if (cl == 'story') {
 			$(this).closest('.story').next('.tasks').find('.check input[name="sel"]').attr('checked', ch);
 		}
+		update_buttons();
 	});
+
+	function update_buttons() {
+		if ($('input[name="sel"]:checked').length > 0) {
+			$('.action_buttons .button').removeClass('disabled');
+		} else {
+			$('.action_buttons .button').addClass('disabled');
+		}
+	};
+
+	$('.action_buttons .button').addClass('disabled');
+	$('.action_buttons .button').click(function() {
+		if ($(this).hasClass('disabled')) {
+			// do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'sub_item') {
+					vals.push(container.attr('data-id'));
+				}
+			});
+			do_action(act, vals.join(','));
+		}
+	});
+
+	function do_action(action, idstring) {
+		$.ajax({
+			async: true,
+			url: '/sub_items/do_action?si_action=' + action + '&ids=' + idstring,
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			type: 'post',
+			cache: false,
+			success: function(data) {
+				window.location = window.location;
+			}
+		});
+	};

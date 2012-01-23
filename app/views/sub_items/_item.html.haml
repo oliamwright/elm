@@ -8,7 +8,7 @@
 	.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
 	.field.details
 		%pre= best_in_place item, :description, :type => :textarea
-	.field.est_time= best_in_place item, :estimated_time
+	.field.est_time= best_in_place item, :estimated_time, :display_as => :display_estimated_time
 	.field.tasks= "--"
 	.field.bugs= "--"
 	.field.act_time= "--"

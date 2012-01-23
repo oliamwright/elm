@@ -1,14 +1,41 @@
 .stories {
 	.new_task {
-		margin-bottom: 10px;
+		margin-bottom: 15px;
 		
 		.link a{
 			color: #08c;
 			padding: 10px;
 			display: inline-block;
 		}
+
+		form.formtastic fieldset > ol > li.string input {
+			width: 100%;
+			max-width: 100%;
+		}
 	}
 }
+
+.action_buttons {
+	margin-top: 5px;
+	display: none;
+
+	.button {
+		margin-right: 5px;
+		display: inline-block;
+		border: 1px solid #aaa;
+		border-radius: 4px;
+		font-size: 2.0em;
+		padding: 5px 10px 5px 10px;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));
+	}
+
+	.button.disabled {
+		border: 1px solid #ddd;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+		color: #ddd;
+	}
+}
+
 .story_list {
 	width: 100%;
 	border: 1px dashed #ccc;
@@ -127,7 +154,7 @@
 	}
 
 	.item.status_rolled {
-		background-color: #b0dd95;
+		background-color: #96e8d2;
 	}
 
 	.item.status_ignored {
