@@ -29,6 +29,12 @@ Tm::Application.routes.draw do
 	end
 
 	resources :stories do
+
+		member do
+			post 'pull'
+			post 'push'
+		end
+
 		resources :sub_items do
 			collection do
 				post 'do_action'
@@ -62,7 +68,21 @@ Tm::Application.routes.draw do
       get 'test_output'
 		end
 
+		resources :sprints do
+			resources :stories do
+				member do
+					post 'pull'
+					post 'push'
+				end
+			end
+		end
+
 		resources :stories do
+			member do
+				post 'pull'
+				post 'push'
+			end
+
 			resources :sub_items do
 				collection do
 					post 'do_action'

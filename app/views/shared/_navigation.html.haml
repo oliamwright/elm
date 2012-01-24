@@ -23,7 +23,7 @@
 				- permitted?(:show, @project) do
 					.nav_tab{:class => (params[:action] == 'backlog' ? 'active' : '')}= link_to "PRODUCT BACKLOG", backlog_project_url(@project)
 					.nav_tab{:class => (params[:action] == 'team' ? 'active' : '')}= link_to 'TEAM', team_project_url(@project)
-					.nav_tab{:class => (params[:action] == 'sprints' ? 'active' : '')}= "Sprints"
+					.nav_tab{:class => (params[:action] == 'sprints' ? 'active' : '')}= link_to 'SPRINTS', project_sprints_url(@project)
 					.nav_tab{:class => (params[:action] == 'test_output' ? 'active' : '')}= link_to 'RTR', test_output_project_url(@project)
 					.nav_tab{:class => (params[:action] == 'sow' ? 'active' : '')}= "SOW"
 		- else

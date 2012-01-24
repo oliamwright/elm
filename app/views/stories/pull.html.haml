@@ -1,0 +1,6 @@
+.story
+	= "Story '#{@story.description}' has been moved to "
+	- if @story.sprint
+		= link_to "Sprint #{@story.sprint.display_number}", [@story.project, @story.sprint]
+	- else
+		= link_to "Backlog", backlog_project_url(@story.project)

@@ -15,9 +15,18 @@ class Project < ActiveRecord::Base
 
 	DROPBOX_FOLDER = "#{Rails.root}/dropbox"
 
+	def renumber_backlog!
+		c = 1
+		self.stories.backlog.order("number asc").each do |s|
+			s.number = c
+			s.save
+			c += 1
+		end
+	end
+
 	def percent_backlog_complete
 		return 0 if self.stories.backlog.count.to_f == 0.0
-		self.stories.backlog.select { |s| s.status == "completed" || s.status == "rolled" }.count.to_f / self.stories.backlog.count.to_f rescue 0
+		self.stories.backlog.select { |s| s.complete? }.count.to_f / self.stories.backlog.count.to_f rescue 0
 	end
 	
 	def display_percent_backlog_complete
@@ -26,7 +35,7 @@ class Project < ActiveRecord::Base
 
 	def percent_complete
 		return 0 if self.stories.count.to_f == 0.0
-		self.stories.select { |s| s.status == "completed" || s.status == "rolled" }.count.to_f / self.stories.count.to_f rescue 0
+		self.stories.select { |s| s.complete? }.count.to_f / self.stories.count.to_f rescue 0
 	end
 
 	def display_percent_complete

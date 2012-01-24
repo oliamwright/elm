@@ -1,5 +1,5 @@
 .item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
-	.field.pull= "<"
+	.field.pull
 	.field.check{:'data-class' => 'sub_item', :'data-id' => item.id}= check_box_tag :sel
 	.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
 	.field.usid
@@ -17,4 +17,4 @@
 	.field.approved_by= "--"
 	.field.approved_at= "--"
 	.field.completed_at= "--"
-	.field.push= ">"
+	.field.push

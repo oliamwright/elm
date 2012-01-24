@@ -2,7 +2,7 @@
 .story_list.in_progress
 	.title= "IN PROGRESS"
 	.header
-		.field.pull= "<"
+		.field.pull
 		.field.check{:'data-class' => 'story', :'data-id' => 'all'}= check_box_tag :sel
 		.field.status= "STATUS"
 		.field.usid
@@ -19,7 +19,7 @@
 		.field.approved_by= "APPROVED BY"
 		.field.approved_at= "APPROVED"
 		.field.completed_at= "COMPLETED"
-		.field.push= ">"
+		.field.push
 	.stories
 		= render(:partial => 'stories/story', :collection => stories)
 :javascript
@@ -67,6 +67,41 @@
 			});
 			do_action(act, vals.join(','));
 		}
+	});
+
+	$('.push_button').click(function() {
+		var container = $(this).parents('.story');
+		var sid = container.attr('data-id');
+		$.ajax({
+			async: true,
+			cache: false,
+			url: '/stories/' + sid + '/push',
+			type: 'post',
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			success: function(data) {
+				container.next('.tasks').remove();
+				container.html(data);
+			}
+		});
+	});
+	$('.pull_button').click(function() {
+		var container = $(this).parents('.story');
+		var sid = container.attr('data-id');
+		$.ajax({
+			async: true,
+			cache: false,
+			url: '/stories/' + sid + '/pull',
+			type: 'post',
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			success: function(data) {
+				container.next('.tasks').remove();
+				container.html(data);
+			}
+		});
 	});
 
 	function do_action(action, idstring) {

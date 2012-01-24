@@ -1,0 +1,4 @@
+.sprint_navigation
+	- project.sprints.each do |sprint|
+		.sprint_tab{:class => "#{(sprint == @sprint) ? 'active' : ''} #{(sprint.complete?) ? 'complete' : ''}"}
+			= link_to "S#{sprint.number} #{sprint.display_percent_complete}", [project, sprint]
