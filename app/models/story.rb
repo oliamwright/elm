@@ -13,7 +13,14 @@ class Story < ActiveRecord::Base
 
 	before_create :number_story
 
-	def push!
+	def can_pull?
+		if self.sprint.nil?
+			return false
+		end
+		return true
+	end
+
+	def can_push?
 		s = nil
 		if self.sprint.nil?
 			s = self.project.first_sprint
@@ -24,6 +31,23 @@ class Story < ActiveRecord::Base
 			s = s.next_sprint
 		end
 		if s
+			return true
+		else
+			return false
+		end
+	end
+
+	def push!
+		s = nil
+		if self.sprint.nil?
+			s = self.project.first_sprint
+		else
+			s = self.sprint.next_sprint
+		end
+		while s && s.complete?
+			s = s.next_sprint
+		end
+		if s && !s.complete?
 			os = self.sprint
 			self.sprint = s
 			self.number = 99999

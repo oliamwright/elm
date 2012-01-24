@@ -36,11 +36,19 @@ class StoriesController < ApplicationController
 	end
 
 	def pull
-		
+		@story = Story.find(params[:id]) rescue nil
+		if @story && @story.can_pull?
+			@story.pull!
+		end
+		render :action => 'pull', :layout => false
 	end
 
 	def push
-
+		@story = Story.find(params[:id]) rescue nil
+		if @story && @story.can_push?
+			@story.push!
+		end
+		render :action => 'pull', :layout => false
 	end
 
 	private

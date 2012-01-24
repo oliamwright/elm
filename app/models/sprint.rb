@@ -19,6 +19,10 @@ class Sprint < ActiveRecord::Base
 		end
 	end
 
+	def display_number
+		"#{self.number}"
+	end
+
 	def complete?
 		self.percent_complete >= 1
 	end
@@ -50,12 +54,12 @@ class Sprint < ActiveRecord::Base
 
 	def next_sprint
 		ns = Sprint.where("project_id = ? and number > ?", self.project_id, self.number).order("number asc").first
-		if ns.nil?
-			ns = Sprint.new
-			ns.project = self.project
-			ns.number = self.number + 1
-			ns.save
-		end
+#		if ns.nil?
+#			ns = Sprint.new
+#			ns.project = self.project
+#			ns.number = self.number + 1
+#			ns.save
+#		end
 		ns
 	end
 

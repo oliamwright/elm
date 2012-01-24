@@ -1,5 +1,10 @@
 .story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id}
-	.field.pull= "<"
+	- if story.can_pull?
+		.field.pull
+			.pull_button
+				= "<"
+	- else
+		.field.no_pull
 	.field.check{:'data-class' => 'story', :'data-id' => story.id}= check_box_tag :sel
 	.field.status
 		- if story.approved?
@@ -18,7 +23,12 @@
 	.field.approved_by= "--"
 	.field.approved_at= "--"
 	.field.completed_at= "--"
-	.field.push= ">"
+	- if story.can_push?
+		.field.push
+			.push_button
+				= ">"
+	- else
+		.field.no_push
 .tasks{:id => "story_#{story.id}_tasks", :'data-id' => story.id}
 	- if story.sub_items.count > 0
 		.header
