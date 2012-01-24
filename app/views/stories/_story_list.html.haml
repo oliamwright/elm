@@ -2,7 +2,7 @@
 .story_list.in_progress
 	.title= "IN PROGRESS"
 	.header
-		.field.pull= "<"
+		.field.pull
 		.field.check{:'data-class' => 'story', :'data-id' => 'all'}= check_box_tag :sel
 		.field.status= "STATUS"
 		.field.usid
@@ -19,7 +19,7 @@
 		.field.approved_by= "APPROVED BY"
 		.field.approved_at= "APPROVED"
 		.field.completed_at= "COMPLETED"
-		.field.push= ">"
+		.field.push
 	.stories
 		= render(:partial => 'stories/story', :collection => stories)
 :javascript

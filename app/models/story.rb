@@ -13,6 +13,54 @@ class Story < ActiveRecord::Base
 
 	before_create :number_story
 
+	def push!
+		s = nil
+		if self.sprint.nil?
+			s = self.project.first_sprint
+		else
+			s = self.sprint.next_sprint
+		end
+		while s && s.complete?
+			s = s.next_sprint
+		end
+		if s
+			os = self.sprint
+			self.sprint = s
+			self.number = 99999
+			self.save
+			if os
+				os.renumber!
+			else
+				self.project.renumber_backlog!
+			end
+			self.sprint.renumber! if self.sprint
+		end
+	end
+
+	def pull!
+		if self.sprint.nil?
+			return
+		end
+		s = self.sprint.previous_sprint
+		while s && s.complete?
+			s = s.previous_sprint
+		end
+		os = self.sprint
+		self.sprint = s
+		self.number = 99999
+		self.save
+		if self.sprint
+			self.sprint.renumber!
+		else
+			self.project.renumber_backlog!
+		end
+		os.renumber!
+	end
+
+	def complete?
+		return self.status == "completed" || self.status == "rolled"
+	end
+
 	def display_status
 		self.status.to_s.titleize rescue "unknown"
 	end
@@ -38,7 +86,7 @@ class Story < ActiveRecord::Base
 
 	def display_number
 		if self.sprint
-			"X.#{self.number}"
+			"#{self.sprint.number}.#{self.number}"
 		else
 			"0.#{self.number}"
 		end

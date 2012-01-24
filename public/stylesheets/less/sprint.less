@@ -1,0 +1,60 @@
+
+.sprint_navigation {
+	.sprint_tab {
+		display: inline-block;
+		font-size: 1.7em;
+		background-color: #d1fdfc;
+		padding: 8px 12px 8px 12px;
+	}
+
+	.sprint_tab.active {
+		background-color: #77fdfb;
+		font-weight: bold;
+		border-bottom: solid 2px #000000;
+	}
+
+	.sprint_tab:hover {
+		background-color: #77fdfb;
+	}
+
+	.sprint_tab.complete {
+		background-color: #ccffcc;
+	}
+}
+
+.sprint {
+	.row {
+		border-top: 1px solid @row_separator_color;
+		width: 100%;
+		padding: 4px 0px 4px 0px;
+
+		.row {
+			padding: 0px;
+		}
+	}
+
+	.headers .field {
+		font-weight: bold;
+	}
+
+	.row.no_top {
+		border-top: none;
+	}
+
+	.row.last {
+		border-bottom: 1px solid @row_separator_color;
+	}
+
+	.field {
+		display: inline-block;
+	}
+
+	.sprint_team {
+		margin-top: 15px;
+
+		.field {
+			width: 11%;
+		}
+	}
+}
+

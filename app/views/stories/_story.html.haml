@@ -1,7 +1,11 @@
 .story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id}
 	.field.pull= "<"
 	.field.check{:'data-class' => 'story', :'data-id' => story.id}= check_box_tag :sel
-	.field.status= story.display_status
+	.field.status
+		- if story.approved?
+			= story.display_status
+		- else
+			= best_in_place story, :approved, :type => :checkbox, :collection => [ 'Open', 'Approved' ]
 	.field.usid= story.display_number
 	.field.value= "--"
 	.field.details= best_in_place story, :description

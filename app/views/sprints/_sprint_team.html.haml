@@ -1,0 +1,20 @@
+.sprint_team
+	.headers.row
+		.field= "TEAM RESOURCED"
+		.field= "USER STORIES"
+		.field= "COMPLETE"
+		.field= "APPROVED ALLOCATION"
+		.field= "EST. ALLOCATION"
+		.field= "SPRINT START"
+		.field= "WEEKS"
+		.field= "SPRINT END"
+	.data.row
+		.field= "--"
+		.field= sprint.stories.count
+		.field= sprint.display_percent_complete
+		.field= "--"
+		.field= "--"
+		.field= sprint.start_date.to_date
+		.field= sprint.display_duration
+		.field= sprint.end_date.to_date
+

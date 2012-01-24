@@ -1,0 +1,5 @@
+.sprint
+	= render :partial => 'sprints/sprint_navigation', :locals => { :project => @project }
+	= render :partial => 'sprints/sprint_team', :locals => { :project => @project, :sprint => @sprint }
+	= render :partial => 'sprints/new_user_story_bar', :locals => { :project => @project, :sprint => @sprint }
+	= render :partial => 'stories/story_list', :locals => { :stories => @sprint.stories }

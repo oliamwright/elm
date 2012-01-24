@@ -1,8 +1,11 @@
 class StoriesController < ApplicationController
+	
+	before_filter :load_sprint
 
 	def create
 		@story = Story.new(params[:story])
 		@story.project = @project
+		@story.sprint = @sprint if @sprint
 		@story.owner = current_user
 		if @story.save
 			flash[:notice] = 'Story created.'
@@ -30,5 +33,19 @@ class StoriesController < ApplicationController
 	def show
 		@story = Story.find(params[:id]) rescue nil
 		render :partial => 'stories/story', :object => @story
+	end
+
+	def pull
+		
+	end
+
+	def push
+
+	end
+
+	private
+	
+	def load_sprint
+		@sprint = Sprint.find(params[:sprint_id]) rescue nil
 	end
 end
