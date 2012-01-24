@@ -42,6 +42,12 @@ var bipCallbacks = new function() {
 		$("#story_" + id).load("/stories/" + id + " #story_" + id, unwrap);
 	};
 
+	this.task_ownership_actual_time = function(data) {
+		container = $(data).parents(".tasks");
+		id = container.attr('data-id');
+		$("#story_" + id).load("/stories/" + id + " #story_" + id, unwrap);
+	};
+
 	this.project_test_output_url = function(data) {
 		window.location=window.location;
 	};

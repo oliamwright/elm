@@ -5,6 +5,8 @@ class SubItem < ActiveRecord::Base
 
   belongs_to :story
 	belongs_to :owner, :class_name => 'User'
+	has_many :task_ownerships
+	has_many :users, :through => :task_ownerships
 
 	scope :bugs, where("item_type = 'bug'")
 	scope :tasks, where("item_type = 'task'")

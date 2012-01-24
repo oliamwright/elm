@@ -9,9 +9,20 @@
 	.field.details
 		%pre= best_in_place item, :description, :type => :textarea
 	.field.est_time= best_in_place item, :estimated_time, :display_as => :display_estimated_time
-	.field.tasks= "--"
-	.field.bugs= "--"
-	.field.act_time= "--"
+	- if item.task_ownerships.count > 0
+		.field.task_ownership
+			- item.task_ownerships.each do |to|
+				.to_row
+					.sub_field.user
+						= to.user.full_name
+					.sub_field.role
+						= "--"
+					.sub_field.actual_time
+						= best_in_place to, :actual_time, :display_as => :display_actual_time
+	- else
+		.field.tasks= "--"
+		.field.bugs= "--"
+		.field.act_time= "--"
 	.field.created_by= item.owner.full_name
 	.field.created_at= item.created_at.to_date
 	.field.approved_by= "--"

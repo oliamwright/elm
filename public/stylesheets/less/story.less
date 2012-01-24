@@ -26,7 +26,6 @@
 
 .action_buttons {
 	margin-top: 5px;
-	display: none;
 
 	.button {
 		margin-right: 5px;
@@ -100,9 +99,34 @@
 		border-top: 1px solid #c0cdcd;
 	}
 
-	.field.tasks,
+	.field.task_ownership {
+		width: 13%;
+		
+		.sub_field {
+			display: inline-block;
+		}
+
+		.sub_field.user {
+			width: 52%;
+		}
+
+		.sub_field.role {
+			width: 20%;
+		}
+
+		.sub_field.actual_time {
+			width: 25%;
+		}
+	}
+
+	.field.tasks {
+		width: 7%;
+	}
+
 	.field.owner,
 	.field.bugs,
+	.field.act_time,
+	.field.est_time,
 	.field.role,
 	.field.value,
 	.field.type,

@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 	has_many :roles, :through => :role_memberships
 	has_many :projects, :through => :role_memberships
 	belongs_to :company
+	has_many :task_ownerships
+	has_many :sub_items, :through => :task_ownerships
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :title, :phone, :company_id
@@ -20,6 +22,15 @@ class User < ActiveRecord::Base
 	after_save :assert_guid!
 	after_create :assign_anyone!
 	after_create :assign_admin!
+
+	def take_ownership!(task)
+		return false unless task.class == SubItem
+		return false if task.users.include?(self)
+		to = TaskOwnership.new
+		to.user = self
+		to.sub_item = task
+		return to.save
+	end
 
 	def formatted_phone
 		return "" unless self.phone
@@ -64,16 +75,14 @@ class User < ActiveRecord::Base
 			return false
 		end
 
-		puts ""
-		puts " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})"
-
 		# kill recursion for users and User class permissions
 		if object.class == User || object == User
 			unless self.respond_to?(:_can?)
 				return false
 			end
 			ret = self._can?(action, object)
-			puts " => #{ret}"
+			puts " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret == true
+			puts " => #{ret}" unless ret == true
 			return ret
 		end
 
@@ -85,13 +94,15 @@ class User < ActiveRecord::Base
 		end
 
 		unless object.respond_to?(:can?)
+			puts " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})"
 			puts " No permissions defined for #{object.class} / #{object.id rescue object}"
 			puts " => false"
 			return false
 		end
 
 		ret = object.can?(action, self)
-		puts " => #{ret}"
+		puts " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret
+		puts " => #{ret}" unless ret
 		if ret == :default
 			return class_permission?(object.class.to_s.underscore.to_sym, action.to_sym)
 		else
@@ -100,18 +111,19 @@ class User < ActiveRecord::Base
 	end
 
 	def _can?(action, object)
-		puts " * User(#{self.id})._can?(#{action}, #{object})"
 		if object.class == Class
 			scope = object.to_s.underscore.to_sym
 		else
 			scope = object.class.to_s.underscore.to_sym
 		end
 		perm = action.to_sym
-		return class_permission?(scope, perm)
+		ret =  class_permission?(scope, perm)
+		puts " * User(#{self.id})._can?(#{action}, #{object})" unless ret == true
+		puts " => #{ret}" unless ret == true
+		return ret
 	end
 
 	def class_permission?(scope, perm, project = current_project)
-		puts " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})"
 		pid = (project.id rescue nil)
 		p = Permission.find_by_scope_and_short_name(scope, perm)
 		roles = self.roles.all_for_project(pid)
@@ -120,15 +132,17 @@ class User < ActiveRecord::Base
 			perms.each do |permission|
 				if p == permission
 					ret = true
-					puts " => #{ret} (#{role.name})"
+					puts " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" unless ret == true
+					puts " => #{ret} (#{role.name})" unless ret == true
 					return ret
 				end
 			end
 		end
 		ret = false
-		puts " => #{ret}"
+		puts " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" unless ret == true
+		puts " => #{ret}" unless ret == true
 		return ret
-	end
+	end 
 
 	def assert_guid!
 		unless self.guid

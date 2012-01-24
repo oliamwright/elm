@@ -28,6 +28,7 @@ Tm::Application.routes.draw do
 		end
 	end
 
+	resources :task_ownerships
 	resources :stories do
 
 		member do

@@ -53,7 +53,7 @@ div.form{padding:10px;}
 .story .field.pull,.story .field.push{font-size:1.5em;color:#ffffff;font-weight:bold;background-image:-webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#999999));padding:3px 0px 3px 0px;}
 .stories .new_task{margin-bottom:15px;}.stories .new_task .link a{color:#08c;padding:10px;display:inline-block;}
 .stories .new_task form.formtastic fieldset>ol>li.string input{width:100%;max-width:100%;}
-.action_buttons{margin-top:5px;display:none;}.action_buttons .button{margin-right:5px;display:inline-block;border:1px solid #aaa;border-radius:4px;font-size:2.0em;padding:5px 10px 5px 10px;background-image:-webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));}
+.action_buttons{margin-top:5px;}.action_buttons .button{margin-right:5px;display:inline-block;border:1px solid #aaa;border-radius:4px;font-size:2.0em;padding:5px 10px 5px 10px;background-image:-webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));}
 .action_buttons .button.disabled{border:1px solid #ddd;background-image:-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));color:#ddd;}
 .story_list{width:100%;border:1px dashed #ccc;padding:10px 0px 10px 0px;margin-top:10px;margin-bottom:50px;}.story_list .title{padding:1px 0px 1px 0px;}
 .story_list .header{padding:1px 0px 1px 0px;border-bottom:1px solid #c0cdcd;font-weight:bold;background-color:#c0c0c0;margin-top:10px;}.story_list .header .pull,.story_list .header .push{color:#fff;}
@@ -62,7 +62,12 @@ div.form{padding:10px;}
 .story_list .item{padding:1px 0px 1px 0px;border-bottom:1px solid #c0cdcd;}
 .story_list .story{padding:1px 0px 1px 0px;border-top:3px solid #888;background-color:#ebebeb;border-bottom:1px solid #c0cdcd;font-weight:bold;}.story_list .story .tasks,.story_list .story .bugs{color:#48bddf;font-style:italic;}
 .story_list .story:first-child{border-top:1px solid #c0cdcd;}
-.story_list .field.tasks,.story_list .field.owner,.story_list .field.bugs,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.usid,.story_list .field.itemid{width:3%;}
+.story_list .field.task_ownership{width:13%;}.story_list .field.task_ownership .sub_field{display:inline-block;}
+.story_list .field.task_ownership .sub_field.user{width:52%;}
+.story_list .field.task_ownership .sub_field.role{width:20%;}
+.story_list .field.task_ownership .sub_field.actual_time{width:25%;}
+.story_list .field.tasks{width:7%;}
+.story_list .field.owner,.story_list .field.bugs,.story_list .field.act_time,.story_list .field.est_time,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.usid,.story_list .field.itemid{width:3%;}
 .story_list .field.no_pull,.story_list .field.no_push,.story_list .field.pull,.story_list .field.push{width:2%;text-align:center;}
 .story_list .field.check{width:2%;}
 .story_list .field.status{width:4%;}

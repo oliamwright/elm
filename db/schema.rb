@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123015913) do
+ActiveRecord::Schema.define(:version => 20120124191752) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -117,9 +118,21 @@ ActiveRecord::Schema.define(:version => 20120123015913) do
 
   add_index "sub_items", ["story_id"], :name => "index_sub_items_on_story_id"
 
+  create_table "task_ownerships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "sub_item_id"
+    t.float    "actual_time", :default => 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "task_ownerships", ["sub_item_id"], :name => "index_task_ownerships_on_sub_item_id"
+  add_index "task_ownerships", ["user_id"], :name => "index_task_ownerships_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

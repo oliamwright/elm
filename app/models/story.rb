@@ -7,11 +7,16 @@ class Story < ActiveRecord::Base
 	belongs_to :project
 	belongs_to :sprint
 	has_many :sub_items
+	has_many :task_ownerships, :through => :sub_items
 
 	scope :backlog, where("sprint_id is null")
 	scope :for_sprint, lambda { |sid| where("sprint_id = ?", sid) }
 
 	before_create :number_story
+
+	def actual_time
+		self.task_ownerships.sum(:actual_time)
+	end
 
 	def can_pull?
 		if self.sprint.nil?

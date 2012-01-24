@@ -1,34 +1,23 @@
 class SubItemsController < ApplicationController
 	before_filter :load_story
+	skip_before_filter :assert_authority!, :only => [ :do_action ]
 
 	def do_action
 		action = params[:si_action]
 		ids = params[:ids].split(/,/)
-		if action.nil? or ids.empty?
-			redirect_to_last_page
-			return
+		unless action && !ids.empty?
+			render :status => 500
 		end
+		items = ids.map { |id| SubItem.find(id) rescue nil }
 		case action
-			when "approved"
-				ids.each do |id|
-					si = SubItem.find(id) rescue nil
-					if si
-						cs = si.status
-						if current_user.can?("from_#{cs}_to_approved".to_sym, si)
-							si.status = 'approved'
-							if si.save
-								st = StatusTransition.new
-								st.sub_item = si
-								st.user = current_user
-								st.from_status = cs
-								st.to_status = 'approved'
-								st.save
-							end
-						end
-					end
+			when "own"
+				items.each do |item|
+					current_user.take_ownership!(item)
 				end
+				render :text => ''
+			else
+				render :status => 500
 		end
-		redirect_to_last_page
 	end
 
 	def create

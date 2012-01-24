@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  sub_item: 
+  actual_time: 1.5
+
+two:
+  user: 
+  sub_item: 
+  actual_time: 1.5

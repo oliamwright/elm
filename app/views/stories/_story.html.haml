@@ -17,7 +17,7 @@
 	.field.est_time= "%0.02f" % story.sub_items.sum(:estimated_time)
 	.field.tasks= story.sub_items.tasks.count
 	.field.bugs= story.sub_items.bugs.count
-	.field.act_time= "--"
+	.field.act_time= "%0.02f" % story.actual_time
 	.field.created_by= story.owner.full_name
 	.field.created_at= story.created_at.to_date
 	.field.approved_by= "--"
