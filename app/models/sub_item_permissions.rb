@@ -20,7 +20,8 @@ module SubItemPermissions
 			[ :from_in_progress_to_ignored, 'can move sub-items from in_progress to ignored' ],
 			[ :from_completed_to_ignored, 'can move sub-items from completed to ignored' ],
 			[ :from_completed_to_rolled, 'can move sub-items from completed to rolled' ],
-			[ :from_ignored_to_open, 'can move sub-items from ignored to open' ]
+			[ :from_ignored_to_open, 'can move sub-items from ignored to open' ],
+			[ :take_ownership, 'can take ownership of sub-items' ]
 		]
 	end
 

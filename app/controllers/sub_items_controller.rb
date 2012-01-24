@@ -12,7 +12,9 @@ class SubItemsController < ApplicationController
 		case action
 			when "own"
 				items.each do |item|
-					current_user.take_ownership!(item)
+					if current_user.can?(:take_ownership, item)
+						current_user.take_ownership!(item)
+					end
 				end
 				render :text => ''
 			else
