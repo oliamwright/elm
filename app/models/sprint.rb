@@ -63,6 +63,17 @@ class Sprint < ActiveRecord::Base
 		ns
 	end
 
+	def force_next_sprint!
+		ns = Sprint.where("project_id = ? and number > ?", self.project_id, self.number).order("number asc").first
+		if ns.nil?
+			ns = Sprint.new
+			ns.project = self.project
+			ns.number = self.number + 1
+			ns.save
+		end
+		ns
+	end
+
 	def previous_sprint
 		ps = Sprint.where("project_id = ? and number < ?", self.project_id, self.number).order("number desc").first
 	end

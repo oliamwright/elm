@@ -93,8 +93,8 @@ class Project < ActiveRecord::Base
 	def assert_sprints!
 		if self.duration && self.start_date && self.end_date && self.sprint_duration
 			s = self.first_sprint
-			while s
-				s = s.next_sprint
+			while s.number < (self.duration / (self.sprint_duration / 1.week))
+				s = s.force_next_sprint!
 			end
 			s = self.last_sprint
 			while s.deletable?
