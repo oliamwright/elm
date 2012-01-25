@@ -29,6 +29,19 @@ class SubItem < ActiveRecord::Base
 
 	STATUSES = STATUS_MAP.keys
 
+	def set_status!(to_status, user)
+		from_status = self.status
+		self.status = to_status
+		if self.save
+			st = StatusTransition.new
+			st.sub_item = self
+			st.user = user
+			st.from_status = from_status
+			st.to_status = to_status
+			st.save
+		end
+	end
+
 	def display_estimated_time
 		"%0.02f" % self.estimated_time
 	end
