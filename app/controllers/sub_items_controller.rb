@@ -31,10 +31,10 @@ class SubItemsController < ApplicationController
 					end
 				end
 				render :text => ''
-			when "rolled"
+			when "dev"
 				items.each do |item|
-					if current_user.can?("from_#{item.status}_to_rolled".to_sym, item)
-						item.set_status!(:rolled, current_user)
+					if current_user.can?("from_#{item.status}_to_dev".to_sym, item)
+						item.set_status!(:dev, current_user)
 					end
 				end
 				render :text => ''
