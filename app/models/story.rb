@@ -14,6 +14,19 @@ class Story < ActiveRecord::Base
 
 	before_create :number_story
 
+	VALUES = [ "Trivial", "Low", "Medium", "High", "Critical" ]
+	VALUE_MAP = [
+		[1, "Trivial"],
+		[2, "Low"],
+		[3, "Medium"],
+		[4, "High"],
+		[5, "Critical"]
+	]
+
+	def display_client_value
+		VALUES[self.client_value - 1]
+	end
+
 	def actual_time
 		self.task_ownerships.sum(:actual_time)
 	end

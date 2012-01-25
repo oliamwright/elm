@@ -48,6 +48,12 @@ var bipCallbacks = new function() {
 		$("#story_" + id).load("/stories/" + id + " #story_" + id, unwrap);
 	};
 
+	this.story_client_value = function(data) {
+		container = $(data).parents(".story");
+		id = container.attr('data-id');
+		$("#story_" + id).load("/stories/" + id + " #story_" + id, unwrap);
+	};
+
 	this.project_test_output_url = function(data) {
 		window.location=window.location;
 	};
