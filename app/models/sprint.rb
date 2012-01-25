@@ -32,7 +32,7 @@ class Sprint < ActiveRecord::Base
 	end
 
 	def start_date
-		self.project.start_date + ((self.number - 1) * self.project.sprint_duration).seconds
+		self.project.start_date + ((self.number - 1) * self.project.sprint_duration).seconds rescue Date.new(1975,1,13)
 	end
 
 	def end_date
