@@ -11,6 +11,7 @@ class Story < ActiveRecord::Base
 
 	scope :backlog, where("sprint_id is null")
 	scope :for_sprint, lambda { |sid| where("sprint_id = ?", sid) }
+	default_scope order("number asc")
 
 	before_create :number_story
 

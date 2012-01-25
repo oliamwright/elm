@@ -15,6 +15,18 @@ class Project < ActiveRecord::Base
 
 	DROPBOX_FOLDER = "#{Rails.root}/dropbox"
 
+	def renumber_backlog_if_necessary!
+		nec = false
+		c = 1
+		self.stories.backlog.order("number asc").each do |s|
+			nec = true unless s.number == c
+			c += 1
+		end
+		if nec
+			self.renumber_backlog!
+		end
+	end
+
 	def renumber_backlog!
 		c = 1
 		self.stories.backlog.order("number asc").each do |s|

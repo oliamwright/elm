@@ -6,12 +6,14 @@ class SprintsController < ApplicationController
 			@sprint = @sprint.next_sprint
 		end
 		if @sprint
+			@sprint.renumber_if_necessary!
 			render :action => 'show'
 		end
 	end
 
 	def show
 		@sprint = Sprint.find(params[:id]) rescue nil
+		@sprint.renumber_if_necessary!
 	end
 
 end

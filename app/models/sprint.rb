@@ -19,6 +19,18 @@ class Sprint < ActiveRecord::Base
 		end
 	end
 
+	def renumber_if_necessary!
+		nec = false
+		c = 1
+		self.stories.order("number asc").each do |s|
+			nec = true unless s.number == c
+			c += 1
+		end
+		if nec
+			self.renumber!
+		end
+	end
+
 	def display_number
 		"#{self.number}"
 	end
