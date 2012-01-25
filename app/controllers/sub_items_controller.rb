@@ -45,6 +45,20 @@ class SubItemsController < ApplicationController
 					end
 				end
 				render :text => ''
+			when "open"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_open".to_sym, item)
+						item.set_status!(:open, current_user)
+					end
+				end
+				render :text => ''
+			when "ignore"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_ignored".to_sym, item)
+						item.set_status!(:ignored, current_user)
+					end
+				end
+				render :text => ''
 			else
 				render :status => 500
 		end
