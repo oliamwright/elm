@@ -59,6 +59,13 @@ class SubItemsController < ApplicationController
 					end
 				end
 				render :text => ''
+			when "delete"
+				items.each do |item|
+					if current_user.can?(:delete, item)
+						item.destroy
+					end
+				end
+				render :text => ''
 			else
 				render :status => 500
 		end

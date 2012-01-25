@@ -8,6 +8,7 @@ module SubItemPermissions
 	def self.model_permissions
 		[
 			[ :create, 'can create story sub-items' ],
+			[ :delete, 'can delete sub-items' ],
 			[ :from_open_to_approved, 'can move sub-items from open to approved' ],
 			[ :from_open_to_waiting, 'can move sub-items from open to waiting' ],
 			[ :from_open_to_ignored, 'can move sub-items from open to ignored' ],
