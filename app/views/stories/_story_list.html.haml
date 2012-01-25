@@ -29,7 +29,7 @@
 	});
 
 	$('.check input[name="sel"]').click(function() {
-		var ch = $(this).attr('checked');
+		var ch = $(this).attr('checked') == 'checked';
 		var cl = $(this).parent().attr('data-class');
 		var id = $(this).parent().attr('data-id');
 		if (cl == 'sub_item' && id == 'all') {
