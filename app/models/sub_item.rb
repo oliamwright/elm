@@ -23,8 +23,12 @@ class SubItem < ActiveRecord::Base
 		:approved => [ :waiting, :in_progress, :ignored, :completed ],
 		:waiting => [ :in_progress, :ignored ],
 		:in_progress => [ :completed, :ignored ],
-		:completed => [ :ignored, :rolled ],
-		:rolled => [],
+		:completed => [ :ignored, :dev ],
+		:dev => [ :tested, :rejected ],
+		:rejected => [ :in_progress ],
+		:tested => [ :stage ],
+		:stage => [ :prod ],
+		:prod => [],
 		:ignored => [ :open ]
 	}
 

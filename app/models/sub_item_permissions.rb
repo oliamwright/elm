@@ -21,7 +21,12 @@ module SubItemPermissions
 			[ :from_in_progress_to_completed, 'can move sub-items from in_progress to completed' ],
 			[ :from_in_progress_to_ignored, 'can move sub-items from in_progress to ignored' ],
 			[ :from_completed_to_ignored, 'can move sub-items from completed to ignored' ],
-			[ :from_completed_to_rolled, 'can move sub-items from completed to rolled' ],
+			[ :from_completed_to_dev, 'can move sub-items from completed to dev' ],
+			[ :from_dev_to_tested, 'can move sub-items from dev to tested' ],
+			[ :from_dev_to_rejected, 'can move sub-items from dev to rejected' ],
+			[ :from_rejected_to_in_progress, 'can move sub-items from rejected to in_progress' ],
+			[ :from_tested_to_stage, 'can move sub-items from tested to stage' ],
+			[ :from_stage_to_prod, 'can move sub-items from stage to prod' ],
 			[ :from_ignored_to_open, 'can move sub-items from ignored to open' ],
 			[ :take_ownership, 'can take ownership of sub-items' ]
 		]

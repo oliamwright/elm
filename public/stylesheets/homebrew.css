@@ -81,7 +81,7 @@ div.form{padding:10px;}
 .story_list .item.status_waiting,.story_list .item.status_in_progress{background-color:#caf1fd;}
 .story_list .item.status_waiting{background-color:#f4a3bf;}
 .story_list .item.status_completed{background-color:#e0edd6;}
-.story_list .item.status_rolled{background-color:#96e8d2;}
+.story_list .item.status_prod{background-color:#96e8d2;}
 .story_list .item.status_ignored{background-color:#fff;color:#bbb;}.story_list .item.status_ignored .field{text-decoration:line-through;}
 pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .best_in_place{width:100%;display:block;padding:3px 0px;font-family:arial;white-space:pre-wrap;}
