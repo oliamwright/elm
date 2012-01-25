@@ -32,7 +32,8 @@ div.form{padding:10px;}
 .project .project_team_bar .field10{display:inline-block;width:83%;}
 .project .project_team_bar .summary.row{margin-top:20px;background-color:#eee;}
 .project .project_stats_bar{margin-top:20px;}.project .project_stats_bar .field{width:8%;}
-.project .new_user_story_bar{margin-top:-1px;}.project .new_user_story_bar .new_story input{width:100%;font-size:1.5em;padding:5px;background-color:#f7fed6;border:1px solid #a6b8b7;}
+.new_user_story_bar{margin-top:-1px;}
+.new_story input{width:100%;font-size:1.5em;padding:5px;background-color:#f7fed6;border:1px solid #a6b8b7;}
 .columns{width:100%;}
 .column{float:left;padding:10px;}
 .column.user_list{width:25%;}
@@ -53,7 +54,7 @@ div.form{padding:10px;}
 .story .field.pull,.story .field.push{font-size:1.5em;color:#ffffff;font-weight:bold;background-image:-webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#999999));padding:3px 0px 3px 0px;}
 .stories .new_task{margin-bottom:15px;}.stories .new_task .link a{color:#08c;padding:10px;display:inline-block;}
 .stories .new_task form.formtastic fieldset>ol>li.string input{width:100%;max-width:100%;}
-.action_buttons{margin-top:5px;}.action_buttons .button{margin-right:5px;display:inline-block;border:1px solid #aaa;border-radius:4px;font-size:2.0em;padding:5px 10px 5px 10px;background-image:-webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));}
+.action_buttons{margin-top:5px;}.action_buttons .button{margin-right:5px;display:inline-block;border:1px solid #aaa;border-radius:4px;font-size:1.4em;padding:5px 10px 5px 10px;background-image:-webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));}
 .action_buttons .button.disabled{border:1px solid #ddd;background-image:-webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));color:#ddd;}
 .story_list{width:100%;border:1px dashed #ccc;padding:10px 0px 10px 0px;margin-top:10px;margin-bottom:50px;}.story_list .title{padding:1px 0px 1px 0px;}
 .story_list .header{padding:1px 0px 1px 0px;border-bottom:1px solid #c0cdcd;font-weight:bold;background-color:#c0c0c0;margin-top:10px;}.story_list .header .pull,.story_list .header .push{color:#fff;}
