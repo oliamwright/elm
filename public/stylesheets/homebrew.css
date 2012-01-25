@@ -52,6 +52,7 @@ div.form{padding:10px;}
 .permission_data .user_perms{border:1px solid #000;padding:5px;}
 .permission_data .link{margin-top:10px;font-weight:bold;}
 .story .field.pull,.story .field.push{font-size:1.5em;color:#ffffff;font-weight:bold;background-image:-webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#999999));padding:3px 0px 3px 0px;}
+.item .field.type_bug{background-color:#cd0707;color:#fff;font-weight:bold;}
 .stories .new_task{margin-bottom:15px;}.stories .new_task .link a{color:#08c;padding:10px;display:inline-block;}
 .stories .new_task form.formtastic fieldset>ol>li.string input{width:100%;max-width:100%;}
 .action_buttons{margin-top:5px;}.action_buttons .button{margin-right:5px;display:inline-block;border:1px solid #aaa;border-radius:4px;font-size:1.4em;padding:5px 10px 5px 10px;background-image:-webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));}

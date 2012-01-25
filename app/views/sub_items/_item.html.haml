@@ -5,7 +5,7 @@
 	.field.usid
 		%span.usid= item.display_number
 		%span.taskid{:style => 'display: none;'}= item.id
-	.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
+	.field.value{:class => "type_#{item.item_type}"}= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
 	.field.details
 		%pre= best_in_place_if ["open"].include?(item.status), item, :description, :type => :textarea
 	.field.est_time= best_in_place_if !["completed", "rolled", "in_progress"].include?(item.status), item, :estimated_time, :display_as => :display_estimated_time
