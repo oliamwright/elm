@@ -8,7 +8,7 @@
 	.field.value= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
 	.field.details
 		%pre= best_in_place item, :description, :type => :textarea
-	.field.est_time= best_in_place item, :estimated_time, :display_as => :display_estimated_time
+	.field.est_time= best_in_place_if !["completed", "rolled", "in_progress"].include?(item.status), item, :estimated_time, :display_as => :display_estimated_time
 	- if item.task_ownerships.count > 0
 		.field.task_ownership
 			- item.task_ownerships.each do |to|
@@ -18,7 +18,7 @@
 					.sub_field.role
 						= "--"
 					.sub_field.actual_time
-						= best_in_place to, :actual_time, :display_as => :display_actual_time
+						= best_in_place_if to.user == current_user, to, :actual_time, :display_as => :display_actual_time
 	- else
 		.field.tasks= "--"
 		.field.bugs= "--"
@@ -29,3 +29,18 @@
 	.field.approved_at= "--"
 	.field.completed_at= "--"
 	.field.push
+:javascript
+	$('.check input[name="sel"]').click(function() {
+		var ch = $(this).attr('checked') == 'checked';
+		var cl = $(this).parent().attr('data-class');
+		var id = $(this).parent().attr('data-id');
+		if (cl == 'sub_item' && id == 'all') {
+			$(this).closest('.tasks').find('.item .check input[name="sel"]').attr('checked', ch);
+		} else if (cl == 'story' && id == 'all') {
+			$('input[name="sel"]').attr('checked', ch);
+		} else if (cl == 'story') {
+			$(this).closest('.story').next('.tasks').find('.check input[name="sel"]').attr('checked', ch);
+		}
+		update_buttons();
+	});
+

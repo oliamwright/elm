@@ -5,8 +5,9 @@ class SubItem < ActiveRecord::Base
 
   belongs_to :story
 	belongs_to :owner, :class_name => 'User'
-	has_many :task_ownerships
+	has_many :task_ownerships, :dependent => :destroy
 	has_many :users, :through => :task_ownerships
+	has_many :status_transitions, :dependent => :destroy
 
 	scope :bugs, where("item_type = 'bug'")
 	scope :tasks, where("item_type = 'task'")
@@ -19,7 +20,7 @@ class SubItem < ActiveRecord::Base
 
 	STATUS_MAP = {
 		:open => [ :approved, :waiting, :ignored ],
-		:approved => [ :waiting, :in_progress, :ignored ],
+		:approved => [ :waiting, :in_progress, :ignored, :completed ],
 		:waiting => [ :in_progress, :ignored ],
 		:in_progress => [ :completed, :ignored ],
 		:completed => [ :ignored, :rolled ],
@@ -28,6 +29,20 @@ class SubItem < ActiveRecord::Base
 	}
 
 	STATUSES = STATUS_MAP.keys
+
+	def set_status!(to_status, user)
+		from_status = self.status
+		return if from_status.to_s == to_status.to_s
+		self.status = to_status
+		if self.save
+			st = StatusTransition.new
+			st.sub_item = self
+			st.user = user
+			st.from_status = from_status
+			st.to_status = to_status
+			st.save
+		end
+	end
 
 	def display_estimated_time
 		"%0.02f" % self.estimated_time

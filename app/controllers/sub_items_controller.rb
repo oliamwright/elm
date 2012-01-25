@@ -17,6 +17,55 @@ class SubItemsController < ApplicationController
 					end
 				end
 				render :text => ''
+			when "approved"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_approved".to_sym, item)
+						item.set_status!(:approved, current_user)
+					end
+				end
+				render :text => ''
+			when "completed"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_completed".to_sym, item)
+						item.set_status!(:completed, current_user)
+					end
+				end
+				render :text => ''
+			when "rolled"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_rolled".to_sym, item)
+						item.set_status!(:rolled, current_user)
+					end
+				end
+				render :text => ''
+			when "waiting"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_waiting".to_sym, item)
+						item.set_status!(:waiting, current_user)
+					end
+				end
+				render :text => ''
+			when "open"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_open".to_sym, item)
+						item.set_status!(:open, current_user)
+					end
+				end
+				render :text => ''
+			when "ignore"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_ignored".to_sym, item)
+						item.set_status!(:ignored, current_user)
+					end
+				end
+				render :text => ''
+			when "delete"
+				items.each do |item|
+					if current_user.can?(:delete, item)
+						item.destroy
+					end
+				end
+				render :text => ''
 			else
 				render :status => 500
 		end
