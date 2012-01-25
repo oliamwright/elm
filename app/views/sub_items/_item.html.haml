@@ -18,7 +18,7 @@
 					.sub_field.role
 						= "--"
 					.sub_field.actual_time
-						= best_in_place to, :actual_time, :display_as => :display_actual_time
+						= best_in_place_if to.user == current_user, to, :actual_time, :display_as => :display_actual_time
 	- else
 		.field.tasks= "--"
 		.field.bugs= "--"
