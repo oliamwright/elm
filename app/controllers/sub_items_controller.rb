@@ -38,6 +38,13 @@ class SubItemsController < ApplicationController
 					end
 				end
 				render :text => ''
+			when "waiting"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_waiting".to_sym, item)
+						item.set_status!(:waiting, current_user)
+					end
+				end
+				render :text => ''
 			else
 				render :status => 500
 		end
