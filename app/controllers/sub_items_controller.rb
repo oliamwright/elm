@@ -24,6 +24,13 @@ class SubItemsController < ApplicationController
 					end
 				end
 				render :text => ''
+			when "completed"
+				items.each do |item|
+					if current_user.can?("from_#{item.status}_to_completed".to_sym, item)
+						item.set_status!(:completed, current_user)
+					end
+				end
+				render :text => ''
 			else
 				render :status => 500
 		end

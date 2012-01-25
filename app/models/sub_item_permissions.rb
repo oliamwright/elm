@@ -14,6 +14,7 @@ module SubItemPermissions
 			[ :from_approved_to_waiting, 'can move sub-items from approved to waiting' ],
 			[ :from_approved_to_in_progress, 'can move sub-items from approved to in_progress' ],
 			[ :from_approved_to_ignored, 'can move sub-items from approved to ignored' ],
+			[ :from_approved_to_completed, 'can move sub-items from approved to completed' ],
 			[ :from_waiting_to_in_progress, 'can move sub-items from waiting to in_progress' ],
 			[ :from_waiting_to_ignored, 'can move sub-items from waiting to ignored' ],
 			[ :from_in_progress_to_completed, 'can move sub-items from in_progress to completed' ],

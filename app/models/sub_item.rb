@@ -19,7 +19,7 @@ class SubItem < ActiveRecord::Base
 
 	STATUS_MAP = {
 		:open => [ :approved, :waiting, :ignored ],
-		:approved => [ :waiting, :in_progress, :ignored ],
+		:approved => [ :waiting, :in_progress, :ignored, :completed ],
 		:waiting => [ :in_progress, :ignored ],
 		:in_progress => [ :completed, :ignored ],
 		:completed => [ :ignored, :rolled ],
