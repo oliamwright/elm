@@ -34,16 +34,16 @@ class SubItem < ActiveRecord::Base
 
 	STATUSES = STATUS_MAP.keys
 
+	def complete?
+		["completed", "dev", "tested", "stage", "prod"].include?(self.status)
+	end
+
 	def set_status!(to_status, user)
 		from_status = self.status
 		return if from_status.to_s == to_status.to_s
 		self.status = to_status
 		if self.save
-			st = StatusTransition.new
-			st.sub_item = self
-			st.user = user
-			st.from_status = from_status
-			st.to_status = to_status
+			st = StatusTransitionEvent.new.init(user, self, from_status, to_status)
 			st.save
 		end
 	end

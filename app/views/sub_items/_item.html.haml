@@ -8,7 +8,7 @@
 	.field.value{:class => "type_#{item.item_type}"}= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
 	.field.details
 		%pre= best_in_place_if ["open"].include?(item.status), item, :description, :type => :textarea
-	.field.est_time= best_in_place_if !["completed", "rolled", "in_progress"].include?(item.status), item, :estimated_time, :display_as => :display_estimated_time
+	.field.est_time= best_in_place_if !item.complete?, item, :estimated_time, :display_as => :display_estimated_time
 	- if item.task_ownerships.count > 0
 		.field.task_ownership
 			- item.task_ownerships.each do |to|
@@ -18,7 +18,7 @@
 					.sub_field.role
 						= "--"
 					.sub_field.actual_time
-						= best_in_place_if (to.user == current_user && !["completed", "rolled"].include?(to.sub_item.status)), to, :actual_time, :display_as => :display_actual_time
+						= best_in_place_if (to.user == current_user), to, :actual_time, :display_as => :display_actual_time
 	- else
 		.field.tasks= "--"
 		.field.bugs= "--"

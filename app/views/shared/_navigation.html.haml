@@ -1,5 +1,8 @@
 %div.navigation
-	.title= "HOMEBREW"
+	- if Random.rand(10000) == 0
+		.title= "KOALABEAR"
+	- else
+		.title= "HOMEBREW"
 	- if user_signed_in?
 		- if permitted?(:new, Project)
 			.new_project
@@ -37,6 +40,7 @@
 				.payables.nav_sub_menu= "PAYABLES"
 			- permitted?(:show_receivables, @project) do
 				.receivables.nav_sub_menu= "RECEIVABLES"
+			.recent.nav_sub_menu= link_to 'Recent Activity', recent_activity_url
 			.logout.nav_sub_menu= link_to "logout", destroy_user_session_url
 			.clear
 	- else

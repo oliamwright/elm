@@ -69,11 +69,11 @@ div.form{padding:10px;}
 .story_list .field.task_ownership .sub_field.role{width:20%;}
 .story_list .field.task_ownership .sub_field.actual_time{width:25%;}
 .story_list .field.tasks{width:7%;}
-.story_list .field.owner,.story_list .field.bugs,.story_list .field.act_time,.story_list .field.est_time,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.usid,.story_list .field.itemid{width:3%;}
-.story_list .field.no_pull,.story_list .field.no_push,.story_list .field.pull,.story_list .field.push{width:2%;text-align:center;}
+.story_list .field.owner,.story_list .field.bugs,.story_list .field.act_time,.story_list .field.est_time,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.usid,.story_list .field.itemid{width:4%;}
+.story_list .field.no_pull,.story_list .field.no_push,.story_list .field.pull,.story_list .field.push{width:2%;text-align:center;background:#888;}
 .story_list .field.check{width:2%;}
 .story_list .field.status{width:4%;}
-.story_list .field.details{width:26%;}
+.story_list .field.details{width:25%;}
 .story_list .field{width:7%;display:inline-block;}
 .story_list .story.status_open .field.status,.story_list .item.status_open .field.status{color:#ff1e0a;}
 .story_list .story.status_approved .field.status,.story_list .item.status_approved .field.status{color:#48bddf;font-style:italic;}
@@ -85,7 +85,7 @@ div.form{padding:10px;}
 .story_list .item.status_ignored{background-color:#fff;color:#bbb;}.story_list .item.status_ignored .field{text-decoration:line-through;}
 pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .best_in_place{width:100%;display:block;padding:3px 0px;font-family:arial;white-space:pre-wrap;}
-.sprint_navigation .sprint_tab{display:inline-block;font-size:1.7em;background-color:#d1fdfc;padding:8px 12px 8px 12px;}
+.sprint_navigation .sprint_tab{display:inline-block;font-size:1.7em;background-color:#d1fdfc;}.sprint_navigation .sprint_tab a{padding:8px 12px 8px 12px;display:inline-block;}
 .sprint_navigation .sprint_tab.active{background-color:#77fdfb;font-weight:bold;border-bottom:solid 2px #000000;}
 .sprint_navigation .sprint_tab:hover{background-color:#77fdfb;}
 .sprint_navigation .sprint_tab.complete{background-color:#ccffcc;}
@@ -94,7 +94,7 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .sprint .row.no_top{border-top:none;}
 .sprint .row.last{border-bottom:1px solid #c0c0c0;}
 .sprint .field{display:inline-block;}
-.sprint .sprint_team{margin-top:15px;}.sprint .sprint_team .field{width:11%;}
+.sprint .sprint_team{margin-top:0px;}.sprint .sprint_team .field{width:11%;}
 .debug1{border:1px solid #f00;}
 .debug2{border:1px solid #0f0;}
 .debug3{border:1px solid #00f;}

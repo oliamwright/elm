@@ -98,11 +98,7 @@ class SubItemsController < ApplicationController
 					else
 						if @sub_item.update_attributes(params[:sub_item])
 							if fs != ts
-								@st = StatusTransition.new
-								@st.sub_item = @sub_item
-								@st.user = current_user
-								@st.from_status = fs
-								@st.to_status = ts
+								@st = StatusTransitionEvent.new.init(current_user, @sub_item, fs, ts)
 								@st.save
 							end
 							format.html { redirect_to(@sub_item, :notice => "sub_item '#{@sub_item.details}' updated.") }

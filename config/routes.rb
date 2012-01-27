@@ -1,6 +1,9 @@
 Tm::Application.routes.draw do
   devise_for :users
 
+	match 'recent_activity' => 'log_events#index', :as => :recent_activity
+	resources :log_events
+
 	resources :roles do
 		member do
 			get 'grant'

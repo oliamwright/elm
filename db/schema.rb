@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120125185710) do
+ActiveRecord::Schema.define(:version => 20120127171929) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(:version => 20120125185710) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "log_events", :force => true do |t|
+    t.string   "type"
+    t.integer  "story_id"
+    t.integer  "sub_item_id"
+    t.text     "yaml_data"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "log_events", ["story_id"], :name => "index_log_events_on_story_id"
+  add_index "log_events", ["sub_item_id"], :name => "index_log_events_on_sub_item_id"
+  add_index "log_events", ["user_id"], :name => "index_log_events_on_user_id"
 
   create_table "permissions", :force => true do |t|
     t.string   "scope"
@@ -81,18 +95,6 @@ ActiveRecord::Schema.define(:version => 20120125185710) do
 
   add_index "sprints", ["project_id"], :name => "index_sprints_on_project_id"
 
-  create_table "status_transitions", :force => true do |t|
-    t.integer  "sub_item_id"
-    t.integer  "user_id"
-    t.string   "from_status"
-    t.string   "to_status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "status_transitions", ["sub_item_id"], :name => "index_status_transitions_on_sub_item_id"
-  add_index "status_transitions", ["user_id"], :name => "index_status_transitions_on_user_id"
-
   create_table "stories", :force => true do |t|
     t.string   "description"
     t.integer  "number"
@@ -106,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20120125185710) do
   end
 
   create_table "sub_items", :force => true do |t|
-    t.string   "description"
+    t.text     "description"
     t.integer  "number"
     t.string   "item_type"
     t.string   "status"
