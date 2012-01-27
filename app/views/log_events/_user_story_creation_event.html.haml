@@ -1,2 +1,2 @@
 .log_event.user_story_creation_event
-	=raw "#{event.ts_string} #{event.user.full_name} created user story '#{link_to event.story.display_number, story_url(event.story)}' for project '#{event.story.project.name}': #{event.story.description}"
+	=raw "#{event.ts_string} #{project_span(event.story)} #{event.user.full_name} created user story '#{link_to event.story.display_number, story_url(event.story)}': #{event.story.description}"

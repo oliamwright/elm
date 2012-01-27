@@ -12,7 +12,7 @@ class LogEvent < ActiveRecord::Base
 	end
 
 	def ts_string
-		self.created_at.strftime("[%Y.%m.%d %H:%M]")
+		self.created_at.strftime("<span class='timestamp'>[%Y.%m.%d %H:%M]</span>")
 	end
 
 	def data

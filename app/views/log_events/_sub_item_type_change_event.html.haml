@@ -1,0 +1,2 @@
+.log_event.sub_item_type_change
+	=raw "#{event.ts_string} #{project_span(event.sub_item)} #{event.user.full_name} changed #{event.data[:old_type]} '#{link_to event.sub_item.display_number, sub_item_url(event.sub_item)}' to '#{event.data[:new_type]}': #{event.sub_item.description}"

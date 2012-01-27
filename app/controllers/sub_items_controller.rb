@@ -90,34 +90,45 @@ class SubItemsController < ApplicationController
 	def update
 		@sub_item = SubItem.find(params[:id]) rescue nil
 		if @sub_item
-			respond_to do |format|
-				if params[:sub_item][:status]
-					fs = @sub_item.status
-					ts = params[:sub_item][:status]
-					if !current_user.can?("from_#{fs}_to_#{ts}".to_sym, @sub_item)
-						format.html { redirect_to(@sub_item, :notice => "sub_item '#{@sub_item.details}' not updated.") }
-						format.json { respond_bip_error(@sub_item) }
-					else
-						if @sub_item.update_attributes(params[:sub_item])
-							if fs != ts
-								@st = StatusTransitionEvent.new.init(current_user, @sub_item, fs, ts)
-								@st.save
-							end
-							format.html { redirect_to(@sub_item, :notice => "sub_item '#{@sub_item.details}' updated.") }
-							format.json { respond_with_bip(@sub_item) }
-						else
-							format.html { }
-							format.json { respond_with_bip(@sub_item) }
-						end
+
+			e = nil
+			error = false
+
+			if params[:sub_item][:item_type]
+				ot = @sub_item.item_type
+				nt = params[:sub_item][:item_type]
+				if !(ot == nt)
+					e = SubItemTypeChangeEvent.new.init(current_user, @sub_item, ot, nt)
+				end
+			elsif params[:sub_item][:status]
+				fs = @sub_item.status
+				ts = params[:sub_item][:status]
+				if !current_user.can?("from_#{fs}_to_#{ts}".to_sym, @sub_item)
+					error = true
+				else
+					if !(fs == ts)
+						e = StatusTransitionEvent.new.init(current_user, @sub_item, fs, ts)
+					end
+				end
+			end
+
+			unless error
+				if @sub_item.update_attributes(params[:sub_item])
+					if !e.nil?
+						e.save
 					end
 				else
-					if @sub_item.update_attributes(params[:sub_item])
-						format.html { redirect_to(@sub_item, :notice => "sub_item '#{@sub_item.details}' updated.") }
-						format.json { respond_with_bip(@sub_item) }
-					else
-						format.html { }
-						format.json { respond_with_bip(@sub_item) }
-					end
+					error = true
+				end
+			end
+
+			respond_to do |format|
+				if error
+					format.html { redirect_to(@sub_item, :notice => "sub_item '#{@sub_item.details}' not updated.") }
+					format.json { respond_with_bip_error(@sub_item) }
+				else
+					format.html { redirect_to(@sub_item, :notice => "sub_item '#{@sub_item.details}' updated.") }
+					format.json { respond_with_bip(@sub_item) }
 				end
 			end
 		end
