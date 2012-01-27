@@ -96,7 +96,8 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .sprint .field{display:inline-block;}
 .sprint .sprint_team{margin-top:0px;}.sprint .sprint_team .field{width:11%;}
 .log_event:first-child{border-top:1px solid #444;}
-.log_event{font-size:1.5em;border-bottom:1px solid #444;padding:5px;margin-bottom:5px;}.log_event .timestamp{font-size:0.9em;}
+.log_event{font-size:1.5em;border-bottom:1px solid #444;padding:5px;margin-bottom:5px;}.log_event .timestamp{color:#bbb;}
+.log_event a{color:#008cb5;}
 .debug1{border:1px solid #f00;}
 .debug2{border:1px solid #0f0;}
 .debug3{border:1px solid #00f;}

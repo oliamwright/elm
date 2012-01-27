@@ -2,9 +2,9 @@ module SubItemsHelper
 
 	def sub_item_url(item)
 		if item.story.sprint.nil?
-			backlog_project_url(item.story.project)
+			backlog_project_url(item.story.project, :anchor => "si_#{item.display_number}")
 		else
-			project_sprint_url(item.story.project, item.story.sprint)
+			project_sprint_url(item.story.project, item.story.sprint, :anchor => "si_#{item.display_number}")
 		end
 	end
 

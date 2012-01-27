@@ -1,3 +1,4 @@
+%a{:name => "si_#{item.display_number}"}
 .item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
 	.field.pull
 	.field.check{:'data-class' => 'sub_item', :'data-id' => item.id}= check_box_tag :sel
