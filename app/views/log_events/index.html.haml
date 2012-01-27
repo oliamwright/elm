@@ -1,4 +1,2 @@
 .log_events
-	- @events.each do |event|
-		.event
-			= event.detail_string
+	= render :partial => 'log_event', :collection => @events

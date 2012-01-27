@@ -1,0 +1,2 @@
+.log_event.project_creation
+	=raw "#{event.ts_string} #{event.user.full_name} created project '#{link_to event.project.name, backlog_project_url(event.project)}'"

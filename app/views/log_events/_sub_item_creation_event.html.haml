@@ -1,0 +1,2 @@
+.log_event.sub_item_creation
+	=raw "#{event.ts_string} #{event.user.full_name} created #{event.sub_item.item_type} '#{link_to event.sub_item.display_number, sub_item_url(event.sub_item)}' for project '#{event.sub_item.story.project.name}' : #{event.sub_item.description}"
