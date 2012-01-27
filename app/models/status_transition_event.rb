@@ -1,7 +1,6 @@
 class StatusTransitionEvent < LogEvent
 
 	def init(user, sub_item, from_status, to_status)
-		puts "StatusTransitionEvent::init(#{user}, #{sub_item}, #{from_status}, #{to_status})"
 		self.user = user
 		self.sub_item = sub_item
 		self.data[:from_status] = from_status

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	before_filter :authenticate_user!, :except => [ :home ]
 	before_filter :get_version
 	before_filter :load_project
-	before_filter :assert_authority!, :except => [ :home ]
+	#before_filter :assert_authority!, :except => [ :home ]
 	before_filter :assert_guid!
 	before_filter :update_page_history
 	before_filter :check_css

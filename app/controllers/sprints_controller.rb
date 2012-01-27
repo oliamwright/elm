@@ -1,5 +1,7 @@
 class SprintsController < ApplicationController
 	
+	before_filter :assert_project_configured
+
 	def index
 		@sprint = @project.first_sprint
 		while @sprint and @sprint.complete?
@@ -14,6 +16,16 @@ class SprintsController < ApplicationController
 	def show
 		@sprint = Sprint.find(params[:id]) rescue nil
 		@sprint.renumber_if_necessary!
+	end
+
+	private
+
+	def assert_project_configured
+		if @project
+			unless @project.start_date && @project.duration && @project.sprint_duration
+				redirect_to backlog_project_url(@project)
+			end
+		end
 	end
 
 end

@@ -29,7 +29,12 @@ class User < ActiveRecord::Base
 		to = TaskOwnership.new
 		to.user = self
 		to.sub_item = task
-		return to.save
+		if to.save
+			e = SubItemOwnershipEvent.new.init(self, task).save
+			return true
+		else
+			return false
+		end
 	end
 
 	def formatted_phone

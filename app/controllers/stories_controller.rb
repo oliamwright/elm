@@ -8,6 +8,7 @@ class StoriesController < ApplicationController
 		@story.sprint = @sprint if @sprint
 		@story.owner = current_user
 		if @story.save
+			e = UserStoryCreationEvent.new.init(current_user, @story).save
 			flash[:notice] = 'Story created.'
 		else
 			flash[:error] = 'Story could not be created.'

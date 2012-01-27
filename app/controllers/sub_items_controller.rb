@@ -81,7 +81,9 @@ class SubItemsController < ApplicationController
 		@sub_item.owner = current_user
 		@sub_item.status = SubItem::INITIAL_STATUS
 		@sub_item.item_type = SubItem::DEFAULT_ITEM_TYPE
-		@sub_item.save
+		if @sub_item.save
+			e = SubItemCreationEvent.new.init(current_user, @sub_item).save
+		end
 		redirect_to_last_page
 	end
 
