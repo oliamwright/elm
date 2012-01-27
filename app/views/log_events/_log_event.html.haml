@@ -1,6 +1,4 @@
 - specific_partial_name = "#{log_event.type.underscore}"
 - partial = "log_events/#{specific_partial_name}"
-- if File.exists?(File.join(Rails.root, "app", "views", "log_events", "_#{specific_partial_name}.html.haml"))
-	= render :partial => specific_partial_name, :locals => { :event => log_event }
-- else
-	= render :partial => 'log_events/generic_log_event', :locals => { :event => log_event }
+- partial = "log_events/generic_log_event" unless File.exists?(File.join(Rails.root, "app", "views", "log_events", "_#{specific_partial_name}.html.haml"))
+= render :partial => partial, :locals => { :event => log_event }
