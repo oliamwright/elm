@@ -10,7 +10,7 @@
 				.new_project_form{:style => "display: none;"}
 					= semantic_form_for(Project.new) do |f|
 						= f.inputs do
-							= f.input :client
+							= f.input :client, :include_blank => false
 							= f.input :name
 						= f.buttons
 			:javascript

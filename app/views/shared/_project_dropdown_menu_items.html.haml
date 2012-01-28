@@ -7,7 +7,7 @@
 	- if valid_projects.count > 0
 		.row
 			.field.expand= ""
-			.field.client= client
+			.field.client= client.name rescue ""
 			.field.bl
 				- valid_projects.each do |project|
 					.row1= link_to project.name, backlog_project_url(project)

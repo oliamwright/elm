@@ -1,7 +1,7 @@
 .project_dropdown#project_dropdown
 	.title
 		- if @project && !@project.new_record?
-			.name= "#{@project.client} - #{@project.name}"
+			.name= "#{@project.client.name rescue ''} - #{@project.name}"
 		- else
 			.name= "CHOOSE A PROJECT"
 	.project_dropdown_menu#project_dropdown_menu{:style => 'display: none;'}

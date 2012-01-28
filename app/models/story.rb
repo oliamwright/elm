@@ -8,6 +8,7 @@ class Story < ActiveRecord::Base
 	belongs_to :sprint
 	has_many :sub_items
 	has_many :task_ownerships, :through => :sub_items
+	has_many :log_events
 
 	scope :backlog, where("sprint_id is null")
 	scope :for_sprint, lambda { |sid| where("sprint_id = ?", sid) }

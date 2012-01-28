@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120127171929) do
+ActiveRecord::Schema.define(:version => 20120127233104) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(:version => 20120127171929) do
     t.text     "goal"
     t.text     "value"
     t.text     "roi"
-    t.string   "client"
     t.string   "test_output_url"
+    t.integer  "client_id"
   end
 
   create_table "role_memberships", :force => true do |t|

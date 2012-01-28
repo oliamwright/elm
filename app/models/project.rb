@@ -10,8 +10,9 @@ class Project < ActiveRecord::Base
 	has_many :sprints
 	has_many :stories
 	has_many :sub_items, :through => :stories
+	belongs_to :client, :class_name => 'Company'
 
-	scope :for_client, lambda { |client| where("client = ?", client) }
+	scope :for_client, lambda { |client| where("client_id = ?", client) }
 
 	DROPBOX_FOLDER = "#{Rails.root}/dropbox"
 
