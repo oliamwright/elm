@@ -3,6 +3,7 @@ class UserStoryCreationEvent < LogEvent
 	def init(user, story)
 		self.user = user
 		self.story = story
+		self.project = story.project
 		self
 	end
 

@@ -3,6 +3,7 @@ class SubItemTypeChangeEvent < LogEvent
 	def init(user, item, old_type, new_type)
 		self.user = user
 		self.sub_item = item
+		self.project = item.story.project
 		self.data[:old_type] = old_type
 		self.data[:new_type] = new_type
 		self

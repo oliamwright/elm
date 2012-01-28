@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
 	has_many :stories
 	has_many :sub_items, :through => :stories
 	belongs_to :client, :class_name => 'Company'
+	has_many :log_events
 
 	scope :for_client, lambda { |client| where("client_id = ?", client) }
 

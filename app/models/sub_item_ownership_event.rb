@@ -3,6 +3,7 @@ class SubItemOwnershipEvent < LogEvent
 	def init(user, item)
 		self.user = user
 		self.sub_item = item
+		self.project = item.story.project
 		self
 	end
 
