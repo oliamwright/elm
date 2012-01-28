@@ -7,12 +7,12 @@
 					- User.all.select { |u| u.company.nil? }.each do |user|
 						.row
 							.field.user{:'data-value' => user.id}= user.full_name
-			- User.all.select { |u| !u.company.nil? }.group_by(&:company_name).each do |company, users|
+			- Company.order("name asc").select { |c| c.users.count > 0 }.each do |company|
 				.row
 					.field.company
-						= best_in_place Company.find_by_name(company), :name
+						= best_in_place company, :name
 					.field.users
-						- users.each do |user|
+						- company.users.each do |user|
 							.row
 								.field.user{:'data-value' => user.id}= user.full_name
 			- Company.all.select { |c| c.users.count == 0 }.each do |company|
