@@ -53,7 +53,7 @@ class Sprint < ActiveRecord::Base
 
 	def percent_complete
 		return 0 if self.stories.count.to_f == 0.0
-		self.stories.select { |s| s.complete? }.count.to_f / self.stories.count.to_f rescue 0
+		self.stories.select { |s| s.complete? }.count.to_f / self.stories.select { |s| !s.ignored? }.count.to_f rescue 0
 	end
 
 	def display_percent_complete

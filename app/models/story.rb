@@ -102,7 +102,11 @@ class Story < ActiveRecord::Base
 	end
 
 	def complete?
-		return self.status == "completed" || self.status == "rolled"
+		return ["completed", "dev", "tested", "stage", "prod"].include?(self.status)
+	end
+
+	def ignored?
+		return self.status == "ignored"
 	end
 
 	def display_status
@@ -114,11 +118,11 @@ class Story < ActiveRecord::Base
 			si_map = sub_items.map { |si| si.status }
 			if si_map.include?("waiting")
 				"waiting"
-			elsif (si_map - ["rolled"]).empty?
-				"rolled"
-			elsif (si_map - ["rolled", "completed"]).empty?
+			elsif (si_map - ["ignored"]).empty?
+				"ignored"
+			elsif (si_map - ["prod", "dev", "stage", "tested", "completed", "ignored"]).empty?
 				"completed"
-			elsif si_map.any? { |si| ["in_progress", "completed", "rolled"].include?(si) }
+			elsif si_map.any? { |si| ["in_progress", "completed", "prod", "dev", "stage", "tested"].include?(si) }
 				"in_progress"
 			else
 				"approved"
