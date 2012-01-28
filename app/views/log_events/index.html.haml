@@ -1,2 +1,5 @@
 .log_events
 	= render :partial => 'log_event', :collection => @events
+- if @project
+	:javascript
+		$('.project_name').hide();
