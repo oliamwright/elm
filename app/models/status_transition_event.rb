@@ -9,7 +9,7 @@ class StatusTransitionEvent < LogEvent
 	end
 
 	def detail_string
-		"#{self.ts_string} #{self.user.full_name} transitioned #{self.sub_item.display_number} from #{self.data[:from_status]} to #{self.data[:to_status]}"
+		"#{self.ts_string} #{self.user.full_name} transitioned #{self.sub_item.display_number} from #{self.data[:from_status]} to #{self.data[:to_status]}" rescue "BROKEN: #{self.id}"
 	end
 
 end
