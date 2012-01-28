@@ -7,29 +7,21 @@
 	padding: 3px 0px 3px 0px;
 }
 
-/*
-.item.status_completed .field.type_bug {
+.item.status_ignored .field.type_bug,
+.item.status_rolled .field.type_bug,
+.item.status_completed .field.type_bug,
+.item.status_prod .field.type_bug {
 	background-color: red;
 	font-weight: normal;
 	color: #fff;
 	text-align: center;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+	filter: alpha(opacity=25);
+	-moz-opacity:0.25;
+	-khtml-opacity: 0.25;
+	opacity: 0.25;
 }
 
-.item.status_rolled .field.type_bug {
-	background-color: red;
-	font-weight: normal;
-	color: #fff;
-	text-align: center;
-}
-
-.item.status_ignored .field.type_bug {
-	background-color: red;
-	font-weight: normal;
-	color: #fff;
-	text-align: center;
-}
-
-*/
 
 .item .field.type_bug {
 	background-color: red;
@@ -246,4 +238,36 @@ pre {
 	padding: 3px 0px;
 	font-family: arial;
 	white-space: pre-wrap;
+}
+
+.story.value_trivial {
+	background-color: #eee;	
+	color: #999;
+}
+
+.story.value_low {
+	background-color: #eee;	
+}
+
+.story.value_medium {
+	background-color: #ddd;	
+}
+
+.story.value_high {
+	background-color: orange;
+	color: white;
+	
+	.tasks, .bugs {
+		color: #fff;
+	}
+}
+
+.story.value_critical {
+	background-color: red;
+	color: white;
+	
+	.tasks, .bugs {
+	color: #fff;
+	}
+	
 }
