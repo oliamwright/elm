@@ -1,0 +1,273 @@
+.story .field.pull,
+.story .field.push {
+	font-size: 1.5em;
+	color: #ffffff;
+	font-weight: bold;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#999999));
+	padding: 3px 0px 3px 0px;
+}
+
+.item.status_ignored .field.type_bug,
+.item.status_rolled .field.type_bug,
+.item.status_completed .field.type_bug,
+.item.status_prod .field.type_bug {
+	background-color: red;
+	font-weight: normal;
+	color: #fff;
+	text-align: center;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+	filter: alpha(opacity=25);
+	-moz-opacity:0.25;
+	-khtml-opacity: 0.25;
+	opacity: 0.25;
+}
+
+
+.item .field.type_bug {
+	background-color: red;
+	font-weight: normal;
+	color: #fff;
+	text-align: center;
+}
+
+.stories {
+	.new_task {
+		margin-bottom: 15px;
+		
+		.link a{
+			color: #08c;
+			padding: 10px;
+			display: inline-block;
+		}
+
+		form.formtastic fieldset > ol > li.string input {
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+.action_buttons {
+	margin-top: 5px;
+
+	.button {
+		margin-right: 5px;
+		display: inline-block;
+		border: 1px solid #aaa;
+		border-radius: 4px;
+		font-size: 1.4em;
+		padding: 5px 10px 5px 10px;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));
+	}
+
+	.button.disabled {
+		border: 1px solid #ddd;
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+		color: #ddd;
+	}
+}
+
+.story_list {
+	width: 100%;
+	border: 1px dashed #ccc;
+	padding: 10px 0px 10px 0px;
+	margin-top: 10px;
+	margin-bottom: 50px;
+
+	.title {
+		padding: 1px 0px 1px 0px;
+	}
+
+	.header {
+		padding: 1px 0px 1px 0px;
+		border-bottom: 1px solid #c0cdcd;
+		font-weight: bold;
+		background-color: #c0c0c0;
+		margin-top: 10px;
+		
+		.pull, .push {
+			color: #fff;
+		}
+	}
+	
+	.stories .header {
+		color: #ccc;
+	}
+
+	.tasks .header {
+		background-color: #fff;
+		display: none;
+	}
+
+	.item {
+		padding: 1px 0px 1px 0px;
+		border-bottom: 1px solid #c0cdcd;
+	}
+
+	.story {
+		padding: 1px 0px 1px 0px;
+		border-top: 3px solid #888;
+		background-color: #ebebeb;
+		border-bottom: 1px solid #c0cdcd;
+		font-weight: bold;
+		
+		.tasks, 
+		.bugs {
+			color: #48bddf;
+			font-style: italic;
+		}
+	}
+
+	.story:first-child {
+		border-top: 1px solid #c0cdcd;
+	}
+
+	.field.task_ownership {
+		width: 13%;
+		
+		.sub_field {
+			display: inline-block;
+		}
+
+		.sub_field.user {
+			width: 52%;
+		}
+
+		.sub_field.role {
+			width: 20%;
+		}
+
+		.sub_field.actual_time {
+			width: 25%;
+		}
+	}
+
+	.field.tasks {
+		width: 7%;
+	}
+
+	.field.owner,
+	.field.bugs,
+	.field.act_time,
+	.field.est_time,
+	.field.role,
+	.field.value,
+	.field.type,
+	.field.usid,
+	.field.itemid {
+		width: 4%;
+	}
+	
+	.field.no_pull,
+	.field.no_push,
+	.field.pull,
+	.field.push {
+		width: 2%;
+		text-align: center;
+		background: #888;
+	}
+
+	.field.check {
+		width: 2%;
+	}
+
+	.field.status {
+		width: 4%;
+	}
+
+	.field.details {
+		width: 25%;
+	}
+
+	.field {
+		width: 7%;
+		display: inline-block;
+	}
+
+	.story.status_open .field.status,
+	.item.status_open .field.status {
+		color: #ff1e0a;
+	}
+
+	.story.status_approved .field.status,
+	.item.status_approved .field.status {
+		color: #48bddf;
+		font-style: italic;
+	}
+	
+	.item.status_approved {
+		background-color: #f2f6be;
+	}
+
+	.item.status_waiting,
+	.item.status_in_progress {
+		background-color: #caf1fd;
+	}
+	
+	.item.status_waiting {
+		background-color: #f4a3bf;
+	}
+
+	.item.status_completed {
+		background-color: #e0edd6;
+	}
+
+	.item.status_prod {
+		background-color: #96e8d2;
+	}
+
+	.item.status_ignored {
+		background-color: #fff;
+		color: #bbb;
+		
+		.field {
+			text-decoration: line-through;
+		}
+	}
+}
+
+pre {
+	white-space: pre-wrap;
+	margin: 0px;
+	font-family: arial;
+}
+
+.best_in_place {
+	width: 100%;
+	display: block;
+	padding: 3px 0px;
+	font-family: arial;
+	white-space: pre-wrap;
+}
+
+.story.value_trivial {
+	background-color: #eee;	
+	color: #999;
+}
+
+.story.value_low {
+	background-color: #eee;	
+}
+
+.story.value_medium {
+	background-color: #ddd;	
+}
+
+.story.value_high {
+	background-color: orange;
+	color: white;
+	
+	.tasks, .bugs {
+		color: #fff;
+	}
+}
+
+.story.value_critical {
+	background-color: red;
+	color: white;
+	
+	.tasks, .bugs {
+		color: #fff;
+	}
+	
+}
