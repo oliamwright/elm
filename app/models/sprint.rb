@@ -6,6 +6,11 @@ class Sprint < ActiveRecord::Base
   belongs_to :project
 	has_many :stories
 
+	def running_late?
+		return false if self.complete?
+		self.percentage_time_passed > self.percent_complete
+	end
+
 	def renumber!
 		if self.stories.empty? && self.end_date > self.project.end_date
 			self.destroy
@@ -31,12 +36,34 @@ class Sprint < ActiveRecord::Base
 		end
 	end
 
+	def days_in_sprint
+		((self.end_date - self.start_date) / 60.0 / 60.0 / 24.0).to_i
+	end
+
+	def days_since_start
+		(Date.today - self.start_date.to_date).to_i
+	end
+
+	def percentage_time_passed
+		[self.days_since_start / self.days_in_sprint * 100, 0].max
+	end
+
 	def display_number
 		"#{self.number}"
 	end
 
+	def time_complete
+		self.stories.select { |s| s.complete? }.inject(0) { |s,v| s += v.estimated_time }
+	end
+
+	def time
+		self.stories.select { |s| !s.ignored? }.inject(0) { |s,v| s += v.estimated_time }
+	end
+
 	def complete?
-		self.percent_complete >= 1
+		return true if self.percent_complete >= 1
+		return true if (self.stories.map { |s| s.status } - ["dev", "stage", "completed", "ignored", "prod", "tested"]).empty?
+		false
 	end
 
 	def display_duration
@@ -52,12 +79,12 @@ class Sprint < ActiveRecord::Base
 	end
 
 	def percent_complete
-		return 0 if self.stories.count.to_f == 0.0
-		self.stories.select { |s| s.complete? }.count.to_f / self.stories.select { |s| !s.ignored? }.count.to_f rescue 0
+		return 0 unless self.time > 0
+		self.time_complete / self.time rescue 0.0
 	end
 
 	def display_percent_complete
-		"#{(self.percent_complete * 100).to_i} %"
+		"#{(self.percent_complete * 100).to_i} % (#{self.percentage_time_passed} %)"
 	end
 
 	def last_story_number

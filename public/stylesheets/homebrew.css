@@ -99,6 +99,7 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .story.value_high{border-top:3px solid orange;}
 .story.value_critical{border-top:3px solid red;}
 .sprint_navigation .sprint_tab{display:inline-block;font-size:1.7em;background-color:#d1fdfc;}.sprint_navigation .sprint_tab a{padding:8px 12px 8px 12px;display:inline-block;}
+.sprint_navigation .sprint_tab.late{border-top:3px solid red;}
 .sprint_navigation .sprint_tab.active{background-color:#77fdfb;font-weight:bold;border-bottom:solid 2px #000000;}
 .sprint_navigation .sprint_tab:hover{background-color:#77fdfb;}
 .sprint_navigation .sprint_tab.complete{background-color:#ccffcc;}
