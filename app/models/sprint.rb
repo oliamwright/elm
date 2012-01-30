@@ -84,7 +84,7 @@ class Sprint < ActiveRecord::Base
 	end
 
 	def display_percent_complete
-		"#{(self.percent_complete * 100).to_i} % (#{self.percentage_time_passed} %)"
+		"#{(self.percent_complete * 100).to_i} %"
 	end
 
 	def last_story_number
