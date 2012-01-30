@@ -2,5 +2,5 @@
 	.sprint_tab{:class => "#{params[:action] == 'backlog' ? 'active' : ''} backlog"}
 		= link_to "Backlog", backlog_project_url(project)
 	- project.sprints.each do |sprint|
-		.sprint_tab{:class => "#{(sprint == @sprint) ? 'active' : ''} #{(sprint.complete?) ? 'complete' : ''}"}
+		.sprint_tab{:class => "#{(sprint == @sprint) ? 'active' : ''} #{(sprint.complete?) ? 'complete' : ''} #{(sprint.running_late?) ? 'late' : ''}"}
 			= link_to "S#{sprint.number} #{sprint.display_percent_complete}", [project, sprint]

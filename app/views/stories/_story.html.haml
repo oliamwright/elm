@@ -1,5 +1,5 @@
 %a{:name => "s_#{story.display_number}"}
-.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id, :class => "value_#{story.display_client_value.downcase}"}
+.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id, :class => "value_#{story.display_client_value.downcase} status_#{story.status}"}
 	- if story.can_pull?
 		.field.pull
 			.pull_button
@@ -15,7 +15,7 @@
 	.field.usid= story.display_number
 	.field.value= best_in_place story, :client_value, :type => :select, :collection => Story::VALUE_MAP
 	.field.details= best_in_place_if !story.approved?, story, :description
-	.field.est_time= "%0.02f" % story.sub_items.sum(:estimated_time)
+	.field.est_time= "%0.02f" % story.estimated_time
 	.field.tasks= story.sub_items.tasks.count
 	.field.bugs= story.sub_items.bugs.count
 	.field.act_time= "%0.02f" % story.actual_time

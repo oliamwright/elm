@@ -25,6 +25,10 @@ class Story < ActiveRecord::Base
 		[5, "Critical"]
 	]
 
+	def estimated_time
+		self.sub_items.sum(:estimated_time)
+	end
+
 	def display_client_value
 		VALUES[self.client_value - 1]
 	end
