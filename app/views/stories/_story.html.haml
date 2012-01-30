@@ -1,5 +1,5 @@
 %a{:name => "s_#{story.display_number}"}
-.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id, :class => "value_#{story.display_client_value.downcase}"}
+.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id, :class => "value_#{story.display_client_value.downcase} status_#{story.status}"}
 	- if story.can_pull?
 		.field.pull
 			.pull_button

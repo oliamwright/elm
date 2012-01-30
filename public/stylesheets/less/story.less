@@ -1,3 +1,4 @@
+
 .story .field.pull,
 .story .field.push {
 	font-size: 1.5em;
@@ -69,13 +70,38 @@
 
 .story_list {
 	width: 100%;
-	border: 1px dashed #ccc;
+	border-top: 1px dashed #ccc;
 	padding: 10px 0px 10px 0px;
 	margin-top: 10px;
 	margin-bottom: 50px;
 
 	.title {
 		padding: 1px 0px 1px 0px;
+		display: inline-block;
+	}
+
+	.filter_checkboxes {
+		display: inline-block;
+		text-align: right;
+		width: 93%;
+		font-size: 1.3em;
+
+		.checkbox,
+		.label,
+		.check {
+			display: inline-block;
+		}
+
+		.label {
+			margin-left: 15px;
+		}
+
+		.check input {
+			margin: 3px 0px 0px 0px;
+			padding: 0px;
+			width: 13px;
+			height: 13px;
+		}
 	}
 
 	.header {
@@ -123,22 +149,22 @@
 	}
 
 	.field.task_ownership {
-		width: 13%;
+		width: 15.38%;
 		
 		.sub_field {
 			display: inline-block;
 		}
 
 		.sub_field.user {
-			width: 52%;
+			width: 47%;
 		}
 
 		.sub_field.role {
-			width: 20%;
+			width: 24%;
 		}
 
 		.sub_field.actual_time {
-			width: 25%;
+			width: 22%;
 		}
 	}
 
@@ -199,22 +225,37 @@
 		background-color: #f2f6be;
 	}
 
-	.item.status_waiting,
 	.item.status_in_progress {
 		background-color: #caf1fd;
 	}
 	
 	.item.status_waiting {
-		background-color: #f4a3bf;
+		background-color: #FFF1D8;
 	}
 
 	.item.status_completed {
 		background-color: #e0edd6;
 	}
+	
+	.item.status_dev {
+		background-color: #CCE8BA;
+	}
+	
+	.item.status_stage {
+		background-color: #B0DD95;
+	}
 
 	.item.status_prod {
-		background-color: #96e8d2;
+		background-color: #93D06F;
 	}
+	
+	.item.status_tested {
+		background-color: #96e8d2;
+	}	
+
+	.item.status_rejected {
+		background-color: #F9D3E0;
+	}	
 
 	.item.status_ignored {
 		background-color: #fff;
@@ -254,20 +295,10 @@ pre {
 }
 
 .story.value_high {
-	background-color: orange;
-	color: white;
-	
-	.tasks, .bugs {
-		color: #fff;
-	}
+	border-top: 3px solid orange;
 }
 
 .story.value_critical {
-	background-color: red;
-	color: white;
-	
-	.tasks, .bugs {
-	color: #fff;
-	}
-	
+	border-top: 3px solid red;
 }
+
