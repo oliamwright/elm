@@ -1,8 +1,5 @@
 %div.navigation
-	- if Random.rand(10000) == 0
-		.title= "KOALABEAR"
-	- else
-		.title= "HOMEBREW"
+	.title= "HOMEBREW"
 	- if user_signed_in?
 		- if permitted?(:new, Project)
 			.new_project
