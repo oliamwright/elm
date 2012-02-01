@@ -53,6 +53,7 @@ div.form{padding:10px;}
 .permission_data .link{margin-top:10px;font-weight:bold;}
 .story .field.pull,.story .field.push{font-size:1.5em;color:#ffffff;font-weight:bold;background-image:-webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#999999));padding:3px 0px 3px 0px;}
 .item.status_ignored .field.type_bug,.item.status_rolled .field.type_bug,.item.status_completed .field.type_bug,.item.status_prod .field.type_bug{background-color:red;font-weight:normal;color:#fff;text-align:center;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";filter:alpha(opacity=25);-moz-opacity:0.25;-khtml-opacity:0.25;opacity:0.25;}
+.item.status_open .field.type_bug,.item.status_approved .field.type_bug{background-color:red;}
 .item .field.type_bug{background-color:red;font-weight:normal;color:#fff;text-align:center;}
 .stories .new_task{margin-bottom:15px;}.stories .new_task .link a{color:#08c;padding:10px;display:inline-block;}
 .stories .new_task form.formtastic fieldset>ol>li.string input{width:100%;max-width:100%;}
@@ -78,7 +79,7 @@ div.form{padding:10px;}
 .story_list .field.check{width:2%;}
 .story_list .field.status{width:4%;}
 .story_list .field.details{width:25%;}
-.story_list .field{width:7%;display:inline-block;}
+.story_list .field{width:6.9%;display:inline-block;}
 .story_list .story.status_open .field.status,.story_list .item.status_open .field.status{color:#ff1e0a;}
 .story_list .story.status_approved .field.status,.story_list .item.status_approved .field.status{color:#48bddf;font-style:italic;}
 .story_list .item.status_approved{background-color:#f2f6be;}

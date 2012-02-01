@@ -1,5 +1,19 @@
 class SubItem < ActiveRecord::Base
 
+	STATUSES = [
+		:open,
+		:approved,
+		:waiting,
+		:in_progress,
+		:completed,
+		:dev,
+		:rejected,
+		:tested,
+		:stage,
+		:prod,
+		:ignored
+	]
+
 	include SubItemCan
 	include SubItemPermissions
 
@@ -17,22 +31,6 @@ class SubItem < ActiveRecord::Base
 	DEFAULT_ITEM_TYPE = 'task'
 
 	INITIAL_STATUS = :open
-
-	STATUS_MAP = {
-		:open => [ :approved, :waiting, :ignored ],
-		:approved => [ :waiting, :in_progress, :ignored, :completed ],
-		:waiting => [ :in_progress, :ignored ],
-		:in_progress => [ :completed, :ignored ],
-		:completed => [ :ignored, :dev ],
-		:dev => [ :tested, :rejected ],
-		:rejected => [ :in_progress ],
-		:tested => [ :stage ],
-		:stage => [ :prod ],
-		:prod => [],
-		:ignored => [ :open ]
-	}
-
-	STATUSES = STATUS_MAP.keys
 
 	def complete?
 		["completed", "dev", "tested", "stage", "prod"].include?(self.status)
