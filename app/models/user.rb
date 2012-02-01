@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
 	has_many :task_ownerships
 	has_many :sub_items, :through => :task_ownerships
 	has_many :log_events
+	has_many :questions
+	has_many :answers
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :title, :phone, :company_id

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130184346) do
+ActiveRecord::Schema.define(:version => 20120201063630) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
+  add_index "answers", ["user_id"], :name => "index_answers_on_user_id"
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -71,6 +82,17 @@ ActiveRecord::Schema.define(:version => 20120130184346) do
     t.string   "test_output_url"
     t.integer  "client_id"
   end
+
+  create_table "questions", :force => true do |t|
+    t.string   "questionable_type"
+    t.integer  "questionable_id"
+    t.integer  "user_id"
+    t.string   "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
 
   create_table "role_memberships", :force => true do |t|
     t.integer  "user_id"

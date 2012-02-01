@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  questionable_type: MyString
+  questionable_id: 1
+  user: 
+  body: MyString
+
+two:
+  questionable_type: MyString
+  questionable_id: 1
+  user: 
+  body: MyString

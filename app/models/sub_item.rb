@@ -22,6 +22,7 @@ class SubItem < ActiveRecord::Base
 	has_many :task_ownerships, :dependent => :destroy
 	has_many :users, :through => :task_ownerships
 	has_many :log_events, :dependent => :destroy
+	has_many :questions, :as => :questionable, :dependent => :destroy
 
 	scope :bugs, where("item_type = 'bug'")
 	scope :tasks, where("item_type = 'task'")

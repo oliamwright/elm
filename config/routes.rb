@@ -3,6 +3,8 @@ Tm::Application.routes.draw do
 
 	match 'recent_activity' => 'log_events#index', :as => :recent_activity
 	resources :log_events
+	resources :questions
+	resources :answers
 
 	resources :roles do
 		member do

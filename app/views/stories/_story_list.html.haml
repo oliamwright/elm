@@ -1,4 +1,51 @@
 = render :partial => 'stories/action_buttons'
+.dialog#question_dialog{:title => 'Ask Question', :style => 'display: none;'}
+	= semantic_form_for(Question.new) do |f|
+		= f.inputs do
+			= f.input :questionable_id, :value => '', :as => :hidden
+			= f.input :questionable_type, :value => '', :as => :hidden
+			= f.input :body, :label => false
+.dialog#answer_dialog{:title => 'Answer', :style => 'display: none;'}
+	#question_body
+	= semantic_form_for(Answer.new) do |f|
+		= f.inputs do
+			= f.input :question_id, :value => '', :as => :hidden
+			= f.input :body, :label => false
+:javascript
+	$('#question_dialog').dialog({
+		autoOpen: false,
+		width: 500,
+		height: 150,
+		modal: true,
+		buttons: {
+			"Ask Question": function() {
+				alert('ask that bitch!');
+				$(this).dialog('close');
+			},
+			Cancel: function() {
+				$(this).dialog('close');
+			}
+		},
+		close: function() {
+		}
+	});
+	$('#answer_dialog').dialog({
+		autoOpen: false,
+		width: 500,
+		height: 150,
+		modal: true,
+		buttons: {
+			"Answer Question": function() {
+				alert('answer that bitch!');
+				$(this).dialog('close');
+			},
+			Cancel: function() {
+				$(this).dialog('close');
+			}
+		},
+		close: function() {
+		}
+	});
 .story_list.in_progress
 	.title= "IN PROGRESS"
 	.filter_checkboxes

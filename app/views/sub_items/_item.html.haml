@@ -1,5 +1,5 @@
 %a{:name => "si_#{item.display_number}"}
-.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
+.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-id' => item.id, :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
 	.field.pull
 	.field.check{:'data-class' => 'sub_item', :'data-id' => item.id}= check_box_tag :sel
 	.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
@@ -29,6 +29,55 @@
 	.field.approved_by= "--"
 	.field.approved_at= "--"
 	.field.completed_at= "--"
+	.field.options
+		.item_questions{:class => item.questions.empty? ? 'ask_question' : 'show_questions'}
+			= "#{item.questions.count} ?"
+	%div{:id => "questions_si#{item.id}", :title => 'Questions', :style => 'display: none;'}
+		- item.questions.each do |q|
+			.question{:'data-id' => q.id}
+				%span.user
+					= q.user.full_name
+				%span
+					= ":"
+				%span.body
+					= q.body
+		.ask_question
+			= "Ask Question"
+	:javascript
+		$('#questions_si#{item.id}').dialog({
+			autoOpen: false,
+			width: 500,
+			height: 150,
+			modal: true,
+		});
+		$('#questions_si#{item.id} .question').click(function() {
+			var qb = $(this).children('.body').text();
+			$('#questions_si#{item.id}').dialog('close');
+			var qid = $(this).attr('data-id');
+			$('#answer_dialog input[name="answer[question_id]"]').val(qid);
+			$('#answer_dialog input[name="answer[body]"]').val('');
+			$('#answer_dialog #question_body').text(qb);
+			$('#answer_dialog').dialog('open');
+		});
+		$('##{item.item_type.to_s.titleize}_#{item.id} .show_questions').click(function() {
+			var sid = #{item.id};
+			$('#questions_si' + sid).dialog('open');
+		});
+		$('##{item.item_type.to_s.titleize}_#{item.id} .ask_question').click(function() {
+			var sid = #{item.id};
+			$('#question_dialog input[name="question[questionable_id]"]').val(sid);
+			$('#question_dialog input[name="question[questionable_type]"]').val('SubItem');
+			$('#question_dialog input[name="question[body]"]').val('');
+			$('#question_dialog').dialog('open');
+		});
+		$('#questions_si#{item.id} .ask_question').click(function() {
+			$('#questions_si#{item.id}').dialog('close');
+			var sid = #{item.id};
+			$('#question_dialog input[name="question[questionable_id]"]').val(sid);
+			$('#question_dialog input[name="question[questionable_type]"]').val('SubItem');
+			$('#question_dialog input[name="question[body]"]').val('');
+			$('#question_dialog').dialog('open');
+		});
 	.field.push
 :javascript
 	$('.check input[name="sel"]').click(function() {

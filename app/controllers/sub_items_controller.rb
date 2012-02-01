@@ -84,7 +84,7 @@ class SubItemsController < ApplicationController
 		if @sub_item.save
 			e = SubItemCreationEvent.new.init(current_user, @sub_item).save
 		end
-		redirect_to_last_page
+		redirect_to_last_page :anchor => "si_#{@sub_item.display_number}"
 	end
 
 	def update

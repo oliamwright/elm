@@ -71,11 +71,11 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
-	def redirect_to_last_page
+	def redirect_to_last_page(options = {})
 		if session[:page_history] and session[:page_history][0]
-			redirect_to session[:page_history][0]
+			redirect_to session[:page_history][0], options
 		else
-			redirect_to :back
+			redirect_to :back, options
 		end
 	end
 

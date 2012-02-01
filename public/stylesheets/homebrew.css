@@ -75,6 +75,7 @@ div.form{padding:10px;}
 .story_list .field.task_ownership .sub_field.actual_time{width:22%;}
 .story_list .field.tasks{width:7%;}
 .story_list .field.owner,.story_list .field.bugs,.story_list .field.act_time,.story_list .field.est_time,.story_list .field.role,.story_list .field.value,.story_list .field.type,.story_list .field.usid,.story_list .field.itemid{width:4%;}
+.story_list .field.options{width:2%;text-align:center;}
 .story_list .field.no_pull,.story_list .field.no_push,.story_list .field.pull,.story_list .field.push{width:2%;text-align:center;background:#888;}
 .story_list .field.check{width:2%;}
 .story_list .field.status{width:4%;}
@@ -178,3 +179,4 @@ form.formtastic fieldset.buttons ol li input{padding:5px;}
 .content_table data_row{padding:3px 0px;}
 h3{font-size:16px;}
 .create{color:#ffffff;padding:8px 15px 6px 15px;background-color:#4A7DA8;text-shadow:0 -1px 1px #253e5c;border:1px solid #26445F;display:inline-block;font-size:11px;margin-right:-4px;margin-top:8px;}
+#answer_dialog input,#question_dialog input{font-size:1.5em;}

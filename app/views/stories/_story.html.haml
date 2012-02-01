@@ -24,6 +24,44 @@
 	.field.approved_by= "--"
 	.field.approved_at= "--"
 	.field.completed_at= "--"
+	.field.options
+		.story_questions{:class => story.questions.empty? ? 'ask_question' : 'show_questions'}
+			= "#{story.questions.count} ?"
+	%div{:id => "questions_s#{story.id}", :title => 'Questions', :style => 'display: none;'}
+		- story.questions.each do |q|
+			.question{:'data-id' => q.id}
+				%span.user
+					= q.user.full_name
+				%span
+					= ":"
+				%span.body
+					= q.body
+	:javascript
+		$('#questions_s#{story.id}').dialog({
+			autoOpen: false,
+			width: 500,
+			height: 150,
+			modal: true,
+		});
+		$('#questions_s#{story.id} .question').click(function() {
+			var qb = $(this).children('.body').text();
+			$('#questions_s#{story.id}').dialog('close');
+			var qid = $(this).attr('data-id');
+			$('#answer_dialog input[name="answer[question_id]"]').val(qid);
+			$('#answer_dialog #question_body').text(qb);
+			$('#answer_dialog').dialog('open');
+		});
+		$('#story_#{story.id} .show_questions').click(function() {
+			var sid = #{story.id};
+			$('#questions_s' + sid).dialog('open');
+		});
+		$('#story_#{story.id} .ask_question').click(function() {
+			var sid = #{story.id};
+			$('#question_dialog input[name="question[questionable_id]"]').val(sid);
+			$('#question_dialog input[name="question[questionable_type]"]').val('Story');
+			$('#question_dialog input[name="question[body]"]').val('');
+			$('#question_dialog').dialog('open');
+		});
 	- if story.can_push?
 		.field.push
 			.push_button

@@ -9,6 +9,7 @@ class Story < ActiveRecord::Base
 	has_many :sub_items
 	has_many :task_ownerships, :through => :sub_items
 	has_many :log_events
+	has_many :questions, :as => :questionable, :dependent => :destroy
 
 	scope :backlog, where("sprint_id is null")
 	scope :for_sprint, lambda { |sid| where("sprint_id = ?", sid) }
