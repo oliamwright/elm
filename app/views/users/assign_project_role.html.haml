@@ -4,7 +4,7 @@
 	.label= "User"
 	= select_tag 'user_id', options_from_collection_for_select(User.all, :id, :email, @user.id)
 	.label= "Role"
-	= select_tag 'role_id', options_from_collection_for_select(Role.all.select { |r| @project.nil? || !@user.roles.all_for_project(@project).include?(r) }, :id, :name)
+	= select_tag 'role_id', options_from_collection_for_select(Role.all.select { |r| @project.nil? || !@user.roles.all_for_project(@project).include?(r) }, :id, :full_name)
 	.label= "Primary?"
 	= check_box_tag 'primary'
 	%br

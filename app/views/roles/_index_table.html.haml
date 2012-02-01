@@ -1,5 +1,6 @@
 
 = semantic_table_for(roles) do |t|
-	= t.header 'Name'
+	= t.header 'Name', 'Internal Name'
 	= t.rows do |role|
-		= t.data link_to role.name, role
+		= t.data best_in_place role, :name
+		= t.data best_in_place role, :internal_name

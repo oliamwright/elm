@@ -18,6 +18,21 @@ class RolesController < ApplicationController
 		redirect_to roles_url
 	end
 
+	def update
+		@role = Role.find(params[:id])
+		if @role
+			respond_to do |format|
+				if @role.update_attributes(params[:role])
+					format.html { redirect_to_(@role, :notice => "Role '#{@role.internal_name}' updated.") }
+					format.json { respond_with_bip(@role) }
+				else
+					format.html { }
+					format.json { respond_with_bip_error(@role) }
+				end
+			end
+		end
+	end
+
 	def show
 		@role = Role.find(params[:id])
 		require_perm!(current_user.can?(:show, @role)) || return

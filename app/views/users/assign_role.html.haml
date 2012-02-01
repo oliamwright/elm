@@ -2,6 +2,6 @@
 	.label= "User"
 	=select_tag 'user_id', options_from_collection_for_select(User.all, :id, :email, @user.id)
 	.label= "Role"
-	=select_tag 'role_id', options_from_collection_for_select(Role.all.select { |r| !@user.roles.include?(r) }, :id, :name)
+	=select_tag 'role_id', options_from_collection_for_select(Role.all.select { |r| !@user.roles.include?(r) }, :id, :full_name)
 	%br
 	=submit_tag 'Assign'
