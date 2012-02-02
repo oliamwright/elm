@@ -8,7 +8,7 @@ class Sprint < ActiveRecord::Base
 
 	def running_late?
 		return false if self.complete?
-		self.percentage_time_passed > self.percent_complete
+		self.percentage_time_passed > self.percent_complete rescue false
 	end
 
 	def renumber!
