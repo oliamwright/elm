@@ -36,6 +36,10 @@
 	opacity: 0.25;
 }
 
+.type_bug a {
+	color: #fff;
+}
+
 .item.status_open .field.type_bug,
 .item.status_approved .field.type_bug {
 	background-color: red;
@@ -180,6 +184,7 @@
 
 		.sub_field.user {
 			width: 47%;
+			padding: 2px 0px;
 		}
 
 		.sub_field.role {
@@ -230,13 +235,20 @@
 
 	.field.details {
 		width: 25%;
-		font-size: 9px;
+		font-size: 11px;
+		line-height: 1.4em;
 	}
 
 	.field {
 		width: 6.4%;
 		display: inline-block;
+		vertical-align: middle;
+		line-height: 1.2em;
 		
+	}
+	
+	.story .field {
+		text-shadow: 1px 1px #fff;
 	}
 
 	.story.status_open .field.status,
@@ -317,6 +329,11 @@ pre {
 	cursor: hand;
 }
 
+.type_bug .best_in_place {
+	color: white;
+	text-shadow: none;
+}
+
 .story {
 	background-color: #eaeaea;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#eaeaea));
@@ -325,12 +342,15 @@ pre {
 }
 
 .story.value_trivial {
+	border-top: 3px solid #aaa;
 }
 
 .story.value_low {
+	border-top: 3px solid #777;
 }
 
 .story.value_medium {
+	border-top: 3px solid #333;
 }
 
 .story.value_high {
