@@ -62,6 +62,7 @@ class Sprint < ActiveRecord::Base
 
 	def complete?
 		return true if self.percent_complete >= 1
+		return false if self.stories.empty?
 		return true if (self.stories.map { |s| s.status } - ["dev", "stage", "completed", "ignored", "prod", "tested"]).empty?
 		false
 	end
