@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
 	before_filter :check_css
 
 	def home
+		if current_user && @project
+			redirect_to backlog_project_url(@project)
+		elsif !current_user
+			redirect_to new_user_session_url
+		end
 	end
 
 	private
