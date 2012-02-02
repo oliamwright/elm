@@ -148,6 +148,8 @@ body {
 		padding: 8px 10px 6px 14px;
 		font-size: 11px;
 		text-shadow: #183048 0px -1px 1px;
+		float: left;
+		margin-top: 8px;
 	}
 
 	.new_project {
@@ -158,6 +160,11 @@ body {
 		border: 1px solid #26445F;
 		display: inline-block;
 		font-size: 11px;
+		float: left;
+		margin-top: 8px;
+		margin-right: 4px;
+		cursor: pointer;
+		cursor: hand;
 	}
 
 	.project_dropdown {
@@ -166,6 +173,15 @@ body {
 		border: 1px solid #26445F;
 		background-color: #4A7DA8;
 		background-image:url('');
+		float: left;
+		margin-top: 8px;
+		margin-right: 4px;
+		cursor: pointer;
+		cursor: hand;
+	
+	.project_dropdown:hover {
+		background: #5e92c3;
+	}
 
 		.title {
 			color: #ffffff;
@@ -174,6 +190,7 @@ body {
 			width: 245px;
 			margin-left: 0px;
 			font-size: 11px;
+			margin-top: 0px;
 			
 		.title:hover {
 			background: #5f93bf;
@@ -190,6 +207,7 @@ body {
 			z-index: 999;
 			background: @navigation_background_color;
 			color: #fff;
+			top: 26px;
 
 			.row:first-child {
 				border: none;
@@ -259,7 +277,7 @@ body {
 			
 			a {
 				color: #ffffff;
-				padding: 8px 15px 6px 15px;
+				padding: 8px 12px 6px 12px;
 				background-color: #4A7DA8;
 				text-shadow: 0 -1px 1px #253E5C;
 				border: 1px solid #26445F;
@@ -291,6 +309,8 @@ body {
 		float: right;
 		display: inline-block;
 		color: #fff;
+		position: absolute;
+		right: 0px;
 
 		.nav_sub_menu {
 			display: inline-block;
@@ -374,8 +394,17 @@ input, textarea, .best_in_place {
 .page .story_list .new_sub_item input {
 	background-color: #fff;
 	border-top: 0px;
+	border: 0px;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
 }
+
+.page .story_list .new_sub_item input:hover {
+	background-color: #ffc;
+}
+
 
 iframe.test_output_url {
 	width: 100%;
@@ -421,4 +450,9 @@ h3 {
 	input {
 		font-size: 1.5em;
 	}
+}
+
+.action_buttons .own,
+.action_buttons .ignore {
+	margin-right: 30px;
 }

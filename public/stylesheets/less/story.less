@@ -1,11 +1,24 @@
 
 .story .field.pull,
 .story .field.push {
-	font-size: 1.5em;
-	color: #ffffff;
+	font-size: 1.2em;
 	font-weight: bold;
+}
+
+.pull_button,
+.push_button {
+	padding: 3px 6px;
+	display: inline-block;
+	background: -moz-linear-gradient(#d0d0d0, #999) repeat scroll 0 0 transparent;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#999999));
-	padding: 3px 0px 3px 0px;
+	background: #ccc;
+	cursor: pointer;
+	cursor: hand;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	color: #333;
+	text-shadow: 0px 1px 1px #fff;
+	border: 1px solid #bbb;
 }
 
 .item.status_ignored .field.type_bug,
@@ -37,7 +50,7 @@
 
 .stories {
 	.new_task {
-		margin-bottom: 15px;
+		margin-bottom: 0px;
 		
 		.link a{
 			color: #08c;
@@ -54,7 +67,7 @@
 
 .action_buttons {
 	margin-top: 5px;
-
+	
 	.button {
 		margin-right: 5px;
 		display: inline-block;
@@ -63,12 +76,18 @@
 		font-size: 1.4em;
 		padding: 5px 10px 5px 10px;
 		background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));
+		background: -moz-linear-gradient(#f0f0f0, #dddddd) repeat scroll 0 0 transparent;
+		cursor: pointer;
+		cursor: hand;
+
 	}
 
 	.button.disabled {
 		border: 1px solid #ddd;
 		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+		background: -moz-linear-gradient(#ffffff, #ededed) repeat scroll 0 0 transparent;
 		color: #ddd;
+		cursor: not-allowed;
 	}
 }
 
@@ -113,12 +132,12 @@
 		padding: 1px 0px 1px 0px;
 		border-bottom: 1px solid #c0cdcd;
 		font-weight: bold;
-		background-color: #c0c0c0;
-		margin-top: 10px;
+		margin-top: 8px;
+		margin-bottom: 10px;
 		
 		.pull, .push {
-			color: #fff;
 		}
+		
 	}
 	
 	.stories .header {
@@ -132,20 +151,19 @@
 
 	.item {
 		padding: 1px 0px 1px 0px;
-		border-bottom: 1px solid #c0cdcd;
+		border-bottom: 1px solid #ddd;
 	}
 
 	.story {
-		padding: 1px 0px 1px 0px;
-		border-top: 3px solid #888;
+		padding: 5px 0px;
 		background-color: #ebebeb;
 		border-bottom: 1px solid #c0cdcd;
 		font-weight: bold;
+		border-right: 1px solid #ccc;
+		border-left: 1px solid #ccc;
 		
 		.tasks, 
 		.bugs {
-			color: #48bddf;
-			font-style: italic;
 		}
 	}
 
@@ -200,7 +218,6 @@
 	.field.push {
 		width: 2%;
 		text-align: center;
-		background: #888;
 	}
 
 	.field.check {
@@ -213,11 +230,13 @@
 
 	.field.details {
 		width: 25%;
+		font-size: 9px;
 	}
 
 	.field {
-		width: 6.9%;
+		width: 6.4%;
 		display: inline-block;
+		
 	}
 
 	.story.status_open .field.status,
@@ -277,6 +296,10 @@
 	}
 }
 
+.push {
+	float: right;
+}
+
 pre {
 	white-space: pre-wrap;
 	margin: 0px;
@@ -289,19 +312,25 @@ pre {
 	padding: 3px 0px;
 	font-family: arial;
 	white-space: pre-wrap;
+	color: #08c;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.story {
+	background-color: #eaeaea;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#eaeaea));
+	background: -moz-linear-gradient(#FAFAFA, #EAEAEA) repeat scroll 0 0 transparent;
+	border-top: 1px solid #ccc;
 }
 
 .story.value_trivial {
-	background-color: #eee;	
-	color: #999;
 }
 
 .story.value_low {
-	background-color: #eee;	
 }
 
 .story.value_medium {
-	background-color: #ddd;	
 }
 
 .story.value_high {
@@ -312,3 +341,14 @@ pre {
 	border-top: 3px solid red;
 }
 
+.stories {
+	border-radius: 3px 3px 3px 3px;
+	padding: 3px;
+	background: #eee;
+}
+
+.item {
+	background: #fff;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
