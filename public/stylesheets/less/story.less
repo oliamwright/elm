@@ -74,7 +74,8 @@
 		border-radius: 4px;
 		font-size: 1.4em;
 		padding: 5px 10px 5px 10px;
-		background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));
+		background: -moz-linear-gradient(#ffffff, #ededed) repeat scroll 0 0 transparent
 		cursor: pointer;
 		cursor: hand;
 
@@ -82,7 +83,8 @@
 
 	.button.disabled {
 		border: 1px solid #ddd;
-		background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
+		background: -moz-linear-gradient(#ffffff, #ededed) repeat scroll 0 0 transparent
 		color: #ddd;
 		cursor: not-allowed;
 	}
