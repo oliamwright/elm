@@ -49,6 +49,11 @@
 .story_list.in_progress
 	.title= "IN PROGRESS"
 	.filter_checkboxes
+		.checkbox.show_completed_tasks
+			.label
+				= "show completed tasks?"
+			.check
+				= check_box_tag :show_completed_tasks, "yes", true
 		.checkbox.show_ignored
 			.label
 				= "show ignored tasks?"
@@ -76,6 +81,14 @@
 			} else {
 				$('.story.status_completed').hide();
 				$('.story.status_completed').next('.tasks').hide();
+			}
+		});
+		$('.checkbox input[name="show_completed_tasks"]').click(function() {
+			var ch = $(this).attr('checked') == 'checked';
+			if (ch) {
+				$('.item.is_completed').show();
+			} else {
+				$('.item.is_completed').hide();
 			}
 		});
 	.header

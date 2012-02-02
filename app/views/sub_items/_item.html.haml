@@ -1,5 +1,5 @@
 %a{:name => "si_#{item.display_number}"}
-.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-id' => item.id, :'data-project-id' => item.story.project.id, :class => "status_#{item.status}"}
+.item{:id => "#{item.item_type.to_s.titleize}_#{item.id}", :'data-id' => item.id, :'data-project-id' => item.story.project.id, :class => "status_#{item.status} #{(item.complete? ? 'is_completed' : 'is_not_completed')}"}
 	.field.pull
 	.field.check{:'data-class' => 'sub_item', :'data-id' => item.id}= check_box_tag :sel
 	.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
