@@ -132,15 +132,45 @@
 		update_buttons();
 	});
 
+	function disable_buttons() {
+		$('.action_buttons .button').addClass('disabled');
+		$('.assign_button').addClass('disabled');
+		$('.assign_field .user_select select').attr('disabled', true);
+	};
+
 	function update_buttons() {
 		if ($('input[name="sel"]:checked').length > 0) {
 			$('.action_buttons .button').removeClass('disabled');
+			$('.assign_button').removeClass('disabled');
+			$('.assign_field .user_select select').attr('disabled', false);
 		} else {
 			$('.action_buttons .button').addClass('disabled');
+			$('.assign_button').addClass('disabled');
+			$('.assign_field .user_select select').attr('disabled', true);
 		}
 	};
 
-	$('.action_buttons .button').addClass('disabled');
+	update_buttons();
+
+	$('.assign_button').click(function() {
+		if ($(this).hasClass('disabled')) {
+			//do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var uid = $('.assign_field option:selected').val();
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'sub_item') {
+					vals.push(container.attr('data-id'));
+				}
+			});
+			do_assign(uid, vals);
+		}
+	});
+
 	$('.action_buttons .button').click(function() {
 		if ($(this).hasClass('disabled')) {
 			// do nothing
@@ -155,7 +185,7 @@
 					vals.push(container.attr('data-id'));
 				}
 			});
-			do_action(act, vals.join(','));
+			do_action(act, vals);
 		}
 	});
 
@@ -194,7 +224,8 @@
 		});
 	});
 
-	function do_action(action, idstring) {
+	function do_action(action, ids) {
+		var idstring = ids.join(',');
 		$.ajax({
 			async: true,
 			url: '/sub_items/do_action?si_action=' + action + '&ids=' + idstring,
@@ -204,7 +235,29 @@
 			type: 'post',
 			cache: false,
 			success: function(data) {
-				window.location = window.location;
+				ids.forEach(function(id) {
+					$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
+				});
+				disable_buttons();
+			}
+		});
+	};
+
+	function do_assign(userid, ids) {
+		var idstring = ids.join(',');
+		$.ajax({
+			async: true,
+			url: '/sub_items/do_action?si_action=assign&ids=' + idstring + '&user_id=' + userid,
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			type: 'post',
+			cache: false,
+			success: function(data) {
+				ids.forEach(function(id) {
+					$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
+				});
+				disable_buttons();
 			}
 		});
 	};

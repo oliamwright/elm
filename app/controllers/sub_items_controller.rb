@@ -10,6 +10,14 @@ class SubItemsController < ApplicationController
 		end
 		items = ids.map { |id| SubItem.find(id) rescue nil }
 		case action
+			when "assign"
+				user = User.find(params[:user_id])
+				items.each do |item|
+					if user.can?(:take_ownership, item) && current_user.can?(:assign_ownership, item)
+						user.take_ownership!(item)
+					end
+				end
+				render :text => ''
 			when "own"
 				items.each do |item|
 					if current_user.can?(:take_ownership, item)

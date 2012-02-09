@@ -9,9 +9,8 @@
 .push_button {
 	padding: 3px 6px;
 	display: inline-block;
-	background: -moz-linear-gradient(#d0d0d0, #999) repeat scroll 0 0 transparent;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#d0d0d0), to(#999999));
-	background: #ccc;
+    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
+	background: -moz-linear-gradient(center top , #FFFFFF, #EFEFEF) repeat scroll 0 0 #F6F6F6;
 	cursor: pointer;
 	cursor: hand;
 	-moz-border-radius: 2px;
@@ -72,20 +71,53 @@
 .action_buttons {
 	margin-top: 5px;
 	
-	.button {
-		margin-right: 5px;
+	.assign_field {
 		display: inline-block;
-		border: 1px solid #aaa;
-		border-radius: 4px;
-		font-size: 1.4em;
-		padding: 5px 10px 5px 10px;
-		background-image: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#dddddd));
-		background: -moz-linear-gradient(#f0f0f0, #dddddd) repeat scroll 0 0 transparent;
-		cursor: pointer;
-		cursor: hand;
-
+		
+		.user_select {
+			display: inline-block;
+		}
 	}
 
+	.button.own,
+	.assign_button,
+	.button.ignore {
+		margin-right: 30px;
+	}
+
+	.assign_button,
+	.button {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
+	background: -moz-linear-gradient(center top , #FFFFFF, #EFEFEF) repeat scroll 0 0 #F6F6F6;
+    border-color: #CCCCCC #CCCCCC #AAAAAA;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 1px #FFFFFF inset;
+    color: #555555;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 8px 12px;
+    text-shadow: 0 0 0 transparent, 0 1px 0 #FFFFFF;
+		cursor: pointer;
+		cursor: hand;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    display: inline-block;
+	}
+	
+	.assign_button:hover, 
+	.button:hover {
+	    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
+	    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 3px #FFFFFF inset;
+	}
+
+	.assign_button.disabled, 
 	.button.disabled {
 		border: 1px solid #ddd;
 		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));

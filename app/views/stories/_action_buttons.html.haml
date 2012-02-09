@@ -1,6 +1,11 @@
 .action_buttons
 	.button.own{:'data-action' => 'own'}
 		= "Own"
+	.assign_field
+		.user_select
+			= select_tag :user_id, options_from_collection_for_select(@project.users.uniq, :id, :full_name)
+		.assign_button{:'data-action' => 'assign'}
+			= "Assign"
 	.button.approved{:'data-action' => 'approved'}
 		= "Approved"
 	.button.completed{:'data-action' => 'completed'}

@@ -13,7 +13,8 @@ module SubItemPermissions
 		[
 			[ :create, 'can create story sub-items' ],
 			[ :delete, 'can delete sub-items' ],
-			[ :take_ownership, 'can take ownership of sub-items' ]
+			[ :take_ownership, 'can take ownership of sub-items' ],
+			[ :assign_ownership, 'can assign ownership of sub-items' ]
 		]
 	end
 
