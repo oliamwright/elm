@@ -71,6 +71,16 @@
 .action_buttons {
 	margin-top: 5px;
 	
+	.assign_field {
+		margin-left: 20px;
+		display: inline-block;
+		
+		.user_select {
+			display: inline-block;
+		}
+	}
+
+	.assign_button,
 	.button {
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
@@ -96,11 +106,13 @@
     display: inline-block;
 	}
 	
+	.assign_button:hover, 
 	.button:hover {
 	    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
 	    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 3px #FFFFFF inset;
 	}
 
+	.assign_button.disabled, 
 	.button.disabled {
 		border: 1px solid #ddd;
 		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ededed));
