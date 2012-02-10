@@ -17,5 +17,6 @@
 		.field= sprint.start_date.to_date
 		.field= sprint.display_duration
 		.field= sprint.end_date.to_date
-= render :partial => 'team_list', :locals => { :sprint => sprint }
+- if sprint.team_resourced > 0
+	= render :partial => 'team_list', :locals => { :sprint => sprint }
 
