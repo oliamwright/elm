@@ -17,7 +17,7 @@
 					.sub_field.user
 						= to.user.full_name
 					.sub_field.role
-						= "--"
+						= to.user.roles.for_project(item.story.project.id).primary.first.name rescue "None"
 					.sub_field.actual_time
 						= best_in_place_if (to.user == current_user), to, :actual_time, :display_as => :display_actual_time
 	- else
