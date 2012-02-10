@@ -9,7 +9,7 @@
 		.field= "WEEKS"
 		.field= "SPRINT END"
 	.data.row
-		.field= "--"
+		.field= sprint.team_resourced
 		.field= sprint.stories.count
 		.field= sprint.display_percent_complete
 		.field= "--"
@@ -17,4 +17,5 @@
 		.field= sprint.start_date.to_date
 		.field= sprint.display_duration
 		.field= sprint.end_date.to_date
+= render :partial => 'team_list', :locals => { :sprint => sprint }
 

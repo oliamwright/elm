@@ -6,6 +6,14 @@ class Sprint < ActiveRecord::Base
   belongs_to :project
 	has_many :stories
 
+	def team_resourced
+		self.stories.collect { |s| s.task_ownerships }.flatten.map { |to| to.user }.uniq.count
+	end
+
+	def team
+		self.stories.collect { |s| s.task_ownerships }.flatten.map { |to| to.user }.uniq
+	end
+
 	def running_late?
 		return false if self.complete?
 		self.percentage_time_passed > self.percent_complete rescue false

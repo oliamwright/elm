@@ -1,0 +1,25 @@
+.team_list
+	.headers.row
+		.field
+			= "TEAM"
+		.field
+			= "ASSIGNED HOURS"
+		.field
+			= "COMPLETED HOURS"
+		.field
+			= "ALLOCATED HOURS"
+		.field
+			= "OPEN TIME FOR SPRINT"
+	- sprint.team.each do |u|
+		.team_member.row
+			.field
+				= u.full_name
+			.field
+				= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.sub_item.estimated_time }
+			.field
+				= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time }
+			.field
+				= "--"
+			.field
+				= "--"
+		
