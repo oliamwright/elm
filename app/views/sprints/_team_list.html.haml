@@ -15,7 +15,7 @@
 			.field
 				= u.full_name
 			.field
-				= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.sub_item.estimated_time }
+				= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.assigned_time }
 			.field
 				= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time }
 			.field
@@ -26,7 +26,7 @@
 		.field
 			= "TOTAL"
 		.field
-			= "%0.02f" % sprint.team.inject(0) { |s,v| s += v.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.sub_item.estimated_time } }
+			= "%0.02f" % sprint.team.inject(0) { |s,v| s += v.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.assigned_time } }
 		.field
 			= "%0.02f" % sprint.team.inject(0) { |s,v| s += v.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time } }
 		.field
