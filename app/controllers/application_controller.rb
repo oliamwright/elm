@@ -21,18 +21,18 @@ class ApplicationController < ActionController::Base
 
 	def check_css
 		if !APP_CONFIG['check_css']
-			puts "recompilation of css disabled"
+			logger.debug "recompilation of css disabled"
 			return
 		end
 		modified = false
 		Dir.glob("#{Rails.root}/public/stylesheets-less/*.less").each do |file|
 			bfile = File.basename(file)
 			dfile = "#{Rails.root}/public/stylesheets/less/#{bfile}"
-			puts "stylesheet: #{bfile}"
+			logger.debug "stylesheet: #{bfile}"
 			stime = File.mtime(file)
 			dtime = File.mtime(dfile)
 			if stime >= dtime
-				puts "MODIFIED!"
+				logger.debug "MODIFIED!"
 				modified = true
 				FileUtils.cp(file, dfile)
 			end
@@ -46,12 +46,12 @@ class ApplicationController < ActionController::Base
 	end
 
 	def recompile_stylesheet
-		puts "recompiling stylesheet"
+		logger.debug "recompiling stylesheet"
 		`cd "#{Rails.root}/public/stylesheets/less" && bundle exec lessc "#{Rails.root}/public/stylesheets/less/homebrew.less" > "#{Rails.root}/public/stylesheets/homebrew.css"`
 	end
 
 	def commit_style_changes
-		puts "committing style changes"
+		logger.debug "committing style changes"
 		Dir.glob("#{Rails.root}/public/stylesheets-less/*.less").each do |file|
 			bfile = File.basename(file)
 			dfile = "/var/www/homebrew/cache/public/stylesheets/less/#{bfile}"
@@ -97,7 +97,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def load_project
-		puts "loading project..."
+		logger.debug "loading project..."
 		if params.has_key?(:project_id)
 			@project = Project.find(params[:project_id]) rescue nil
 		elsif params[:controller] == 'projects'
@@ -110,13 +110,13 @@ class ApplicationController < ActionController::Base
 			@project = nil
 		end
 		if @project
-			puts "loaded Project/#{@project.id} (#{@project.name})"
+			logger.debug "loaded Project/#{@project.id} (#{@project.name})"
 			if !current_user.nil?
 				current_user.current_project = @project
 				session[:current_project_id] = @project.id
 			end
 		else
-			puts "failed"
+			logger.debug "failed"
 		end
 	end
 
@@ -130,7 +130,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def assert_authority!
-		puts "asserting authority..."
+		logger.debug "asserting authority..."
 		action = params[:action].to_sym
 		controller = params[:controller]
 		id = params[:id]
@@ -145,18 +145,18 @@ class ApplicationController < ActionController::Base
 		perm = action
 
 		if controller =~ /^devise/
-			puts "ok"
+			logger.debug "ok"
 			return true
 		end
 
 		unless current_user.class_permission?(scope, perm, @project)
-			puts "failed"
+			logger.debug "failed"
 			flash[:error] = 'You are not authorized.'
 			redirect_to root_url
 			return
 		end
 
-		puts "ok"
+		logger.debug "ok"
 		return true
 	end
 

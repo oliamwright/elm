@@ -285,59 +285,35 @@ a {
 <div id="div_group_1" class="example_group passed">
   <dl style="margin-left: 0px;">
   <dt id="example_group_1" class="passed">User Requests</dt>
-loading project...
-failed
-recompilation of css disabled
-loading project...
-failed
-recompilation of css disabled
-    <script type="text/javascript">moveProgressBar('25.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">failed sign in should not create a current_user</span><span class='duration'>1.88961s</span></dd>
-loading project...
-failed
-recompilation of css disabled
-loading project...
-failed
-recompilation of css disabled
- * User(2).class_permission?(user, index, )
- => false
- * User(2)._can?(index, User)
- => false
- * User(2).can?(index, Class / User)
- => false
- * User(2).class_permission?(company, index, )
- => false
- * User(2).class_permission?(role, index, )
- => false
- * User(2).class_permission?(project, index, )
- => false
- * User(2).class_permission?(project, new, )
- => false
- * User(2).class_permission?(user, index, )
- => false
- * User(2)._can?(index, User)
- => false
- * User(2).can?(index, Class / User)
- => false
-
- * User(2).can?(show_payables, nil)
-
- * User(2).can?(show_receivables, nil)
-    <script type="text/javascript">moveProgressBar('50.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">proper sign in should create a current_user</span><span class='duration'>0.79636s</span></dd>
+    <script type="text/javascript">moveProgressBar('20.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">failed sign in should not create a current_user</span><span class='duration'>1.60771s</span></dd>
+    <script type="text/javascript">moveProgressBar('40.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">proper sign in should create a current_user</span><span class='duration'>0.70893s</span></dd>
   </dl>
 </div>
 <div id="div_group_2" class="example_group passed">
   <dl style="margin-left: 0px;">
   <dt id="example_group_2" class="passed">User</dt>
-    <script type="text/javascript">moveProgressBar('75.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">should be valid</span><span class='duration'>0.37947s</span></dd>
-    <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have admin role</span><span class='duration'>0.37995s</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>3.47883 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "4 examples, 0 failures";</script>
+<div id="div_group_3" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_3" class="passed">Normal User</dt>
+    <script type="text/javascript">moveProgressBar('60.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be valid</span><span class='duration'>0.35260s</span></dd>
+    <script type="text/javascript">moveProgressBar('80.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should not have admin role</span><span class='duration'>0.41099s</span></dd>
+  </dl>
+</div>
+<div id="div_group_4" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_4" class="passed">Admin User</dt>
+    <script type="text/javascript">moveProgressBar('100.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have admin role</span><span class='duration'>0.40407s</span></dd>
+  </dl>
+</div>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>3.48593 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "5 examples, 0 failures";</script>
 </div>
 </div>
 </body>
