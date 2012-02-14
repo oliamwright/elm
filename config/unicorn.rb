@@ -31,6 +31,9 @@ before_fork do |server, worker|
 		end
 	else
 		`echo "unicorn pid not sorted" > /tmp/unicorn.log`
+		`echo "OLD_PID: #{old_pid}" >> /tmp/unicorn.log`
+		`echo "server.pid: #{server.pid}" >>/tmp/unicorn.log`
+		`echo "old_pid: #{File.read(old_pid).to_i}" >>/tmp/unicorn.log`
 	end
 end
 
