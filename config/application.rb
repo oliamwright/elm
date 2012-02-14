@@ -38,6 +38,9 @@ module Tm
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+		# automatically generate blueprints
+		config.fixture_replacement :machinist
   end
 end
 
