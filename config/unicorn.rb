@@ -22,7 +22,7 @@ stderr_path app_root + '/log/unicorn.stderr.log'
 stdout_path app_root + '/log/unicorn.stdout.log'
 
 before_fork do |server, worker|
-	old_pid = Rails.root + '/tmp/pids/unicorn.pid.oldbin'
+	old_pid = app_root + '/tmp/pids/unicorn.pid.oldbin'
 	if File.exists?(old_pid) && server.pid != old_pid
 		begin
 			Process.kill("QUIT", File.read(old_pid).to_i)
@@ -30,7 +30,8 @@ before_fork do |server, worker|
 			`echo "unicorn rescue" > /tmp/unicorn.log`
 		end
 	else
-		`echo "unicorn pid not sorted" > /tmp/unicorn.log`
+		`date > /tmp/unicorn.log`
+		`echo "unicorn pid not sorted" >> /tmp/unicorn.log`
 		`echo "OLD_PID: #{old_pid}" >> /tmp/unicorn.log`
 		`echo "server.pid: #{server.pid}" >>/tmp/unicorn.log`
 		`echo "old_pid: #{File.read(old_pid).to_i}" >>/tmp/unicorn.log`
