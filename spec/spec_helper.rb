@@ -29,4 +29,10 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+
+	config.before :each do
+		(ActiveRecord::Base.connection.tables - %w{schema_migrations}).each do |table_name|
+			ActiveRecord::Base.connection.execute "TRUNCATE TABLE #{table_name};"
+		end
+	end
 end

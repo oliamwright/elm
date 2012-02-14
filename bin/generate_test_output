@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bundle exec rspec spec --format html > public/test_output.html

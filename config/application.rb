@@ -40,7 +40,9 @@ module Tm
     config.filter_parameters += [:password]
 
 		# automatically generate blueprints
-		config.fixture_replacement :machinist
+		config.generators do |g|
+			g.fixture_replacement :machinist
+		end
   end
 end
 

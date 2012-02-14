@@ -7,3 +7,32 @@ require 'machinist/active_record'
 #     title { "Post #{sn}" }
 #     body  { "Lorem ipsum..." }
 #   end
+
+Role.blueprint(:admin) do
+	name { "Admin" }
+end
+
+Role.blueprint(:project_team) do
+	name { "Project Team" }
+end
+
+Role.blueprint(:client_team) do
+	name { "Client Team" }
+end
+
+Role.blueprint(:anyone) do
+	name { "Anyone" }
+end
+
+Role.blueprint(:project_owner) do
+	name { "Project Owner" }
+end
+
+Role.blueprint(:debug) do
+	name { "Debug" }
+end
+
+User.blueprint do
+	email { "user-#{sn}@test.com" }
+	password { "password" }
+end
