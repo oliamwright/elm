@@ -183,7 +183,11 @@ class ApplicationController < ActionController::Base
 	end
 
 	def not_found
-		render :text => "<div class='page'><h2>Page not found.</h2></div>", :status => 404, :layout => true
+		if request.xhr?
+			render :text => '', :status => 404, :layout => false
+		else
+			render :text => "<div class='page'><h2>Page not found.</h2></div>", :status => 404, :layout => true
+		end
 	end
 
 end
