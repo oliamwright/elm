@@ -9,10 +9,8 @@ module CompanyPermissions
 		[
 			[ :index, 'can list companies' ],
 			[ :show, 'can view a company' ],
-			[ :new, 'can create a company' ],
 			[ :create, 'can save a new company' ],
-			[ :edit, 'can edit a company' ],
-			[ :update, 'can save a company' ]
+			[ :edit, 'can edit a company' ]
 		]
 	end
 

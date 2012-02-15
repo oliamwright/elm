@@ -1,7 +1,20 @@
 class UsersController < ApplicationController
 
 	def index
+		require_perm!(current_user.can?(:index, User)) || return
 		@users = User.all
+	end
+
+	def edit
+		not_found
+	end
+
+	def destroy
+		not_found
+	end
+
+	def new
+		not_found
 	end
 
 	def user_data
@@ -28,6 +41,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id]) rescue nil
+		require_perm!(current_user.can?(:edit, @user)) || return
 		if @user
 			respond_to do |format|
 				if @user.update_attributes(params[:user])

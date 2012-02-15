@@ -122,8 +122,7 @@ class ApplicationController < ActionController::Base
 
 	def require_perm!(has_perm)
 		unless has_perm
-			flash[:error] = 'You are not authorized.'
-			redirect_to root_url
+			not_found
 			return false
 		end
 		return true
@@ -182,4 +181,9 @@ class ApplicationController < ActionController::Base
 		dn = DateTime.now
 		DateTime.new(y, m, d, dn.hour, dn.min, dn.sec, dn.offset)
 	end
+
+	def not_found
+		render :text => "<div class='page'><h2>Page not found.</h2></div>", :status => 404, :layout => true
+	end
+
 end

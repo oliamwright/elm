@@ -9,8 +9,8 @@ module RolePermissions
 		[
 			[:index, 'can see the list of roles'],
 			[:show, 'can view a role'],
-			[:new, 'can create a role'],
-			[:create, 'can save a new role']
+			[:edit, 'can edit a role'],
+			[:create, 'can create a new role']
 		]
 	end
 

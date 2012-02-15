@@ -8,6 +8,14 @@ require 'machinist/active_record'
 #     body  { "Lorem ipsum..." }
 #   end
 
+Company.blueprint do
+	name { "Company #{sn}" }
+end
+
+Role.blueprint do
+	name { "Role #{sn}" }
+end
+
 Role.blueprint(:admin) do
 	name { "Admin" }
 end

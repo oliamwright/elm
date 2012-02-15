@@ -31,10 +31,11 @@ namespace :roles do
 		admin_perms = [
 			[ :role, :index ],
 			[ :role, :show ],
-			[ :role, :new ],
+			[ :role, :edit ],
 			[ :role, :create ],
 			[ :user, :index ],
 			[ :user, :show ],
+			[ :user, :edit ],
 			[ :user, :assign_role ],
 			[ :user, :unassign_role ],
 			[ :user, :assign_project_role ],

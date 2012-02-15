@@ -7,16 +7,16 @@
 		= link_to role.name, role
 		- if permitted?(:unassign_role, @user)
 			.link
-				= link_to 'Remove', do_remove_global_role_url(@user, :role_id => role.id), :method => :post
+				= link_to 'Remove', do_remove_role_user_url(@user, :role_id => role.id), :method => :post
 %br
 - if permitted?(:assign_role, @user)
 	.link
-		= link_to 'Assign Global Role', assign_global_role_url(@user)
+		= link_to 'Assign Global Role', assign_role_user_url(@user)
 
 %br
 - if permitted?(:assign_role, @user)
 	.link
-		= link_to 'Assign Project Role', assign_project_role_url(@user)
+		= link_to 'Assign Project Role', assign_project_role_user_url(@user)
 
 %h3= "Permissions"
 - @user.roles.collect(&:permissions).flatten.uniq.group_by(&:scope).each do |scope, plist|

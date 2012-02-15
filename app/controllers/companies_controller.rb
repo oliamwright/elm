@@ -1,14 +1,17 @@
 class CompaniesController < ApplicationController
 
 	def index
+		require_perm!(current_user.can?(:index, Company)) || return
 		@companies = Company.all.select { |c| current_user.can?(:show, c) }
 	end
 
 	def new
+		require_perm!(current_user.can?(:create, Company)) || return
 		@company = Company.new
 	end
 
 	def create
+		require_perm!(current_user.can?(:create, Company)) || return
 		@company = Company.new(params[:company])
 		@company.name = 'UNNAMED' unless !@company.name.blank?
 		if @company.save
@@ -28,6 +31,7 @@ class CompaniesController < ApplicationController
 
 	def update
 		@company = Company.find(params[:id]) rescue nil
+		require_perm!(current_user.can?(:edit, @company)) || return
 		if params[:company][:name] && params[:company][:name].blank?
 			if @company.users.count == 0
 				@company.destroy

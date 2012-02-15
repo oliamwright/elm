@@ -9,6 +9,7 @@ module UserPermissions
 		[
 			[:index, 'can list users'],
 			[:show, 'can view a user'],
+			[:edit, 'can edit a user'],
 			[:assign_role, 'can assign a global role to a user'],
 			[:unassign_role, 'can remove a global role from a user'],
 			[:assign_project_role, 'can assign a project role to a user'],

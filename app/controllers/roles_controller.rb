@@ -1,14 +1,25 @@
 class RolesController < ApplicationController
 
 	def index
+		require_perm!(current_user.can?(:index, Role)) || return
 		@roles = Role.order("name asc").all
 	end
 
 	def new
+		require_perm!(current_user.can?(:create, Role)) || return
 		@role = Role.new
 	end
 
+	def edit
+		not_found
+	end
+
+	def destroy
+		not_found
+	end
+
 	def create
+		require_perm!(current_user.can?(:create, Role)) || return
 		@role = Role.new(params[:role])
 		if @role.save
 			flash[:notice] = "Role '#{@role.name}' created."
@@ -19,11 +30,12 @@ class RolesController < ApplicationController
 	end
 
 	def update
+		require_perm!(current_user.can?(:edit, Role)) || return
 		@role = Role.find(params[:id])
 		if @role
 			respond_to do |format|
 				if @role.update_attributes(params[:role])
-					format.html { redirect_to_(@role, :notice => "Role '#{@role.internal_name}' updated.") }
+					format.html { redirect_to(@role, :notice => "Role '#{@role.internal_name}' updated.") }
 					format.json { respond_with_bip(@role) }
 				else
 					format.html { }
