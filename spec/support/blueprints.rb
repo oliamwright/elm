@@ -36,11 +36,24 @@ Role.blueprint(:project_owner) do
 	name { "Project Owner" }
 end
 
+Role.blueprint(:project_manager) do
+	name { "Project Manager" }
+end
+
 Role.blueprint(:debug) do
 	name { "Debug" }
 end
 
 User.blueprint do
+	Role.make!(:anyone) unless Role.Anyone
+	Role.make!(:admin) unless Role.Admin
+	Role.make!(:project_owner) unless Role.ProjectOwner
+	Role.make!(:client_team) unless Role.ClientTeam
+	Role.make!(:project_team) unless Role.ProjectTeam
 	email { "user-#{sn}@test.com" }
 	password { "password" }
+end
+
+Project.blueprint do
+	owner { User.make! }
 end

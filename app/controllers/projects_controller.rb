@@ -9,11 +9,13 @@ class ProjectsController < ApplicationController
 	end
 
 	def new
+		require_perm!(current_user.can?(:create, Project)) || return
 		@project = Project.new
 		@project.start_date = Date.today + (1 - Date.today.wday).days
 	end
 
 	def create
+		require_perm!(current_user.can?(:create, Project)) || return
 		@project = Project.new(params[:project])
 		@project.owner = current_user
 		if @project.end_date.nil? && !@project.duration.nil? && @project.duration > 0
@@ -40,6 +42,7 @@ class ProjectsController < ApplicationController
 
 	def update
 		@project = Project.find(params[:id])
+		require_perm!(current_user.can?(:edit, @project)) || return
 		if @project
 			if params[:project][:duration]
 				@project.duration = params[:project][:duration].to_i

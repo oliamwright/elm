@@ -3,7 +3,6 @@ require 'spec_helper'
 describe User do
 
 	before(:each) do
-		setup_roles
 		@admin = User.make!
 		@user = User.make!
 	end

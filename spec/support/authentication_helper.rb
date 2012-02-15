@@ -1,3 +1,68 @@
+SPECIAL_URLS = [
+	'/'
+]
+
+ACTIONS = [
+	[:roles, :index],
+	[:roles, :show],
+	[:roles, :new],
+	[:roles, :create],
+	[:roles, :edit],
+	[:roles, :update],
+	[:roles, :destroy],
+	[:projects, :index],
+	[:projects, :new],
+	[:projects, :create],
+	[:projects, :update],
+	[:companies, :index],
+	[:companies, :show],
+	[:companies, :new],
+	[:companies, :create],
+	[:companies, :update],
+	[:users, :index],
+	[:users, :show],
+	[:users, :new],
+	[:users, :edit],
+	[:users, :update],
+	[:users, :destroy]
+]
+
+GUEST_SHOULD_PASS = [
+]
+
+GUEST_SPECIAL_SHOULD_PASS = [
+]
+
+USER_SHOULD_PASS = GUEST_SHOULD_PASS + [
+	[:projects, :index]
+]
+
+USER_SPECIAL_SHOULD_PASS = GUEST_SPECIAL_SHOULD_PASS + [
+ "/"
+]
+
+PM_SHOULD_PASS = USER_SHOULD_PASS + [
+	[:projects, :new],
+	[:projects, :create]
+]
+
+PM_SPECIAL_SHOULD_PASS = USER_SPECIAL_SHOULD_PASS + [
+]
+
+ADMIN_SPECIAL_SHOULD_FAIL = [
+]
+
+ADMIN_SHOULD_FAIL = [
+	[:roles, :edit],
+	[:roles, :destroy],
+	[:users, :edit],
+	[:users, :new],
+	[:users, :destroy],
+	[:projects, :new],
+	[:projects, :create],
+	[:projects, :update]
+]
+
 def test_index(c)
 	get url_for({:controller => c, :action => 'index'})
 end
