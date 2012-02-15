@@ -285,10 +285,10 @@ a {
 <div id="div_group_1" class="example_group passed">
   <dl style="margin-left: 0px;">
   <dt id="example_group_1" class="passed">User Requests</dt>
-    <script type="text/javascript">moveProgressBar('3.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">failed sign in should not create a current_user</span><span class='duration'>1.76346s</span></dd>
-    <script type="text/javascript">moveProgressBar('6.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">proper sign in should create a current_user</span><span class='duration'>0.64066s</span></dd>
+    <script type="text/javascript">moveProgressBar('1.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">failed sign in should not create a current_user</span><span class='duration'>1.41582s</span></dd>
+    <script type="text/javascript">moveProgressBar('3.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">proper sign in should create a current_user</span><span class='duration'>0.65649s</span></dd>
   </dl>
 </div>
 <div id="div_group_2" class="example_group passed">
@@ -299,92 +299,162 @@ a {
 <div id="div_group_3" class="example_group passed">
   <dl style="margin-left: 15px;">
   <dt id="example_group_3" class="passed">authenticated admin</dt>
-    <script type="text/javascript">moveProgressBar('9.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to roles:index</span><span class='duration'>1.55985s</span></dd>
-    <script type="text/javascript">moveProgressBar('12.1');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to roles:show</span><span class='duration'>1.58531s</span></dd>
-    <script type="text/javascript">moveProgressBar('15.1');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to roles:new</span><span class='duration'>1.52758s</span></dd>
-    <script type="text/javascript">moveProgressBar('18.1');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to roles:create</span><span class='duration'>1.52922s</span></dd>
-    <script type="text/javascript">moveProgressBar('21.2');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:edit</span><span class='duration'>1.56911s</span></dd>
-    <script type="text/javascript">moveProgressBar('24.2');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to roles:update</span><span class='duration'>1.60871s</span></dd>
-    <script type="text/javascript">moveProgressBar('27.2');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:destroy</span><span class='duration'>1.60981s</span></dd>
-    <script type="text/javascript">moveProgressBar('30.3');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to users:index</span><span class='duration'>1.66450s</span></dd>
+    <script type="text/javascript">moveProgressBar('4.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to roles:index</span><span class='duration'>1.42925s</span></dd>
+    <script type="text/javascript">moveProgressBar('6.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to roles:show</span><span class='duration'>1.41668s</span></dd>
+    <script type="text/javascript">moveProgressBar('7.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to roles:new</span><span class='duration'>1.32478s</span></dd>
+    <script type="text/javascript">moveProgressBar('9.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to roles:create</span><span class='duration'>1.41564s</span></dd>
+    <script type="text/javascript">moveProgressBar('11.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:edit</span><span class='duration'>1.56601s</span></dd>
+    <script type="text/javascript">moveProgressBar('12.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to roles:update</span><span class='duration'>1.32325s</span></dd>
+    <script type="text/javascript">moveProgressBar('14.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:destroy</span><span class='duration'>1.41836s</span></dd>
+    <script type="text/javascript">moveProgressBar('15.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to companies:index</span><span class='duration'>1.50044s</span></dd>
+    <script type="text/javascript">moveProgressBar('17.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to companies:show</span><span class='duration'>1.61474s</span></dd>
+    <script type="text/javascript">moveProgressBar('19.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to companies:new</span><span class='duration'>1.46530s</span></dd>
+    <script type="text/javascript">moveProgressBar('20.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to companies:create</span><span class='duration'>1.44543s</span></dd>
+    <script type="text/javascript">moveProgressBar('22.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to companies:update</span><span class='duration'>1.63085s</span></dd>
+    <script type="text/javascript">moveProgressBar('23.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to users:index</span><span class='duration'>1.71493s</span></dd>
+    <script type="text/javascript">moveProgressBar('25.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to users:show</span><span class='duration'>1.88232s</span></dd>
+    <script type="text/javascript">moveProgressBar('26.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:new</span><span class='duration'>1.78830s</span></dd>
+    <script type="text/javascript">moveProgressBar('28.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:edit</span><span class='duration'>1.79314s</span></dd>
+    <script type="text/javascript">moveProgressBar('30.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to users:update</span><span class='duration'>2.06920s</span></dd>
+    <script type="text/javascript">moveProgressBar('31.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:destroy</span><span class='duration'>1.93697s</span></dd>
     <script type="text/javascript">moveProgressBar('33.3');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to users:show</span><span class='duration'>1.96709s</span></dd>
-    <script type="text/javascript">moveProgressBar('36.3');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:new</span><span class='duration'>1.60314s</span></dd>
-    <script type="text/javascript">moveProgressBar('39.3');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:edit</span><span class='duration'>1.81708s</span></dd>
-    <script type="text/javascript">moveProgressBar('42.4');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to users:update</span><span class='duration'>1.85413s</span></dd>
-    <script type="text/javascript">moveProgressBar('45.4');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:destroy</span><span class='duration'>2.04465s</span></dd>
-    <script type="text/javascript">moveProgressBar('48.4');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have access to /</span><span class='duration'>1.52163s</span></dd>
+    <dd class="example passed"><span class="passed_spec_name">should have access to /</span><span class='duration'>1.71577s</span></dd>
   </dl>
 </div>
 <div id="div_group_4" class="example_group passed">
   <dl style="margin-left: 15px;">
-  <dt id="example_group_4" class="passed">unauthenticated guest</dt>
-    <script type="text/javascript">moveProgressBar('51.5');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:index</span><span class='duration'>1.46171s</span></dd>
-    <script type="text/javascript">moveProgressBar('54.5');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:show</span><span class='duration'>1.39762s</span></dd>
-    <script type="text/javascript">moveProgressBar('57.5');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:new</span><span class='duration'>1.45862s</span></dd>
-    <script type="text/javascript">moveProgressBar('60.6');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:create</span><span class='duration'>1.28136s</span></dd>
-    <script type="text/javascript">moveProgressBar('63.6');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:edit</span><span class='duration'>1.34936s</span></dd>
-    <script type="text/javascript">moveProgressBar('66.6');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:update</span><span class='duration'>1.55624s</span></dd>
-    <script type="text/javascript">moveProgressBar('69.6');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:destroy</span><span class='duration'>1.44958s</span></dd>
-    <script type="text/javascript">moveProgressBar('72.7');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:index</span><span class='duration'>1.40437s</span></dd>
-    <script type="text/javascript">moveProgressBar('75.7');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:show</span><span class='duration'>1.77684s</span></dd>
-    <script type="text/javascript">moveProgressBar('78.7');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:new</span><span class='duration'>1.43837s</span></dd>
-    <script type="text/javascript">moveProgressBar('81.8');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:edit</span><span class='duration'>1.77519s</span></dd>
-    <script type="text/javascript">moveProgressBar('84.8');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:update</span><span class='duration'>1.91862s</span></dd>
-    <script type="text/javascript">moveProgressBar('87.8');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:destroy</span><span class='duration'>2.04174s</span></dd>
-    <script type="text/javascript">moveProgressBar('90.9');</script>
-    <dd class="example passed"><span class="passed_spec_name">should NOT have access to /</span><span class='duration'>1.51892s</span></dd>
+  <dt id="example_group_4" class="passed">authenticated user</dt>
+    <script type="text/javascript">moveProgressBar('34.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:index</span><span class='duration'>1.99625s</span></dd>
+    <script type="text/javascript">moveProgressBar('36.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:show</span><span class='duration'>1.84721s</span></dd>
+    <script type="text/javascript">moveProgressBar('38.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:new</span><span class='duration'>1.91965s</span></dd>
+    <script type="text/javascript">moveProgressBar('39.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:create</span><span class='duration'>1.78017s</span></dd>
+    <script type="text/javascript">moveProgressBar('41.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:edit</span><span class='duration'>1.83881s</span></dd>
+    <script type="text/javascript">moveProgressBar('42.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:update</span><span class='duration'>1.81746s</span></dd>
+    <script type="text/javascript">moveProgressBar('44.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:destroy</span><span class='duration'>1.87589s</span></dd>
+    <script type="text/javascript">moveProgressBar('46.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:index</span><span class='duration'>1.74800s</span></dd>
+    <script type="text/javascript">moveProgressBar('47.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:show</span><span class='duration'>1.93310s</span></dd>
+    <script type="text/javascript">moveProgressBar('49.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:new</span><span class='duration'>1.93435s</span></dd>
+    <script type="text/javascript">moveProgressBar('50.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:create</span><span class='duration'>1.88382s</span></dd>
+    <script type="text/javascript">moveProgressBar('52.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:update</span><span class='duration'>2.05102s</span></dd>
+    <script type="text/javascript">moveProgressBar('53.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:index</span><span class='duration'>2.05851s</span></dd>
+    <script type="text/javascript">moveProgressBar('55.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:show</span><span class='duration'>2.21132s</span></dd>
+    <script type="text/javascript">moveProgressBar('57.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:new</span><span class='duration'>2.07965s</span></dd>
+    <script type="text/javascript">moveProgressBar('58.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:edit</span><span class='duration'>2.37285s</span></dd>
+    <script type="text/javascript">moveProgressBar('60.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:update</span><span class='duration'>2.26826s</span></dd>
+    <script type="text/javascript">moveProgressBar('61.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:destroy</span><span class='duration'>2.45328s</span></dd>
+    <script type="text/javascript">moveProgressBar('63.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have access to /</span><span class='duration'>2.02768s</span></dd>
   </dl>
 </div>
 <div id="div_group_5" class="example_group passed">
-  <dl style="margin-left: 0px;">
-  <dt id="example_group_5" class="passed">User</dt>
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_5" class="passed">unauthenticated guest</dt>
+    <script type="text/javascript">moveProgressBar('65.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:index</span><span class='duration'>1.78894s</span></dd>
+    <script type="text/javascript">moveProgressBar('66.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:show</span><span class='duration'>1.79830s</span></dd>
+    <script type="text/javascript">moveProgressBar('68.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:new</span><span class='duration'>2.16812s</span></dd>
+    <script type="text/javascript">moveProgressBar('69.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:create</span><span class='duration'>1.94973s</span></dd>
+    <script type="text/javascript">moveProgressBar('71.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:edit</span><span class='duration'>1.88890s</span></dd>
+    <script type="text/javascript">moveProgressBar('73.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:update</span><span class='duration'>1.96844s</span></dd>
+    <script type="text/javascript">moveProgressBar('74.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to roles:destroy</span><span class='duration'>2.37319s</span></dd>
+    <script type="text/javascript">moveProgressBar('76.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:index</span><span class='duration'>1.86558s</span></dd>
+    <script type="text/javascript">moveProgressBar('77.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:show</span><span class='duration'>1.95766s</span></dd>
+    <script type="text/javascript">moveProgressBar('79.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:new</span><span class='duration'>2.22665s</span></dd>
+    <script type="text/javascript">moveProgressBar('80.9');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:create</span><span class='duration'>2.14110s</span></dd>
+    <script type="text/javascript">moveProgressBar('82.5');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to companies:update</span><span class='duration'>2.46193s</span></dd>
+    <script type="text/javascript">moveProgressBar('84.1');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:index</span><span class='duration'>2.29753s</span></dd>
+    <script type="text/javascript">moveProgressBar('85.7');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:show</span><span class='duration'>2.77607s</span></dd>
+    <script type="text/javascript">moveProgressBar('87.3');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:new</span><span class='duration'>2.17697s</span></dd>
+    <script type="text/javascript">moveProgressBar('88.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:edit</span><span class='duration'>2.98247s</span></dd>
+    <script type="text/javascript">moveProgressBar('90.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:update</span><span class='duration'>2.76197s</span></dd>
+    <script type="text/javascript">moveProgressBar('92.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to users:destroy</span><span class='duration'>2.71136s</span></dd>
+    <script type="text/javascript">moveProgressBar('93.6');</script>
+    <dd class="example passed"><span class="passed_spec_name">should NOT have access to /</span><span class='duration'>2.23215s</span></dd>
   </dl>
 </div>
 <div id="div_group_6" class="example_group passed">
-  <dl style="margin-left: 15px;">
-  <dt id="example_group_6" class="passed">Normal User</dt>
-    <script type="text/javascript">moveProgressBar('93.9');</script>
-    <dd class="example passed"><span class="passed_spec_name">should be valid</span><span class='duration'>0.78064s</span></dd>
-    <script type="text/javascript">moveProgressBar('96.9');</script>
-    <dd class="example passed"><span class="passed_spec_name">should not have admin role</span><span class='duration'>0.74274s</span></dd>
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_6" class="passed">User</dt>
   </dl>
 </div>
 <div id="div_group_7" class="example_group passed">
   <dl style="margin-left: 15px;">
-  <dt id="example_group_7" class="passed">Admin User</dt>
-    <script type="text/javascript">moveProgressBar('100.0');</script>
-    <dd class="example passed"><span class="passed_spec_name">should have admin role</span><span class='duration'>0.73961s</span></dd>
+  <dt id="example_group_7" class="passed">Normal User</dt>
+    <script type="text/javascript">moveProgressBar('95.2');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be valid</span><span class='duration'>1.12157s</span></dd>
+    <script type="text/javascript">moveProgressBar('96.8');</script>
+    <dd class="example passed"><span class="passed_spec_name">should not have admin role</span><span class='duration'>1.08568s</span></dd>
   </dl>
 </div>
-<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>49.96439 seconds</strong>";</script>
-<script type="text/javascript">document.getElementById('totals').innerHTML = "33 examples, 0 failures";</script>
+<div id="div_group_8" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_8" class="passed">Admin User</dt>
+    <script type="text/javascript">moveProgressBar('98.4');</script>
+    <dd class="example passed"><span class="passed_spec_name">should have admin role</span><span class='duration'>1.21247s</span></dd>
+  </dl>
+</div>
+<div id="div_group_9" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_9" class="passed">Company</dt>
+    <script type="text/javascript">moveProgressBar('100.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">should be valid</span><span class='duration'>0.05100s</span></dd>
+  </dl>
+</div>
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>116.63193 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "63 examples, 0 failures";</script>
 </div>
 </div>
 </body>
