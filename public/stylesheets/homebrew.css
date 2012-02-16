@@ -44,6 +44,7 @@ div.form{padding:10px;}
 .user_list .row .field.users{width:58%;}
 .user_list .row .field.user.selected{width:100%;background-color:#caf0fe;}
 .user_list .row:first-child{border:none;}
+.link.become a{color:red;font-weight:bold;}
 .user_data .field{width:100%;border-bottom:1px solid #cccccc;}.user_data .field .name{display:inline-block;font-weight:bold;font-size:1.1em;width:25%;text-align:right;padding:5px;}
 .user_data .field .value{display:inline-block;width:55%;text-align:left;padding:5px;}
 .user_data .field:first-child{border-top:1px solid #cccccc;}

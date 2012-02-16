@@ -1,0 +1,2 @@
+.log_event.become_user
+	=raw "#{event.ts_string} #{event.user.full_name} became '#{User.find(event.data[:other_user_id]).full_name}'"

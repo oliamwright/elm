@@ -30,6 +30,15 @@ describe "Authentication Requests" do
 				end
 			end
 		end
+
+		it "should be able to become another user" do
+			@user = User.make!
+			sign_in(@admin)
+			controller.current_user.should eq(@admin)
+			post_via_redirect become_user_url(@user)
+			assert_response :success
+			controller.current_user.should eq(@user)
+		end
 	end
 
 end

@@ -40,7 +40,7 @@
 				.payables.nav_sub_menu= link_to "PAYABLES", '#'
 			- permitted?(:show_receivables, @project) do
 				.receivables.nav_sub_menu= link_to "RECEIVABLES", '#'
-			- permitted?(:show_recent_activity, @project) do
+			- if permitted?(:show_recent_activity, @project) || permitted?(:show_recent_activity, Project)
 				.recent.nav_sub_menu= link_to 'Recent Activity', recent_activity_url
 			.logout.nav_sub_menu= link_to "logout", destroy_user_session_url
 			.clear

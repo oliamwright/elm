@@ -59,6 +59,15 @@ describe "Authentication Requests" do
 			get "/projects/#{@project.id}/backlog"
 			assert_response :missing
 		end
+
+		it "should NOT be able to become another user" do
+			@other_user = User.make!
+			sign_in(@user)
+			controller.current_user.should eq(@user)
+			post_via_redirect become_user_url(@other_user)
+			assert_response :missing
+			controller.current_user.should eq(@user)
+		end
 	end
 
 end

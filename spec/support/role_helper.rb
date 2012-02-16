@@ -5,6 +5,7 @@ ADMIN_PERMS = [
 	[ :role, :show ],
 	[ :role, :edit ],
 	[ :role, :create ],
+	[ :user, :become ],
 	[ :user, :index ],
 	[ :user, :show ],
 	[ :user, :edit ],

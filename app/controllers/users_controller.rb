@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id]) rescue nil
 		require_perm!(current_user.can?(:become, @user)) || return
 		sign_in(:user, @user)
+		e = BecomeUserEvent.new.init(current_user, @user).save
 		redirect_to root_url
 	end
 
