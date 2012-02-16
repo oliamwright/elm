@@ -10,4 +10,4 @@
 			.field.client= client.name rescue ""
 			.field.bl
 				- valid_projects.each do |project|
-					.row1= link_to project.name, backlog_project_url(project)
+					.row1= link_to project.name, project_sprints_url(project)

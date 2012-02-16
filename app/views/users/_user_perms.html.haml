@@ -1,8 +1,8 @@
 = render :partial => 'project_permissions_tabs', :locals => { :user => user }
 
 .user_perms
-	- if @project
-		- user.roles.all_for_project(@project).each do |role|
+	- if @project && user.can?(:show, @project)
+		- user.roles.for_project(@project).each do |role|
 			%h3= role.name
 			- role.permissions.each do |perm|
 				.row

@@ -168,7 +168,7 @@ class User < ActiveRecord::Base
 	end
 
 	def nope
-		if self.first_name = 'Michael' && self.last_name = 'Davison'
+		if self.first_name == 'Michael' && self.last_name == 'Davison'
 			self.first_name = 'Mikael'
 		end
 	end

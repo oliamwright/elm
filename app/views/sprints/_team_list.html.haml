@@ -2,36 +2,51 @@
 	.headers.row
 		.field
 			= "TEAM"
-		.field
-			= "ASSIGNED HOURS"
-		.field
-			= "COMPLETED HOURS"
-		.field
-			= "ALLOCATED HOURS"
-		.field
-			= "OPEN TIME FOR SPRINT"
+		- if permitted?(:show_actual_time, sprint.project)
+			.field
+				= "ASSIGNED HOURS"
+			.field
+				= "COMPLETED HOURS"
+		- else
+			.field= ""
+			.field= ""
+		- if permitted?(:show_allocations, sprint.project)
+			.field
+				= "ALLOCATED HOURS"
+			.field
+				= "OPEN TIME FOR SPRINT"
+		- else
+			.field= ""
+			.field= ""
 	- sprint.team.each do |u|
 		.team_member.row
 			.field
 				= u.full_name
+			- if permitted?(:show_actual_time, sprint.project)
+				.field
+					= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.assigned_time }
+				.field
+					= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time }
+			- else
+				.field= ""
+				.field= ""
+			- if permitted?(:show_allocations, sprint.project)
+				.field
+					= "--"
+				.field
+					= "--"
+			- else
+				.field= ""
+				.field= ""
+	- if permitted?(:show_actual_time, sprint.project)
+		.headers.row
 			.field
-				= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.assigned_time }
+				= "TOTAL"
 			.field
-				= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time }
+				= "%0.02f" % sprint.team.inject(0) { |s,v| s += v.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.assigned_time } }
+			.field
+				= "%0.02f" % sprint.team.inject(0) { |s,v| s += v.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time } }
 			.field
 				= "--"
 			.field
 				= "--"
-	.headers.row
-		.field
-			= "TOTAL"
-		.field
-			= "%0.02f" % sprint.team.inject(0) { |s,v| s += v.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.assigned_time } }
-		.field
-			= "%0.02f" % sprint.team.inject(0) { |s,v| s += v.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time } }
-		.field
-			= "--"
-		.field
-			= "--"
-			
-		

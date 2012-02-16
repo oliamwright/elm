@@ -42,10 +42,8 @@ namespace :roles do
 			[ :user, :unassign_project_role ],
 			[ :company, :index ],
 			[ :company, :show ],
-			[ :company, :new ],
 			[ :company, :create ],
 			[ :company, :edit ],
-			[ :company, :update ],
 			[ :permission, :grant ],
 			[ :permission, :revoke ]
 		]
@@ -54,6 +52,59 @@ namespace :roles do
 
 		admin_perms.each do |s,p|
 			puts "granting #{s.to_s.titleize}:#{p.to_s} to Admin"
+			perm = Permission.find_by_scope_and_short_name(s.to_s, p.to_s)
+			if perm
+				if r.permissions.include?(perm)
+					puts " * already granted"
+				else
+					r.permissions << perm
+				end
+			else
+				puts " * no such permission: #{s.to_s.titleize}:#{p.to_s}"
+			end
+		end
+
+	end
+
+	task :assign_project_team_perms => :environment do
+		pt_perms = [
+			[:project, :show_recent_activity],
+			[:project, :show_sprints],
+			[:project, :show_actual_time],
+			[:project, :show_estimated_time]
+		]
+
+		r = Role.find_by_name("Project Team")
+
+		pt_perms.each do |s,p|
+			puts "granting #{s.to_s.titleize}:#{p.to_s} to Project Team"
+			perm = Permission.find_by_scope_and_short_name(s.to_s, p.to_s)
+			if perm
+				if r.permissions.include?(perm)
+					puts " * already granted"
+				else
+					r.permissions << perm
+				end
+			else
+				puts " * no such permission: #{s.to_s.titleize}:#{p.to_s}"
+			end
+		end
+
+	end
+
+	task :assign_project_owner_perms => :environment do
+		po_perms = [
+			[:project, :show_recent_activity],
+			[:project, :show_sprints],
+			[:project, :show_team_tab],
+			[:project, :show_rtr_tab],
+			[:project, :show_sow_tab]
+		]
+
+		r = Role.find_by_name("Project Owner")
+
+		po_perms.each do |s,p|
+			puts "granting #{s.to_s.titleize}:#{p.to_s} to Project Owner"
 			perm = Permission.find_by_scope_and_short_name(s.to_s, p.to_s)
 			if perm
 				if r.permissions.include?(perm)
@@ -83,10 +134,8 @@ namespace :roles do
 			pm_perms = [
 				[ :project, :index ],
 				[ :project, :show ],
-				[ :project, :new ],
 				[ :project, :create ],
 				[ :project, :edit ],
-				[ :project, :update ]
 			]
 
 			pm_perms.each do |s,p|
@@ -110,6 +159,8 @@ namespace :roles do
 		Rake::Task['roles:create_special'].invoke
 		Rake::Task['roles:assign_debug_perms'].invoke
 		Rake::Task['roles:assign_admin_perms'].invoke
+		Rake::Task['roles:assign_project_team_perms'].invoke
+		Rake::Task['roles:assign_project_owner_perms'].invoke
 		Rake::Task['roles:create_project_manager'].invoke
 		Rake::Task['roles:assign_pm_perms'].invoke
 	end
