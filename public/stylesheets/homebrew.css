@@ -124,7 +124,8 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .sprint .field{display:inline-block;}
 .sprint .sprint_team{margin-top:0px;}.sprint .sprint_team .field{width:11%;}
 .sprint .team_list .field{width:11%;}
-.log_event:first-child{border:1px solid #aaa;}
+.log_event{border:1px solid #aaa;}
+.log_event.become_user{border:1px solid red;}
 .log_event{font-size:10px;padding:6px;margin-top:5px;background:#eee;line-height:1.4em;}.log_event .timestamp{color:#999;margin:0px 20px;}
 .log_event a{color:#008cb5;font-weight:bold;}
 .debug1{border:1px solid #f00;}
