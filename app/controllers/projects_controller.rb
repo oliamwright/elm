@@ -98,6 +98,7 @@ class ProjectsController < ApplicationController
 	def backlog
 		@project = Project.find(params[:id]) rescue nil
 		require_perm!(current_user.can?(:show, @project)) || return
+		require_perm!(current_user.can?(:show_backlog, @project)) || return
 		@project.renumber_backlog_if_necessary!
 	end
 

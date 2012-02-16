@@ -49,6 +49,16 @@ describe "Authentication Requests" do
 			put url_for(@project), :project => @project.attributes
 			assert_response :missing
 		end
+
+		it "should NOT have access to project sprints or backlog" do
+			@sprint = Sprint.make!
+			@project = @sprint.project
+			sign_in(@user)
+			get project_sprints_url(@project)
+			assert_response :missing
+			get "/projects/#{@project.id}/backlog"
+			assert_response :missing
+		end
 	end
 
 end

@@ -11,6 +11,8 @@ module ProjectPermissions
 			[:show, 'can view a project'],
 			[:show_payables, 'can view payables for a project'],
 			[:show_receivables, 'can view receivables for a project'],
+			[:show_sprints, 'can view sprints for project'],
+			[:show_backlog, 'can view backlog for project'],
 			[:create, 'can save new projects'],
 			[:edit, 'can edit projects'],
 		]

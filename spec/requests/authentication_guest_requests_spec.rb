@@ -26,6 +26,19 @@ describe "Authentication Requests" do
 				end
 			end
 		end
+
+		it "should NOT have access to sprints" do
+			@sprint = Sprint.make!
+			get project_sprints_url(@sprint.project)
+			response.should redirect_to(new_user_session_url)
+		end
+
+		it "should NOT have access to backlog" do
+			@project = Project.make!
+			get "/projects/#{@project.id}/backlog"
+			response.should redirect_to(new_user_session_url)
+		end
+
 	end
 
 end

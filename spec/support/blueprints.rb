@@ -57,3 +57,7 @@ end
 Project.blueprint do
 	owner { User.make! }
 end
+
+Sprint.blueprint do
+	project { Project.make! }
+end

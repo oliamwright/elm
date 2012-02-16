@@ -7,7 +7,8 @@ module SprintPermissions
 
 	def self.model_permissions
 		[
-			[:index, 'can show sprints']
+			[:index, 'can list sprints'],
+			[:show, 'can view a sprint']
 		]
 	end
 

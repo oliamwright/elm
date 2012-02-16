@@ -34,5 +34,5 @@ Tm::Application.configure do
   config.active_support.deprecation = :stderr
 
 	#config.active_record.logger = nil
-	config.log_level = :fatal
+	#config.log_level = :fatal
 end
