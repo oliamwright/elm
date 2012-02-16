@@ -33,6 +33,7 @@ namespace :roles do
 			[ :role, :show ],
 			[ :role, :edit ],
 			[ :role, :create ],
+			[ :user, :become],
 			[ :user, :index ],
 			[ :user, :show ],
 			[ :user, :edit ],

@@ -4,6 +4,13 @@ class UsersController < ApplicationController
 		require_perm!(current_user.can?(:index, User)) || return
 		@users = User.all
 	end
+	
+	def become
+		@user = User.find(params[:id]) rescue nil
+		require_perm!(current_user.can?(:become, @user)) || return
+		sign_in(:user, @user)
+		redirect_to root_url
+	end
 
 	def edit
 		not_found

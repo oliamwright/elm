@@ -21,6 +21,7 @@ Tm::Application.routes.draw do
 
 	resources :users do
 		member do
+			post 'become'
 			get 'user_data'
 			get 'user_perms'
 			get 'global_user_perms'

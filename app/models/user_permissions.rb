@@ -7,6 +7,7 @@ module UserPermissions
 
 	def self.model_permissions
 		[
+			[:become, 'can become user'],
 			[:index, 'can list users'],
 			[:show, 'can view a user'],
 			[:edit, 'can edit a user'],
