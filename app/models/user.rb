@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
 
 	attr_accessor :current_project
 
-	before_save :nope
 	after_save :assert_guid!
 	after_create :assign_anyone!
 	after_create :assign_admin!
@@ -189,12 +188,6 @@ class User < ActiveRecord::Base
 
 	def assign_admin!
 		self.roles << Role.Admin if User.all.count == 1
-	end
-
-	def nope
-		if self.first_name == 'Michael' && self.last_name == 'Davison'
-			self.first_name = 'Mikael'
-		end
 	end
 
 end
