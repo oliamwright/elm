@@ -6,7 +6,8 @@ module SubItemPermissions
 	end
 
 	def self.status_permissions
-		SubItem::STATUSES.combination(2).map { |fp, tp| ["from_#{fp.to_s}_to_#{tp.to_s}".to_sym, "can transition sub_items from #{fp.to_s} to #{tp.to_s}"] }
+		#SubItem::STATUSES.combination(2).map { |fp, tp| ["from_#{fp.to_s}_to_#{tp.to_s}".to_sym, "can transition sub_items from #{fp.to_s} to #{tp.to_s}"] }
+		SubItem::STATUSES.repeated_permutation(2).select { |a,b| a != b }.map { |f,t| ["from_#{f}_to_#{t}".to_sym, "can transition sub_items from #{f} to #{t}"]}
 	end
 
 	def self.model_permissions

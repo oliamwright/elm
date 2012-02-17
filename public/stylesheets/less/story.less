@@ -71,6 +71,14 @@
 .action_buttons {
 	margin-top: 5px;
 	
+	.task_status_field {
+		display: inline-block;
+
+		.status_select {
+			display: inline-block;
+		}
+	}
+
 	.assign_field {
 		display: inline-block;
 		
@@ -79,12 +87,14 @@
 		}
 	}
 
+	.set_status_button,
 	.button.own,
 	.assign_button,
 	.button.ignore {
 		margin-right: 30px;
 	}
 
+	.set_status_button,
 	.assign_button,
 	.button {
     -moz-border-bottom-colors: none;
@@ -111,12 +121,14 @@
     display: inline-block;
 	}
 	
+	.set_status_button:hover,
 	.assign_button:hover, 
 	.button:hover {
 	    background-image: -moz-linear-gradient(center top , #FFFFFF 0pt, #E0E0E0 100%);
 	    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 3px #FFFFFF inset;
 	}
 
+	.set_status_button.disabled,
 	.assign_button.disabled, 
 	.button.disabled {
 		border: 1px solid #ddd;

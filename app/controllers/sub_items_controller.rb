@@ -25,45 +25,11 @@ class SubItemsController < ApplicationController
 					end
 				end
 				render :text => ''
-			when "approved"
+			when "set_status"
+				new_status = params[:new_status].gsub(/ /, '').underscore.downcase
 				items.each do |item|
-					if current_user.can?("from_#{item.status}_to_approved".to_sym, item)
-						item.set_status!(:approved, current_user)
-					end
-				end
-				render :text => ''
-			when "completed"
-				items.each do |item|
-					if current_user.can?("from_#{item.status}_to_completed".to_sym, item)
-						item.set_status!(:completed, current_user)
-					end
-				end
-				render :text => ''
-			when "dev"
-				items.each do |item|
-					if current_user.can?("from_#{item.status}_to_dev".to_sym, item)
-						item.set_status!(:dev, current_user)
-					end
-				end
-				render :text => ''
-			when "waiting"
-				items.each do |item|
-					if current_user.can?("from_#{item.status}_to_waiting".to_sym, item)
-						item.set_status!(:waiting, current_user)
-					end
-				end
-				render :text => ''
-			when "open"
-				items.each do |item|
-					if current_user.can?("from_#{item.status}_to_open".to_sym, item)
-						item.set_status!(:open, current_user)
-					end
-				end
-				render :text => ''
-			when "ignore"
-				items.each do |item|
-					if current_user.can?("from_#{item.status}_to_ignored".to_sym, item)
-						item.set_status!(:ignored, current_user)
+					if current_user.can?("from_#{item.status}_to_#{new_status}".to_sym, item)
+						item.set_status!(new_status, current_user)
 					end
 				end
 				render :text => ''

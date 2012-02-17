@@ -142,21 +142,50 @@
 		$('.action_buttons .button').addClass('disabled');
 		$('.assign_button').addClass('disabled');
 		$('.assign_field .user_select select').attr('disabled', true);
+		$('.set_status_button').addClass('disabled');
+		$('.task_status_field .status_select select').attr('disabled', true);
+	};
+
+	function enable_buttons() {
+		$('.action_buttons .button').removeClass('disabled');
+		$('.assign_button').removeClass('disabled');
+		$('.assign_field .user_select select').attr('disabled', false);
+		$('.set_status_button').removeClass('disabled');
+		$('.task_status_field .status_select select').attr('disabled', false);
 	};
 
 	function update_buttons() {
 		if ($('input[name="sel"]:checked').length > 0) {
-			$('.action_buttons .button').removeClass('disabled');
-			$('.assign_button').removeClass('disabled');
-			$('.assign_field .user_select select').attr('disabled', false);
+			enable_buttons();
 		} else {
-			$('.action_buttons .button').addClass('disabled');
-			$('.assign_button').addClass('disabled');
-			$('.assign_field .user_select select').attr('disabled', true);
+			disable_buttons();
 		}
 	};
 
+	function uncheck_checkboxes() {
+		$('input[name="sel"]:checked').attr('checked', false);
+	};
+
 	update_buttons();
+
+	$('.set_status_button').click(function() {
+		if ($(this).hasClass('disabled')) {
+			// do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var new_status = $('.task_status_field option:selected').val();
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'sub_item') {
+					vals.push(container.attr('data-id'));
+				}
+			});
+			do_set_status(new_status, vals);
+		}
+	});
 
 	$('.assign_button').click(function() {
 		if ($(this).hasClass('disabled')) {
@@ -242,13 +271,38 @@
 			cache: false,
 			success: function(data) {
 				ids.forEach(function(id) {
-					$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
+					if (action == "delete") {
+						$('.item[data-id=' + id + ']').remove();
+					} else {
+						$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
+					}
 				});
 				disable_buttons();
+				uncheck_checkboxes();
 			}
 		});
 	};
 
+	function do_set_status(new_status, ids) {
+		var idstring = ids.join(',');
+		$.ajax({
+			async: true,
+			url: '/sub_items/do_action?si_action=set_status&ids=' + idstring + '&new_status=' + new_status,
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			type: 'post',
+			cache: false,
+			success: function(data) {
+				ids.forEach(function(id) {
+					$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
+				});
+				disable_buttons();
+				uncheck_checkboxes();
+			}
+		});
+	};
+				
 	function do_assign(userid, ids) {
 		var idstring = ids.join(',');
 		$.ajax({
@@ -264,6 +318,7 @@
 					$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
 				});
 				disable_buttons();
+				uncheck_checkboxes();
 			}
 		});
 	};
