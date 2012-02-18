@@ -60,6 +60,7 @@ div.form{padding:10px;}
 .item .field.type_bug{background-color:red;font-weight:normal;color:#fff;text-align:center;}
 .stories .new_task{margin-bottom:0px;}.stories .new_task .link a{color:#08c;padding:10px;display:inline-block;}
 .stories .new_task form.formtastic fieldset>ol>li.string input{width:100%;max-width:100%;}
+.sticky-header .action_buttons{margin-top:0px;}
 .action_buttons{margin-top:5px;}.action_buttons .task_status_field{display:inline-block;}.action_buttons .task_status_field .status_select{display:inline-block;}
 .action_buttons .assign_field{display:inline-block;}.action_buttons .assign_field .user_select{display:inline-block;}
 .action_buttons .set_status_button,.action_buttons .button.own,.action_buttons .assign_button,.action_buttons .button.ignore{margin-right:30px;}

@@ -14,9 +14,11 @@ function getAbsolutePosition(element) {
 // Attach to all headers.
 $(document).ready(function() {
 	var z = 0;
-	$('.story_list .header').each(function () {
-		// Find story_list height.
-		var story_list = $(this).parent('.story_list')[0];
+	var offset = 0;
+	$('.stickify').each(function () {
+
+		// Find stickify height.
+		var story_list = $(this)[0];
 		var height = $(story_list).addClass('sticky-header').height();
 		var i = 0;
 
@@ -30,7 +32,9 @@ $(document).ready(function() {
 		}
 
 		// Clone and wrap cell contents in sticky wrapper that overlaps the cell's padding.
-		$('<div class="sticky-header" style="position: fixed; visibility: hidden; top: 0px;background: white;border-bottom:1px solid #ccc">'+ html +'</div>').prependTo(this);
+		var cont = $('<div class="sticky-header" style="position: fixed; visibility: hidden; top: ' + offset + 'px;background: white;border-bottom:1px solid #ccc"></div>');
+		$(this).clone(true).appendTo(cont);
+		cont.prependTo($(this));
 		var div = $('div.sticky-header', this).css({
 			'marginLeft': '-'+ $(this).css('paddingLeft'),
 			'marginRight': '-'+ $(this).css('paddingRight'),
@@ -40,6 +44,8 @@ $(document).ready(function() {
 			'z-index': ++z
 		})[0];
 		cells.push(div);
+
+		offset += height;
 
 		// Adjust width to fit cell/table.
 		var ref = this;
@@ -54,7 +60,7 @@ $(document).ready(function() {
 		// Get position and store.
 		div.cell = this;
 		div.table = story_list;
-		div.stickyMax = height;
+		div.stickyMax = $(document).height();
 		div.stickyPosition = getAbsolutePosition(this).y;
 	});
 });
@@ -87,7 +93,7 @@ var resize = function () {
 	time = setTimeout(function () {
 
 		// Precalculate table heights
-		$('.story_list.sticky-header').each(function () {
+		$('.sticky-header').each(function () {
 			this.height = $(this).height();
 		})
 
