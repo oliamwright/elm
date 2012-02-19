@@ -53,12 +53,16 @@ class SubItemsController < ApplicationController
 		end
 		@sub_item.story = @story
 		@sub_item.owner = current_user
-		@sub_item.status = SubItem::INITIAL_STATUS
+		@sub_item.status = SubItem::INITIAL_STATUS.to_s
 		@sub_item.item_type = SubItem::DEFAULT_ITEM_TYPE
 		if @sub_item.save
 			e = SubItemCreationEvent.new.init(current_user, @sub_item).save
 		end
-		redirect_to_last_page :anchor => "si_#{@sub_item.display_number}"
+		if request.xhr?
+			render :partial => 'item', :object => @sub_item
+		else
+			redirect_to_last_page :anchor => "si_#{@sub_item.display_number}"
+		end
 	end
 
 	def update

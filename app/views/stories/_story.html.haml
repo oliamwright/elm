@@ -94,7 +94,4 @@
 			.field.completed_at= "COMPLETED"
 			.field.push= ">"
 		= render(:partial => 'sub_items/item', :collection => story.sub_items)
-	.new_task
-		= form_for([story, SubItem.new]) do |f|
-			= f.text_field :description, :placeholder => "Create a new Task or Bug for Story #{story.display_number}"
-			
+	= render :partial => 'sub_items/new_task', :locals => { :story => story }

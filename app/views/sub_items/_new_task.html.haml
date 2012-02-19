@@ -1,0 +1,18 @@
+.new_task
+	= form_for([story, SubItem.new], :remote => true, :html => { :'data-type' => 'html', :id => "new_task_#{story.id}" } ) do |f|
+		= f.text_field :description, :placeholder => "Create a new Task or Bug for Story #{story.display_number}"
+:javascript
+	$('#new_task_#{story.id}').bind('ajax:beforeSend', function() {
+		$('#new_task_#{story.id} #sub_item_description').attr('disabled', true);
+		$('#new_task_#{story.id} #sub_item_description').addClass('disabled');
+	}).bind('ajax:complete', function() {
+		$('#new_task_#{story.id} #sub_item_description').attr('disabled', false);
+		$('#new_task_#{story.id} #sub_item_description').removeClass('disabled');
+		$('#new_task_#{story.id} #sub_item_description').val('');
+	}).bind('ajax:success', function(evt, data, status, xhr) {
+		$('#new_task_#{story.id}').before(data);
+		$('.best_in_place').best_in_place();
+		//var pos = $('.stories #story_#{story.id}').next('.tasks').children('.item').last().offset().top;
+		//$('html, body').animate({scrollTop: pos}, 500);
+	});
+
