@@ -12,6 +12,13 @@ class Role < ActiveRecord::Base
 	scope :all_for_project, lambda { |project| where("role_memberships.project_id = ? or role_memberships.project_id is null", project) }
 	scope :primary, where("role_memberships.primary = 1")
 
+	def force_touch
+		self.touch
+		self.users.each do |u|
+			u.touch
+		end
+	end
+
 	def self.special(name)
 		Role.find_by_name(name.to_s.titleize)
 	end
