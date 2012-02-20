@@ -77,6 +77,12 @@ class User < ActiveRecord::Base
 	end
 
 	def can?(action, object)
+		Rails.cache.fetch([self, action, object], :expires_in => 1.day) do
+			self.actually_can?(action, object)
+		end
+	end
+
+	def actually_can?(action, object)
 		if object.nil?
 			logger.info ""
 			logger.info " * User(#{self.id}).can?(#{action}, nil)"

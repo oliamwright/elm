@@ -1,9 +1,10 @@
-.project_value_statements
-	.headers.row
-		.field= "GOAL"
-		.field= "VALUE"
-		.field= "ROI"
-	.data.row
-		.field= best_in_place project, :goal, :type => :textarea
-		.field= best_in_place project, :value, :type => :textarea
-		.field= best_in_place project, :roi, :type => :textarea
+- cache [current_user, project, 'value_statements'] do
+	.project_value_statements
+		.headers.row
+			.field= "GOAL"
+			.field= "VALUE"
+			.field= "ROI"
+		.data.row
+			.field= best_in_place project, :goal, :type => :textarea
+			.field= best_in_place project, :value, :type => :textarea
+			.field= best_in_place project, :roi, :type => :textarea
