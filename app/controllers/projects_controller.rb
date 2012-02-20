@@ -93,6 +93,7 @@ class ProjectsController < ApplicationController
 	def sprints
 		@project = Project.find(params[:id]) rescue nil
 		require_perm!(current_user.can?(:show, @project)) || return
+		require_perm!(current_user.can?(:show_sprints, @project)) || return
 	end
 
 	def backlog
