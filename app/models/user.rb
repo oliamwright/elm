@@ -164,7 +164,7 @@ class User < ActiveRecord::Base
 			perms.each do |permission|
 				if p == permission
 					ret = true
-					logger.debug " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" #unless ret == true
+					logger.debug " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{pid})" #unless ret == true
 					logger.debug " => #{ret} (#{role.name})" #unless ret == true
 					return ret
 				end

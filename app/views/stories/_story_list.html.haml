@@ -173,7 +173,7 @@
 			// do nothing
 		} else {
 			var act = $(this).attr('data-action');
-			var new_status = $('.task_status_field option:selected').val();
+			var new_status = $(this).parent().find('option:selected').val();
 			var vals = [];
 			$('input[name="sel"]:checked').each(function() {
 				var container = $(this).closest('.check');
@@ -192,7 +192,7 @@
 			//do nothing
 		} else {
 			var act = $(this).attr('data-action');
-			var uid = $('.assign_field option:selected').val();
+			var uid = $(this).parent().find('option:selected').val();
 			var vals = [];
 			$('input[name="sel"]:checked').each(function() {
 				var container = $(this).closest('.check');
