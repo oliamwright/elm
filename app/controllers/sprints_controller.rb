@@ -13,7 +13,6 @@ class SprintsController < ApplicationController
 			@sprint = @sprint.next_sprint
 		end
 		if @sprint
-			require_perm!(current_user.can?(:show, @sprint)) || return
 			@sprint.renumber_if_necessary!
 			render :action => 'show'
 		end
