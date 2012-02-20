@@ -124,3 +124,4 @@ after 'deploy:symlink', 'deploy:symlink_stylesheets_less'
 
 after 'deploy:symlink', 'deploy:make_tmp_dirs'
 
+after 'deploy', 'deploy:cleanup'
