@@ -60,6 +60,7 @@ class RolesController < ApplicationController
 		@permission = Permission.find(params[:permission_id])
 		@role.permissions << @permission
 		flash[:notice] = "Granted '#{@permission.short_name.to_s}' for '#{@permission.scope.to_s}' to role '#{@role.name}'."
+		@role.force_touch
 		redirect_to_last_page
 	end
 
@@ -68,6 +69,7 @@ class RolesController < ApplicationController
 		@permission = Permission.find(params[:permission_id])
 		@role.permissions.delete(@permission)
 		flash[:notice] = "Revoked '#{@permission.short_name.to_s}' for '#{@permission.scope.to_s}' from role '#{@role.name}'."
+		@role.force_touch
 		redirect_to_last_page
 	end
 
