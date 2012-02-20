@@ -44,6 +44,10 @@ class Role < ActiveRecord::Base
 		self.special(:developer)
 	end
 
+	def self.ScrumMaster
+		self.special(:scrum_master)
+	end
+
 	def full_name
 		"#{self.name} (#{self.internal_name})"
 	end
