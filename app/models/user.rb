@@ -78,8 +78,8 @@ class User < ActiveRecord::Base
 
 	def can?(action, object)
 		if object.nil?
-			logger.debug ""
-			logger.debug " * User(#{self.id}).can?(#{action}, nil)"
+			logger.info ""
+			logger.info " * User(#{self.id}).can?(#{action}, nil)"
 			return false
 		end
 
@@ -89,8 +89,8 @@ class User < ActiveRecord::Base
 				return false
 			end
 			ret = self._can?(action, object)
-			logger.debug " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" #unless ret == true
-			logger.debug " => #{ret}" #unless ret == true
+			logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret == true
+			logger.info " => #{ret}" unless ret == true
 			return ret
 		end
 
@@ -106,15 +106,15 @@ class User < ActiveRecord::Base
 		end
 
 		unless object.respond_to?(:can?)
-			logger.debug " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})"
-			logger.debug " No permissions defined for #{object.class} / #{object.id rescue object}"
-			logger.debug " => false"
+			logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})"
+			logger.info " No permissions defined for #{object.class} / #{object.id rescue object}"
+			logger.info " => false"
 			return false
 		end
 
 		ret = object.can?(action, self)
-		logger.debug " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" #unless ret
-		logger.debug " => #{ret}" #unless ret
+		logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret
+		logger.info " => #{ret}" unless ret
 		if ret == :default
 			return class_permission?(object.class.to_s.underscore.to_sym, action.to_sym)
 		else
@@ -130,8 +130,8 @@ class User < ActiveRecord::Base
 		end
 		perm = action.to_sym
 		ret =  class_permission?(scope, perm)
-		logger.debug " * User(#{self.id})._can?(#{action}, #{object})" #unless ret == true
-		logger.debug " => #{ret}" #unless ret == true
+		logger.info " * User(#{self.id})._can?(#{action}, #{object})" unless ret == true
+		logger.info " => #{ret}" unless ret == true
 		return ret
 	end
 
@@ -143,15 +143,15 @@ class User < ActiveRecord::Base
 			perms.each do |permission|
 				if p == permission
 					ret = true
-					logger.debug " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" #unless ret == true
-					logger.debug " => #{ret} (#{role.name})" #unless ret == true
+					logger.info " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" unless ret == true
+					logger.info " => #{ret} (#{role.name})" unless ret == true
 					return ret
 				end
 			end
 		end
 		ret = false
-		logger.debug " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" #unless ret == true
-		logger.debug " => #{ret}" #unless ret == true
+		logger.info " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" unless ret == true
+		logger.info " => #{ret}" unless ret == true
 		return ret
 	end
 
@@ -164,15 +164,15 @@ class User < ActiveRecord::Base
 			perms.each do |permission|
 				if p == permission
 					ret = true
-					logger.debug " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{pid})" #unless ret == true
-					logger.debug " => #{ret} (#{role.name})" #unless ret == true
+					logger.info " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{pid})" unless ret == true
+					logger.info " => #{ret} (#{role.name})" unless ret == true
 					return ret
 				end
 			end
 		end
 		ret = false
-		logger.debug " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" #unless ret == true
-		logger.debug " => #{ret}" #unless ret == true
+		logger.info " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" unless ret == true
+		logger.info " => #{ret}" unless ret == true
 		return ret
 	end 
 
