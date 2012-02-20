@@ -15,6 +15,7 @@ role :app, "homebrew.darmasoft.net"                          # This may be the s
 role :db,  "homebrew.darmasoft.net", :primary => true # This is where Rails migrations will run
 
 set :keep_releases, 10
+set :use_sudo, false
 
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
