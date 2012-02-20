@@ -12,6 +12,7 @@ class SubItemsController < ApplicationController
 		case action
 			when "assign"
 				user = User.find(params[:user_id])
+				user.current_project = current_user.current_project
 				items.each do |item|
 					if user.can?(:take_ownership, item) && current_user.can?(:assign_ownership, item)
 						user.take_ownership!(item)

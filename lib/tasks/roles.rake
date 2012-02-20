@@ -1,7 +1,7 @@
 
 namespace :roles do
 	task :create_special => :environment do
-		[:admin, :anyone, :client_team, :project_team, :project_owner, :debug].each do |role_sym|
+		[:admin, :anyone, :client_team, :project_team, :project_owner, :debug, :developer].each do |role_sym|
 			role_name = role_sym.to_s.titleize
 			unless Role.special(role_sym)
 				r = Role.new
@@ -53,6 +53,34 @@ namespace :roles do
 
 		admin_perms.each do |s,p|
 			puts "granting #{s.to_s.titleize}:#{p.to_s} to Admin"
+			perm = Permission.find_by_scope_and_short_name(s.to_s, p.to_s)
+			if perm
+				if r.permissions.include?(perm)
+					puts " * already granted"
+				else
+					r.permissions << perm
+				end
+			else
+				puts " * no such permission: #{s.to_s.titleize}:#{p.to_s}"
+			end
+		end
+
+	end
+
+	task :assign_developer_perms => :environment do
+		dev_perms = [
+			[:sub_item, :take_ownership],
+			[:sub_item, :assign_ownership],
+			[:sub_item, :from_open_to_approved],
+			[:sub_item, :from_approved_to_in_progress],
+			[:sub_item, :from_approved_to_completed],
+			[:sub_item, :from_in_progress_to_completed]
+		]
+
+		r = Role.Developer
+
+		dev_perms.each do |s,p|
+			puts "granting #{s.to_s.titleize}:#{p.to_s} to Developer"
 			perm = Permission.find_by_scope_and_short_name(s.to_s, p.to_s)
 			if perm
 				if r.permissions.include?(perm)
@@ -162,6 +190,7 @@ namespace :roles do
 		Rake::Task['roles:assign_admin_perms'].invoke
 		Rake::Task['roles:assign_project_team_perms'].invoke
 		Rake::Task['roles:assign_project_owner_perms'].invoke
+		Rake::Task['roles:assign_developer_perms'].invoke
 		Rake::Task['roles:create_project_manager'].invoke
 		Rake::Task['roles:assign_pm_perms'].invoke
 	end

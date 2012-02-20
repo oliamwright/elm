@@ -36,6 +36,14 @@ class Role < ActiveRecord::Base
 		self.special(:project_owner)
 	end
 
+	def self.Debug
+		self.special(:debug)
+	end
+
+	def self.Developer
+		self.special(:developer)
+	end
+
 	def full_name
 		"#{self.name} (#{self.internal_name})"
 	end
