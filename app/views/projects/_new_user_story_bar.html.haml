@@ -3,10 +3,19 @@
 		=# form_tag("/projects/#{project.id}/search")
 		=# text_field_tag :search
 	.new_story
-		= form_for([project, Story.new]) do |f|
+		= form_for([project, Story.new], :remote => true, :html => { :'data-type' => 'html' }) do |f|
 			= f.text_field :description, :placeholder => 'Create a User Story'
 		:javascript
-			$('#story_description').keypress(function() {
-				$(this).form.submit();
+			$('#new_story').bind('ajax:beforeSend', function() {
+				$('#new_story #story_description').attr('disabled', true);
+				$('#new_story #story_description').addClass('disabled');
+			}).bind('ajax:complete', function() {
+				$('#new_story #story_description').attr('disabled', false);
+				$('#new_story #story_description').removeClass('disabled');
+				$('#new_story #story_description').val('');
+			}).bind('ajax:success', function(evt, data, status, xhr) {
+				$('.stories').append(data);
+				var pos = $('.stories .story').last().offset().top;
+				$('html, body').animate({scrollTop: pos}, 500);
 			});
 

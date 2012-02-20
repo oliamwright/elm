@@ -1,3 +1,6 @@
+- if @project && permitted?(:show_recent_activity, Project)
+	.link
+		= link_to 'ALL', all_recent_activity_url
 .log_events
 	= render :partial => 'log_event', :collection => @events
 - if @project

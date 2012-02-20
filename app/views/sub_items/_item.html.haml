@@ -9,7 +9,10 @@
 	.field.value{:class => "type_#{item.item_type}"}= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
 	.field.details
 		%pre= best_in_place_if ["open"].include?(item.status), item, :description, :type => :textarea
-	.field.est_time= best_in_place_if !item.complete?, item, :estimated_time, :display_as => :display_estimated_time
+	- if permitted?(:show_estimated_time, item.story.project)
+		.field.est_time= best_in_place_if !item.complete?, item, :estimated_time, :display_as => :display_estimated_time
+	- else
+		.field.est_time= ""
 	- if item.task_ownerships.count > 0
 		.field.task_ownership
 			- item.task_ownerships.each do |to|
@@ -18,12 +21,15 @@
 						= to.user.full_name
 					.sub_field.role
 						= to.user.roles.for_project(item.story.project.id).primary.first.name rescue "None"
-					.sub_field.actual_time
-						= best_in_place_if (to.user == current_user), to, :actual_time, :display_as => :display_actual_time
+					- if permitted?(:show_actual_time, item.story.project)
+						.sub_field.actual_time
+							= best_in_place_if (to.user == current_user), to, :actual_time, :display_as => :display_actual_time
+					- else
+						.sub_field.actual_time= ""
 	- else
 		.field.tasks= "--"
 		.field.bugs= "--"
-		.field.act_time= "--"
+		.field.act_time= ""
 	.field.created_by= item.owner.full_name
 	.field.created_at= item.created_at.to_date
 	.field.approved_by= "--"

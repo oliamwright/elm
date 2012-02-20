@@ -3,8 +3,12 @@
 		.field= "TEAM RESOURCED"
 		.field= "USER STORIES"
 		.field= "COMPLETE"
-		.field= "APPROVED ALLOCATION"
-		.field= "EST. ALLOCATION"
+		- if permitted?(:show_allocations, sprint.project)
+			.field= "APPROVED ALLOCATION"
+			.field= "EST. ALLOCATION"
+		- else
+			.field= ""
+			.field= ""
 		.field= "SPRINT START"
 		.field= "WEEKS"
 		.field= "SPRINT END"
@@ -12,8 +16,12 @@
 		.field= sprint.team_resourced
 		.field= sprint.stories.count
 		.field= sprint.display_percent_complete
-		.field= "--"
-		.field= "--"
+		- if permitted?(:show_allocations, sprint.project)
+			.field= "--"
+			.field= "--"
+		- else
+			.field= ""
+			.field= ""
 		.field= sprint.start_date.to_date
 		.field= sprint.display_duration
 		.field= sprint.end_date.to_date

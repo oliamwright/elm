@@ -22,7 +22,6 @@ class User < ActiveRecord::Base
 
 	attr_accessor :current_project
 
-	before_save :nope
 	after_save :assert_guid!
 	after_create :assign_anyone!
 	after_create :assign_admin!
@@ -90,8 +89,8 @@ class User < ActiveRecord::Base
 				return false
 			end
 			ret = self._can?(action, object)
-			logger.debug " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret == true
-			logger.debug " => #{ret}" unless ret == true
+			logger.debug " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" #unless ret == true
+			logger.debug " => #{ret}" #unless ret == true
 			return ret
 		end
 
@@ -99,7 +98,11 @@ class User < ActiveRecord::Base
 		if object.class == Class
 			scope = object.to_s.underscore.to_sym
 			perm = action.to_sym
-			return self.class_permission?(scope, perm)
+			if object == Project
+				return self.global_class_permission?(scope, perm)
+			else
+				return self.class_permission?(scope, perm)
+			end
 		end
 
 		unless object.respond_to?(:can?)
@@ -110,8 +113,8 @@ class User < ActiveRecord::Base
 		end
 
 		ret = object.can?(action, self)
-		logger.debug " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret
-		logger.debug " => #{ret}" unless ret
+		logger.debug " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" #unless ret
+		logger.debug " => #{ret}" #unless ret
 		if ret == :default
 			return class_permission?(object.class.to_s.underscore.to_sym, action.to_sym)
 		else
@@ -127,8 +130,28 @@ class User < ActiveRecord::Base
 		end
 		perm = action.to_sym
 		ret =  class_permission?(scope, perm)
-		logger.debug " * User(#{self.id})._can?(#{action}, #{object})" unless ret == true
-		logger.debug " => #{ret}" unless ret == true
+		logger.debug " * User(#{self.id})._can?(#{action}, #{object})" #unless ret == true
+		logger.debug " => #{ret}" #unless ret == true
+		return ret
+	end
+
+	def global_class_permission?(scope, perm)
+		p = Permission.find_by_scope_and_short_name(scope, perm)
+		roles = self.roles.global
+		roles.each do |role|
+			perms = role.permissions
+			perms.each do |permission|
+				if p == permission
+					ret = true
+					logger.debug " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" #unless ret == true
+					logger.debug " => #{ret} (#{role.name})" #unless ret == true
+					return ret
+				end
+			end
+		end
+		ret = false
+		logger.debug " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" #unless ret == true
+		logger.debug " => #{ret}" #unless ret == true
 		return ret
 	end
 
@@ -141,15 +164,15 @@ class User < ActiveRecord::Base
 			perms.each do |permission|
 				if p == permission
 					ret = true
-					logger.debug " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" unless ret == true
-					logger.debug " => #{ret} (#{role.name})" unless ret == true
+					logger.debug " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" #unless ret == true
+					logger.debug " => #{ret} (#{role.name})" #unless ret == true
 					return ret
 				end
 			end
 		end
 		ret = false
-		logger.debug " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" unless ret == true
-		logger.debug " => #{ret}" unless ret == true
+		logger.debug " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" #unless ret == true
+		logger.debug " => #{ret}" #unless ret == true
 		return ret
 	end 
 
@@ -165,12 +188,6 @@ class User < ActiveRecord::Base
 
 	def assign_admin!
 		self.roles << Role.Admin if User.all.count == 1
-	end
-
-	def nope
-		if self.first_name = 'Michael' && self.last_name = 'Davison'
-			self.first_name = 'Mikael'
-		end
 	end
 
 end

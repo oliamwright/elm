@@ -1,7 +1,7 @@
 %div.navigation
 	.title= "HOMEBREW"
 	- if user_signed_in?
-		- if permitted?(:new, Project)
+		- if permitted?(:create, Project)
 			.new_project
 				= "+"
 				.new_project_form{:style => "display: none;"}
@@ -23,21 +23,25 @@
 				- permitted?(:show, @project) do
 					-#
 						.nav_tab{:class => (params[:action] == 'backlog' ? 'active' : '')}= link_to "PRODUCT BACKLOG", backlog_project_url(@project)
-					.nav_tab{:class => (params[:action] == 'team' ? 'active' : '')}= link_to 'TEAM', team_project_url(@project)
+					- permitted?(:show_team_tab, @project) do
+						.nav_tab{:class => (params[:action] == 'team' ? 'active' : '')}= link_to 'TEAM', team_project_url(@project)
 					.nav_tab{:class => (params[:controller] == 'sprints' || params[:action] == 'backlog' ? 'active' : '')}= link_to 'BACKLOG', project_sprints_url(@project)
-					.nav_tab{:class => (params[:action] == 'test_output' ? 'active' : '')}= link_to 'RTR', test_output_project_url(@project)
-					.nav_tab{:class => (params[:action] == 'sow' ? 'active' : '')}= link_to "SOW", '#'
+					- permitted?(:show_rtr_tab, @project) do
+						.nav_tab{:class => (params[:action] == 'test_output' ? 'active' : '')}= link_to 'RTR', test_output_project_url(@project)
+					- permitted?(:show_sow_tab, @project) do
+						.nav_tab{:class => (params[:action] == 'sow' ? 'active' : '')}= link_to "SOW", '#'
 		- else
 			= render :partial => 'shared/project_dropdown'
 		.nav_user_menu
-			.profile.nav_sub_menu= "Hi, #{current_user.username}"
+			.profile.nav_sub_menu= "Hi, #{current_user.first_name}"
 			- permitted?(:index, User) do
 				.users.nav_sub_menu{:class => (params[:controller] == 'users' ? 'active' : '')}= link_to "PEOPLE", users_url
 			- permitted?(:show_payables, @project) do
 				.payables.nav_sub_menu= link_to "PAYABLES", '#'
 			- permitted?(:show_receivables, @project) do
 				.receivables.nav_sub_menu= link_to "RECEIVABLES", '#'
-			.recent.nav_sub_menu= link_to 'Recent Activity', recent_activity_url
+			- if permitted?(:show_recent_activity, @project) || permitted?(:show_recent_activity, Project)
+				.recent.nav_sub_menu= link_to 'Recent Activity', recent_activity_url
 			.logout.nav_sub_menu= link_to "logout", destroy_user_session_url
 			.clear
 	- else

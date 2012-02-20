@@ -1,4 +1,4 @@
-.action_buttons
+.action_buttons.stickify
 	.button.own{:'data-action' => 'own'}
 		= "Own"
 	.assign_field
@@ -6,20 +6,26 @@
 			= select_tag :user_id, options_from_collection_for_select(@project.users.uniq, :id, :full_name)
 		.assign_button{:'data-action' => 'assign'}
 			= "Assign"
-	.button.approved{:'data-action' => 'approved'}
-		= "Approved"
-	.button.completed{:'data-action' => 'completed'}
-		= "Completed"
-	.button.dev{:'data-action' => 'dev'}
-		= "Dev"
-	.button.waiting{:'data-action' => 'waiting'}
-		= "Waiting"
-	.button.open{:'data-action' => 'open'}
-		= "Open"
-	.button.ignore{:'data-action' => 'ignore'}
-		= "Ignore"
+	.task_status_field
+		.status_select
+			= select_tag :new_status, options_for_select(SubItem::STATUSES.map { |s| s.to_s.titleize })
+		.set_status_button{:'data-action' => 'set_status'}
+			= "Set Status"
 	.button.delete{:'data-action' => 'delete'}
 		= "Delete"
+	-#
+		.button.approved{:'data-action' => 'approved'}
+			= "Approved"
+		.button.completed{:'data-action' => 'completed'}
+			= "Completed"
+		.button.dev{:'data-action' => 'dev'}
+			= "Dev"
+		.button.waiting{:'data-action' => 'waiting'}
+			= "Waiting"
+		.button.open{:'data-action' => 'open'}
+			= "Open"
+		.button.ignore{:'data-action' => 'ignore'}
+			= "Ignore"
 	-#
 		.button.move{:'data-action' => 'move'}
 			= "Move"

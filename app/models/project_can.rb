@@ -15,5 +15,13 @@ module ProjectCan
 			return :default
 		end
 	end
+
+	def can_edit?(user)
+		if self.owner == user
+			return true
+		else
+			return :default
+		end
+	end
 end
 

@@ -8,27 +8,42 @@
 			.field= "TASKS"
 			.field= "BUGS"
 			.field= "COMPLETE"
-			.field= "BUDGET EST."
-			.field= "PROJECT EST."
+			- if permitted?(:show_project_financials, @project)
+				.field= "BUDGET EST."
+				.field= "PROJECT EST."
+			- else
+				.field= ""
+				.field= ""
 			.field= "PROJECT START"
 			.field= "WEEKS"
 			.field= "PROJECT END"
 			.field= "SPRINT DURATION"
 			.field= "SPRINTS"
-			.field= "COST PER SPRINT"
+			- if permitted?(:show_project_financials, @project)
+				.field= "COST PER SPRINT"
+			- else
+				.field= ""
 		.data.row.last
 			.field= @project.users.uniq.count
 			.field= @project.stories.count
 			.field= @project.sub_items.tasks.count
 			.field= @project.sub_items.bugs.count
 			.field= @project.display_percent_backlog_complete
-			.field= "--"
-			.field= "--"
+			- if permitted?(:show_project_financials, @project)
+				.field= "--"
+				.field= "--"
+			- else
+				.field= ""
+				.field= ""
 			.field= best_in_place @project, :start_date, :type => :date
 			.field= best_in_place @project, :duration
 			.field= best_in_place @project, :end_date, :type => :date
 			.field= best_in_place @project, :sprint_duration, :type => :select, :collection => [ [1 * 1.week.to_i, "1 Week"], [2 * 1.week.to_i, "2 Weeks"], [4 * 1.week.to_i, "4 Weeks"] ]
 			.field= @project.num_sprints
-			.field= "--"
-	= render :partial => 'new_user_story_bar', :locals => { :project => @project }
+			- if permitted?(:show_project_financials, @project)
+				.field= "--"
+			- else
+				.field= ""
+	- if permitted?(:create, Story)
+		= render :partial => 'new_user_story_bar', :locals => { :project => @project }
 	= render :partial => 'stories/story_list', :locals => { :stories => @project.stories.backlog }

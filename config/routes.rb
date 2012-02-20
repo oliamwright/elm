@@ -2,6 +2,8 @@ Tm::Application.routes.draw do
   devise_for :users
 
 	match 'recent_activity' => 'log_events#index', :as => :recent_activity
+	match 'all_recent_activity' => 'log_events#all', :as => :all_recent_activity
+
 	resources :log_events
 	resources :questions
 	resources :answers
@@ -21,6 +23,7 @@ Tm::Application.routes.draw do
 
 	resources :users do
 		member do
+			post 'become'
 			get 'user_data'
 			get 'user_perms'
 			get 'global_user_perms'

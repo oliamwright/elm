@@ -8,7 +8,7 @@ module LogEventsHelper
 		else
 			return ""
 		end
-		"<span class='project_name'>In project '#{link_to project.name, backlog_project_url(project)}',</span>"
+		"<span class='project_name'>In project '#{link_to project.name, project_sprints_url(project)}',</span>"
 	end
 
 end

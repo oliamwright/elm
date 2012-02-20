@@ -13,7 +13,11 @@ class StoriesController < ApplicationController
 		else
 			flash[:error] = 'Story could not be created.'
 		end
-		redirect_to_last_page
+		if request.xhr?
+			render :partial => 'story', :object => @story, :layout => false
+		else
+			redirect_to_last_page
+		end
 	end
 
 	def update

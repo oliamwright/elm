@@ -6,9 +6,9 @@ class Story < ActiveRecord::Base
 	belongs_to :owner, :class_name => 'User'
 	belongs_to :project
 	belongs_to :sprint
-	has_many :sub_items
+	has_many :sub_items, :dependent => :destroy
 	has_many :task_ownerships, :through => :sub_items
-	has_many :log_events
+	has_many :log_events, :dependent => :destroy
 	has_many :questions, :as => :questionable, :dependent => :destroy
 
 	scope :backlog, where("sprint_id is null")

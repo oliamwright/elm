@@ -1,3 +1,6 @@
+- if permitted?(:become, user) && current_user != user
+	.link.become
+		= link_to 'BECOME', become_user_url(user), :method => :post
 .user_data
 	.field
 		.name= "First Name"
