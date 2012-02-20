@@ -14,6 +14,8 @@ role :web, "homebrew.darmasoft.net"                          # Your HTTP server,
 role :app, "homebrew.darmasoft.net"                          # This may be the same as your `Web` server
 role :db,  "homebrew.darmasoft.net", :primary => true # This is where Rails migrations will run
 
+set :keep_releases, 10
+
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
 # these http://github.com/rails/irs_process_scripts
