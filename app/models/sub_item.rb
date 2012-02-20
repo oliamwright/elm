@@ -17,7 +17,7 @@ class SubItem < ActiveRecord::Base
 	include SubItemCan
 	include SubItemPermissions
 
-  belongs_to :story
+  belongs_to :story, :touch => true
 	belongs_to :owner, :class_name => 'User'
 	has_many :task_ownerships, :dependent => :destroy
 	has_many :users, :through => :task_ownerships
