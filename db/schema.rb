@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201063630) do
+ActiveRecord::Schema.define(:version => 20120220174125) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120201063630) do
     t.integer  "project_id"
   end
 
+  add_index "log_events", ["project_id"], :name => "index_log_events_on_project_id"
   add_index "log_events", ["story_id"], :name => "index_log_events_on_story_id"
   add_index "log_events", ["sub_item_id"], :name => "index_log_events_on_sub_item_id"
   add_index "log_events", ["user_id"], :name => "index_log_events_on_user_id"
@@ -66,6 +67,9 @@ ActiveRecord::Schema.define(:version => 20120201063630) do
     t.datetime "updated_at"
   end
 
+  add_index "permissions_roles", ["permission_id"], :name => "index_permissions_roles_on_permission_id"
+  add_index "permissions_roles", ["role_id"], :name => "index_permissions_roles_on_role_id"
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "file_path"
@@ -83,6 +87,9 @@ ActiveRecord::Schema.define(:version => 20120201063630) do
     t.integer  "client_id"
   end
 
+  add_index "projects", ["client_id"], :name => "index_projects_on_client_id"
+  add_index "projects", ["owner_id"], :name => "index_projects_on_owner_id"
+
   create_table "questions", :force => true do |t|
     t.string   "questionable_type"
     t.integer  "questionable_id"
@@ -92,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120201063630) do
     t.datetime "updated_at"
   end
 
+  add_index "questions", ["questionable_type", "questionable_id"], :name => "index_questions_on_questionable_type_and_questionable_id"
   add_index "questions", ["user_id"], :name => "index_questions_on_user_id"
 
   create_table "role_memberships", :force => true do |t|
@@ -102,6 +110,10 @@ ActiveRecord::Schema.define(:version => 20120201063630) do
     t.datetime "updated_at"
     t.boolean  "primary"
   end
+
+  add_index "role_memberships", ["project_id"], :name => "index_role_memberships_on_project_id"
+  add_index "role_memberships", ["role_id"], :name => "index_role_memberships_on_role_id"
+  add_index "role_memberships", ["user_id"], :name => "index_role_memberships_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -131,6 +143,10 @@ ActiveRecord::Schema.define(:version => 20120201063630) do
     t.integer  "client_value", :default => 3
   end
 
+  add_index "stories", ["owner_id"], :name => "index_stories_on_owner_id"
+  add_index "stories", ["project_id"], :name => "index_stories_on_project_id"
+  add_index "stories", ["sprint_id"], :name => "index_stories_on_sprint_id"
+
   create_table "sub_items", :force => true do |t|
     t.text     "description"
     t.integer  "number"
@@ -143,6 +159,7 @@ ActiveRecord::Schema.define(:version => 20120201063630) do
     t.float    "estimated_time", :default => 0.0
   end
 
+  add_index "sub_items", ["owner_id"], :name => "index_sub_items_on_owner_id"
   add_index "sub_items", ["story_id"], :name => "index_sub_items_on_story_id"
 
   create_table "task_ownerships", :force => true do |t|
