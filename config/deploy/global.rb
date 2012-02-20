@@ -83,6 +83,11 @@ namespace :deploy do
 		run "cd #{release_path}/tmp && ln -s #{deploy_to}/shared/pids"
 	end
 
+	desc "create tmp/cache directory"
+	task :create_cache_dir, :roles => :app do
+		run "cd #{release_path}/tmp && mkdir -p cache"
+	end
+
 	desc "symlink database.yml"
 	task :symlink_database_yml, :roles => :app do
 		run "cd #{release_path}/config && ln -s _database.yml database.yml"
@@ -106,6 +111,7 @@ after 'deploy:setup', 'deploy:setup_code'
 after 'deploy:pull_repo', 'deploy:copy_code_to_release'
 before 'deploy:update_code', 'deploy:pull_repo'
 after 'deploy:update_code', 'deploy:finalize_update'
+before 'deploy:finalize_update', 'deploy:create_cache_dir'
 before 'deploy:copy_code_to_release', 'deploy:make_release_dir'
 #after 'deploy:copy_code_to_release', 'deploy:bundle_install'
 before 'deploy:restart', 'deploy:migrate_db'
