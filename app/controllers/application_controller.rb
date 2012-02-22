@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 	before_filter :assert_guid!
 	before_filter :update_page_history
 	before_filter :check_css
+	before_filter :set_page_title
 
 	def home
 		if current_user && @project
@@ -18,6 +19,10 @@ class ApplicationController < ActionController::Base
 	end
 
 	private
+
+	def set_page_title
+		@page_title = "#{controller_name} : #{action_name} :: homebrew.darmasoft.net"
+	end
 
 	def check_css
 		if !APP_CONFIG['check_css']
