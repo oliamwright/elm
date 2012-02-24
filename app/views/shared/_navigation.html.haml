@@ -33,9 +33,10 @@
 		- else
 			= render :partial => 'shared/project_dropdown'
 		.nav_user_menu
-			.profile.nav_sub_menu= "Hi, #{current_user.first_name}"
+			.profile.dashboard_link
+				= link_to "Hi, #{current_user.first_name}", dashboard_url
 			- permitted?(:index, User) do
-				.users.nav_sub_menu{:class => (params[:controller] == 'users' ? 'active' : '')}= link_to "PEOPLE", users_url
+				.users.nav_sub_menu{:class => (params[:controller] == 'users' && params[:action] != 'dashboard' ? 'active' : '')}= link_to "PEOPLE", users_url
 			- permitted?(:show_payables, @project) do
 				.payables.nav_sub_menu= link_to "PAYABLES", '#'
 			- permitted?(:show_receivables, @project) do

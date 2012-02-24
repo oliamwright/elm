@@ -1,0 +1,11 @@
+.dashboard
+	.story_list
+		.title= "My Tasks"
+		= render :partial => 'stories/story_header'
+		.stories
+			- @sub_items.group_by { |si| si.story.project }.each do |project, si|
+				.project_bar
+					= link_to project.name, project_sprints_url(project)
+					%span.client_name
+						= " (#{project.client.name})"
+				= render :partial => 'stories/story', :collection => si.map { |s| s.story }.uniq.sort {|a,b| b.client_value <=> a.client_value }

@@ -39,6 +39,10 @@ describe "Authentication Requests" do
 			response.should redirect_to(new_user_session_url)
 		end
 
+		it "should NOT have access to dashboard" do
+			get dashboard_url
+			response.should redirect_to(new_user_session_url)
+		end
 	end
 
 end

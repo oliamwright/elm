@@ -1,0 +1,25 @@
+.header.stickify
+	.field.pull
+	.field.check{:'data-class' => 'story', :'data-id' => 'all'}= check_box_tag :sel
+	.field.status= "STATUS"
+	.field.usid
+		%span.usid= "US ID"
+		%span.taskid{:style => 'display: none;'}= "TASK ID"
+	.field.value= "VALUE"
+	.field.details= "USER STORY"
+	- if permitted?(:show_estimated_time, @project)
+		.field.est_time= "EST. TIME"
+	- else
+		.field.est_time= ""
+	.field.tasks= "TASKS"
+	.field.bugs= "BUGS"
+	- if permitted?(:show_actual_time, @project)
+		.field.act_time= "ACTUAL TIME"
+	- else
+		.field.act_time= ""
+	.field.created_by= "CREATED BY"
+	.field.created_at= "CREATED"
+	.field.approved_by= "APPROVED BY"
+	.field.approved_at= "APPROVED"
+	.field.completed_at= "COMPLETED"
+	.field.push

@@ -1,5 +1,4 @@
 SPECIAL_URLS = [
-	'/'
 ]
 
 ACTIONS = [

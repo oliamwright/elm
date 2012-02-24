@@ -13,7 +13,7 @@
 				= story.display_status
 			- else
 				= best_in_place story, :approved, :type => :checkbox, :collection => [ 'Open', 'Approved' ]
-		.field.usid= story.display_number
+		.field.usid= link_to story.display_number, story_url(story)
 		.field.value= best_in_place story, :client_value, :type => :select, :collection => Story::VALUE_MAP
 		.field.details= best_in_place_if !story.approved?, story, :description
 		- if permitted?(:show_estimated_time, story.project)
