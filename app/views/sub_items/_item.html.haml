@@ -5,8 +5,8 @@
 		.field.check{:'data-class' => 'sub_item', :'data-id' => item.id}= check_box_tag :sel
 		.field.status= best_in_place item, :status, :type => :select, :collection => possible_statuses(item).map {|s| [ s.to_s, display_status(s.to_s) ] }
 		.field.usid
-			%span.usid= item.display_number
-			%span.taskid{:style => 'display: none;'}= item.id
+			%span.usid= link_to item.display_number, sub_item_url(item)
+			%span.taskid{:style => 'display: none;'}= link_to item.id, sub_item_url(item)
 		.field.value{:class => "type_#{item.item_type}"}= best_in_place item, :item_type, :type => :select, :collection => [ [ 'task', 'Task' ], [ 'bug', 'Bug' ] ]
 		.field.details
 			%pre= best_in_place_if ["open"].include?(item.status), item, :description, :type => :textarea

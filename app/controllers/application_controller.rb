@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
 			redirect_to backlog_project_url(@project)
 		elsif !current_user
 			redirect_to new_user_session_url
+		else
+			redirect_to dashboard_url
 		end
 	end
 

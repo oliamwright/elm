@@ -77,9 +77,9 @@ class User < ActiveRecord::Base
 	end
 
 	def can?(action, object)
-		Rails.cache.fetch([self, action, object], :expires_in => 1.day) do
+		#Rails.cache.fetch([self, action, object], :expires_in => 1.day) do
 			self.actually_can?(action, object)
-		end
+		#end
 	end
 
 	def actually_can?(action, object)
@@ -119,10 +119,22 @@ class User < ActiveRecord::Base
 		end
 
 		ret = object.can?(action, self)
-		logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret
-		logger.info " => #{ret}" unless ret
+		logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret == true
+		logger.info " => #{ret}" unless ret == true
 		if ret == :default
-			return class_permission?(object.class.to_s.underscore.to_sym, action.to_sym)
+			orig_project = self.current_project
+			if object.class == SubItem
+				logger.info ""
+				logger.info " * testing permission for sub_item"
+				self.current_project = object.story.project
+			elsif object.class == Story
+				logger.info ""
+				logger.info " * testing permission for story"
+				self.current_project = object.project
+			end
+			ret = class_permission?(object.class.to_s.underscore.to_sym, action.to_sym)
+			self.current_project = orig_project if orig_project
+			return ret
 		else
 			return ret
 		end

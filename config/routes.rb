@@ -21,6 +21,8 @@ Tm::Application.routes.draw do
 	match 'permissions/scope/:scope' => 'permissions#for_scope', :as => :permissions_for_scope
 	match 'permissions' => 'permissions#unscoped', :as => :unscoped_permissions
 
+	match 'dashboard' => 'users#dashboard', :as => :dashboard
+
 	resources :users do
 		member do
 			post 'become'

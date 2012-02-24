@@ -68,6 +68,12 @@ describe "Authentication Requests" do
 			assert_response :missing
 			controller.current_user.should eq(@user)
 		end
+
+		it "should have access to dashboard" do
+			sign_in(@user)
+			get dashboard_url
+			assert_response :success
+		end
 	end
 
 end

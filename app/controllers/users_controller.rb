@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
 
+	def dashboard
+		@project = nil
+		current_user.current_project = nil
+		session[:current_project_id] = nil
+
+		@sub_items = current_user.sub_items.select { |si| !si.complete? }
+	end
+
 	def index
 		require_perm!(current_user.can?(:index, User)) || return
 		@users = User.all
