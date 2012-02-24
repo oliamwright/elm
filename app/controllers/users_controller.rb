@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 		current_user.current_project = nil
 		session[:current_project_id] = nil
 
-		@sub_items = current_user.sub_items.select { |si| !si.complete? }
+		@sub_items = current_user.sub_items.select { |si| !si.complete? && !si.ignored? }
 	end
 
 	def index
