@@ -33,6 +33,10 @@ class SubItem < ActiveRecord::Base
 
 	INITIAL_STATUS = :open
 
+	def ignored?
+		["ignored"].include?(self.status)
+	end
+
 	def complete?
 		["completed", "dev", "tested", "stage", "prod"].include?(self.status)
 	end
