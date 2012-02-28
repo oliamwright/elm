@@ -31,7 +31,7 @@
 				.field
 					= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time }
 				.field
-					= best_in_place u.additional_time_item_for_sprint(sprint), :time, :display_as => :formatted_time
+					= best_in_place_if (current_user == u), u.additional_time_item_for_sprint(sprint), :time, :display_as => :formatted_time
 			- else
 				.field= ""
 				.field= ""
