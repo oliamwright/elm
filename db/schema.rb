@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228150904) do
+ActiveRecord::Schema.define(:version => 20120228151947) do
 
   create_table "additional_time_items", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
-    t.float    "time"
+    t.float    "time",       :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sprint_id"
