@@ -5,6 +5,7 @@ class Sprint < ActiveRecord::Base
 
   belongs_to :project
 	has_many :stories
+	has_many :additional_time_items
 
 	def team_resourced
 		self.stories.collect { |s| s.task_ownerships }.flatten.map { |to| to.user }.uniq.count

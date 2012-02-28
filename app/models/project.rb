@@ -12,6 +12,7 @@ class Project < ActiveRecord::Base
 	has_many :sub_items, :through => :stories
 	belongs_to :client, :class_name => 'Company'
 	has_many :log_events
+	has_many :additional_time_items
 
 	scope :for_client, lambda { |client| where("client_id = ?", client) }
 

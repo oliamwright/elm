@@ -135,7 +135,7 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .debug3{border:1px solid #00f;}
 a{text-decoration:none;color:#444444;}
 a:hover{color:#444444;}
-body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:"lucida grande";font-size:9px;}
+body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:arial;font-size:9px;}
 .clear{clear:both;}
 .message{width:50%;text-align:left;padding:10px;}
 .message.notice{color:#00c540;background-color:#fdfffd;}

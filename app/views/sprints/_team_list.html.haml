@@ -7,7 +7,10 @@
 				= "ASSIGNED HOURS"
 			.field
 				= "COMPLETED HOURS"
+			.field
+				= "ADDITIONAL TIME"
 		- else
+			.field= ""
 			.field= ""
 			.field= ""
 		- if permitted?(:show_allocations, sprint.project)
@@ -27,6 +30,8 @@
 					= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.assigned_time }
 				.field
 					= "%0.02f" % u.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time }
+				.field
+					= best_in_place u.additional_time_item_for_sprint(sprint), :time, :display_as => :formatted_time
 			- else
 				.field= ""
 				.field= ""
@@ -47,6 +52,4 @@
 			.field
 				= "%0.02f" % sprint.team.inject(0) { |s,v| s += v.task_ownerships.for_sprint(sprint.id).not_ignored.inject(0) { |s,v| s += v.actual_time } }
 			.field
-				= "--"
-			.field
-				= "--"
+				= "%0.02f" % sprint.additional_time_items.inject(0) { |s,v| s += v.time }

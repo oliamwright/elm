@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 	has_many :log_events
 	has_many :questions
 	has_many :answers
+	has_many :additional_time_items
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :title, :phone, :company_id
@@ -25,6 +26,11 @@ class User < ActiveRecord::Base
 	after_save :assert_guid!
 	after_create :assign_anyone!
 	after_create :assign_admin!
+
+	def additional_time_item_for_sprint(sprint)
+		return nil unless sprint
+		AdditionalTimeItem.find_or_create_by_project_id_and_user_id_and_sprint_id(sprint.project.id, self.id, sprint.id)
+	end
 
 	def take_ownership!(task)
 		return false unless task.class == SubItem
@@ -95,8 +101,8 @@ class User < ActiveRecord::Base
 				return false
 			end
 			ret = self._can?(action, object)
-			logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret == true
-			logger.info " => #{ret}" unless ret == true
+			logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret
+			logger.info " => #{ret}" unless ret
 			return ret
 		end
 
@@ -119,17 +125,17 @@ class User < ActiveRecord::Base
 		end
 
 		ret = object.can?(action, self)
-		logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret == true
-		logger.info " => #{ret}" unless ret == true
+		logger.info " * User(#{self.id}).can?(#{action}, #{object.class} / #{object.id rescue object})" unless ret
+		logger.info " => #{ret}" unless ret
 		if ret == :default
 			orig_project = self.current_project
 			if object.class == SubItem
-				logger.info ""
-				logger.info " * testing permission for sub_item"
+#				logger.info ""
+#				logger.info " * testing permission for sub_item"
 				self.current_project = object.story.project
 			elsif object.class == Story
-				logger.info ""
-				logger.info " * testing permission for story"
+#				logger.info ""
+#				logger.info " * testing permission for story"
 				self.current_project = object.project
 			end
 			ret = class_permission?(object.class.to_s.underscore.to_sym, action.to_sym)
@@ -148,8 +154,8 @@ class User < ActiveRecord::Base
 		end
 		perm = action.to_sym
 		ret =  class_permission?(scope, perm)
-		logger.info " * User(#{self.id})._can?(#{action}, #{object})" unless ret == true
-		logger.info " => #{ret}" unless ret == true
+		logger.info " * User(#{self.id})._can?(#{action}, #{object})" unless ret #== true
+		logger.info " => #{ret}" unless ret #== true
 		return ret
 	end
 
@@ -161,15 +167,15 @@ class User < ActiveRecord::Base
 			perms.each do |permission|
 				if p == permission
 					ret = true
-					logger.info " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" unless ret == true
-					logger.info " => #{ret} (#{role.name})" unless ret == true
+					logger.info " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" unless ret #== true
+					logger.info " => #{ret} (#{role.name})" unless ret #== true
 					return ret
 				end
 			end
 		end
 		ret = false
-		logger.info " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" unless ret == true
-		logger.info " => #{ret}" unless ret == true
+		logger.info " * User(#{self.id}).global_class_permission?(#{scope}, #{perm})" unless ret #== true
+		logger.info " => #{ret}" unless ret #== true
 		return ret
 	end
 
@@ -182,15 +188,15 @@ class User < ActiveRecord::Base
 			perms.each do |permission|
 				if p == permission
 					ret = true
-					logger.info " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{pid})" unless ret == true
-					logger.info " => #{ret} (#{role.name})" unless ret == true
+					logger.info " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{pid})" unless ret #== true
+					logger.info " => #{ret} (#{role.name})" unless ret #== true
 					return ret
 				end
 			end
 		end
 		ret = false
-		logger.info " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" unless ret == true
-		logger.info " => #{ret}" unless ret == true
+		logger.info " * User(#{self.id}).class_permission?(#{scope}, #{perm}, #{project.id rescue nil})" unless ret #== true
+		logger.info " => #{ret}" unless ret #== true
 		return ret
 	end 
 

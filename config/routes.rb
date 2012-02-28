@@ -38,6 +38,7 @@ Tm::Application.routes.draw do
 		end
 	end
 
+	resources :additional_time_items
 	resources :task_ownerships
 	resources :stories do
 

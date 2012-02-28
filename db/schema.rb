@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220174125) do
+ActiveRecord::Schema.define(:version => 20120228150904) do
+
+  create_table "additional_time_items", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.float    "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "sprint_id"
+  end
+
+  add_index "additional_time_items", ["project_id"], :name => "index_additional_time_items_on_project_id"
+  add_index "additional_time_items", ["sprint_id"], :name => "index_additional_time_items_on_sprint_id"
+  add_index "additional_time_items", ["user_id"], :name => "index_additional_time_items_on_user_id"
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"

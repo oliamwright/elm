@@ -61,3 +61,7 @@ end
 Sprint.blueprint do
 	project { Project.make! }
 end
+
+AdditionalTimeItem.blueprint do
+  # Attributes here
+end
