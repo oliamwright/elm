@@ -147,6 +147,7 @@ body{background-color:#fdfdfd;color:#444444;padding:0px;margin:0px;font-family:a
 .chat{border:1px solid black;border-right:0;background-color:white;width:310px;position:fixed;top:25px;right:0px;height:300px;}
 .sub_navigation{display:inline-block;}
 .sub_navigation.project_navigation{background-color:#444444;}
+.navigation .title a{color:#fff;}
 .sub_navigation.project_title .project_title{color:#444444;}
 .navigation.old{background-color:#000;height:20px;}.navigation.old .link{display:inline-block;}
 .navigation.old .link.active{background-color:#222222;}

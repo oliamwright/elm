@@ -1,5 +1,5 @@
 %div.navigation
-	.title= "HOMEBREW"
+	.title= link_to "HOMEBREW", dashboard_url
 	- if user_signed_in?
 		- if permitted?(:create, Project)
 			.new_project
