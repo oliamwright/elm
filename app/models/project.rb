@@ -7,12 +7,12 @@ class Project < ActiveRecord::Base
 	has_many :users, :through => :role_memberships
 	has_many :roles, :through => :role_memberships
 	belongs_to :owner, :class_name => 'User'
-	has_many :sprints
-	has_many :stories
+	has_many :sprints, :dependent => :destroy
+	has_many :stories, :dependent => :destroy
 	has_many :sub_items, :through => :stories
 	belongs_to :client, :class_name => 'Company'
-	has_many :log_events
-	has_many :additional_time_items
+	has_many :log_events, :dependent => :destroy
+	has_many :additional_time_items, :dependent => :destroy
 
 	scope :for_client, lambda { |client| where("client_id = ?", client) }
 

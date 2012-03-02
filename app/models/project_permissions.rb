@@ -22,6 +22,7 @@ module ProjectPermissions
 			[:show_sow_tab, 'can view sow tab for project'],
 			[:create, 'can create new projects'],
 			[:edit, 'can edit projects'],
+			[:delete, 'can delete projects']
 		]
 	end
 

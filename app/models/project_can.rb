@@ -23,5 +23,16 @@ module ProjectCan
 			return :default
 		end
 	end
+
+	def can_delete?(user)
+		logger.info " * User(#{user.id}).can_delete?(Project/#{self.id})"
+		if self.owner == user
+			logger.info " => true"
+			return true
+		else
+			logger.info " => default"
+			return :default
+		end
+	end
 end
 

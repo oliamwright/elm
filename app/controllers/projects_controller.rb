@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 		if current_user.can?(:new, Project)
 			@projects = Project.all
 		else
-			@projects = current_user.projects
+			@projects = current_user.projects.uniq
 		end
 	end
 
@@ -12,6 +12,13 @@ class ProjectsController < ApplicationController
 		require_perm!(current_user.can?(:create, Project)) || return
 		@project = Project.new
 		@project.start_date = Date.today + (1 - Date.today.wday).days
+	end
+
+	def destroy
+		@project = Project.find(params[:id]) rescue nil
+		require_perm!(current_user.can?(:delete, @project)) || return
+		@project.destroy
+		redirect_to projects_url
 	end
 
 	def create

@@ -4,7 +4,7 @@ class Sprint < ActiveRecord::Base
 	include SprintPermissions
 
   belongs_to :project
-	has_many :stories
+	has_many :stories, :dependent => :destroy
 	has_many :additional_time_items
 
 	def team_resourced
