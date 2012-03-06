@@ -1,0 +1,75 @@
+:javascript
+	var number_input = "";
+	var current_story = "1";
+
+	function focusNewStoryInput(evt) {
+		current_story = "1";
+		$('#story_description').focus();
+		evt.stopPropagation();
+		evt.preventDefault();
+		return false;
+	};
+
+	function focusNewTaskInput(evt) {
+		if (number_input.length > 0) {
+			goToStory();
+		};
+		var identifier = '.story[data-story-number="' + current_story + '"]';
+		var input = $(identifier).next('.tasks').find('input[name="sub_item[description]"]');
+		input.focus();
+		evt.stopPropagation();
+		evt.preventDefault();
+		return false;
+	};
+
+	function goToNextStory(evt) {
+		number_input = parseInt(current_story) + 1;
+		goToStory();
+	};
+
+	function goToPreviousStory(evt) {
+		number_input = parseInt(current_story) - 1;
+		goToStory();
+	};
+
+	function addNumberToInput(evt) {
+		number_input += evt.data;
+	};
+
+	function goToStory() {
+		var identifier = '.story[data-story-number="' + number_input + '"]';
+		if ($(identifier).size() > 0) {
+			var pos = $(identifier).first().offset().top - 70;
+			$('html, body').animate({scrollTop: pos}, 500);
+			current_story = number_input;
+		};
+		clearNumberInput();
+	};
+
+	function showCurrentStory(evt) {
+		alert(current_story);
+	};
+
+	function clearNumberInput(evt) {
+		number_input = "";
+	};
+
+	$(document).bind('keypress', 'u', focusNewStoryInput);
+	$(document).bind('keypress', 't', focusNewTaskInput);
+	$(document).bind('keypress', 'w', goToPreviousStory);
+	$(document).bind('keypress', 's', goToNextStory);
+
+	$(document).bind('keypress', '1', addNumberToInput);
+	$(document).bind('keypress', '2', addNumberToInput);
+	$(document).bind('keypress', '3', addNumberToInput);
+	$(document).bind('keypress', '4', addNumberToInput);
+	$(document).bind('keypress', '5', addNumberToInput);
+	$(document).bind('keypress', '6', addNumberToInput);
+	$(document).bind('keypress', '7', addNumberToInput);
+	$(document).bind('keypress', '8', addNumberToInput);
+	$(document).bind('keypress', '9', addNumberToInput);
+	$(document).bind('keypress', '0', addNumberToInput);
+	$(document).bind('keypress', 'g', goToStory);
+	$(document).bind('keypress', 'c', clearNumberInput);
+
+	$(document).bind('keypress', '-', showCurrentStory);
