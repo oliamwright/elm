@@ -114,6 +114,9 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .story.value_critical{border-top:3px solid red;}
 .stories{border-radius:3px 3px 3px 3px;padding:3px;background:#eee;}
 .item{background:#fff;border-right:1px solid #ccc;border-left:1px solid #ccc;}
+.keyboard_shortcuts{font-size:1.5em;}.keyboard_shortcuts li{margin-top:10px;}
+.keyboard_shortcuts .shortcut .key{font-weight:bold;font-size:1.0em;}
+.keyboard_shortcuts .example{font-style:italic;}
 .sprint_navigation .sprint_tab{display:inline-block;font-size:11px;font-weight:bold;background-color:#E9F4FF;}.sprint_navigation .sprint_tab a{padding:8px 12px 8px 12px;display:inline-block;}
 .sprint_navigation .sprint_tab.late{border-top:3px solid red;}
 .sprint_navigation .sprint_tab.active{background-color:#AACCEE;font-weight:bold;border-bottom:solid 2px #000000;}

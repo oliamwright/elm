@@ -3,6 +3,7 @@ Tm::Application.routes.draw do
 
 	match 'recent_activity' => 'log_events#index', :as => :recent_activity
 	match 'all_recent_activity' => 'log_events#all', :as => :all_recent_activity
+	match 'keyboard_help' => 'application#keyboard_help', :as => :keyboard_help
 
 	resources :log_events
 	resources :questions

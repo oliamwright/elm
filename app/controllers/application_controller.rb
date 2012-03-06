@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 	before_filter :check_css
 	before_filter :set_page_title
 
+	def keyboard_help
+		render :action => 'keyboard_help', :layout => 'dialog'
+	end
+
 	def home
 		if current_user && @project
 			redirect_to backlog_project_url(@project)

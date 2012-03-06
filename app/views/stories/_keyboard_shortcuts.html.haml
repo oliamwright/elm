@@ -46,6 +46,10 @@
 		clearNumberInput();
 	};
 
+	function openHelp(evt) {
+		window.open('/keyboard_help', 'Keyboard Shortcut Help', 'width=800,height=600');
+	};
+
 	function showCurrentStory(evt) {
 		alert(current_story);
 	};
@@ -58,6 +62,7 @@
 	$(document).bind('keypress', 't', focusNewTaskInput);
 	$(document).bind('keypress', 'w', goToPreviousStory);
 	$(document).bind('keypress', 's', goToNextStory);
+	$(document).bind('keypress', 'h', openHelp);
 
 	$(document).bind('keypress', '1', addNumberToInput);
 	$(document).bind('keypress', '2', addNumberToInput);
