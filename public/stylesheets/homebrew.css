@@ -89,7 +89,7 @@ div.form{padding:10px;}
 .story_list .field.status{width:4%;}
 .story_list .field.details{width:25%;font-size:11px;line-height:1.4em;}
 .story_list .field{width:6.4%;display:inline-block;vertical-align:middle;line-height:1.2em;}
-.story_list .story .field{text-shadow:1px 1px #fff;}
+.story_list .story>.field{text-shadow:1px 1px #fff;}
 .story_list .story.status_open .field.status,.story_list .item.status_open .field.status{color:#ff1e0a;}
 .story_list .story.status_approved .field.status,.story_list .item.status_approved .field.status{color:#48bddf;font-style:italic;}
 .story_list .item.status_approved{background-color:#f2f6be;}
@@ -114,6 +114,7 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .story.value_critical{border-top:3px solid red;}
 .stories{border-radius:3px 3px 3px 3px;padding:3px;background:#eee;}
 .item{background:#fff;border-right:1px solid #ccc;border-left:1px solid #ccc;}
+.tasks.currently_selected,.story.currently_selected{border-left:3px solid gold;}
 .keyboard_shortcuts{font-size:1.5em;}.keyboard_shortcuts li{margin-top:10px;}
 .keyboard_shortcuts .shortcut .key{font-weight:bold;font-size:1.0em;}
 .keyboard_shortcuts .example{font-style:italic;}

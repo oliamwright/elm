@@ -1,6 +1,12 @@
 :javascript
 	var number_input = "";
 	var current_story = "1";
+	function highlightCurrent() {
+		$('.currently_selected').removeClass('currently_selected');
+		var identifier = '.story[data-story-number="' + current_story + '"]';
+		$(identifier).addClass('currently_selected');
+		$(identifier).next('.tasks').addClass('currently_selected');
+	};
 
 	function focusNewStoryInput(evt) {
 		current_story = "1";
@@ -44,6 +50,7 @@
 			current_story = number_input;
 		};
 		clearNumberInput();
+		highlightCurrent();
 	};
 
 	function openHelp(evt) {
@@ -78,3 +85,6 @@
 	$(document).bind('keypress', 'c', clearNumberInput);
 
 	$(document).bind('keypress', '-', showCurrentStory);
+
+	highlightCurrent();
+
