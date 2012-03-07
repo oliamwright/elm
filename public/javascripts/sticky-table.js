@@ -15,6 +15,7 @@ function getAbsolutePosition(element) {
 $(document).ready(function() {
 	var z = 0;
 	var offset = 0;
+	var galactic_constant = 6;
 	$('.stickify').each(function () {
 
 		// Find stickify height.
@@ -45,7 +46,7 @@ $(document).ready(function() {
 		})[0];
 		cells.push(div);
 
-		offset += height;
+		offset += height + galactic_constant;
 
 		// Adjust width to fit cell/table.
 		var ref = this;
