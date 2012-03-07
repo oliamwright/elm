@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+	before_filter :set_return_url
 	before_filter :authenticate_user!, :except => [ :home ]
 	before_filter :get_version
 	before_filter :load_project
@@ -71,6 +72,12 @@ class ApplicationController < ActionController::Base
 		`cd "/var/www/homebrew/cache/" && git add public/stylesheets/less/*less && git add public/stylesheets/homebrew.css && git commit -m "auto style commit" && git push`
 	end
 
+	def set_return_url
+		unless ["devise/sessions"].include? request.parameters[:controller]
+			session[:return_url] = request.url
+		end
+	end
+
 	def update_page_history
 		unless session[:page_history]
 			session[:page_history] = []
@@ -78,7 +85,7 @@ class ApplicationController < ActionController::Base
 
 		only_methods = [ "GET" ]
 		skip_actions = [ "edit", "new", "assign_project_role", "assign_role", "grant", "revoke" ]
-		skip_controllers = [ "charts" ]
+		skip_controllers = [ "charts", "devise/sessions" ]
 
 		if only_methods.include?(request.method) and !skip_actions.include?(request.parameters[:action]) and !skip_controllers.include?(request.parameters[:controller]) and !request.xhr?
 			session[:page_history].delete_if { |ph| ph == request.url }
@@ -140,7 +147,6 @@ class ApplicationController < ActionController::Base
 	end
 
 	def assert_authority!
-		logger.debug "asserting authority..."
 		action = params[:action].to_sym
 		controller = params[:controller]
 		id = params[:id]
@@ -155,23 +161,25 @@ class ApplicationController < ActionController::Base
 		perm = action
 
 		if controller =~ /^devise/
-			logger.debug "ok"
 			return true
 		end
 
 		unless current_user.class_permission?(scope, perm, @project)
-			logger.debug "failed"
 			flash[:error] = 'You are not authorized.'
 			redirect_to root_url
 			return
 		end
 
-		logger.debug "ok"
 		return true
 	end
 
 	def after_sign_in_path_for(resource)
-		root_path
+		if session[:return_url]
+			ret = session.delete(:return_url)
+			ret
+		else
+			root_path
+		end
 	end
 
 	def get_version
