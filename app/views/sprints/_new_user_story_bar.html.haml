@@ -16,5 +16,9 @@
 			}).bind('ajax:success', function(evt, data, status, xhr) {
 				$('.stories').append(data);
 				var pos = $('.stories .story').last().offset().top;
+				current_story = $('.stories .story').last().attr('data-story-number');
+				Keyboard.highlightCurrent();
 				$('html, body').animate({scrollTop: pos}, 500);
+				Keyboard.focusNewTaskInput();
 			});
+

@@ -81,6 +81,92 @@ function resetBip() {
 	$(".best_in_place").best_in_place();
 }
 
+/* keyboard helper functions */
+
+var number_input = "";
+var current_story = "1";
+
+var Keyboard = new function() {
+
+	this.focusNewStoryInput = function(evt) {
+		current_story = "1";
+		$('#story_description').focus();
+		evt.stopPropagation();
+		evt.preventDefault();
+		return false;
+	};
+
+	this.highlightCurrent = function() {
+		$('.currently_selected').removeClass('currently_selected');
+		var identifier = '.story[data-story-number="' + current_story + '"]';
+		$(identifier).addClass('currently_selected');
+		$(identifier).next('.tasks').addClass('currently_selected');
+	};
+
+	this.focusNewTaskInput = function(evt) {
+		if (number_input.length > 0) {
+			Keyboard.goToStory();
+		};
+		var identifier = '.story[data-story-number="' + current_story + '"]';
+		var input = $(identifier).next('.tasks').find('input[name="sub_item[description]"]');
+		input.focus();
+		evt.stopPropagation();
+		evt.preventDefault();
+		return false;
+	};
+
+	this.goToNextStory = function(evt) {
+		number_input = parseInt(current_story) + 1;
+		Keyboard.goToStory();
+	};
+
+	this.goToPreviousStory = function(evt) {
+		number_input = parseInt(current_story) - 1;
+		Keyboard.goToStory();
+	};
+
+	this.addNumberToInput = function(evt) {
+		number_input += evt.data;
+	};
+
+	this.scrollTop = function() {
+		$('html, body').animate({scrollTop: 0}, 500);
+		current_story = "1";
+		Keyboard.clearNumberInput();
+		Keyboard.highlightCurrent();
+	};
+
+	this.scrollBottom = function() {
+		var last_story = $('.story').last();
+		var story_num = last_story.attr('data-story-number');
+		var top = last_story.offset().top;
+		$('html, body').animate({scrollTop: top}, 500);
+		current_story = story_num;
+		Keyboard.clearNumberInput();
+		Keyboard.highlightCurrent();
+	};
+
+	this.goToStory = function() {
+		var identifier = '.story[data-story-number="' + number_input + '"]';
+		if ($(identifier).size() > 0) {
+			var pos = $(identifier).first().offset().top - 70;
+			$('html, body').animate({scrollTop: pos}, 500);
+			current_story = number_input;
+		};
+		Keyboard.clearNumberInput();
+		Keyboard.highlightCurrent();
+	};
+
+	this.openHelp = function(evt) {
+		window.open('/keyboard_help', 'Keyboard Shortcut Help', 'width=800,height=600');
+	};
+
+	this.clearNumberInput = function(evt) {
+		number_input = "";
+	};
+
+};
+
 /* main */
 $(function() {
 	$(document).delegate('#project_dropdown', 'click', function() { $('#project_dropdown_menu').toggle(); });

@@ -1,90 +1,24 @@
 :javascript
-	var number_input = "";
-	var current_story = "1";
-	function highlightCurrent() {
-		$('.currently_selected').removeClass('currently_selected');
-		var identifier = '.story[data-story-number="' + current_story + '"]';
-		$(identifier).addClass('currently_selected');
-		$(identifier).next('.tasks').addClass('currently_selected');
-	};
+	$(document).bind('keypress', 'u', Keyboard.focusNewStoryInput);
+	$(document).bind('keypress', 't', Keyboard.focusNewTaskInput);
+	$(document).bind('keypress', 'w', Keyboard.goToPreviousStory);
+	$(document).bind('keypress', 's', Keyboard.goToNextStory);
+	$(document).bind('keypress', 'h', Keyboard.openHelp);
+	$(document).bind('keypress', 'a', Keyboard.scrollTop);
+	$(document).bind('keypress', 'z', Keyboard.scrollBottom);
 
-	function focusNewStoryInput(evt) {
-		current_story = "1";
-		$('#story_description').focus();
-		evt.stopPropagation();
-		evt.preventDefault();
-		return false;
-	};
+	$(document).bind('keypress', '1', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '2', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '3', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '4', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '5', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '6', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '7', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '8', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '9', Keyboard.addNumberToInput);
+	$(document).bind('keypress', '0', Keyboard.addNumberToInput);
+	$(document).bind('keypress', 'g', Keyboard.goToStory);
+	$(document).bind('keypress', 'c', Keyboard.clearNumberInput);
 
-	function focusNewTaskInput(evt) {
-		if (number_input.length > 0) {
-			goToStory();
-		};
-		var identifier = '.story[data-story-number="' + current_story + '"]';
-		var input = $(identifier).next('.tasks').find('input[name="sub_item[description]"]');
-		input.focus();
-		evt.stopPropagation();
-		evt.preventDefault();
-		return false;
-	};
-
-	function goToNextStory(evt) {
-		number_input = parseInt(current_story) + 1;
-		goToStory();
-	};
-
-	function goToPreviousStory(evt) {
-		number_input = parseInt(current_story) - 1;
-		goToStory();
-	};
-
-	function addNumberToInput(evt) {
-		number_input += evt.data;
-	};
-
-	function goToStory() {
-		var identifier = '.story[data-story-number="' + number_input + '"]';
-		if ($(identifier).size() > 0) {
-			var pos = $(identifier).first().offset().top - 70;
-			$('html, body').animate({scrollTop: pos}, 500);
-			current_story = number_input;
-		};
-		clearNumberInput();
-		highlightCurrent();
-	};
-
-	function openHelp(evt) {
-		window.open('/keyboard_help', 'Keyboard Shortcut Help', 'width=800,height=600');
-	};
-
-	function showCurrentStory(evt) {
-		alert(current_story);
-	};
-
-	function clearNumberInput(evt) {
-		number_input = "";
-	};
-
-	$(document).bind('keypress', 'u', focusNewStoryInput);
-	$(document).bind('keypress', 't', focusNewTaskInput);
-	$(document).bind('keypress', 'w', goToPreviousStory);
-	$(document).bind('keypress', 's', goToNextStory);
-	$(document).bind('keypress', 'h', openHelp);
-
-	$(document).bind('keypress', '1', addNumberToInput);
-	$(document).bind('keypress', '2', addNumberToInput);
-	$(document).bind('keypress', '3', addNumberToInput);
-	$(document).bind('keypress', '4', addNumberToInput);
-	$(document).bind('keypress', '5', addNumberToInput);
-	$(document).bind('keypress', '6', addNumberToInput);
-	$(document).bind('keypress', '7', addNumberToInput);
-	$(document).bind('keypress', '8', addNumberToInput);
-	$(document).bind('keypress', '9', addNumberToInput);
-	$(document).bind('keypress', '0', addNumberToInput);
-	$(document).bind('keypress', 'g', goToStory);
-	$(document).bind('keypress', 'c', clearNumberInput);
-
-	$(document).bind('keypress', '-', showCurrentStory);
-
-	highlightCurrent();
+	Keyboard.highlightCurrent();
 
