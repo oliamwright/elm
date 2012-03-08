@@ -125,6 +125,7 @@ namespace :roles do
 
 	task :assign_project_team_perms => :environment do
 		pt_perms = [
+			[:sub_item, :show],
 			[:project, :show_recent_activity],
 			[:project, :show_sprints],
 			[:project, :show_actual_time],

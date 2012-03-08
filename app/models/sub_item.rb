@@ -41,6 +41,14 @@ class SubItem < ActiveRecord::Base
 		["completed", "dev", "tested", "stage", "prod"].include?(self.status)
 	end
 
+	def display_created_at_date
+		self.created_at.strftime("%Y.%m.%d")
+	end
+
+	def display_created_at_time
+		self.created_at.strftime("%H:%M:%S")
+	end
+
 	def set_status!(to_status, user)
 		from_status = self.status
 		return if from_status.to_s == to_status.to_s
@@ -53,6 +61,14 @@ class SubItem < ActiveRecord::Base
 
 	def display_estimated_time
 		"%0.02f" % self.estimated_time
+	end
+
+	def actual_time
+		self.task_ownerships.sum(:actual_time)
+	end
+
+	def display_actual_time
+		"%0.02f" % self.actual_time
 	end
 
 	def display_number

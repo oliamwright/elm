@@ -1,0 +1,40 @@
+.sub_item_details
+	.navigation
+		.title
+			.project.title_field
+				= @sub_item.story.project.name
+			= ":"
+			.number.title_field
+				= @sub_item.display_number
+			= ":"
+			.desc.title_field
+				= @sub_item.description
+			.status.title_field
+				= "(#{@sub_item.display_status})"
+	.data
+		.section.created.data_field
+			= "Created by #{@sub_item.owner.full_name} on #{@sub_item.display_created_at_date} at #{@sub_item.display_created_at_time}"
+		.section.estimated_time
+			.title
+				= "Estimated Time"
+			.value
+				= @sub_item.display_estimated_time
+		.section.actual_time
+			.title
+				= "Actual Time"
+			.value
+				= @sub_item.display_actual_time
+		.section.owners
+			.title
+				= "Owners"
+			- @sub_item.task_ownerships.each do |to|
+				.user
+					= to.user.full_name
+					= "(#{to.display_actual_time})"
+		.section.history
+			.title
+				= "History"
+			- @sub_item.log_events.reverse.each do |event|
+				= render :partial => 'log_events/log_event', :object => event
+			:javascript
+				$('span.project_name').hide();
