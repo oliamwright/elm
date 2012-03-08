@@ -128,6 +128,7 @@
 		var ch = $(this).attr('checked') == 'checked';
 		var cl = $(this).parent().attr('data-class');
 		var id = $(this).parent().attr('data-id');
+		console.log(ch + ':' + cl + ':' + id + ' -- clicked');
 		if (cl == 'sub_item' && id == 'all') {
 			$(this).closest('.tasks').find('.item .check input[name="sel"]').attr('checked', ch);
 		} else if (cl == 'story' && id == 'all') {
