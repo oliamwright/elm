@@ -2,6 +2,12 @@ class SubItemsController < ApplicationController
 	before_filter :load_story
 	skip_before_filter :assert_authority!, :only => [ :do_action ]
 
+	def details
+		@sub_item = SubItem.find(params[:id]) rescue nil
+		require_perm!(current_user.can?(:show, @sub_item)) || return
+		render :action => :details, :layout => 'dialog'
+	end
+
 	def do_action
 		action = params[:si_action]
 		ids = params[:ids].split(/,/)

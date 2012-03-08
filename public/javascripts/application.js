@@ -88,6 +88,11 @@ var current_story = "1";
 
 var Keyboard = new function() {
 
+	this.selectStory = function(evt) {
+		var identifier = '.story[data-story-number="' + current_story + '"] input[name="sel"]';
+		$(identifier).click();
+	};
+
 	this.focusNewStoryInput = function(evt) {
 		current_story = "1";
 		$('#story_description').focus();

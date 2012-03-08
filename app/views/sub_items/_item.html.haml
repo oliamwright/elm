@@ -37,6 +37,10 @@
 		.field.approved_at= "--"
 		.field.completed_at= "--"
 		.field.options
+			- if permitted?(:show, item)
+				.item_details
+					= link_to '?', details_sub_item_url(item), :target => 'sub_item_details'
+		-#
 			.item_questions{:class => item.questions.empty? ? 'ask_question' : 'show_questions'}
 				= "#{item.questions.count} ?"
 		%div{:id => "questions_si#{item.id}", :title => 'Questions', :style => 'display: none;'}

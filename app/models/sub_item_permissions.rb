@@ -12,6 +12,7 @@ module SubItemPermissions
 
 	def self.model_permissions
 		[
+			[ :show, 'can view story sub-items' ],
 			[ :create, 'can create story sub-items' ],
 			[ :delete, 'can delete sub-items' ],
 			[ :take_ownership, 'can take ownership of sub-items' ],

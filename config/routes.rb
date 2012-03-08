@@ -52,12 +52,18 @@ Tm::Application.routes.draw do
 			collection do
 				post 'do_action'
 			end
+			member do
+				get 'details'
+			end
 		end
 	end
 
 	resources :sub_items do
 		collection do
 			post 'do_action'
+		end
+		member do
+			get 'details'
 		end
 	end
 

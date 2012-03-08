@@ -1,11 +1,12 @@
 .action_buttons.stickify
 	.button.own{:'data-action' => 'own'}
 		= "Own"
-	.assign_field
-		.user_select
-			= select_tag :user_id, options_from_collection_for_select(@project.users.uniq, :id, :full_name)
-		.assign_button{:'data-action' => 'assign'}
-			= "Assign"
+	- unless @project.nil?
+		.assign_field
+			.user_select
+				= select_tag :user_id, options_from_collection_for_select(@project.users.uniq, :id, :full_name)
+			.assign_button{:'data-action' => 'assign'}
+				= "Assign"
 	.task_status_field
 		.status_select
 			= select_tag :new_status, options_for_select(SubItem::STATUSES.map { |s| s.to_s.titleize })
