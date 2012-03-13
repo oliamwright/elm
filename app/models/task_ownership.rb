@@ -8,11 +8,15 @@ class TaskOwnership < ActiveRecord::Base
 	scope :bugs, joins(:sub_item).where("item_type = 'bug'")
 
 	def assigned_time
-		unless self.actual_time > 0
+		to_count = self.sub_item.task_ownerships.select { |to| to.actual_time > 0 }.count
+		unless self.actual_time > 0 || self.sub_item.task_ownerships.count == 1 || to_count == 0
 			return 0.0
 		end
-		to_count = [self.sub_item.task_ownerships.select { |to| to.actual_time > 0 }.count, 1].max
-		self.sub_item.estimated_time / to_count
+		if to_count == 0
+			self.sub_item.estimated_time / self.sub_item.task_ownerships.count
+		else
+			self.sub_item.estimated_time / to_count
+		end
 	end
 
 	def display_actual_time
