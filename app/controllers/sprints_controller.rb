@@ -1,7 +1,7 @@
 class SprintsController < ApplicationController
 	
 	before_filter :assert_project_configured
-
+	
 	def index
 		unless @project
 			not_found

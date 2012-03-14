@@ -33,6 +33,26 @@ class SubItem < ActiveRecord::Base
 
 	INITIAL_STATUS = :open
 
+	searchable do
+		integer :id
+
+		text :description
+		text :item_number do
+			display_number
+		end
+
+		integer :number
+		integer :owner_id
+		integer :story_id
+		integer :sprint_id do
+			story.sprint ? story.sprint.id : 0
+		end
+		integer :project_id do
+			story.project.id
+		end
+
+	end
+
 	def ignored?
 		["ignored"].include?(self.status)
 	end

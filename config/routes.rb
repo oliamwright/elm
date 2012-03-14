@@ -85,9 +85,11 @@ Tm::Application.routes.draw do
 			get 'team'
 			get 'backlog'
       get 'test_output'
+			post 'search'
 		end
 
 		resources :sprints do
+
 			resources :stories do
 				member do
 					post 'pull'

@@ -1,0 +1,5 @@
+.search_bar
+	.search
+		= form_for([:search, project], :remote => false, :method => :post, :html => { :'data-type' => 'html' }) do |f|
+			= text_field_tag 'search', '', :placeholder => 'Search Stories or Tasks'
+

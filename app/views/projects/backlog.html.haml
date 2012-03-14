@@ -44,6 +44,7 @@
 				.field= "--"
 			- else
 				.field= ""
+	= render :partial => 'search_bar', :locals => { :project => @project }
 	- if permitted?(:create, Story)
 		= render :partial => 'new_user_story_bar', :locals => { :project => @project }
-	= render :partial => 'stories/story_list', :locals => { :stories => @project.stories.backlog }
+	= render :partial => 'stories/story_list', :locals => { :stories => @project.stories.backlog.order('number asc') }

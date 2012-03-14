@@ -1,0 +1,17 @@
+.results
+	.title
+		= "Results for '#{@query}' in #{@project.client.name} : #{@project.name}"
+	- if !@stories.empty?
+		.stories_results
+			.title= "User Stories"
+			- @stories.each do |story|
+				.story_result
+					= link_to "Story #{story.display_number} : #{story.description}", story_url(story)
+	- if !@sub_items.empty?
+		.sub_items_results
+			.title= "Tasks"
+			- @sub_items.each do |item|
+				.sub_item_result
+					= link_to "SubItem #{item.display_number} : #{item.description}", sub_item_url(item)
+
+			

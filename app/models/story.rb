@@ -13,7 +13,6 @@ class Story < ActiveRecord::Base
 
 	scope :backlog, where("sprint_id is null")
 	scope :for_sprint, lambda { |sid| where("sprint_id = ?", sid) }
-	default_scope order("number asc")
 
 	before_create :number_story
 
@@ -25,6 +24,20 @@ class Story < ActiveRecord::Base
 		[4, "High"],
 		[5, "Critical"]
 	]
+
+	searchable do
+		integer :id
+
+		text :description
+		text :story_number do
+			display_number
+		end
+
+		integer :number
+		integer :sprint_id
+		integer :project_id
+		integer :owner_id
+	end
 
 	def estimated_time
 		self.sub_items.sum(:estimated_time)

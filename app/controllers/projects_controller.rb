@@ -1,5 +1,41 @@
 class ProjectsController < ApplicationController
 
+	def search
+		project_id = params[:id]
+		@project = Project.find(project_id) rescue nil
+		query = params[:search]
+		@query = query
+		q = Story.search do
+			with(:project_id, project_id)
+			order_by :sprint_id, :asc
+			order_by :number, :asc
+			fulltext query
+		end
+		@stories = q.results
+		q = SubItem.search do
+			with(:project_id, project_id)
+			order_by :sprint_id, :asc
+			order_by :number, :asc
+			fulltext query
+		end
+		@sub_items = q.results
+		if @stories.count == 0 and @sub_items.count == 1
+			item = @sub_items.first
+			if item.story.sprint.nil?
+				redirect_to backlog_project_url(item.story.project, :anchor => "si_#{item.display_number}")
+			else
+				redirect_to project_sprint_url(item.story.project, item.story.sprint, :anchor => "si_#{item.display_number}")
+			end
+		elsif @sub_items.count == 0 and @stories.count == 1
+			story = @stories.first
+			if story.sprint.nil?
+				redirect_to backlog_project_url(story.project, :anchor => "s_#{story.display_number}")
+			else
+				redirect_to project_sprint_url(story.project, story.sprint, :anchor => "s_#{story.display_number}")
+			end
+		end
+	end
+
 	def index
 		if current_user.can?(:new, Project)
 			@projects = Project.all

@@ -33,7 +33,7 @@ div.form{padding:10px;}
 .project .project_team_bar .summary.row{margin-top:20px;background-color:#eee;}
 .project .project_stats_bar{margin-top:20px;}.project .project_stats_bar .field{width:8%;}
 .new_user_story_bar{margin-top:-1px;}
-.new_story input{width:100%;padding:4px;background-color:#f7fed6;border:1px solid #a6b8b7;font-size:13px;}
+.search input,.new_story input{width:100%;padding:4px;background-color:#f7fed6;border:1px solid #a6b8b7;font-size:13px;}
 .columns{width:100%;}
 .column{float:left;padding:10px;}
 .column.user_list{width:25%;}
@@ -134,6 +134,9 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .sprint .field{display:inline-block;}
 .sprint .sprint_team{margin-top:0px;}.sprint .sprint_team .field{width:11%;}
 .sprint .team_list .field{width:11%;}
+.results{margin-top:20px;}.results .title{font-weight:bold;padding:5px 0px 5px 0px;}
+.results .stories_results{margin-top:10px;font-size:1.4em;}.results .stories_results .story_result{padding:2px 0px 2px 0px;}
+.results .sub_items_results{margin-top:10px;font-size:1.4em;}.results .sub_items_results .sub_item_result{padding:2px 0px 2px 0px;}
 .log_event{border:1px solid #aaa;}
 .log_event.become_user{border:1px solid red;}
 .log_event{font-size:10px;padding:6px;margin-top:5px;background:#eee;line-height:1.4em;}.log_event .timestamp{color:#999;margin:0px 20px;}
