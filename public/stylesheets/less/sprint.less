@@ -64,7 +64,20 @@
 
 .sprint_options {
 	float: right;
+	position: relative;
 	display: inline-block;
+
+	.sprint_options_dropdown {
+		display: inline-block;
+		position: absolute;
+		top: 30px;
+		left: 0px;
+		z-index: 999;
+		
+		.option {
+			display: inline-block;
+		}
+	}
 }
 
 .sprint {
