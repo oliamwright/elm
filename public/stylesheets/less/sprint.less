@@ -66,14 +66,19 @@
 	float: right;
 	position: relative;
 	display: inline-block;
-	width: 120px;
+	margin-right: 20px;
+	width: 100px;
 
 	.title {
 		padding: 8px 10px 6px 10px;
 		font-size: 11px;
 		color: #000;
 		background-color: #e9f4ff;
-		width: 120px;
+		width: 100%;
+	}
+
+	.title:hover, .title.open {
+		background-color: #aaccee;
 	}
 
 	.sprint_options_dropdown {
@@ -82,14 +87,19 @@
 		top: 30px;
 		left: 0px;
 		z-index: 999;
-		width: 120px;
+		width: 100%;
 		
 		.option {
 			display: inline-block;
 			padding: 8px 10px 6px 10px;
 			color: #000;
 			background-color: #e9f4ff;
-			width: 120px;
+			width: 100%;
+			font-weight: bold;
+		}
+
+		.option:hover {
+			background-color: #aaccee;
 		}
 	}
 }
