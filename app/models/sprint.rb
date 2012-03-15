@@ -4,7 +4,8 @@ class Sprint < ActiveRecord::Base
 	include SprintPermissions
 
   belongs_to :project
-	has_many :stories, :dependent => :destroy
+	belongs_to :phase
+	has_many :stories
 	has_many :additional_time_items
 
 	def team_resourced
@@ -21,10 +22,6 @@ class Sprint < ActiveRecord::Base
 	end
 
 	def renumber!
-		if self.stories.empty? && self.end_date > self.project.end_date
-			self.destroy
-			return
-		end
 		c = 1
 		self.stories.order("number asc").each do |s|
 			s.number = c
@@ -58,7 +55,7 @@ class Sprint < ActiveRecord::Base
 	end
 
 	def display_number
-		"#{self.number}"
+		"#{self.phase.display_number}.#{self.number}"
 	end
 
 	def time_complete
@@ -102,13 +99,11 @@ class Sprint < ActiveRecord::Base
 	end
 
 	def next_sprint
-		ns = Sprint.where("project_id = ? and number > ?", self.project_id, self.number).order("number asc").first
-#		if ns.nil?
-#			ns = Sprint.new
-#			ns.project = self.project
-#			ns.number = self.number + 1
-#			ns.save
-#		end
+		ns = Sprint.where("project_id = ? and phase_id = ? and number > ?", self.project_id, self.phase_id, self.number).order("number asc").first
+		if ns.nil?
+			p = Phase.where("project_id = ? and id > ?", self.project_id, self.phase_id).order('number asc').first
+			ns = p.sprints.first rescue nil
+		end
 		ns
 	end
 
@@ -124,7 +119,25 @@ class Sprint < ActiveRecord::Base
 	end
 
 	def previous_sprint
-		ps = Sprint.where("project_id = ? and number < ?", self.project_id, self.number).order("number desc").first
+		logger.debug("fetching previous sprint for [phase #{self.phase.number} / sprint #{self.number}]")
+		ps = Sprint.where("project_id = ? and phase_id = ? and number < ?", self.project_id, self.phase_id, self.number).order("number desc").first
+		if ps.nil?
+			logger.debug("no previous sprint; fetching previous phase")
+			p = Phase.where("project_id = ? and id < ?", self.project_id, self.phase_id).order('number desc').first
+			unless p.nil?
+				ps = p.sprints.last
+				unless ps.nil?
+					logger.debug("found [phase #{ps.phase.number} / sprint #{ps.number}]")
+				else
+					logger.debug("no sprints in previous phase")
+				end
+			else
+				logger.debug("no previous phase")
+			end
+		else
+			logger.debug("found [phase #{self.phase.number} / sprint #{ps.number}]")
+		end
+		ps
 	end
 
 	def deletable?

@@ -122,11 +122,20 @@ pre{white-space:pre-wrap;margin:0px;font-family:arial;}
 .sub_item_details .data{margin:10px;}.sub_item_details .data .data_field .name,.sub_item_details .data .data_field .value{display:inline-block;}
 .sub_item_details .data .data_field .name{font-weight:bold;}
 .sub_item_details .data .section{margin-top:10px;}.sub_item_details .data .section .title{font-size:1.2em;font-weight:bold;}
+.sprint_navigation{display:inline-block;}.sprint_navigation .phase_tab.new_phase a,.sprint_navigation .sprint_tab.new_sprint a{padding:8px 12px 8px 12px;display:inline-block;}
+.sprint_navigation .phase_tab{display:inline-block;font-size:11px;font-weight:bold;background-color:#f4e9ff;}.sprint_navigation .phase_tab a{padding:8px 12px 8px 12px;display:inline-block;}
+.sprint_navigation .phase_tab:hover{background-color:#ccccff;}
+.sprint_navigation .phase_tab.active{background-color:#ccccff;}
 .sprint_navigation .sprint_tab{display:inline-block;font-size:11px;font-weight:bold;background-color:#E9F4FF;}.sprint_navigation .sprint_tab a{padding:8px 12px 8px 12px;display:inline-block;}
 .sprint_navigation .sprint_tab.late{border-top:3px solid red;}
 .sprint_navigation .sprint_tab.active{background-color:#AACCEE;font-weight:bold;border-bottom:solid 2px #000000;}
 .sprint_navigation .sprint_tab:hover{background-color:#AACCEE;}
 .sprint_navigation .sprint_tab.complete{background-color:#E0EDD6;}
+.sprint_options.open .title{background-color:#aaccee;}
+.sprint_options{float:right;position:relative;display:inline-block;margin-right:20px;width:100px;}.sprint_options .title{padding:8px 10px 6px 10px;font-size:11px;color:#000;background-color:#e9f4ff;width:100%;}
+.sprint_options .title:hover{background-color:#aaccee;}
+.sprint_options .sprint_options_dropdown{display:inline-block;position:absolute;top:30px;left:0px;z-index:999;width:100%;}.sprint_options .sprint_options_dropdown .option{display:inline-block;padding:8px 10px 6px 10px;color:#000;background-color:#e9f4ff;width:100%;font-weight:bold;}.sprint_options .sprint_options_dropdown .option a{font-weight:bold;}
+.sprint_options .sprint_options_dropdown .option:hover{background-color:#aaccee;}
 .sprint .row{border-top:1px solid #c0c0c0;width:100%;padding:4px 0px 4px 0px;}.sprint .row .row{padding:0px;}
 .sprint .headers .field{font-weight:bold;}
 .sprint .row.no_top{border-top:none;}

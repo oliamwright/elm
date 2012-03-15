@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228151947) do
+ActiveRecord::Schema.define(:version => 20120315024142) do
 
   create_table "additional_time_items", :force => true do |t|
     t.integer  "project_id"
@@ -83,6 +83,17 @@ ActiveRecord::Schema.define(:version => 20120228151947) do
   add_index "permissions_roles", ["permission_id"], :name => "index_permissions_roles_on_permission_id"
   add_index "permissions_roles", ["role_id"], :name => "index_permissions_roles_on_role_id"
 
+  create_table "phases", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "project_id"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "phases", ["project_id"], :name => "index_phases_on_project_id"
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "file_path"
@@ -140,8 +151,10 @@ ActiveRecord::Schema.define(:version => 20120228151947) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "phase_id"
   end
 
+  add_index "sprints", ["phase_id"], :name => "index_sprints_on_phase_id"
   add_index "sprints", ["project_id"], :name => "index_sprints_on_project_id"
 
   create_table "stories", :force => true do |t|

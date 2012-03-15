@@ -156,7 +156,12 @@ namespace :roles do
 			[:project, :show_sprints],
 			[:project, :show_team_tab],
 			[:project, :show_rtr_tab],
-			[:project, :show_sow_tab]
+			[:project, :show_sow_tab],
+			[:phase, :create],
+			[:phase, :delete],
+			[:phase, :rename],
+			[:sprint, :create],
+			[:sprint, :delete]
 		]
 
 		r = Role.find_by_name("Project Owner")

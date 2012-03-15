@@ -65,3 +65,7 @@ end
 AdditionalTimeItem.blueprint do
   # Attributes here
 end
+
+Phase.blueprint do
+  # Attributes here
+end

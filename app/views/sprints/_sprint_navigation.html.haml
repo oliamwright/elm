@@ -1,6 +1,65 @@
 .sprint_navigation
 	.sprint_tab{:class => "#{params[:action] == 'backlog' ? 'active' : ''} backlog"}
 		= link_to "Backlog", backlog_project_url(project)
-	- project.sprints.each do |sprint|
-		.sprint_tab{:class => "#{(sprint == @sprint) ? 'active' : ''} #{(sprint.complete?) ? 'complete' : ''} #{(sprint.running_late?) ? 'late' : ''}"}
-			= link_to "S#{sprint.number} #{sprint.display_percent_complete}", [project, sprint]
+	- project.phases.each do |phase|
+		.phase_tab{:'data-number' => phase.number}
+			= link_to phase.display_name, '#'
+		- phase.sprints.each do |sprint|
+			.sprint_tab{:class => "#{(sprint == @sprint) ? 'active' : ''} #{(sprint.complete?) ? 'complete' : ''} #{(sprint.running_late?) ? 'late' : ''} phase#{phase.number}_sprint phase_sprint"}
+				= link_to "S#{sprint.number} #{sprint.display_percent_complete}", [project, sprint]
+		- if permitted?(:create, Sprint)
+			.sprint_tab.new_sprint{:class => "phase#{phase.number}_sprint phase_sprint"}
+				= link_to "+", project_phase_sprints_url(@project, phase), :method => :post
+	- if permitted?(:create, Phase)
+		.phase_tab.new_phase
+			= link_to "+", project_phases_url(@project), :method => :post
+	:javascript
+		function show_phase(num) {
+			$('.phase_sprint').hide();
+			$('.phase_tab').removeClass('active');
+			$('.phase' + num + '_sprint').show();
+			$('.phase_tab[data-number="' + num + '"]').addClass('active');
+		};
+
+		show_phase(#{@sprint.phase.number rescue 0});
+
+		$('.phase_tab a').click(function() {
+			var num = $(this).closest('.phase_tab').attr('data-number');
+			show_phase(num);
+		});
+- if @sprint
+	.sprint_options
+		.title
+			= "Options for Sprint #{@sprint.number}"
+		.sprint_options_dropdown#sprint_options_dropdown{:style => 'display: none;'}
+			- if permitted?(:delete, @sprint)
+				.option.delete_sprint
+					= link_to "Delete Sprint", [@sprint.project, @sprint.phase, @sprint], :method => :delete, :confirm => 'Are you sure? (User stories will be moved to backlog.)'
+			- if permitted?(:delete, @sprint.phase)
+				.option.delete_phase
+					= link_to "Delete Phase", [@sprint.project, @sprint.phase], :method => :delete, :confirm => 'Are you sure? (All user stories in all sprints will be moved to backlog.)'
+			.option.rename_sprint
+				.option_title= "Phase Name"
+				= best_in_place_if current_user.can?(:rename, @sprint.phase), @sprint.phase, :name
+	:javascript
+		function open_menu() {
+			$('.sprint_options').addClass('open');
+			$('#sprint_options_dropdown').show();
+		};
+
+		function close_menu() {
+			$('.sprint_options.open').removeClass('open');
+			$('#sprint_options_dropdown').hide();
+		};
+
+		function toggle_sprint_options_menu() {
+			if ($('.sprint_options').hasClass('open')) {
+				close_menu();
+			} else {
+				open_menu();
+			};
+		};
+
+		$('.sprint_options .title').click(function() {
+			toggle_sprint_options_menu();
+		});

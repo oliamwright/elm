@@ -67,6 +67,13 @@ class ProjectsController < ApplicationController
 			@project.duration = (@project.end_date - @project.start_date).to_i / 7
 		end
 		if @project.save
+			ph = Phase.new
+			ph.name = 'Phase 1'
+			ph.description = 'Phase 1'
+			ph.number = 1
+			ph.project = @project
+			ph.save
+
 			e = ProjectCreationEvent.new.init(current_user, @project)
 			e.save
 			rm = RoleMembership.new

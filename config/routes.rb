@@ -18,6 +18,7 @@ Tm::Application.routes.draw do
 	end
 
 	resources :companies
+	resources :phases
 
 	match 'permissions/scope/:scope' => 'permissions#for_scope', :as => :permissions_for_scope
 	match 'permissions' => 'permissions#unscoped', :as => :unscoped_permissions
@@ -86,6 +87,18 @@ Tm::Application.routes.draw do
 			get 'backlog'
       get 'test_output'
 			post 'search'
+		end
+
+		resources :phases do
+			resources :sprints do
+
+				resources :stories do
+					member do
+						post 'pull'
+						post 'push'
+					end
+				end
+			end
 		end
 
 		resources :sprints do

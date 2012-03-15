@@ -1,5 +1,36 @@
 
 .sprint_navigation {
+	display: inline-block;
+
+	.phase_tab.new_phase,
+	.sprint_tab.new_sprint {
+
+		a {
+			padding: 8px 12px 8px 12px;
+			display: inline-block;
+		}
+	}
+
+	.phase_tab {
+		display: inline-block;
+		font-size: 11px;
+		font-weight: bold;
+		background-color: #f4e9ff;
+
+		a {
+			padding: 8px 12px 8px 12px;
+			display: inline-block;
+		}
+	}
+
+	.phase_tab:hover {
+		background-color: #ccccff;
+	}
+
+	.phase_tab.active {
+		background-color: #ccccff;
+	}
+
 	.sprint_tab {
 		display: inline-block;
 		font-size: 11px;
@@ -28,6 +59,56 @@
 
 	.sprint_tab.complete {
 		background-color: #E0EDD6;
+	}
+}
+
+.sprint_options.open .title {
+	background-color: #aaccee;
+}
+
+.sprint_options {
+	float: right;
+	position: relative;
+	display: inline-block;
+	margin-right: 20px;
+	width: 100px;
+
+	.title {
+		padding: 8px 10px 6px 10px;
+		font-size: 11px;
+		color: #000;
+		background-color: #e9f4ff;
+		width: 100%;
+	}
+
+	.title:hover {
+		background-color: #aaccee;
+	}
+
+	.sprint_options_dropdown {
+		display: inline-block;
+		position: absolute;
+		top: 30px;
+		left: 0px;
+		z-index: 999;
+		width: 100%;
+		
+		.option {
+			display: inline-block;
+			padding: 8px 10px 6px 10px;
+			color: #000;
+			background-color: #e9f4ff;
+			width: 100%;
+			font-weight: bold;
+
+			a {
+				font-weight: bold;
+			}
+		}
+
+		.option:hover {
+			background-color: #aaccee;
+		}
 	}
 }
 

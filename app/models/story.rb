@@ -152,9 +152,9 @@ class Story < ActiveRecord::Base
 
 	def display_number
 		if self.sprint
-			"#{self.sprint.number}.#{self.number}"
+			"#{self.sprint.display_number}.#{self.number}"
 		else
-			"0.#{self.number}"
+			"0.0.#{self.number}"
 		end
 	end
 

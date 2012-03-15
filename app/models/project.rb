@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
 	has_many :users, :through => :role_memberships
 	has_many :roles, :through => :role_memberships
 	belongs_to :owner, :class_name => 'User'
+	has_many :phases, :dependent => :destroy
 	has_many :sprints, :dependent => :destroy
 	has_many :stories, :dependent => :destroy
 	has_many :sub_items, :through => :stories
@@ -39,6 +40,15 @@ class Project < ActiveRecord::Base
 		end
 	end
 
+	def renumber_phases!
+		c = 1
+		self.phases.order('number asc').each do |p|
+			p.number = c
+			p.save
+			c += 1
+		end
+	end
+
 	def percent_backlog_complete
 		return 0 if self.stories.backlog.count.to_f == 0.0
 		self.stories.backlog.select { |s| s.complete? }.count.to_f / self.stories.backlog.count.to_f rescue 0
@@ -62,13 +72,7 @@ class Project < ActiveRecord::Base
 	end
 
 	def first_sprint
-		fs = Sprint.where("project_id = ? and number = 1", self.id).first
-		if fs.nil?
-			fs = Sprint.new
-			fs.project = self
-			fs.number = 1
-			fs.save
-		end
+		fs = self.sprints.order('number asc, id asc').first
 		fs
 	end
 
@@ -91,33 +95,11 @@ class Project < ActiveRecord::Base
 	end
 
 	def num_sprints
-		self.assert_sprints!
-		if self.duration && self.start_date && self.end_date && self.sprint_duration
-			ns = self.duration / (self.sprint_duration / 1.week)
-			ns = self.sprints.count if self.sprints.count > ns
-		else
-			ns = 0
-		end
-		ns
+		self.sprints.count
 	end
 
 	def last_sprint
-		Sprint.where("project_id = ?", self.id).order("number asc").last
-	end
-
-	def assert_sprints!
-		if self.duration && self.start_date && self.end_date && self.sprint_duration
-			s = self.first_sprint
-			while s.number < (self.duration / (self.sprint_duration / 1.week))
-				s = s.force_next_sprint!
-			end
-			s = self.last_sprint
-			while s.deletable?
-				p = s.previous_sprint
-				s.destroy
-				s = p
-			end
-		end
+		self.sprints.order('number asc, id asc').last
 	end
 
 end

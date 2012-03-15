@@ -1,16 +1,15 @@
 
-module SprintPermissions
+module PhasePermissions
 
 	def self.scope
-		:sprint
+		:phase
 	end
 
 	def self.model_permissions
 		[
-			[:delete, 'can delete a sprint'],
-			[:index, 'can list sprints'],
-			[:show, 'can view a sprint'],
-			[:create, 'can create a sprint']
+			[:delete, 'can delete a phase'],
+			[:rename, 'can rename a phase'],
+			[:create, 'can create a phase']
 		]
 	end
 
