@@ -100,6 +100,8 @@
 		$('.task_status_field .status_select select').attr('disabled', true);
 		$('.move_story_field .destination_select select').attr('disabled', true);
 		$('.move_story_button').addClass('disabled');
+		$('.deploy_field .deploy_select select').attr('disabled', true);
+		$('.deploy_button').addClass('disabled');
 	};
 
 	function enable_buttons() {
@@ -110,6 +112,8 @@
 		$('.task_status_field .status_select select').attr('disabled', false);
 		$('.move_story_field .destination_select select').attr('disabled', false);
 		$('.move_story_button').removeClass('disabled');
+		$('.deploy_field .deploy_select select').attr('disabled', false);
+		$('.deploy_button').removeClass('disabled');
 	};
 
 	function update_buttons() {
@@ -125,6 +129,25 @@
 	};
 
 	update_buttons();
+
+	$('.deploy_button').click(function() {
+		if ($(this).hasClass('disabled')) {
+		 // do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var new_status = $(this).parent().find('option:selected').val();
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'sub_item') {
+					vals.push(id);
+				}
+			});
+			do_set_status(new_status, vals);
+		}
+	});
 
 	$('.move_story_button').click(function() {
 		if ($(this).hasClass('disabled')) {

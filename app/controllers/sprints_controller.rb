@@ -2,6 +2,21 @@ class SprintsController < ApplicationController
 	
 	before_filter :assert_project_configured
 	
+	def deploy
+		@sprint = Sprint.find(params[:id]) rescue nil
+		if @sprint
+			@new_status = params[:new_status].gsub(/ /, '').underscore.downcase
+			@sprint.stories.each do |story|
+				story.sub_items.each do |item|
+					if current_user.can?("from_#{item.status}_to_#{@new_status}".to_sym, item)
+						item.set_status!(@new_status, current_user)
+					end
+				end
+			end
+		end
+		redirect_to [@sprint.project, @sprint]
+	end
+
 	def index
 		unless @project
 			not_found

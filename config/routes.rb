@@ -18,7 +18,12 @@ Tm::Application.routes.draw do
 	end
 
 	resources :companies
-	resources :sprints
+	resources :sprints do
+		member do
+			post 'deploy'
+		end
+	end
+
 	resources :phases
 
 	match 'permissions/scope/:scope' => 'permissions#for_scope', :as => :permissions_for_scope

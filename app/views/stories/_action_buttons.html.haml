@@ -18,5 +18,11 @@
 				= select_tag :new_sprint_id, options_for_select(@project.phases.collect { |p| p.sprints }.flatten.select { |s| @sprint.nil? or s != @sprint }.map { |s| [s.full_name, s.id] })
 			.move_story_button{:'data-action' => 'move'}
 				= "Move"
+		.deploy_field
+			.deploy_select
+				= select_tag :new_status, options_for_select(['Dev', 'Stage', 'Prod'])
+			.deploy_button{:'data-action' => 'deploy'}
+				= "Deploy"
 	.button.delete{:'data-action' => 'delete'}
 		= "Delete"
+

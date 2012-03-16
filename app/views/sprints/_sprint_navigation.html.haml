@@ -41,6 +41,12 @@
 			.option.rename_sprint
 				.option_title= "Phase Name"
 				= best_in_place_if current_user.can?(:rename, @sprint.phase), @sprint.phase, :name
+			.option.deploy_dev
+				= link_to "Deploy Dev", deploy_sprint_url(@sprint, :new_status => 'dev'), :method => :post
+			.option.deploy_stage
+				= link_to "Deploy Stage", deploy_sprint_url(@sprint, :new_status => 'stage'), :method => :post
+			.option.deploy_prod
+				= link_to "Deploy Prod", deploy_sprint_url(@sprint, :new_status => 'prod'), :method => :post
 	:javascript
 		function open_menu() {
 			$('.sprint_options').addClass('open');
