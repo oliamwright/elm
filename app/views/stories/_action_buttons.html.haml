@@ -12,21 +12,11 @@
 			= select_tag :new_status, options_for_select(SubItem::STATUSES.map { |s| s.to_s.titleize })
 		.set_status_button{:'data-action' => 'set_status'}
 			= "Set Status"
+	- unless @project.nil?
+		.move_story_field
+			.destination_select
+				= select_tag :new_sprint_id, options_for_select(@project.phases.collect { |p| p.sprints }.flatten.select { |s| @sprint.nil? or s != @sprint }.map { |s| [s.full_name, s.id] })
+			.move_story_button{:'data-action' => 'move'}
+				= "Move"
 	.button.delete{:'data-action' => 'delete'}
 		= "Delete"
-	-#
-		.button.approved{:'data-action' => 'approved'}
-			= "Approved"
-		.button.completed{:'data-action' => 'completed'}
-			= "Completed"
-		.button.dev{:'data-action' => 'dev'}
-			= "Dev"
-		.button.waiting{:'data-action' => 'waiting'}
-			= "Waiting"
-		.button.open{:'data-action' => 'open'}
-			= "Open"
-		.button.ignore{:'data-action' => 'ignore'}
-			= "Ignore"
-	-#
-		.button.move{:'data-action' => 'move'}
-			= "Move"

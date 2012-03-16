@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120315024142) do
+ActiveRecord::Schema.define(:version => 20120316154927) do
 
   create_table "additional_time_items", :force => true do |t|
     t.integer  "project_id"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20120315024142) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "phase_id"
+    t.date     "start_date"
   end
 
   add_index "sprints", ["phase_id"], :name => "index_sprints_on_phase_id"

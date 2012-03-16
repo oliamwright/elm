@@ -33,7 +33,7 @@ class PhasesController < ApplicationController
 	def destroy
 		@phase = Phase.find(params[:id]) rescue nil
 		@project = @phase.project
-		if current_user.can?(:delete, @sprint)
+		if current_user.can?(:delete, @phase)
 			if @phase
 				@phase.sprints.each do |sprint|
 					sprint.stories.each do |story|

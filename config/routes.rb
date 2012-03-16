@@ -18,6 +18,7 @@ Tm::Application.routes.draw do
 	end
 
 	resources :companies
+	resources :sprints
 	resources :phases
 
 	match 'permissions/scope/:scope' => 'permissions#for_scope', :as => :permissions_for_scope
@@ -43,6 +44,10 @@ Tm::Application.routes.draw do
 	resources :additional_time_items
 	resources :task_ownerships
 	resources :stories do
+
+		collection do
+			post 'do_action'
+		end
 
 		member do
 			post 'pull'
