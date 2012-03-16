@@ -16,6 +16,6 @@
 				current_story = $('.stories .story').last().attr('data-story-number');
 				Keyboard.highlightCurrent();
 				$('html, body').animate({scrollTop: pos}, 500);
-				Keyboard.focusNewTaskInput();
+				Keyboard.focusNewTaskInput(evt);
 			});
 
