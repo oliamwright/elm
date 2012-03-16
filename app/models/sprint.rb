@@ -8,6 +8,10 @@ class Sprint < ActiveRecord::Base
 	has_many :stories
 	has_many :additional_time_items
 
+	def display_name
+		"S#{self.number}"
+	end
+
 	def team_resourced
 		self.stories.collect { |s| s.task_ownerships }.flatten.map { |to| to.user }.uniq.count
 	end
@@ -77,12 +81,16 @@ class Sprint < ActiveRecord::Base
 		self.project.sprint_duration / 1.week
 	end
 
-	def start_date
+	def old_start_date
 		self.project.start_date + ((self.number - 1) * self.project.sprint_duration).seconds rescue Date.new(1975,1,13)
 	end
 
+#	def start_date
+#		self.project.start_date + ((self.number - 1) * self.project.sprint_duration).seconds rescue Date.new(1975,1,13)
+#	end
+
 	def end_date
-		self.start_date + self.project.sprint_duration.seconds
+		self.start_date + self.project.sprint_duration.seconds rescue Date.today
 	end
 
 	def percent_complete

@@ -22,7 +22,7 @@
 		- else
 			.field= ""
 			.field= ""
-		.field= sprint.start_date.to_date
+		.field= best_in_place sprint, :start_date, :type => :date
 		.field= sprint.display_duration
 		.field= sprint.end_date.to_date
 - if sprint.team_resourced > 0

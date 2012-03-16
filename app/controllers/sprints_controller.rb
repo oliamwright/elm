@@ -27,6 +27,11 @@ class SprintsController < ApplicationController
 			@sprint.number = (@phase.sprints.last.number + 1 rescue 1)
 			@sprint.project = @project
 			@sprint.phase = @phase
+			if @sprint.previous_sprint
+				@sprint.start_date = @sprint.previous_sprint.end_date
+			else
+				@sprint.start_date = Date.today
+			end
 			@sprint.save
 		end
 		redirect_to :back
@@ -35,6 +40,27 @@ class SprintsController < ApplicationController
 	def show
 		@sprint = Sprint.find(params[:id]) rescue nil
 		@sprint.renumber_if_necessary!
+	end
+
+	def update
+		@sprint = Sprint.find(params[:id]) rescue nil
+		if @sprint
+			respond_to do |format|
+				if params[:sprint][:start_date]
+					@sprint.start_date = Date.strptime(params[:sprint][:start_date], "%m/%d/%Y")
+					params[:sprint].delete(:start_date)
+					@sprint.save
+					respond_with_bip(@sprint)
+					return
+				elsif @sprint.update_attributes(params[:sprint])
+					format.html { redirect_to(@sprint, :notice => "Sprint '#{@sprint.display_name}' updated.") }
+					format.json { respond_with_bip(@sprint) }
+				else
+					format.html { }
+					format.json { respond_with_bip(@sprint) }
+				end
+			end
+		end
 	end
 
 	def destroy
