@@ -6,6 +6,10 @@ class Phase < ActiveRecord::Base
   belongs_to :project
 	has_many :sprints
 
+	def short_name
+		"P#{self.number}"
+	end
+
 	def display_number
 		"#{self.number}"
 	end

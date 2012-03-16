@@ -8,6 +8,10 @@ class Sprint < ActiveRecord::Base
 	has_many :stories
 	has_many :additional_time_items
 
+	def full_name
+		"#{self.phase.short_name} : #{self.display_name}"
+	end
+
 	def display_name
 		"S#{self.number}"
 	end

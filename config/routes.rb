@@ -45,6 +45,10 @@ Tm::Application.routes.draw do
 	resources :task_ownerships
 	resources :stories do
 
+		collection do
+			post 'do_action'
+		end
+
 		member do
 			post 'pull'
 			post 'push'

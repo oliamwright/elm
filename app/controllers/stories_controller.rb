@@ -2,6 +2,43 @@ class StoriesController < ApplicationController
 	
 	before_filter :load_sprint
 
+	def do_action
+		action = params[:si_action]
+		ids = params[:ids].split(/,/)
+		unless action && !ids.empty?
+			render :status => 500
+		end
+		items = ids.map { |id| Story.find(id) rescue nil }
+		@sprint = Sprint.find(params[:new_sprint_id]) rescue nil
+		case action
+			when "move"
+				items.each do |item|
+					if @sprint
+						old_sprint = item.sprint
+						item.sprint = @sprint
+						item.number = 99999
+						item.save
+						if old_sprint
+							old_sprint.renumber!
+						else
+							item.project.renumber_backlog!
+						end
+					end
+				end
+				@sprint.renumber!
+				render :action => :move, :layout => false
+			when "delete"
+				items.each do |item|
+					if current_user.can?(:delete, item)
+						item.destroy
+					end
+				end
+				render :text => ''
+			else
+				render :status => 500
+		end
+	end
+
 	def create
 		@story = Story.new(params[:story])
 		@story.project = @project
