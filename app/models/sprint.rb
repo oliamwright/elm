@@ -47,7 +47,7 @@ class Sprint < ActiveRecord::Base
 	end
 
 	def days_in_sprint
-		((self.end_date - self.start_date) / 60.0 / 60.0 / 24.0).to_i
+		(self.end_date.to_date - self.start_date.to_date).to_i
 	end
 
 	def days_since_start
