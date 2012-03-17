@@ -16,6 +16,9 @@ class CompaniesController < ApplicationController
 		@company.name = 'UNNAMED' unless !@company.name.blank?
 		if @company.save
 			flash[:notice] = "Company '#{@company.name}' created."
+			User.all.each do |u|
+				u.touch
+			end
 			redirect_to_last_page
 			return
 		else
