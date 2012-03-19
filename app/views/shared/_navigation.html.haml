@@ -24,7 +24,8 @@
 					- permitted?(:show_team_tab, @project) do
 						.nav_tab{:class => (params[:action] == 'team' ? 'active' : '')}= link_to 'TEAM', team_project_url(@project)
 					.nav_tab{:class => (params[:controller] == 'sprints' || params[:action] == 'backlog' ? 'active' : '')}= link_to 'BACKLOG', project_sprints_url(@project)
-					.nav_tab{:class => (params[:action] == 'bugs' ? 'active' : '')}= link_to 'BUGS', bugs_project_url(@project)
+					- permitted?(:show_bugs_tab, @project) do
+						.nav_tab{:class => (params[:action] == 'bugs' ? 'active' : '')}= link_to 'BUGS', bugs_project_url(@project)
 					- permitted?(:show_rtr_tab, @project) do
 						.nav_tab{:class => (params[:action] == 'test_output' ? 'active' : '')}= link_to 'RTR', test_output_project_url(@project)
 					- permitted?(:show_sow_tab, @project) do

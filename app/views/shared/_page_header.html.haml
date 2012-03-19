@@ -1,4 +1,4 @@
-- cache [current_user, @project, 'page_header'] do
+- cache [current_user, @project, params[:controller], params[:action], 'page_header'] do
 	%div.page_header
 		= "homebrew.darmasoft.net"
 		%span.version
