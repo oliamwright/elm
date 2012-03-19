@@ -18,16 +18,14 @@
 			.check
 				= check_box_tag :show_completed, "yes", true
 	:javascript
-		$('.checkbox input[name="show_ignored"]').click(function() {
-			var ch = $(this).attr('checked') == 'checked';
+		function perform_filters() {
+			var ch = $('.checkbox input[name="show_ignored"]').attr('checked') == 'checked';
 			if (ch) {
 				$('.status_ignored').show();
 			} else {
 				$('.status_ignored').hide();
 			}
-		});
-		$('.checkbox input[name="show_completed"]').click(function() {
-			var ch = $(this).attr('checked') == 'checked';
+			var ch = $('.checkbox input[name="show_completed"]').attr('checked') == 'checked';
 			if (ch) {
 				$('.story.status_completed').show();
 				$('.story.status_completed').next('.tasks').show();
@@ -35,15 +33,24 @@
 				$('.story.status_completed').hide();
 				$('.story.status_completed').next('.tasks').hide();
 			}
-		});
-		$('.checkbox input[name="show_completed_tasks"]').click(function() {
-			var ch = $(this).attr('checked') == 'checked';
+			var ch = $('.checkbox input[name="show_completed_tasks"]').attr('checked') == 'checked';
 			if (ch) {
 				$('.item.is_completed').show();
 			} else {
 				$('.item.is_completed').hide();
 			}
+		};
+
+		$('.checkbox input[name="show_ignored"]').click(function() {
+			perform_filters();
 		});
+		$('.checkbox input[name="show_completed"]').click(function() {
+			perform_filters();
+		});
+		$('.checkbox input[name="show_completed_tasks"]').click(function() {
+			perform_filters();
+		});
+		$(function() { perform_filters(); });
 	.header.stickify
 		.field.pull
 		.field.check{:'data-class' => 'story', :'data-id' => 'all'}= check_box_tag :sel

@@ -2,6 +2,56 @@
 .bug_list
 	.story_list
 		.title= "Bugs"
+		.filter_checkboxes
+			.checkbox.show_completed_tasks
+				.label
+					= "show completed tasks?"
+				.check
+					= check_box_tag :show_completed_tasks, "yes", true
+			.checkbox.show_ignored
+				.label
+					= "show ignored tasks?"
+				.check
+					= check_box_tag :show_ignored, "yes", true
+			.checkbox.show_hidden
+				.label
+					= "show completed user stories?"
+				.check
+					= check_box_tag :show_completed, "yes", false
+		:javascript
+			function perform_filters() {
+				var ch = $('.checkbox input[name="show_ignored"]').attr('checked') == 'checked';
+				if (ch) {
+					$('.status_ignored').show();
+				} else {
+					$('.status_ignored').hide();
+				}
+				var ch = $('.checkbox input[name="show_completed"]').attr('checked') == 'checked';
+				if (ch) {
+					$('.story.status_completed').show();
+					$('.story.status_completed').next('.tasks').show();
+				} else {
+					$('.story.status_completed').hide();
+					$('.story.status_completed').next('.tasks').hide();
+				}
+				var ch = $('.checkbox input[name="show_completed_tasks"]').attr('checked') == 'checked';
+				if (ch) {
+					$('.item.is_completed').show();
+				} else {
+					$('.item.is_completed').hide();
+				}
+			};
+
+			$('.checkbox input[name="show_ignored"]').click(function() {
+				perform_filters();
+			});
+			$('.checkbox input[name="show_completed"]').click(function() {
+				perform_filters();
+			});
+			$('.checkbox input[name="show_completed_tasks"]').click(function() {
+				perform_filters();
+			});
+			$(function() { perform_filters(); });
 		= render :partial => 'stories/story_header'
 		.stories
 			= render :partial => 'stories/story_with_bugs', :collection => @bugs.map { |s| s.story }.uniq.sort {|a,b| b.client_value == a.client_value ? a.sort_number <=> b.sort_number : b.client_value <=> a.client_value }
