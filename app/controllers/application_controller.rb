@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 	private
 
 	def set_page_title
-		@page_title = "#{controller_name} : #{action_name} :: homebrew.darmasoft.net"
+		@page_title = "#{controller_name} : #{action_name} :: elm.darmasoft.net"
 	end
 
 	def check_css

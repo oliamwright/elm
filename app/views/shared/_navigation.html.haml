@@ -1,5 +1,5 @@
 %div.navigation
-	.title= link_to "HOMEBREW", dashboard_url
+	.title= link_to "ELM", dashboard_url, :title => 'Entropy Limiting Machine'
 	- if user_signed_in?
 		- if permitted?(:create, Project)
 			.new_project
