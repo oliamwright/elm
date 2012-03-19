@@ -103,6 +103,14 @@ class SubItem < ActiveRecord::Base
 		self.status.to_s.titleize rescue "unknown"
 	end
 
+	def sort_number
+		t = 0
+		self.display_number.split(/\./).each_with_index do |p, idx|
+			t += p.to_i * (1000 ** (3 - idx))
+		end
+		t
+	end
+
 	private
 
 	def number_item

@@ -1,0 +1,100 @@
+- story = story_with_bugs
+- cache [current_user, story, 'with_bugs'] do
+	%a{:name => "s_#{story.display_number}"}
+	.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id, :class => "value_#{story.display_client_value.downcase} status_#{story.status}", :'data-story-number' => story.number}
+		- if story.can_pull?
+			.field.pull
+				.pull_button
+					= "<"
+		- else
+			.field.no_pull
+		.field.check{:'data-class' => 'story', :'data-id' => story.id}= check_box_tag :sel
+		.field.status
+			- if story.approved?
+				= story.display_status
+			- else
+				= best_in_place story, :approved, :type => :checkbox, :collection => [ 'Open', 'Approved' ]
+		.field.usid= link_to story.display_number, story_url(story)
+		.field.value= best_in_place story, :client_value, :type => :select, :collection => Story::VALUE_MAP
+		.field.details= best_in_place_if !story.approved?, story, :description
+		- if permitted?(:show_estimated_time, story.project)
+			.field.est_time= "%0.02f" % story.estimated_time
+		- else
+			.field.est_time= ""
+		.field.tasks= story.sub_items.tasks.count
+		.field.bugs= story.sub_items.bugs.count
+		- if permitted?(:show_actual_time, story.project)
+			.field.act_time= "%0.02f" % story.actual_time
+		- else
+			.field.act_time= ""
+		.field.created_by= story.owner.full_name
+		.field.created_at= story.created_at.to_date
+		.field.approved_by= "--"
+		.field.approved_at= "--"
+		.field.completed_at= "--"
+		.field.options
+			-#
+				.story_questions{:class => story.questions.empty? ? 'ask_question' : 'show_questions'}
+					= "#{story.questions.count} ?"
+		%div{:id => "questions_s#{story.id}", :title => 'Questions', :style => 'display: none;'}
+			- story.questions.each do |q|
+				.question{:'data-id' => q.id}
+					%span.user
+						= q.user.full_name
+					%span
+						= ":"
+					%span.body
+						= q.body
+		:javascript
+			$('#questions_s#{story.id}').dialog({
+				autoOpen: false,
+				width: 500,
+				height: 150,
+				modal: true,
+			});
+			$('#questions_s#{story.id} .question').click(function() {
+				var qb = $(this).children('.body').text();
+				$('#questions_s#{story.id}').dialog('close');
+				var qid = $(this).attr('data-id');
+				$('#answer_dialog input[name="answer[question_id]"]').val(qid);
+				$('#answer_dialog #question_body').text(qb);
+				$('#answer_dialog').dialog('open');
+			});
+			$('#story_#{story.id} .show_questions').click(function() {
+				var sid = #{story.id};
+				$('#questions_s' + sid).dialog('open');
+			});
+			$('#story_#{story.id} .ask_question').click(function() {
+				var sid = #{story.id};
+				$('#question_dialog input[name="question[questionable_id]"]').val(sid);
+				$('#question_dialog input[name="question[questionable_type]"]').val('Story');
+				$('#question_dialog input[name="question[body]"]').val('');
+				$('#question_dialog').dialog('open');
+			});
+		- if story.can_push?
+			.field.push
+				.push_button
+					= ">"
+		- else
+			.field.no_push
+	.tasks{:id => "story_#{story.id}_tasks", :'data-id' => story.id}
+		- if story.sub_items.count > 0
+			.header
+				.field.pull= "<"
+				.field.check{:'data-class' => 'sub_item', :'data-id' => 'all'}= check_box_tag :sel
+				.field.status= "STATUS"
+				.field.itemid= "ITEM ID"
+				.field.type= "TYPE"
+				.field.details= "DETAILS"
+				.field.est_time= "EST. TIME"
+				.field.owner= "OWNER"
+				.field.role= "ROLE"
+				.field.act_time= "ACTUAL TIME"
+				.field.created_by= "CREATED BY"
+				.field.created_at= "CREATED"
+				.field.approved_by= "APPROVED BY"
+				.field.approved_at= "APPROVED"
+				.field.completed_at= "COMPLETED"
+				.field.push= ">"
+			= render(:partial => 'sub_items/item', :collection => story.sub_items.bugs)
+		= render :partial => 'sub_items/new_task', :locals => { :story => story }

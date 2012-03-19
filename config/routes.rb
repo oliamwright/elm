@@ -93,6 +93,7 @@ Tm::Application.routes.draw do
 		end
 
 		member do
+			get 'bugs'
 			get 'team'
 			get 'backlog'
       get 'test_output'

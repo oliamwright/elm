@@ -155,4 +155,12 @@ class Sprint < ActiveRecord::Base
 	def deletable?
 		self.number > (self.project.duration / (self.project.sprint_duration / 1.week))
 	end
+
+	def sort_number
+		t = 0
+		self.display_number.split(/\./).each_with_index do |p, idx|
+			t += p.to_i * (1000 ** (3 - idx))
+		end
+		t
+	end
 end

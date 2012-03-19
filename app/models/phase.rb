@@ -27,4 +27,11 @@ class Phase < ActiveRecord::Base
 		!self.name.blank? ? self.name.titleize : "Phase #{self.number}"
 	end
 
+	def sort_number
+		t = 0
+		self.display_number.split(/\./).each_with_index do |p, idx|
+			t += p.to_i * (1000 ** (3 - idx))
+		end
+		t
+	end
 end

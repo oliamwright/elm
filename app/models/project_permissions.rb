@@ -17,6 +17,7 @@ module ProjectPermissions
 			[:show_actual_time, 'can view actual time for a project'],
 			[:show_allocations, 'can view resource allocations for a project'],
 			[:show_recent_activity, 'can view recent activity for a project'],
+			[:show_bugs_tab, 'can view bugs tab for project'],
 			[:show_team_tab, 'can view team tab for project'],
 			[:show_rtr_tab, 'can view rtr tab for project'],
 			[:show_sow_tab, 'can view sow tab for project'],

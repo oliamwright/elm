@@ -129,7 +129,8 @@ namespace :roles do
 			[:project, :show_recent_activity],
 			[:project, :show_sprints],
 			[:project, :show_actual_time],
-			[:project, :show_estimated_time]
+			[:project, :show_estimated_time],
+			[:project, :show_bugs_tab]
 		]
 
 		r = Role.find_by_name("Project Team")
@@ -154,6 +155,7 @@ namespace :roles do
 		po_perms = [
 			[:project, :show_recent_activity],
 			[:project, :show_sprints],
+			[:project, :show_bugs_tab],
 			[:project, :show_team_tab],
 			[:project, :show_rtr_tab],
 			[:project, :show_sow_tab],

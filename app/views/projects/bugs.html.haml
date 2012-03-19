@@ -1,0 +1,281 @@
+= render :partial => 'stories/action_buttons'
+.bug_list
+	.story_list
+		.title= "Bugs"
+		= render :partial => 'stories/story_header'
+		.stories
+			= render :partial => 'stories/story_with_bugs', :collection => @bugs.map { |s| s.story }.uniq.sort {|a,b| b.client_value == a.client_value ? a.sort_number <=> b.sort_number : b.client_value <=> a.client_value }
+:javascript
+	$('.header .field.usid').click(function() {
+		$('.field.usid span.usid').toggle();
+		$('.field.usid span.taskid').toggle();
+	});
+
+	$('.check input[name="sel"]').click(function() {
+		var ch = $(this).attr('checked') == 'checked';
+		var cl = $(this).parent().attr('data-class');
+		var id = $(this).parent().attr('data-id');
+		console.log(ch + ':' + cl + ':' + id + ' -- clicked');
+		if (cl == 'sub_item' && id == 'all') {
+			$(this).closest('.tasks').find('.item .check input[name="sel"]').attr('checked', ch);
+		} else if (cl == 'story' && id == 'all') {
+			$('input[name="sel"]').attr('checked', ch);
+		} else if (cl == 'story') {
+			$(this).closest('.story').next('.tasks').find('.check input[name="sel"]').attr('checked', ch);
+		}
+		update_buttons();
+	});
+
+	function disable_buttons() {
+		$('.action_buttons .button').addClass('disabled');
+		$('.assign_button').addClass('disabled');
+		$('.assign_field .user_select select').attr('disabled', true);
+		$('.set_status_button').addClass('disabled');
+		$('.task_status_field .status_select select').attr('disabled', true);
+		$('.move_story_field .destination_select select').attr('disabled', true);
+		$('.move_story_button').addClass('disabled');
+		$('.deploy_field .deploy_select select').attr('disabled', true);
+		$('.deploy_button').addClass('disabled');
+	};
+
+	function enable_buttons() {
+		$('.action_buttons .button').removeClass('disabled');
+		$('.assign_button').removeClass('disabled');
+		$('.assign_field .user_select select').attr('disabled', false);
+		$('.set_status_button').removeClass('disabled');
+		$('.task_status_field .status_select select').attr('disabled', false);
+		$('.move_story_field .destination_select select').attr('disabled', false);
+		$('.move_story_button').removeClass('disabled');
+		$('.deploy_field .deploy_select select').attr('disabled', false);
+		$('.deploy_button').removeClass('disabled');
+	};
+
+	function update_buttons() {
+		if ($('input[name="sel"]:checked').length > 0) {
+			enable_buttons();
+		} else {
+			disable_buttons();
+		}
+	};
+
+	function uncheck_checkboxes() {
+		$('input[name="sel"]:checked').attr('checked', false);
+	};
+
+	update_buttons();
+
+	$('.deploy_button').click(function() {
+		if ($(this).hasClass('disabled')) {
+		 // do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var new_status = $(this).parent().find('option:selected').val();
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'sub_item') {
+					vals.push(id);
+				}
+			});
+			do_set_status(new_status, vals);
+		}
+	});
+
+	$('.move_story_button').click(function() {
+		if ($(this).hasClass('disabled')) {
+			// do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var new_sprint_id = $(this).parent().find('option:selected').val();
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'story') {
+					vals.push(id);
+				}
+			});
+			do_move_stories(new_sprint_id, vals);
+		}
+	});
+
+	$('.set_status_button').click(function() {
+		if ($(this).hasClass('disabled')) {
+			// do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var new_status = $(this).parent().find('option:selected').val();
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'sub_item') {
+					vals.push(container.attr('data-id'));
+				}
+			});
+			do_set_status(new_status, vals);
+		}
+	});
+
+	$('.assign_button').click(function() {
+		if ($(this).hasClass('disabled')) {
+			//do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var uid = $(this).parent().find('option:selected').val();
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'sub_item') {
+					vals.push(container.attr('data-id'));
+				}
+			});
+			do_assign(uid, vals);
+		}
+	});
+
+	$('.action_buttons .button').click(function() {
+		if ($(this).hasClass('disabled')) {
+			// do nothing
+		} else {
+			var act = $(this).attr('data-action');
+			var vals = [];
+			$('input[name="sel"]:checked').each(function() {
+				var container = $(this).closest('.check');
+				var cl = container.attr('data-class');
+				var id = container.attr('data-id');
+				if (id != 'all' && cl == 'sub_item') {
+					vals.push(container.attr('data-id'));
+				}
+			});
+			do_action(act, vals);
+		}
+	});
+
+	$('.push_button').click(function() {
+		var container = $(this).parents('.story');
+		var sid = container.attr('data-id');
+		$.ajax({
+			async: true,
+			cache: false,
+			url: '/stories/' + sid + '/push',
+			type: 'post',
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			success: function(data) {
+				container.next('.tasks').remove();
+				container.html(data);
+			}
+		});
+	});
+	$('.pull_button').click(function() {
+		var container = $(this).parents('.story');
+		var sid = container.attr('data-id');
+		$.ajax({
+			async: true,
+			cache: false,
+			url: '/stories/' + sid + '/pull',
+			type: 'post',
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			success: function(data) {
+				container.next('.tasks').remove();
+				container.html(data);
+			}
+		});
+	});
+
+	function do_action(action, ids) {
+		var idstring = ids.join(',');
+		$.ajax({
+			async: true,
+			url: '/sub_items/do_action?si_action=' + action + '&ids=' + idstring,
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			type: 'post',
+			cache: false,
+			success: function(data) {
+				ids.forEach(function(id) {
+					if (action == "delete") {
+						$('.item[data-id=' + id + ']').remove();
+					} else {
+						$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
+					}
+				});
+				disable_buttons();
+				uncheck_checkboxes();
+			}
+		});
+	};
+
+	function do_move_stories(new_sprint_id, ids) {
+		var idstring = ids.join(',');
+		$.ajax({
+			async: true,
+			url: '/stories/do_action?si_action=move&ids=' + idstring + '&new_sprint_id=' + new_sprint_id,
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			type: 'post',
+			cache: false,
+			success: function(data) {
+				ids.forEach(function(id) {
+					var container = $('.story[data-id="' + id + '"]');
+					container.next('.tasks').remove();
+					container.html(data);
+				});
+				disable_buttons();
+				uncheck_checkboxes();
+			}
+		});
+	};
+
+	function do_set_status(new_status, ids) {
+		var idstring = ids.join(',');
+		$.ajax({
+			async: true,
+			url: '/sub_items/do_action?si_action=set_status&ids=' + idstring + '&new_status=' + new_status,
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			type: 'post',
+			cache: false,
+			success: function(data) {
+				ids.forEach(function(id) {
+					$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
+				});
+				disable_buttons();
+				uncheck_checkboxes();
+			}
+		});
+	};
+				
+	function do_assign(userid, ids) {
+		var idstring = ids.join(',');
+		$.ajax({
+			async: true,
+			url: '/sub_items/do_action?si_action=assign&ids=' + idstring + '&user_id=' + userid,
+			headers: {
+				'X-CSRF-Token': '#{form_authenticity_token.to_s}'
+			},
+			type: 'post',
+			cache: false,
+			success: function(data) {
+				ids.forEach(function(id) {
+					$('.item[data-id=' + id + ']').load('/sub_items/' + id, unwrap);
+				});
+				disable_buttons();
+				uncheck_checkboxes();
+			}
+		});
+	};
+= render :partial => 'stories/keyboard_shortcuts'

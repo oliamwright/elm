@@ -135,6 +135,12 @@ class ProjectsController < ApplicationController
 		end
 	end
 
+	def bugs
+		@project = Project.find(params[:id]) rescue nil
+		require_perm!(current_user.can?(:show_bugs_tab, @project)) || return
+		@bugs = @project.sub_items.bugs.sort { |a,b| a.display_number <=> b.display_number }
+	end
+
 	def team
 		@project = Project.find(params[:id]) rescue nil
 		require_perm!(current_user.can?(:show_team_tab, @project)) || return

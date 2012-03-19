@@ -162,6 +162,14 @@ class Story < ActiveRecord::Base
 		self.sub_items.last.number rescue 0
 	end
 
+	def sort_number
+		t = 0
+		self.display_number.split(/\./).each_with_index do |p, idx|
+			t += p.to_i * (1000 ** (3 - idx))
+		end
+		t
+	end
+
 	private
 
 	def number_story
