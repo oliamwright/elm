@@ -51,7 +51,7 @@
 							- users.each do |user|
 								.row
 									.field= (user.roles.all_for_project(@project).primary.first.name rescue "")
-									.field= link_to user.email, project_user_url(@project, user)
+									.field= user.email
 		.project.row.last
 			.field= "Project Team"
 			.field11
@@ -62,7 +62,7 @@
 							- users.each do |user|
 								.row
 									.field= (user.roles.all_for_project(@project).primary.first.name rescue "")
-									.field= link_to user.email, project_user_url(@project, user)
+									.field= user.email
 		.summary.row.last
 			.field= ""
 			.field= ""
