@@ -131,6 +131,29 @@ class Story < ActiveRecord::Base
 		self.status.to_s.titleize rescue "unknown"
 	end
 
+	def display_bug_status
+		self.bug_status.to_s.titleize rescue "unknown"
+	end
+
+	def bug_status
+		if approved?
+			si_map = sub_items.bugs.map { |si| si.status }
+			if si_map.include?("waiting")
+				"waiting"
+			elsif (si_map - ["ignored"]).empty?
+				"ignored"
+			elsif (si_map - ["prod", "dev", "stage", "tested", "completed", "ignored"]).empty?
+				"completed"
+			elsif si_map.any? { |si| ["in_progress", "completed", "prod", "dev", "stage", "tested"].include?(si) }
+				"in_progress"
+			else
+				"approved"
+			end
+		else
+			"open"
+		end
+	end
+
 	def status
 		if approved?
 			si_map = sub_items.map { |si| si.status }

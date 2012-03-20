@@ -1,6 +1,7 @@
 .dashboard
 	.story_list
 		.title= "My Tasks"
+		= render :partial => 'stories/story_filters'
 		= render :partial => 'stories/story_header'
 		.stories
 			- @sub_items.group_by { |si| si.story.project }.each do |project, si|

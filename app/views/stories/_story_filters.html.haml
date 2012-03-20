@@ -1,0 +1,45 @@
+- show_completed = defined?(completed) ? completed : true
+- show_ignored = defined?(ignored) ? ignored : true
+.filter_checkboxes
+	.checkbox.show_completed_tasks
+		.label
+			= "show completed?"
+		.check
+			= check_box_tag :show_completed, "yes", show_completed
+	.checkbox.show_ignored
+		.label
+			= "show ignored?"
+		.check
+			= check_box_tag :show_ignored, "yes", show_ignored
+:javascript
+	function perform_filters() {
+		var ch = $('.checkbox input[name="show_ignored"]').attr('checked') == 'checked';
+		if (ch) {
+			$('.story.status_ignored').show();
+			$('.story.status_ignored').next('.tasks').show();
+			$('.item.status_ignored').show();
+		} else {
+			$('.story.status_ignored').hide();
+			$('.story.status_ignored').next('.tasks').hide();
+			$('.item.status_ignored').hide();
+		}
+		var ch = $('.checkbox input[name="show_completed"]').attr('checked') == 'checked';
+		if (ch) {
+			$('.story.status_completed').show();
+			$('.story.status_completed').next('.tasks').show();
+			$('.item.status_completed').show();
+		} else {
+			$('.story.status_completed').hide();
+			$('.story.status_completed').next('.tasks').hide();
+			$('.item.status_completed').hide();
+		}
+	};
+
+	$('.checkbox input[name="show_ignored"]').click(function() {
+		perform_filters();
+	});
+	$('.checkbox input[name="show_completed"]').click(function() {
+		perform_filters();
+	});
+	$(function() { perform_filters(); });
+

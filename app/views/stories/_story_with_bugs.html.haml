@@ -1,7 +1,7 @@
 - story = story_with_bugs
 - cache [current_user, story, 'with_bugs'] do
 	%a{:name => "s_#{story.display_number}"}
-	.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id, :class => "value_#{story.display_client_value.downcase} status_#{story.status}", :'data-story-number' => story.number}
+	.story{:id => "story_#{story.id}", :'data-project-id' => story.project.id, :'data-id' => story.id, :class => "value_#{story.display_client_value.downcase} status_#{story.bug_status}", :'data-story-number' => story.number}
 		- if story.can_pull?
 			.field.pull
 				.pull_button
@@ -11,7 +11,7 @@
 		.field.check{:'data-class' => 'story', :'data-id' => story.id}= check_box_tag :sel
 		.field.status
 			- if story.approved?
-				= story.display_status
+				= story.display_bug_status
 			- else
 				= best_in_place story, :approved, :type => :checkbox, :collection => [ 'Open', 'Approved' ]
 		.field.usid= link_to story.display_number, story_url(story)
