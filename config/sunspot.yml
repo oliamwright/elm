@@ -3,6 +3,7 @@ production:
     hostname: localhost
     port: 8983
     log_level: WARNING
+    pid_path: /var/www/homebrew/shared/pids
 
 development:
   solr:
